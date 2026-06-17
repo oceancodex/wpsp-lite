@@ -1,4 +1,4 @@
-# WordPress Starter Plugin
+# WPSP Framework - WordPress Starter Plugin - Lite
 ### A great framework that makes WordPress plugin development easier!
 
 ---
