@@ -62,7 +62,7 @@ class WPSP extends \WPSPCORE\WPSP {
 	public static function aferSetupApplication() {
 		Updater::instance()->init();
 		WPTranslation::instance()->init();
-		static::shareVariablesForAllViews();
+//		static::shareVariablesForAllViews();
 		static::overrideExceptionHandler();
 	}
 
@@ -70,7 +70,7 @@ class WPSP extends \WPSPCORE\WPSP {
 		if (defined('WPSP_ACTIVE')) {
 			Updater::instance()->init();
 			WPTranslation::instance()->init();
-			static::shareVariablesForAllViews();
+//			static::shareVariablesForAllViews();
 			static::overrideExceptionHandler();
 		}
 	}
