@@ -1,0 +1,60 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress Starter Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-27 08:18+0000\n"
+"PO-Revision-Date: 2026-01-11 18:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: Tiếng Việt\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.14\n"
+"X-Domain: wpsp"
+
+msgid "Add new"
+msgstr "Thêm mới"
+
+msgid "Dashboard"
+msgstr "Tổng quan"
+
+msgid "Database"
+msgstr "Cơ sở dữ liệu"
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://oceancodex.com"
+msgstr ""
+
+msgid "Information"
+msgstr "Thông tin"
+
+msgid "License key"
+msgstr "Khóa giấy phép"
+
+#. Author of the plugin
+msgid "OceanCodex"
+msgstr ""
+
+msgid "Settings"
+msgstr "Cài đặt"
+
+msgid "Table"
+msgstr "Bảng"
+
+msgid "Test"
+msgstr "Thử nghiệm"
+
+msgid "Title"
+msgstr "Tiêu đề"
+
+msgid "Tools"
+msgstr "Công cụ"
+
+#. Name of the plugin
+#. Description of the plugin
+msgid "WordPress Starter Plugin"
+msgstr ""

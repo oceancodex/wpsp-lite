@@ -1,0 +1,86 @@
+<?php
+
+namespace WPSP\App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Concerns\HasEvents;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
+use WPSP\App\Notifications\UsersPasswordResetLinkNotification;
+use WPSP\App\Observers\UsersObserver;
+use WPSP\App\Widen\Traits\ModelsTrait;
+use WPSP\Funcs;
+
+#[ObservedBy([UsersObserver::class])]
+#[Fillable(['name', 'username', 'email', 'password', 'api_token'])]
+#[Hidden(['password', 'api_token', 'remember_token'])]
+class UsersModel extends Authenticatable implements MustVerifyEmail {
+
+	use ModelsTrait, Notifiable;
+//	use HasApiTokens;           			// Sử dụng: Laravel/sanctum và Gate/Policiy
+//	use LogsActivity;						// Sử dụng: Spatie/laravel-activitylog-v4
+//	use HasActivity;						// Sử dụng: Spatie/laravel-activitylog-v5
+//	use HasRoles; 							// Sử dụng: Spatie/laravel-permission
+
+//	protected $connection                   = 'wp_wpsp';
+//	protected $prefix                       = 'wp_wpsp_';
+	protected $table                        = 'users';
+//	protected $primaryKey                   = 'id';
+
+//	protected $appends                      = [];
+//	protected $attributeCastCache;
+//	protected $attributes;
+	protected $casts                        = ['email_verified_at' => 'datetime', 'last_login_at' => 'datetime'];
+//	protected $changes;
+//	protected $classCastCache;
+//	protected $dateFormat;
+//	protected $dispatchesEvents;
+//	protected $escapeWhenCastingToString;
+//	protected $fillable                     = ['name', 'username', 'email', 'password', 'api_token'];
+//	protected $forceDeleting;
+//	protected $guarded                      = [];
+//	protected $hidden                       = ['password', 'api_token', 'remember_token'];
+//	protected $keyType;
+//	protected $observables;
+//	protected $original;
+//	protected $perPage;
+//	protected $relations;
+//	protected $touches;
+//	protected $visible;
+//	protected $with;
+//	protected $withCount;
+
+//	public    $exists;
+//	public    $incrementing;
+//	public    $preventsLazyLoading;
+//	public    $timestamps;
+//	public    $usesUniqueIds;
+//	public    $wasRecentlyCreated;
+
+	/**
+	 * Gửi email chứa link reset password (queue).
+	 */
+	public function sendPasswordResetNotification($token) {
+		$this->notify(new UsersPasswordResetLinkNotification($token));
+	}
+
+	/**
+	 * Retrieves the activity log options for the current method.
+	 *
+	 * @return LogOptions The configured log options, including the log name and settings to log all changes.
+	 */
+	public function getActivitylogOptions(): LogOptions {
+		return LogOptions::defaults()
+			->useLogName('users')
+			->logAll();
+	}
+
+}

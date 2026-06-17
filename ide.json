@@ -1,0 +1,185 @@
+{
+	"$schema": "https://laravel-ide.com/schema/laravel-ide-v2.json",
+	"completions": [
+		{
+			"complete": "routeName",
+			"condition": [
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["route"],
+					"parameters": [2]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_route"],
+					"parameters": [1]
+				},
+				{
+					"functionNames": ["wpsp_route"],
+					"parameters": [2]
+				}
+			]
+		},
+		{
+			"complete": "viewName",
+			"condition": [
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["view"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["viewInject"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["viewDetect"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_view"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_viewInject"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_viewDetect"],
+					"parameters": [1]
+				},
+				{
+					"functionNames": ["wpsp_view"],
+					"parameters": [1]
+				},
+				{
+					"functionNames": ["wpsp_view_inject"],
+					"parameters": [1]
+				},
+				{
+					"functionNames": ["wpsp_view_detect"],
+					"parameters": [1]
+				}
+			]
+		},
+		{
+			"complete": "assetPath",
+			"condition": [
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["asset"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_getPublicUrl"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_asset"],
+					"parameters": [1]
+				},
+				{
+					"functionNames": ["wpsp_asset"],
+					"parameters": [1]
+				}
+			]
+		},
+		{
+			"complete": "configKey",
+			"condition": [
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["config"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_config"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_getConfigPath"],
+					"parameters": [1]
+				},
+				{
+					"functionNames": ["wpsp_config"],
+					"parameters": [1]
+				}
+			]
+		},
+		{
+			"complete": "translationKey",
+			"condition": [
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["trans"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_trans"],
+					"parameters": [1]
+				},
+				{
+					"functionNames": ["wpsp_trans"],
+					"parameters": [1]
+				}
+			]
+		},
+		{
+			"complete": "environmentVariable",
+			"condition": [
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["env"],
+					"parameters": [1]
+				},
+				{
+					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"methodNames": ["_env"],
+					"parameters": [1]
+				},
+				{
+					"functionNames": ["wpsp_env"],
+					"parameters": [1]
+				}
+			]
+		},
+		{
+			"complete": "validationRule",
+			"condition": [
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["validate"],
+					"parameters": [2]
+				},
+				{
+					"functionNames": ["wpsp_validate"],
+					"parameters": [2]
+				}
+			]
+		},
+		{
+			"complete": "validationRules",
+			"condition": [
+				{
+					"classFqn": ["\\WPSP\\Funcs"],
+					"methodNames": ["validate"],
+					"parameters": [2]
+				},
+				{
+					"functionNames": ["wpsp_validate"],
+					"parameters": [2]
+				}
+			]
+		}
+	]
+}

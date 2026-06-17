@@ -1,0 +1,145 @@
+#!/usr/bin/env php
+<?php
+
+use Illuminate\Container\Container;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Facade;
+use Symfony\Component\Console\Input\ArgvInput;
+use WPSP\WPSP;
+use WPSP\routes\Actions;
+use WPSP\routes\AdminBarMenus;
+use WPSP\routes\AdminPages;
+use WPSP\routes\Ajaxs;
+use WPSP\routes\Apis;
+use WPSP\routes\Blocks;
+use WPSP\routes\Customizers;
+use WPSP\routes\DashboardWidgets;
+use WPSP\routes\Filters;
+use WPSP\routes\FrontPages;
+use WPSP\routes\MetaBoxes;
+use WPSP\routes\NavLocations;
+use WPSP\routes\PostTypeColumns;
+use WPSP\routes\PostTypes;
+use WPSP\routes\RewriteFrontPages;
+use WPSP\routes\Schedules;
+use WPSP\routes\Shortcodes;
+use WPSP\routes\Taxonomies;
+use WPSP\routes\TaxonomyColumns;
+use WPSP\routes\MediaColumns;
+use WPSP\routes\ThemeTemplates;
+use WPSP\routes\UserMetaBoxes;
+use WPSP\routes\Widgets;
+use WPSP\routes\WPRoles;
+
+define('WPSP_ARTISAN_START', microtime(true));
+
+require_once __DIR__ . '/ArtisanHelpers.php';
+$ensureDBConnect = ensureDBConnect();
+
+if ($ensureDBConnect) {
+    if (file_exists(__DIR__ . '/../../../wp-load.php')) {
+        require_once __DIR__ . '/../../../wp-load.php';
+
+        if (function_exists('is_plugin_active')) {
+            /**
+             * Kiểm tra plugin đã được kích hoạt hay chưa.\
+             * Khi plugin đã được kích hoạt và hoạt động thành công\
+             * thì "artisan" (hay môi trường terminal) sẽ hoạt động với:
+             * - Full tính năng của WordPress.
+             * - Full tính năng của tất cả plugin đang hoạt động.
+             * - Full tính năng của plugin này.
+             */
+            $pluginDir      = plugin_dir_path(__FILE__);
+            $pluginDirName  = plugin_basename($pluginDir);
+
+            if (is_plugin_active($pluginDirName . '/main.php')) {
+                define('WPSP_ACTIVE', true);
+            }
+            else {
+                echo "------------------------------------\n";
+                echo "\033[32m[✓] Bạn đang chạy \"artisan\" trong môi trường WordPress!\033[0m\n";
+                echo "\033[33m[!] Vui lòng kích hoạt plugin để sử dụng đầy đủ tính năng của \"artisan\"!\033[0m\n";
+                echo "------------------------------------\n";
+            }
+        }
+        else {
+            echo "------------------------------------\n";
+            echo "\033[31m[X] Bạn đang chạy \"artisan\" trong môi trường không phải WordPress!\033[0m\n";
+            echo "\033[31m[X] Có thể bạn sẽ không được sử dụng đầy đủ tính năng của \"artisan\"!\033[0m\n";
+            echo "\033[33m[!] Vui lòng kích hoạt plugin để sử dụng đầy đủ tính năng của \"artisan\"!\033[0m\n";
+            echo "------------------------------------\n";
+        }
+    }
+    else {
+        echo "------------------------------------\n";
+        echo "\033[31m[X] Bạn đang chạy \"artisan\" trong môi trường không phải WordPress!\033[0m\n";
+        echo "\033[31m[X] Có thể bạn sẽ không được sử dụng đầy đủ tính năng của \"artisan\"!\033[0m\n";
+        echo "\033[33m[!] Vui lòng kích hoạt plugin để sử dụng đầy đủ tính năng của \"artisan\"!\033[0m\n";
+        echo "------------------------------------\n";
+    }
+}
+else {
+    echo "------------------------------------\n";
+    echo "\033[31m[X] Bạn đang chạy \"artisan\" trong môi trường không phải WordPress!\033[0m\n";
+    echo "\033[31m[X] Có thể bạn sẽ không được sử dụng đầy đủ tính năng của \"artisan\"!\033[0m\n";
+    echo "\033[33m[!] Vui lòng kết nối database và kích hoạt plugin để sử dụng đầy đủ tính năng của \"artisan\"!\033[0m\n";
+    echo "------------------------------------\n";
+}
+
+/**
+ * Load composer autoload.
+ */
+require __DIR__ . '/vendor/autoload.php';
+
+/**
+ * ---
+ * Start application.
+ */
+$wpsp = WPSP::startConsole();
+
+/**
+ * ---
+ * Đăng ký routes.
+ */
+if (defined('WPSP_ACTIVE') && WPSP_ACTIVE) {
+    foreach ([
+        WPRoles::class,
+        Shortcodes::class,
+        Apis::class,
+        Ajaxs::class,
+        Schedules::class,
+        PostTypes::class,
+        PostTypeColumns::class,
+        MetaBoxes::class,
+        ThemeTemplates::class,
+        Taxonomies::class,
+        TaxonomyColumns::class,
+        MediaColumns::class,
+        AdminPages::class,
+        NavLocations::class,
+        UserMetaBoxes::class,
+        RewriteFrontPages::class,
+        FrontPages::class,
+        Blocks::class,
+        AdminBarMenus::class,
+        Customizers::class,
+        Widgets::class,
+        DashboardWidgets::class,
+        Actions::class,
+        Filters::class,
+    ] as $route) {
+        (new $route())->register();
+    }
+}
+
+/**
+ * ---
+ * Xử lý command line.
+ */
+$app = $wpsp->getApplication();
+Container::setInstance($app);
+Facade::setFacadeApplication($app);
+Model::setConnectionResolver($app['db']);
+Model::setEventDispatcher($app['events']);
+$status = $app->handleCommand(new ArgvInput);
+exit($status);

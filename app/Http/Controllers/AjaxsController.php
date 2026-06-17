@@ -1,0 +1,140 @@
+<?php
+
+namespace WPSP\App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use WPSP\App\Widen\Support\Facades\Migration;
+use WPSP\App\Widen\Support\Facades\RateLimiter;
+use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSP\Funcs;
+use WPSPCORE\App\Http\Controllers\BaseController;
+
+class AjaxsController extends BaseController {
+
+	use InstancesTrait;
+
+	public function handleDatabase() {
+		$nonce = $this->request->get('nonce');
+		if (!wp_verify_nonce($nonce, Funcs::config('app.short_name'))) die('Busted!');
+
+		$type = $this->request->get('type');
+
+		if ($type == 'check_all_database_table_exists' || $type == 'check_all_database_table_exists_seed') {
+			$migationFolderNotEmpty     = Migration::instance()->checkMigrationFolderNotEmpty();
+			$migrateActionWithSeedOrNot = ($type == 'check_all_database_table_exists_seed') ? 'migration_migrate_seed' : 'migration_migrate';
+
+			if ($migationFolderNotEmpty) {
+				wp_send_json(Funcs::response(
+					true,
+					['actions' => ['database_drop', $migrateActionWithSeedOrNot]],
+					'Refreshing database...',
+				));
+			}
+			else {
+				wp_send_json(Funcs::response(
+					true,
+					['actions' => ['database_drop', 'migration_diff', $migrateActionWithSeedOrNot]],
+					'Do not have any migrations. Try refreshing database and migrations...',
+				));
+			}
+		}
+		elseif ($type == 'check_migration_folder_not_empty') {
+			wp_send_json(Funcs::response(
+				true,
+				['actions' => ['database_drop', 'migration_diff', 'migration_migrate']],
+				'Refreshing database and migrations...',
+			));
+		}
+		elseif ($type == 'check_database_version_newest') {
+			wp_send_json(Funcs::response(
+				true,
+				['actions' => ['migration_migrate']],
+				'Updating database...',
+			));
+		}
+		elseif ($type == 'regenerate_database_and_migrations') {
+			wp_send_json(Funcs::response(
+				true,
+				['actions' => ['database_drop', 'migration_delete_all', 'migration_diff', 'migration_migrate']],
+				'Re-generating database and migrations...',
+			));
+		}
+
+		if ($type == 'database_drop') {
+			$result = Migration::instance()->dropAllDatabaseTables([
+				'activity_log', 'roles', 'permissions', 'model_has_permissions', 'model_has_roles', 'role_has_permissions'
+			]);
+			$result['message'] = '<div>' . $result['message'] . '</div>';
+			wp_send_json($result);
+		}
+		elseif ($type == 'migration_diff') {
+			$result            = Migration::instance()->diff();
+			$result['message'] = '<div>' . $result['message'] . '</div>';
+			wp_send_json($result);
+		}
+		elseif ($type == 'migration_migrate') {
+			$result            = Migration::instance()->migrate();
+			$result['message'] = '<div>' . $result['message'] . '</div>';
+			wp_send_json($result);
+		}
+		elseif ($type == 'migration_migrate_seed') {
+			$result            = Migration::instance()->migrate(true);
+			$result['message'] = '<div>' . $result['message'] . '</div>';
+			wp_send_json($result);
+		}
+		elseif ($type == 'migration_delete_all') {
+			$result            = Migration::instance()->deleteAllMigrations();
+			$result['message'] = '<div>' . $result['message'] . '</div>';
+			wp_send_json($result);
+		}
+	}
+
+	public function ajaxDemoGet(Request $request, $path, $fullPath) {
+//		check_ajax_referer(Funcs::config('app.short_name'), 'nonce');
+
+		// Rate limit for 10 requests per 60 seconds based on the user display name or request IP address.
+		try {
+			$key                = 'ajax_demo_get_' . (wp_get_current_user()->display_name ?? $this->request->getClientIp());
+			$maxAttempts        = 10;
+			$rateLimit          = RateLimiter::attempt($key, $maxAttempts, function() {});
+			$rateLimitRemaining = RateLimiter::remaining($key, $maxAttempts);
+			$rateLimitAccepted  = $rateLimit;
+		}
+		catch (\Throwable $e) {
+			$rateLimitAccepted  = true;
+			$rateLimitRemaining = null;
+		}
+
+		if (false === $rateLimitAccepted) {
+			wp_send_json(Funcs::response(
+				false,
+				[
+					'rate_limit_remaining' => $rateLimitRemaining,
+					'current_user_name'    => null,
+				],
+				'Rate limit exceeded. Please try again later.',
+			));
+			exit;
+		}
+
+		wp_send_json(Funcs::response(
+			true,
+			[
+				'rate_limit_remaining' => $rateLimitRemaining,
+				'current_user_name'    => wp_get_current_user()->display_name,
+			],
+			'Demo ajax get!',
+		));
+
+	}
+
+	public function ajaxUsersList(Request $request, $path, $fullPath) {
+		$users = get_users();
+		wp_send_json([
+			'success' => true,
+			'data'    => $users,
+			'message' => 'Users list retrieved',
+		]);
+	}
+
+}

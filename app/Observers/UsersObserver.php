@@ -1,0 +1,52 @@
+<?php
+
+namespace WPSP\App\Observers;
+use WPSP\App\Events\UsersUpdatedEvent;
+use WPSP\App\Widen\Support\Facades\Event;
+use WPSP\App\Models\UsersModel;
+
+class UsersObserver {
+
+	public function creating(UsersModel $user) {
+		//
+	}
+
+	public function created(UsersModel $user) {
+		//
+	}
+
+	public function updating(UsersModel $user) {
+		//
+	}
+
+	public function updated(UsersModel $user) {
+		error_log('Observer updated: ' . $user->name . '|' . $user->email);
+
+		$changes = array_keys($user->getChanges());
+		$ignored = [
+			'remember_token',
+			'email_verified_at',
+			'updated_at',
+		];
+
+		// Chỉ thay đổi các field hệ thống thì bỏ qua.
+		if (empty(array_diff($changes, $ignored))) {
+			return;
+		}
+
+		Event::dispatch(new UsersUpdatedEvent($user));
+	}
+
+	public function deleted(UsersModel $user) {
+		//
+	}
+
+	public function restored(UsersModel $user) {
+		//
+	}
+
+	public function forceDeleted(UsersModel $user) {
+		//
+	}
+
+}
