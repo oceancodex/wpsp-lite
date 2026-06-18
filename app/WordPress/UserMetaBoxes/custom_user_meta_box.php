@@ -45,12 +45,17 @@ class custom_user_meta_box extends BaseUserMetaBox {
 			$editUserURL = admin_url('profile.php') . '?';
 		}
 
-		echo Funcs::view('user-meta-boxes.custom_user_meta_box.main', compact('user'))->with([
-			'id'            => $this->id,
-			'title'         => $this->title,
-			'editUserURL'   => $editUserURL,
-			'requestParams' => $requestParams,
-		]);
+		if (class_exists('Illuminate\View\View')) {
+			echo Funcs::view('user-meta-boxes.custom_user_meta_box.main', compact('user'))->with([
+				'id'            => $this->id,
+				'title'         => $this->title,
+				'editUserURL'   => $editUserURL,
+				'requestParams' => $requestParams,
+			]);
+		}
+		else {
+			echo 'custom_user_meta_box - Index';
+		}
 	}
 
 	public function update($user_id, Request $request) {

@@ -59,9 +59,14 @@ class widget_demo_view extends BaseWidget {
 	 * @return void
 	 */
 	public function widget($args, $instance) {
-		echo Funcs::view('widgets.widget_demo_view.widget', compact('args', 'instance'))->with([
-			'widget' => $this,
-		])->render();
+		try {
+			echo Funcs::view('widgets.widget_demo_view.widget', compact('args', 'instance'))->with([
+				'widget' => $this,
+			])->render();
+		}
+		catch (\Exception $e) {
+			echo 'widget_demo_view - Widget';
+		}
 	}
 
 	/**
@@ -72,9 +77,14 @@ class widget_demo_view extends BaseWidget {
 	 * @return void
 	 */
 	public function form($instance) {
-		echo Funcs::view('widgets.widget_demo_view.form', compact('instance'))->with([
-			'widget' => $this,
-		])->render();
+		try {
+			echo Funcs::view('widgets.widget_demo_view.form', compact('instance'))->with([
+				'widget' => $this,
+			])->render();
+		}
+		catch (\Exception $e) {
+			echo 'widget_demo_view - Form';
+		}
 	}
 
 	/**

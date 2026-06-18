@@ -139,5 +139,16 @@ if (defined('WPSP_ACTIVE') && WPSP_ACTIVE) {
 $app = $wpsp->getApplication();
 Container::setInstance($app);
 Facade::setFacadeApplication($app);
-$status = $app->handleCommand(new ArgvInput);
-exit($status);
+if (class_exists('Illuminate\Database\Eloquent\Model')) {
+	Model::setConnectionResolver($app['db']);
+	Model::setEventDispatcher($app['events']);
+}
+
+if (class_exists('Illuminate\Foundation\Application')) {
+	$status = $app->handleCommand(new ArgvInput);
+	exit($status);
+}
+else {
+	$artisan = $wpsp->getArtisan();
+	exit($artisan->run());
+}
