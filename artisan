@@ -4,6 +4,8 @@
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
+use Symfony\Component\Console\Exception\CommandNotFoundException;
+use Symfony\Component\Console\Exception\ExceptionInterface;
 use Symfony\Component\Console\Input\ArgvInput;
 use WPSP\WPSP;
 use WPSP\routes\Actions;
@@ -143,12 +145,18 @@ if (class_exists('Illuminate\Database\Eloquent\Model')) {
 	Model::setConnectionResolver($app['db']);
 	Model::setEventDispatcher($app['events']);
 }
+try {
+	if (class_exists('Illuminate\Foundation\Application')) {
+		$status = $app->handleCommand(new ArgvInput);
+	}
+	else {
+		$artisan = $wpsp->getArtisan();
+		$status = $artisan->run();
+	}
 
-if (class_exists('Illuminate\Foundation\Application')) {
-	$status = $app->handleCommand(new ArgvInput);
-	exit($status);
+	exit($status ?? 0);
 }
-else {
-	$artisan = $wpsp->getArtisan();
-	exit($artisan->run());
+catch (\Throwable $e) {
+	fwrite(STDERR, $e->getMessage() . "\n\n");
+	exit(1);
 }

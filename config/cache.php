@@ -61,8 +61,8 @@ return [
 
 		'file' => [
 			'driver' => 'file',
-			'path' => storage_path('framework/cache/data'),
-			'lock_path' => storage_path('framework/cache/data'),
+			'path' => function_exists('storage_path') ? storage_path('framework/cache/data') : null,
+			'lock_path' => function_exists('storage_path') ? storage_path('framework/cache/data') : null,
 		],
 
 		'memcached' => [
