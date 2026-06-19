@@ -209,7 +209,7 @@ class wpsp extends BaseAdminPage {
 //			          ?->withProperties(['prop_1' => 'prop_value_1'])
 //			          ?->log('Desc: ' . $this->menu_slug);
 
-			if (class_exists('Illuminate\Database\Eloquent\Model')) {
+			if (class_exists('Illuminate\Foundation\Application')) {
 				$settings = SettingsModel::query()->where('key', 'settings')->pluck('value')->first();
 				$settings = json_decode($settings ?? '', true);
 
