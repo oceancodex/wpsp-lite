@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use WPSP\Funcs;
 
 return [
 
@@ -61,8 +62,8 @@ return [
 
 		'file' => [
 			'driver' => 'file',
-			'path' => function_exists('storage_path') ? storage_path('framework/cache/data') : null,
-			'lock_path' => function_exists('storage_path') ? storage_path('framework/cache/data') : null,
+			'path' => Funcs::instance()->_getStoragePath('framework/cache/data'),
+			'lock_path' => Funcs::instance()->_getStoragePath('framework/cache/data'),
 		],
 
 		'memcached' => [

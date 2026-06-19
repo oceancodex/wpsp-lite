@@ -134,8 +134,10 @@ class wpsp_tab_license extends BaseAdminPage {
 
 	public function matchedCurrentAccess() {
 		// Test thêm cookie.
-//		$cookie = Cookie::make('wpsp-access-license', 1, 60);
-//		response(null)->cookie($cookie)->sendHeaders();
+		if (class_exists('Illuminate\Cookie\CookieJar')) {
+			$cookie = Cookie::make('wpsp-access-license', 1, 60);
+			response(null)->cookie($cookie)->sendHeaders();
+		}
 	}
 
 	public function afterInit() {}

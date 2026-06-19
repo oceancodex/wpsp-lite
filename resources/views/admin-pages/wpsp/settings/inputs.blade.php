@@ -5,7 +5,7 @@
         <div class="input-group mt-2">
             <label for="test">
                 Test:
-                <input type="text" id="test" name="test" class="w-100 mt-1" value="{{ old('test') ?? $test ?? '' }}"/>
+                <input type="text" id="test" name="test" class="w-100 mt-1" value="{{ function_exists('old') ? old('test') : $test ?? '' }}"/>
             </label>
         </div>
 
@@ -13,7 +13,7 @@
             <label for="settings[setting_1]">
                 {{ wpsp_trans('messages.title') }}:
                 <input type="text" id="settings[setting_1]" name="settings[setting_1]" class="w-100 mt-1"
-                       value="{{ old('settings.setting_1') ?? $settings['setting_1'] ?? '' }}"/>
+                       value="{{ function_exists('old') ? old('settings.setting_1') : $settings['setting_1'] ?? '' }}"/>
             </label>
         </div>
 
@@ -21,7 +21,7 @@
             <label for="settings[setting_2]">
                 {{ wpsp_trans('messages.title') }}:
                 <input type="text" id="settings[setting_2]" name="settings[setting_2]" class="w-100 mt-1"
-                       value="{{ old('settings.setting_2') ?? $settings['setting_2'] ?? '' }}"/>
+                       value="{{ function_exists('old') ? old('settings.setting_2') : $settings['setting_2'] ?? '' }}"/>
             </label>
         </div>
 
@@ -31,10 +31,10 @@
                 @include('admin-pages.common.media-upload', [
                     'attachment_id' => 'settings[logo_attachment_id]',
                     'attachment_name' => 'settings[logo_attachment_id]',
-                    'attachment_value' => old('settings.logo_attachment_id') ?? $settings['logo_attachment_id'] ?? '',
+                    'attachment_value' => function_exists('old') ? old('settings.logo_attachment_id') : $settings['logo_attachment_id'] ?? '',
                     'url_id' => 'settings[logo]',
                     'url_name' => 'settings[logo]',
-                    'url_value' => old('settings.logo') ?? $settings['logo'] ?? '',
+                    'url_value' => function_exists('old') ? old('settings.logo') : $settings['logo'] ?? '',
                     'class' => 'mt-1',
                     'button_id' => 'settings[logo]button',
                 ])

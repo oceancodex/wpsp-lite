@@ -20,7 +20,7 @@
     <form method="POST" action="{{ wpsp_route('Apis', 'auth.forgot_password', true) }}" class="form">
 	    <?php wpsp_nonce_field('wp_rest'); ?>
         <label for="email">Email address</label>
-        <input type="text" name="email" id="email" tabindex="1" value="{{ old('email', '') }}"/>
+        <input type="text" name="email" id="email" tabindex="1" value="{{ function_exists('old') ? old('email', '') : '' }}"/>
         <input type="submit" name="commit" value="Send reset password link" tabindex="3" class="lastInput"/>
     </form>
 
