@@ -140,7 +140,7 @@ $app = $wpsp->getApplication();
 Container::setInstance($app);
 Facade::setFacadeApplication($app);
 
-if (class_exists('Illuminate\Database\Eloquent\Model')) {
+if (class_exists('Illuminate\Foundation\Application')) {
 	Model::setConnectionResolver($app['db']);
 	Model::setEventDispatcher($app['events']);
 }
