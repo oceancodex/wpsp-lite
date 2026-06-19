@@ -2,6 +2,8 @@
 
 namespace WPSP;
 
+use Illuminate\Database\Connectors\ConnectionFactory;
+use Illuminate\Database\DatabaseManager;
 use WPSP\App\Widen\Exceptions\Handler as ExceptionsHandler;
 use WPSP\App\Widen\Translation\WPTranslation;
 use WPSP\App\Widen\Updater\Updater;
@@ -65,9 +67,31 @@ class WPSP extends \WPSPCORE\WPSP {
 
 	public function afterBoostrapConsole() {}
 
-	public function afterBindings() {}
+	public function afterBindings() {
+//		$this->application->singleton('db.factory', function ($app) {
+//			return new ConnectionFactory($app);
+//		});
+//		$this->application->singleton('db', function ($app) {
+//			return new DatabaseManager(
+//				$app,
+//				$app['db.factory']
+//			);
+//		});
+//		$this->application->alias('db', DatabaseManager::class);
+	}
 
-	public function afterBindingsConsole() {}
+	public function afterBindingsConsole() {
+//		$this->application->singleton('db.factory', function ($app) {
+//			return new ConnectionFactory($app);
+//		});
+//		$this->application->singleton('db', function ($app) {
+//			return new DatabaseManager(
+//				$app,
+//				$app['db.factory']
+//			);
+//		});
+//		$this->application->alias('db', DatabaseManager::class);
+	}
 
 	/*
 	 *
