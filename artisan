@@ -141,10 +141,12 @@ if (defined('WPSP_ACTIVE') && WPSP_ACTIVE) {
 $app = $wpsp->getApplication();
 Container::setInstance($app);
 Facade::setFacadeApplication($app);
+
 if (class_exists('Illuminate\Database\Eloquent\Model')) {
 	Model::setConnectionResolver($app['db']);
 	Model::setEventDispatcher($app['events']);
 }
+
 try {
 	if (class_exists('Illuminate\Foundation\Application')) {
 		$status = $app->handleCommand(new ArgvInput);

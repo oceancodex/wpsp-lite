@@ -194,9 +194,9 @@ class wpsp_list_users extends BaseAdminPage {
 	public function index(Request $request) {
 		$requestParams = $request->all();
 		$menuSlug      = $this->menu_slug;
-//		echo Funcs::view('admin-pages.wpsp.wpsp_list_users', compact('requestParams', 'menuSlug'))->with([
-//			'table' => $this->table ?? new \WPSP\App\WordPress\ListTables\Users(), // Nếu khởi tạo List Table ở đây sẽ không kích hoạt screen option columns và item per pages.
-//		]);
+		echo Funcs::view('admin-pages.wpsp.wpsp_list_users', compact('requestParams', 'menuSlug'))->with([
+			'table' => $this->table ?? new \WPSP\App\WordPress\ListTables\Users(), // Nếu khởi tạo List Table ở đây sẽ không kích hoạt screen option columns và item per pages.
+		]);
 	}
 
 	public function create(Request $request) {}
