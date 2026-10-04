@@ -41,13 +41,13 @@ define('WPSP_PLUGIN_START', microtime(true));
  * Start application.
  */
 //add_action('init', function() {
-	$wpsp = WPSP::start();
+//	$wpsp = WPSP::start();
 //}, 10);
 
 /**
  * Tích hợp.
  */
-Integration::instance()->register();
+//Integration::instance()->register();
 
 /**
  * ---
@@ -56,34 +56,34 @@ Integration::instance()->register();
 //add_action('init', function() {
 	foreach ([
 		AdminPages::class,
-		Apis::class,
-		Ajaxs::class,
-		FrontPages::class,
-		RewriteFrontPages::class,
-
-		AdminBarMenus::class,
-		Blocks::class,
-		CommentColumns::class,
-		Customizers::class,
-		DashboardWidgets::class,
-		MediaColumns::class,
-		MetaBoxes::class,
-		NavLocations::class,
-		PluginColumns::class,
-		PostTypeColumns::class,
-		PostTypes::class,
-		Schedules::class,
-		Shortcodes::class,
-		Taxonomies::class,
-		TaxonomyColumns::class,
-		ThemeTemplates::class,
-		UserColumns::class,
-		UserMetaBoxes::class,
-		Widgets::class,
-		WPRoles::class,
-
-		Actions::class,
-		Filters::class,
+//		Apis::class,
+//		Ajaxs::class,
+//		FrontPages::class,
+//		RewriteFrontPages::class,
+//
+//		AdminBarMenus::class,
+//		Blocks::class,
+//		CommentColumns::class,
+//		Customizers::class,
+//		DashboardWidgets::class,
+//		MediaColumns::class,
+//		MetaBoxes::class,
+//		NavLocations::class,
+//		PluginColumns::class,
+//		PostTypeColumns::class,
+//		PostTypes::class,
+//		Schedules::class,
+//		Shortcodes::class,
+//		Taxonomies::class,
+//		TaxonomyColumns::class,
+//		ThemeTemplates::class,
+//		UserColumns::class,
+//		UserMetaBoxes::class,
+//		Widgets::class,
+//		WPRoles::class,
+//
+//		Actions::class,
+//		Filters::class,
 	] as $route) {
 		(new $route())->register();
 	}
@@ -95,13 +95,13 @@ Integration::instance()->register();
  * ---
  * Chạy tất cả các route đã đăng ký.
  */
-add_action('init', function() {
-	RouteManager::instance()->executeAllRoutes(['Widgets']);
-});
+//add_action('init', function() {
+//	RouteManager::instance()->executeAllRoutes(['Widgets']);
+//});
 
 /**
  * Chạy các route với types của chúng được chỉ định.
  */
-add_action('widgets_init', function() {
-	RouteManager::instance()->executeRouteByTypes(['Widgets']);
-});
+//add_action('widgets_init', function() {
+//	RouteManager::instance()->executeRouteByTypes(['Widgets']);
+//});
