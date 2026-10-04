@@ -2,7 +2,7 @@
 
 namespace WPSP\App\WordPress\AdminPages\wpsp;
 
-use Illuminate\Http\Request;
+use WPSP\App\Widen\Support\Facades\Request;
 use WPSP\App\Jobs\TestJob;
 use WPSP\App\Models\SettingsModel;
 use WPSP\App\Models\UsersModel;
