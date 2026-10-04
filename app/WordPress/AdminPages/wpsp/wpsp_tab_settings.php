@@ -36,12 +36,14 @@ class wpsp_tab_settings extends BaseAdminPage {
 	public $isSubmenuPage          = true;
 //	public $removeFirstSubmenu     = true;
 
+	public $showScreenOptions      = true;
+//	public $screenBase			   = null;
+//	public $screenId			   = null;
+//	public $pagenow				   = null;
+//	public $itemsPerPageKey		   = null;
+
 //	public $urlsMatchCurrentAccess = [];
 //	public $urlsMatchHighlightMenu = [];
-
-	public $showScreenOptions      = true;
-//	public $screenOptionsKey       = null;
-//	public $screenOptionsPageNow   = null;
 
 //	public $adminPageMetaBoxes     = [];
 
@@ -85,10 +87,6 @@ class wpsp_tab_settings extends BaseAdminPage {
 			'/admin\.php\?page=wpsp&tab=settings/iu',
 		];
 
-		$this->currentTab  = $this->request->get('tab');
-		$this->currentPage = $this->request->get('page');
-		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.settings')) . ' - ' . Funcs::config('app.name');
-
 		/**
 		 * Định nghĩa các metaboxes sẽ được hiển thị trong admin page.
 		 */
@@ -99,13 +97,20 @@ class wpsp_tab_settings extends BaseAdminPage {
 		 * Ví dụ: page=wpsp&tab=list => wpsp_page_wpsp_tab_list\
 		 * Như vậy thì screen options sẽ độc lập giữa các page.
 		 */
-		$this->screenOptionsKey = $this->funcs->_slugParams(['page', 'tab']);
+		$this->screenId = $this->funcs->_slugParams(['page', 'tab']);
 
 		/**
 		 * Ghi đè "pagenow" để gửi Ajax sắp xếp lại các metaboxes trong admin page\
 		 * và screen layout columns.
 		 */
-		$this->screenOptionsPageNow = $this->funcs->_slugParams(['page', 'tab']);
+		$this->pagenow = $this->funcs->_slugParams(['page', 'tab']);
+
+		/**
+		 * Lấy các parameters từ URL để tái sử dụng trong Class này.
+		 */
+		$this->currentTab  = $this->request->get('tab');
+		$this->currentPage = $this->request->get('page');
+//		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.settings')) . ' - ' . Funcs::config('app.name');
 	}
 
 	/*
@@ -119,32 +124,37 @@ class wpsp_tab_settings extends BaseAdminPage {
 //      // Your code here...
 //	}
 
-	public function beforeInit() {}
+//	public function beforeInit() {}
 
-	public function afterAddAdminPage($adminPage) {}
+//	public function afterAddAdminPage($adminPage) {}
 
-	public function beforeLoadAdminPage($adminPage) {}
+//	public function beforeLoadAdminPage($adminPage) {}
 
-	public function beforeInLoadAdminPage($adminPage) {}
+//	public function beforeInLoadAdminPage($adminPage) {}
 
-	public function afterInLoadAdminPage($adminPage) {}
+//	public function afterInLoadAdminPage($adminPage) {}
 
-	public function afterLoadAdminPage($adminPage) {}
+//	public function afterLoadAdminPage($adminPage) {}
 
 	public function matchedCurrentAccess() {
+//		$this->adminPageMetaBoxes = $this->adminPageMetaBoxes();
+
 		Funcs::viewInject('admin-pages.wpsp.settings', [
 			'admin_page_meta_boxes' => $this->getSortedAdminPageMetaBoxes(),
 			'screen_columns' => $this->getScreenColumns(),
 		]);
 	}
 
-	public function afterInit() {}
+//	public function afterInit() {}
 
 	/*
 	 *
 	 */
 
 	public function adminPageMetaBoxes() {
+		$settings = SettingsModel::query()->where('key', 'settings')->pluck('value')->first();
+		$settings = json_decode($settings ?? '', true);
+
 		return [
 			'side' => [
 				'submitdiv' => [
@@ -156,6 +166,7 @@ class wpsp_tab_settings extends BaseAdminPage {
 				'inputsdiv' => [
 					'title' => 'Settings',
 					'view'  => Funcs::viewDetect('admin-pages.wpsp.settings.inputs'),
+					'data'  => ['settings' => $settings],
 				],
 				'testhiddendiv' => [
 					'title' => 'Test hidden',
@@ -164,10 +175,10 @@ class wpsp_tab_settings extends BaseAdminPage {
 			],
 			'advanced' => [],
 			'closed' => [
-				'submitdiv' => true
+				'submitdiv' => true,
 			],
 			'hidden' => [
-				'testhiddendiv' => true
+				'testhiddendiv' => true,
 			],
 		];
 	}
@@ -222,8 +233,8 @@ class wpsp_tab_settings extends BaseAdminPage {
 //			$request->validateResolved();
 //			$request->validated();
 
-			$settings = $request->get('settings');
-			$test     = $request->get('test');
+			$settings = $request->input('settings');
+			$test     = $request->input('test');
 
 //		    $existSettings = Cache::getItemValue('settings');
 			$existSettings = SettingsModel::query()->where('key', 'settings')->first();
@@ -253,7 +264,9 @@ class wpsp_tab_settings extends BaseAdminPage {
 				]);
 			}
 
-			wp_redirect(Funcs::route('AdminPages', 'wpsp.settings.index', ['updated' => true], true));
+			return redirect()->back()->with(['updated' => true])->withInput()->send();
+
+//			wp_redirect(Funcs::route('AdminPages', 'wpsp.settings.index', ['updated' => true], true));
 //		}
 //		catch (\Throwable $e) {
 //			Funcs::notice($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine() . ' => File: ' . __FILE__, 'error');
@@ -269,16 +282,17 @@ class wpsp_tab_settings extends BaseAdminPage {
 	 */
 
 	public function styles() {
-		wp_enqueue_style( 'jquery-ui-css', Funcs::asset('widen/plugins/jquery/jquery-ui.css'));
+		wp_enqueue_style('jquery-ui-css', Funcs::asset('widen/plugins/jquery-ui/css/jquery-ui.min.css'));
 	}
 
 	public function scripts() {
 		wp_enqueue_media();
-		wp_enqueue_script(Funcs::config('app.short_name') . '-backend', Funcs::asset('/ts/web/admin.min.js'), [
-			'jquery', 'jquery-ui-datepicker'
-		]);
+		wp_enqueue_script(Funcs::config('app.short_name') . '-backend-admin', Funcs::asset('/ts/web/admin.min.js'), [
+			'jquery', 'jquery-ui-datepicker',
+		], Funcs::getVersion(), ['in_footer' => true]);
+		wp_enqueue_script(Funcs::config('app.short_name') . '-datepicker-vi', Funcs::asset('widen/plugins/datepicker/datepicker-vi.js'), null, Funcs::getVersion(), ['in_footer' => true]);
 	}
 
-	public function localizeScripts() {}
+//	public function localizeScripts() {}
 
 }

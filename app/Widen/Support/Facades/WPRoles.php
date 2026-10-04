@@ -16,14 +16,21 @@ class WPRoles extends WPRolesCore {
 	/**
 	 * @return WPRolesCore|null
 	 */
-	public static function instance() {
-		if (!static::$instance) {
-			static::$instance = (new static(
-				Funcs::instance()->_getMainPath(),
-				Funcs::instance()->_getRootNamespace(),
-				Funcs::instance()->_getPrefixEnv()
-			));
+	public static function wpspInstance() {
+		if (static::$instance === null) {
+			$funcs = Funcs::instance();
+
+			$instance = new static(
+				$funcs->_getMainPath(),
+				$funcs->_getRootNamespace(),
+				$funcs->_getPrefixEnv(),
+				[]
+			);
+
+			$instance->setFacade();
+			static::$instance = $instance;
 		}
+
 		return static::$instance;
 	}
 

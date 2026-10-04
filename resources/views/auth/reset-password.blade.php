@@ -23,9 +23,9 @@
         <label for="email">Email address</label>
         <input type="text" name="email" id="email" tabindex="2" value="{{ $email }}" readonly/>
         <label for="password">New password</label>
-        <input type="text" name="password" id="password" tabindex="3" value="{{ function_exists('old') ? old('password', '') : '' }}"/>
+        <input type="text" name="password" id="password" tabindex="3" value="{{ old('password', '') }}"/>
         <label for="password_confirmation">New password confirm</label>
-        <input type="text" name="password_confirmation" id="password_confirmation" tabindex="4" value="{{ function_exists('old') ? old('password_confirmation', '') : '' }}"/>
+        <input type="text" name="password_confirmation" id="password_confirmation" tabindex="4" value="{{ old('password_confirmation', '') }}"/>
         <input type="submit" name="commit" value="Reset password" tabindex="5" class="lastInput" style="margin-bottom: 0;"/>
     </form>
 {{--    <div class="login-callout">--}}

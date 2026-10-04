@@ -35,12 +35,14 @@ class wpsp_list_users extends BaseAdminPage {
 	public $isSubmenuPage          = true;
 //	public $removeFirstSubmenu     = true;
 
+	public $showScreenOptions      = true;
+//	public $screenBase			   = null;
+//	public $screenId			   = null;
+//	public $pagenow				   = null;
+//	public $itemsPerPageKey		   = null;
+
 //	public $urlsMatchCurrentAccess = [];
 //	public $urlsMatchHighlightMenu = [];
-
-	public $showScreenOptions      = true;
-//	public $screenOptionsKey       = null;
-//	public $screenOptionsPageNow   = null;
 
 //	public $adminPageMetaBoxes     = [];
 
@@ -52,7 +54,7 @@ class wpsp_list_users extends BaseAdminPage {
 	private $currentTab            = null;
 	private $currentPage           = null;
 	private $table                 = null;
-	private $checkDatabase         = null;
+//	private $checkDatabase         = null;
 
 	/*
 	 *
@@ -85,10 +87,6 @@ class wpsp_list_users extends BaseAdminPage {
 			'/admin\.php\?page=wpsp_tab_list_users/iu',
 		];
 
-		$this->currentTab  = $this->request->get('tab');
-		$this->currentPage = $this->request->get('page');
-//		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.dashboard')) . ' - ' . Funcs::config('app.name');
-
 		/**
 		 * Định nghĩa các metaboxes sẽ được hiển thị trong admin page.
 		 */
@@ -99,13 +97,20 @@ class wpsp_list_users extends BaseAdminPage {
 		 * Ví dụ: page=wpsp&tab=list => wpsp_page_wpsp_tab_list\
 		 * Như vậy thì screen options sẽ độc lập giữa các page.
 		 */
-		$this->screenOptionsKey = $this->funcs->_slugParams(['page', 'tab']);
+		$this->screenId = $this->funcs->_slugParams(['page', 'tab']);
 
 		/**
 		 * Ghi đè "pagenow" để gửi Ajax sắp xếp lại các metaboxes trong admin page\
 		 * và screen layout columns.
 		 */
-		$this->screenOptionsPageNow = $this->funcs->_slugParams(['page', 'tab']);
+		$this->pagenow = $this->funcs->_slugParams(['page', 'tab']);
+
+		/**
+		 * Lấy các parameters từ URL để tái sử dụng trong Class này.
+		 */
+		$this->currentTab  = $this->request->get('tab');
+		$this->currentPage = $this->request->get('page');
+//		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.dashboard')) . ' - ' . Funcs::config('app.name');
 	}
 
 	/*
@@ -119,13 +124,13 @@ class wpsp_list_users extends BaseAdminPage {
 //      // Your code here...
 //	}
 
-	public function beforeInit() {}
+//	public function beforeInit() {}
 
-	public function afterAddAdminPage($adminPage) {}
+//	public function afterAddAdminPage($adminPage) {}
 
-	public function beforeLoadAdminPage($adminPage) {}
+//	public function beforeLoadAdminPage($adminPage) {}
 
-	public function beforeInLoadAdminPage($adminPage) {}
+//	public function beforeInLoadAdminPage($adminPage) {}
 
 	public function afterInLoadAdminPage($adminPage) {
 		/**
@@ -137,7 +142,7 @@ class wpsp_list_users extends BaseAdminPage {
 		$this->table = new \WPSP\App\WordPress\ListTables\Users();
 	}
 
-	public function afterLoadAdminPage($adminPage) {}
+//	public function afterLoadAdminPage($adminPage) {}
 
 	public function matchedCurrentAccess() {
 		/**
@@ -154,7 +159,7 @@ class wpsp_list_users extends BaseAdminPage {
 		/**
 		 * Custom highlight current menu.
 		 */
-//		if (preg_match('/' . $this->menu_slug . '$|' . $this->menu_slug . '&updated=true$/', $this->request->getRequestUri())) {
+//		if (@preg_match('/' . $this->menu_slug . '$|' . $this->menu_slug . '&updated=true$/', $this->request->getRequestUri())) {
 //			add_filter('submenu_file', function($submenu_file) {
 //				return $this->menu_slug;
 //			});
@@ -163,29 +168,23 @@ class wpsp_list_users extends BaseAdminPage {
 		/**
 		 * Chuyển hướng đến tab "Database" nếu database version không hợp lệ.
 		 */
-		try {
-			if ($this->currentPage == $this->menu_slug) {
-				// Check database version and maybe redirect.
-				$this->checkDatabase = Migration::instance()->checkDatabaseVersion();
-				if (empty($this->checkDatabase['result']) && $this->currentTab !== 'database') {
-					$url = Funcs::instance()->_buildUrl($this->parent_slug, [
-						'page' => $this->menu_slug,
-						'tab'  => 'database',
-					]);
-					wp_redirect($url);
-				}
-			}
-		}
-		catch (\Throwable $e) {
-			Funcs::notice($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine(), 'error');
-		}
+//		try {
+//			if ($this->currentPage == $this->menu_slug) {
+//				// Check database version and maybe redirect.
+//				$this->checkDatabase = Migration::instance()->checkDatabaseVersion();
+//				if (empty($this->checkDatabase['result']) && $this->currentTab !== 'database') {
+//					$url = Funcs::instance()->_buildUrl($this->parent_slug, [
+//						'page' => $this->menu_slug,
+//						'tab'  => 'database',
+//					]);
+//					wp_redirect($url);
+//				}
+//			}
+//		}
+//		catch (\Throwable $e) {
+//			Funcs::notice($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine(), 'error');
+//		}
 	}
-
-	/*
-	 *
-	 */
-
-//	public function screenOptions($adminPage) {}
 
 	/*
 	 *
@@ -219,7 +218,7 @@ class wpsp_list_users extends BaseAdminPage {
 
 	public function styles() {
 		wp_enqueue_style(
-			Funcs::config('app.short_name') . '-admin',
+			Funcs::config('app.short_name') . '-admin-css',
 			Funcs::instance()->_getPublicUrl() . '/css/admin.min.css',
 			null,
 			Funcs::instance()->_getVersion()
@@ -231,6 +230,18 @@ class wpsp_list_users extends BaseAdminPage {
 			Funcs::instance()->_getVersion()
 		);
 		wp_enqueue_style(
+			Funcs::config('app.short_name') . '-bootstrap-table',
+			Funcs::instance()->_getPublicUrl('widen/plugins/bootstrap/css/bootstrap-table.min.css'),
+			null,
+			Funcs::instance()->_getVersion()
+		);
+		wp_enqueue_style(
+			Funcs::config('app.short_name') . '-bootstrap-formcontrol',
+			Funcs::instance()->_getPublicUrl('widen/plugins/bootstrap/css/bootstrap-formcontrol.min.css'),
+			null,
+			Funcs::instance()->_getVersion()
+		);
+		wp_enqueue_style(
 			Funcs::config('app.short_name') . '-bootstrap-utilities',
 			Funcs::instance()->_getPublicUrl() . '/widen/plugins/bootstrap/css/bootstrap-utilities.min.css',
 			null,
@@ -238,26 +249,8 @@ class wpsp_list_users extends BaseAdminPage {
 		);
 	}
 
-	public function scripts() {
-		wp_enqueue_script(
-			Funcs::config('app.short_name') . '-database',
-			Funcs::instance()->_getPublicUrl() . '/ts/web/admin-pages/wpsp/Database.min.js',
-			null,
-			Funcs::instance()->_getVersion(),
-			true
-		);
-	}
+//	public function scripts() {}
 
-	public function localizeScripts() {
-		wp_localize_script(
-			Funcs::config('app.short_name') . '-database',
-			Funcs::config('app.short_name') . '_localize',
-			[
-				'ajax_url'   => admin_url('admin-ajax.php'),
-				'nonce'      => wp_create_nonce(Funcs::config('app.short_name')),
-				'public_url' => Funcs::instance()->_getPublicUrl(),
-			]
-		);
-	}
+//	public function localizeScripts() {}
 
 }

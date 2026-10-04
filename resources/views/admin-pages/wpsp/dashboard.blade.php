@@ -1,5 +1,3 @@
-@extends('admin-pages.layout')
-
 @section('title')
     {{ wpsp_trans('Dashboard', null, true) }}
 @endsection
@@ -135,7 +133,7 @@
                                                 <form method="POST" action="{{ wpsp_route('Apis', 'auth.login', true) }}">
                                                     <input type="hidden" name="action" value="login"/>
 
-													@if (class_exists('Illuminate\Foundation\Application')) @csrf @endif
+													@csrf
 													<?php wpsp_nonce_field('wp_rest'); ?>
 
                                                     <div class="field">
@@ -160,7 +158,7 @@
                                             <div class="col">
                                                 <form method="POST" action="{{ wpsp_route('Apis', 'auth.forgot_password', true) }}">
                                                     <input type="hidden" name="action" value="reset-password"/>
-													@if (class_exists('Illuminate\Foundation\Application')) @csrf @endif
+													@csrf
 													<?php wpsp_nonce_field('wp_rest'); ?>
 
                                                     <div class="field" style="margin-bottom: 10px;">
@@ -169,7 +167,8 @@
                                                     </div>
 
                                                     <button type="submit" class="button button-primary">Reset password</button>
-													<button type="button" id="csrf" class="button">CSRF</button>
+													<button type="button" class="button button-csrf">CSRF Test Success</button>
+													<button type="button" class="button button-csrf" data-append="XXX">CSRF Test Fail</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -303,3 +302,7 @@
         </div>
     </div>
 @endsection
+
+{{--@push('scripts')--}}
+{{--	@vite('resources/js/app.js')--}}
+{{--@endpush--}}

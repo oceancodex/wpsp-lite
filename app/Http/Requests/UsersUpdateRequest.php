@@ -23,7 +23,7 @@ class UsersUpdateRequest extends FormRequest {
 	 */
 	public function authorize() {
 		$authUserId    = $this->user()->id ?? $this->authUser->id ?? $this->authUser->ID ?? null;
-		$currentUserId = $this->input_user_id ?? $this->route('id') ?? null;
+		$currentUserId = $this->input_user_id ?? $this->route('id') ?? $this->input('id') ?? null;
 		return current_user_can('administrator') || ($currentUserId == $authUserId && $currentUserId && $authUserId);
 	}
 
@@ -85,7 +85,7 @@ class UsersUpdateRequest extends FormRequest {
 	public function attributes() {
 		return [
 			'email' => 'Email',
-			'name'  => 'Name',
+			'name'  => 'Tên',
 		];
 	}
 
@@ -131,10 +131,13 @@ class UsersUpdateRequest extends FormRequest {
 			exit;
 		}
 
-		$errors = $validator->errors()->all();
+		redirect()->back()->withErrors($validator)->withInput()->setContent(null)->send();
+		exit;
+
+		$errors    = $validator->errors()->all();
 		$errorList = '<ul>';
 		foreach ($errors as $error) {
-			$errorList .= '<li>' . esc_html($error) . '</li>';
+			$errorList .= '<li>'.esc_html($error).'</li>';
 		}
 		$errorList .= '</ul>';
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('after-title')
-    <a href="?page={{$menuSlug}}&tab=users&action=create" class="page-title-action button-secondary align-baseline">{{ wpsp_trans('Add new', null, true) }}</a>
+    <a href="?page={{$menuSlug}}&tab=users&doaction=create" class="page-title-action button-secondary align-baseline">{{ wpsp_trans('Add new', null, true) }}</a>
 @endsection
 
 @section('content')
@@ -16,6 +16,7 @@
 			$table?->prepare_items();
 			$table?->views();
 			$table?->search_box('Search', 'search_id');
+			$table?->bulk_edit();
 			$table?->display();
 		@endphp
 	</form>

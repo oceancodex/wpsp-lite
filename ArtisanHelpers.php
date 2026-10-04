@@ -97,6 +97,59 @@ function getWPConfig($file = null): array {
 	return $result;
 }
 
+function getEnvironmentVariables(string $file = '.env'): array {
+	$result = [];
+
+	if (!file_exists($file)) {
+		return $result;
+	}
+
+	foreach (file($file, FILE_IGNORE_NEW_LINES) as $line) {
+		$line = trim($line);
+
+		if ($line === '' || str_starts_with($line, '#')) {
+			continue;
+		}
+
+		if (!str_contains($line, '=')) {
+			continue;
+		}
+
+		[$key, $value] = explode('=', $line, 2);
+
+		$key   = trim($key);
+		$value = trim($value);
+
+		// Xóa comment cuối dòng
+		// VD: value # comment
+		// nhưng giữ lại # nếu nằm trong dấu nháy
+		if (
+			@preg_match(
+				'/^("([^"\\\\]|\\\\.)*"|\'([^\'\\\\]|\\\\.)*\'|[^#]*)/',
+				$value,
+				$matches
+			)
+		) {
+			$value = trim($matches[0]);
+		}
+
+		// Bỏ dấu nháy bao ngoài
+		if (
+			strlen($value) >= 2 &&
+			(
+				($value[0] === '"' && $value[-1] === '"') ||
+				($value[0] === "'" && $value[-1] === "'")
+			)
+		) {
+			$value = substr($value, 1, -1);
+		}
+
+		$result[$key] = $value;
+	}
+
+	return $result;
+}
+
 /**
  * Kiểm tra kết nối MySQL/MariaDB
  *
@@ -104,11 +157,11 @@ function getWPConfig($file = null): array {
  *
  * @return bool
  */
-function ensureDBConnect(array $wpConfig = []): bool {
+function ensureDBConnect(array $wpConfig = [], array $environment = []): bool {
 	$cacheFile = sys_get_temp_dir() . '/wpsp_db_connect.cache';
 	$ttl       = 3600;
 
-	// Nếu cache còn hạn thì dùng lại
+	// Nếu cache còn hạn thì dùng lại.
 	if (file_exists($cacheFile)) {
 		$cache = json_decode(file_get_contents($cacheFile), true);
 
@@ -125,50 +178,74 @@ function ensureDBConnect(array $wpConfig = []): bool {
 		$wpConfig = getWPConfig();
 	}
 
-	$result = false;
+	if (empty($environment)) {
+		$environmentVariables = getEnvironmentVariables();
+	}
 
 	try {
-		if (
-			!empty($wpConfig['DB_HOST']) &&
-			!empty($wpConfig['DB_NAME']) &&
-			!empty($wpConfig['DB_USER']) &&
-			!empty($wpConfig['table_prefix'])
-		) {
-			$dsn = sprintf(
-				'mysql:host=%s;dbname=%s;charset=%s',
-				$wpConfig['DB_HOST'],
-				$wpConfig['DB_NAME'],
-				$wpConfig['DB_CHARSET'] ?? 'utf8mb4'
+		$connection = $wpConfig['DB_CONNECTION'] ?? $environmentVariables['WPSP_DB_CONNECTION'] ?? 'wp_wpsp';
+		$host       = $wpConfig['DB_HOST'] ?? $environmentVariables['WPSP_DB_HOST'] ?? 'localhost';
+		$port       = $wpConfig['DB_PORT'] ?? $environmentVariables['WPSP_DB_PORT'] ?? '3306';
+		$socket     = $wpConfig['DB_SOCKET'] ?? $environmentVariables['WPSP_DB_SOCKET'] ?? '';
+		$database   = $wpConfig['DB_NAME'] ?? $environmentVariables['WPSP_DB_DATABASE'] ?? 'local';
+		$user       = $wpConfig['DB_USER'] ?? $environmentVariables['WPSP_DB_USERNAME'] ?? 'root';
+		$password   = $wpConfig['DB_PASSWORD'] ?? $environmentVariables['WPSP_DB_PASSWORD'] ?? '';
+		$charset    = $wpConfig['DB_CHARSET'] ?? $environmentVariables['WPSP_DB_CHARSET'] ?? 'utf8mb4';
+
+		if ($socket) {
+			$host = explode(':', $host)[0];
+			$dsn  = sprintf(
+				'mysql:host=%s;port=%s;unix_socket=%s;dbname=%s;charset=%s',
+				$host,
+				$port,
+				$socket,
+				$database,
+				$charset
 			);
-
-			$pdo = new PDO(
-				$dsn,
-				$wpConfig['DB_USER'],
-				$wpConfig['DB_PASSWORD'] ?? '',
-				[
-					PDO::ATTR_TIMEOUT            => 3,
-					PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-				]
-			);
-
-			$table = $wpConfig['table_prefix'] . 'options';
-
-			$stmt = $pdo->prepare('SHOW TABLES LIKE ?');
-			$stmt->execute([$table]);
-
-			$result = (bool)$stmt->fetch();
 		}
+		else {
+			$dsn = sprintf(
+				'mysql:host=%s;port=%s;dbname=%s;charset=%s',
+				$host,
+				$port,
+				$database,
+				$charset
+			);
+		}
+
+		$pdo = new PDO(
+			$dsn,
+			$user,
+			$password,
+			[
+				PDO::ATTR_TIMEOUT            => 3,
+				PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+			]
+		);
+
+		$table = $wpConfig['table_prefix'].'options';
+
+		$stmt = $pdo->prepare('SHOW TABLES LIKE ?');
+		$stmt->execute([$table]);
+
+		$result = (bool)$stmt->fetch();
+
+		// Lưu cache 60 giây
+		if ($result) {
+			file_put_contents($cacheFile, json_encode([
+				'time'   => time(),
+				'result' => $result,
+			]));
+		}
+		elseif (file_exists($cacheFile)) {
+			@unlink($cacheFile);
+		}
+
 	}
 	catch (Throwable $e) {
 		$result = false;
 	}
-
-	// Lưu cache 60 giây
-	file_put_contents($cacheFile, json_encode([
-		'time'   => time(),
-		'result' => $result,
-	]));
 
 	return $result;
 }

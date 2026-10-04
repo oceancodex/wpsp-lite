@@ -1,11 +1,14 @@
 <?php
 
-namespace WPSP\routes;
+namespace WPSP\Routes;
 
 use WPSP\App\Exceptions\ModelNotFoundException;
 use WPSP\App\Http\Controllers\AssetsController;
 use WPSP\App\Http\Controllers\PagesController;
 use WPSP\App\Widen\Routes\Actions\Actions as Route;
+use WPSP\App\Widen\Routes\RouteManager;
+use WPSP\Funcs;
+use WPSPCORE\App\Integrations\LaravelDebugbar\Collectors\WPSPRouteCollector;
 use WPSPCORE\App\Routes\Actions\ActionsRouteTrait;
 
 class Actions {
@@ -29,7 +32,8 @@ class Actions {
 	 */
 
 	public function wp_actions() {
-		add_action('wpsp_model_not_found', function($className, $modelId, \Exception $exception) {
+		// Ghi đè "model not found với" ModelNotFoundException thay vì "wp_die".
+		add_action(Funcs::getAppShortName() . '_model_not_found', function($className, $modelId, \Exception $exception) {
 			$modelNotFoundException = new ModelNotFoundException($className, $exception->getMessage());
 			$modelNotFoundException->render();
 			exit;

@@ -13,7 +13,7 @@ return [
     |
     */
 
-	'name' => env('WPSP_APP_NAME', 'WPSP Framework - WordPress Starter Plugin - Lite'),
+	'name' => env('WPSP_APP_NAME', 'WPSP Framework - WordPress Starter Plugin'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -47,23 +47,15 @@ return [
     |
     */
 
-	'debug' => (bool) env('WPSP_APP_DEBUG', false),
+    'debug' => (bool)env('WPSP_APP_DEBUG', false),
 
-	/*
-	|--------------------------------------------------------------------------
-	| Application Debug Type
-	|--------------------------------------------------------------------------
-	*/
+    'debug_handler' => env('WPSP_APP_DEBUG_HANDLER', ''),
 
-	'debug_type' => env('WPSP_APP_DEBUG_TYPE', 'simple'),
+    'debug_monitor' => (bool)env('WPSP_APP_DEBUG_MONITOR', false),
 
-	/*
-	|--------------------------------------------------------------------------
-	| Application Live Reload Mode
-	|--------------------------------------------------------------------------
-	*/
+    'debug_type' => env('WPSP_APP_DEBUG_TYPE', 'simple'),
 
-	'live_reload' => env('WPSP_APP_LIVE_RELOAD', false),
+    'debug_live_reload' => (bool)env('WPSP_APP_DEBUG_LIVE_RELOAD', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -76,7 +68,7 @@ return [
     |
     */
 
-	'url' => env('WPSP_APP_URL', 'https://localhost'),
+	'url' => env('WPSP_APP_URL', function_exists('home_url') ? home_url() : 'https://localhost'),
 
 	/*
 	|--------------------------------------------------------------------------

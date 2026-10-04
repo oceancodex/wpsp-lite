@@ -3,9 +3,29 @@
 namespace WPSP\App\WordPress\AdminPages\wpsp;
 
 use Illuminate\Http\Request;
+use WPSP\App\Jobs\TestJob;
 use WPSP\App\Models\SettingsModel;
+use WPSP\App\Models\UsersModel;
 use WPSP\App\Models\WPUsersModel;
+use WPSP\App\Notifications\UsersVerifyEmailNotification;
+use WPSP\App\Pipes\Users\FilterByName;
+use WPSP\App\Services\TestService;
+use WPSP\App\Widen\Support\Facades\Artisan;
+use WPSP\App\Widen\Support\Facades\Auth;
+use WPSP\App\Widen\Support\Facades\Blade;
+use WPSP\App\Widen\Support\Facades\Bus;
+use WPSP\App\Widen\Support\Facades\Config;
+use WPSP\App\Widen\Support\Facades\File;
+use WPSP\App\Widen\Support\Facades\Hash;
+use WPSP\App\Widen\Support\Facades\Image;
+use WPSP\App\Widen\Support\Facades\MaintenanceMode;
 use WPSP\App\Widen\Support\Facades\Migration;
+use WPSP\App\Widen\Support\Facades\Notification;
+use WPSP\App\Widen\Support\Facades\Pipeline;
+use WPSP\App\Widen\Support\Facades\Queue;
+use WPSP\App\Widen\Support\Facades\Redirect;
+use WPSP\App\Widen\Support\Facades\Redis;
+use WPSP\App\Widen\Support\Facades\Storage;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
 use WPSPCORE\App\WordPress\AdminPages\BaseAdminPage;
@@ -37,12 +57,14 @@ class wpsp extends BaseAdminPage {
 //	public $isSubmenuPage          = false;
 //	public $removeFirstSubmenu     = true;
 
+//	public $showScreenOptions      = true;
+//	public $screenBase			   = null;
+//	public $screenId			   = null;
+//	public $pagenow				   = null;
+//	public $itemsPerPageKey		   = null;
+
 //	public $urlsMatchCurrentAccess = [];
 //	public $urlsMatchHighlightMenu = [];
-
-//	public $showScreenOptions      = true;
-//	public $screenOptionsKey       = null;
-//	public $screenOptionsPageNow   = null;
 
 //	public $adminPageMetaBoxes     = [];
 
@@ -60,7 +82,15 @@ class wpsp extends BaseAdminPage {
 	 *
 	 */
 
-//	public function __wpspConstruct(TestService $testService) {
+	/**
+	 * Trong "__wpspConstruct", tất cả params với type là Class hợp lệ\
+	 * đều được sử dụng để tạo properties tự động.
+	 */
+	public function __wpspConstruct(
+		TestService $testService
+	) {}
+
+//	public function __instanceConstruct(TestService $testService) {
 //		$this->page_title = $testService->test();
 //	}
 
@@ -96,10 +126,6 @@ class wpsp extends BaseAdminPage {
 			'term.php?taxonomy=wpsp_category'
 		];
 
-		$this->currentTab  = $this->request->get('tab');
-		$this->currentPage = $this->request->get('page');
-//		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.dashboard')) . ' - ' . Funcs::config('app.name');
-
 		/**
 		 * Định nghĩa các metaboxes sẽ được hiển thị trong admin page.
 		 */
@@ -110,13 +136,21 @@ class wpsp extends BaseAdminPage {
 		 * Ví dụ: page=wpsp&tab=list => wpsp_page_wpsp_tab_list\
 		 * Như vậy thì screen options sẽ độc lập giữa các page.
 		 */
-//		$this->screenOptionsKey = $this->funcs->_slugParams(['page', 'tab']);
+//		$this->screenId = $this->funcs->_slugParams(['page', 'tab']);
 
 		/**
 		 * Ghi đè "pagenow" để gửi Ajax sắp xếp lại các metaboxes trong admin page\
 		 * và screen layout columns.
 		 */
-//		$this->screenOptionsPageNow = $this->funcs->_slugParams(['page', 'tab']);
+//		$this->pagenow = $this->funcs->_slugParams(['page', 'tab']);
+
+		/**
+		 * Lấy các parameters từ URL để tái sử dụng trong Class này.
+		 */
+		$this->currentTab  = $this->request->get('tab');
+		$this->currentPage = $this->request->get('page');
+//		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.dashboard')) . ' - ' . Funcs::config('app.name');
+//		$this->page_title  = $this->testService->subTestService->exampleService->example();
 	}
 
 	/*
@@ -130,15 +164,15 @@ class wpsp extends BaseAdminPage {
 //      // Your code here...
 //	}
 
-	public function beforeInit() {}
+//	public function beforeInit() {}
 
-	public function afterAddAdminPage($adminPage) {}
+//	public function afterAddAdminPage($adminPage) {}
 
-	public function beforeLoadAdminPage($adminPage) {}
+//	public function beforeLoadAdminPage($adminPage) {}
 
-	public function beforeInLoadAdminPage($adminPage) {}
+//	public function beforeInLoadAdminPage($adminPage) {}
 
-	public function afterInLoadAdminPage($adminPage) {}
+//	public function afterInLoadAdminPage($adminPage) {}
 
 	public function afterLoadAdminPage($adminPage) {
 		// Tự động hiển thị notice khi thực hiện các actions.
@@ -149,13 +183,13 @@ class wpsp extends BaseAdminPage {
 		Funcs::actionNotice();
 	}
 
-	public function matchedCurrentAccess() {}
+//	public function matchedCurrentAccess() {}
 
 	public function afterInit() {
 		/**
 		 * Custom highlight current menu.
 		 */
-//		if (preg_match('/' . $this->menu_slug . '$|' . $this->menu_slug . '&updated=true$/', $this->request->getRequestUri())) {
+//		if (@preg_match('/' . $this->menu_slug . '$|' . $this->menu_slug . '&updated=true$/', $this->request->getRequestUri())) {
 //			add_filter('submenu_file', function($submenu_file) {
 //				return $this->menu_slug;
 //			});
@@ -167,18 +201,13 @@ class wpsp extends BaseAdminPage {
 		try {
 			if ($this->currentPage == $this->menu_slug) {
 				// Check database version and maybe redirect.
-				if (class_exists('Illuminate\Foundation\Application')) {
-					$this->checkDatabase = Migration::instance()->checkDatabaseVersion();
-					if (empty($this->checkDatabase['result']) && $this->currentTab !== 'database') {
-						$url = Funcs::instance()->_buildUrl($this->parent_slug, [
-							'page' => $this->menu_slug,
-							'tab'  => 'database',
-						]);
-						wp_redirect($url);
-					}
-				}
-				else {
-					$this->checkDatabase = null;
+				$this->checkDatabase = Migration::instance()->checkDatabaseVersion();
+				if (empty($this->checkDatabase['result']) && $this->currentTab !== 'database') {
+					$url = Funcs::instance()->_buildUrl($this->parent_slug, [
+						'page' => $this->menu_slug,
+						'tab'  => 'database',
+					]);
+					wp_redirect($url);
 				}
 			}
 		}
@@ -191,13 +220,62 @@ class wpsp extends BaseAdminPage {
 	 *
 	 */
 
-//	public function screenOptions($adminPage) {}
-
-	/*
-	 *
-	 */
-
 	public function index(Request $request) {
+		$request->session()->put('test_session_array', 'test_session_array'); // Test session trong tab Settings.
+
+		// Test facade: Auth
+//		dump(Auth::user());
+
+		// Test facade: Queue
+//		Queue::push(new TestJob());
+
+		// Test facade: Hash
+//		echo Hash::make('test');
+
+		// Test facade: Image
+//		$processImage = Image::fromUrl('https://domain.com/image.png')->resize(800, 600)->toWebp();
+//		Storage::disk('public')->put('test.webp', $processImage);
+
+		// Test facade: Config
+//		echo Config::get('app.name');
+
+		// Test facade: Artisan
+//		Artisan::call('cache:clear');
+//		$output = Artisan::output();
+//		echo $output;
+
+		// Test facade: Blade
+//		$stringTemplate = 'Hello, {{ $name }}! Hôm nay là: @currency(500000)';
+//		$html = Blade::render($stringTemplate, [
+//			'name' => 'Nguyễn Văn A',
+//			'now'  => now(),
+//		]);
+//		echo $html;
+
+		// Test facade: Bus
+//		Bus::dispatch(new TestJob());
+
+		// Test facade: File
+//		dump(File::allDirectories('./'));
+
+		// Test facade: MaintenanceMode
+//		dump(MaintenanceMode::driver());
+
+		// Test facade: Notification
+//		Notification::send(UsersModel::find(1), new UsersVerifyEmailNotification());
+
+		// Test facade: Pipeline
+//		$users = Pipeline::send(UsersModel::query())->through([FilterByName::class])->then(function ($query) { return $query->get(); });
+//		dump($users);
+
+		// Test facade: Redirect
+//		Redirect::to('/test')->send();
+
+//		Redis::set('user:1:name', 'Nguyen Van A');
+//		Redis::del('user:1:name');
+//		$name = Redis::get('user:1:name');
+//		dump($name);
+
 		$requestParams = $request->all();
 		$menuSlug      = $this->menu_slug;
 
@@ -209,31 +287,20 @@ class wpsp extends BaseAdminPage {
 //			          ?->withProperties(['prop_1' => 'prop_value_1'])
 //			          ?->log('Desc: ' . $this->menu_slug);
 
-			if (class_exists('Illuminate\Foundation\Application')) {
-				$settings = SettingsModel::query()->where('key', 'settings')->pluck('value')->first();
-				$settings = json_decode($settings ?? '', true);
+			$settings     = SettingsModel::query()->where('key', 'settings')->pluck('value')->first();
+			$settings     = json_decode($settings ?? '', true);
+//			$test         = SettingsModel::query()->where('key', 'test')->pluck('value')->first();
+			$wpUser       = WPUsersModel::find(1)->toArray();
+//			$table        = $this->table;
+//			$checkLicense = License::checkLicense();
 
-				$test     = SettingsModel::query()->where('key', 'test')->pluck('value')->first();
-
-				$wpUser = WPUsersModel::find(1)->toArray();
-
-//		    	$checkLicense  = License::checkLicense();
-
-				$table = $this->table;
-			}
-			else {
-				$settings = [];
-				$test     = '';
-				$wpUser   = [];
-				$table    = null;
-			}
 			echo Funcs::view('admin-pages.wpsp.main', compact(
 				'requestParams',
 				'menuSlug',
 //			    'checkLicense',
 				'settings',
-				'test',
-				'table',
+//				'test',
+//				'table',
 				'wpUser'
 			))->with([
 				'checkDatabase' => $this->checkDatabase,
@@ -270,14 +337,32 @@ class wpsp extends BaseAdminPage {
 
 	public function styles() {
 		wp_enqueue_style(
-			Funcs::config('app.short_name') . '-admin',
+			Funcs::config('app.short_name') . '-admin-css',
 			Funcs::instance()->_getPublicUrl() . '/css/admin.min.css',
+			null,
+			Funcs::instance()->_getVersion()
+		);
+		wp_enqueue_style(
+			Funcs::config('app.short_name') . '-toastr',
+			Funcs::instance()->_getPublicUrl('/widen/plugins/toastr/css/toastr.min.css'),
 			null,
 			Funcs::instance()->_getVersion()
 		);
 		wp_enqueue_style(
 			Funcs::config('app.short_name') . '-bootstrap-grid',
 			Funcs::instance()->_getPublicUrl() . '/widen/plugins/bootstrap/css/bootstrap-grid.min.css',
+			null,
+			Funcs::instance()->_getVersion()
+		);
+		wp_enqueue_style(
+			Funcs::config('app.short_name') . '-bootstrap-table',
+			Funcs::instance()->_getPublicUrl('widen/plugins/bootstrap/css/bootstrap-table.min.css'),
+			null,
+			Funcs::instance()->_getVersion()
+		);
+		wp_enqueue_style(
+			Funcs::config('app.short_name') . '-bootstrap-formcontrol',
+			Funcs::instance()->_getPublicUrl('widen/plugins/bootstrap/css/bootstrap-formcontrol.min.css'),
 			null,
 			Funcs::instance()->_getVersion()
 		);
@@ -291,11 +376,16 @@ class wpsp extends BaseAdminPage {
 
 	public function scripts() {
 		wp_enqueue_script(
+			Funcs::config('app.short_name') . '-toastr',
+			Funcs::instance()->_getPublicUrl('widen/plugins/toastr/js/toastr.min.js'),
+			null,
+			Funcs::instance()->_getVersion()
+		);
+		wp_enqueue_script(
 			Funcs::config('app.short_name') . '-database',
 			Funcs::instance()->_getPublicUrl() . '/ts/web/admin-pages/wpsp/Database.min.js',
 			null,
-			Funcs::instance()->_getVersion(),
-			true
+			Funcs::instance()->_getVersion()
 		);
 	}
 

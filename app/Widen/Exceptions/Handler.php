@@ -2,6 +2,7 @@
 
 namespace WPSP\App\Widen\Exceptions;
 
+use WPSP\App\Widen\Integrations\LaravelIgnition\LaravelIgnition;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
 
@@ -36,7 +37,10 @@ class Handler extends \WPSPCORE\App\Exceptions\Handler {
 		}
 
 		// AuthorizationException.
-		if ($e instanceof \WPSP\App\Exceptions\AuthorizationException || $e instanceof \Illuminate\Auth\Access\AuthorizationException) {
+		if (
+			$e instanceof \WPSP\App\Exceptions\AuthorizationException
+			|| $e instanceof \Illuminate\Auth\Access\AuthorizationException
+		) {
 			$this->handleAuthorizationException($e);
 			exit;
 		}
@@ -82,14 +86,20 @@ class Handler extends \WPSPCORE\App\Exceptions\Handler {
 			exit;
 		}
 
-		// Các exception khác -> sử dụng Ignition
-		$this->fallbackToIgnition($e);
+		// Nếu có Ignition.
+		if (Funcs::config('app.debug_handler') == 'ignition' && class_exists('\Spatie\Ignition\Ignition')) {
+			$ignition = $this->funcs->_getApplication()->make(LaravelIgnition::class);
+			$ignition->handle($e);
+		}
+
+		// Các exception khác.
+		$this->fallbackException($e);
 	}
 
 	public function report(\Throwable $e) {
 		parent::report($e);
 
-		if (Funcs::env('APP_DEBUG', true) == 'true') {
+		if (Funcs::config('app.debug') || Funcs::config('app.debug') == 'true') {
 			error_log(sprintf(
 				'[%s] %s in %s:%s',
 				get_class($e),

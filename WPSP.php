@@ -2,8 +2,6 @@
 
 namespace WPSP;
 
-use Illuminate\Database\Connectors\ConnectionFactory;
-use Illuminate\Database\DatabaseManager;
 use WPSP\App\Widen\Exceptions\Handler as ExceptionsHandler;
 use WPSP\App\Widen\Translation\WPTranslation;
 use WPSP\App\Widen\Updater\Updater;
@@ -23,13 +21,8 @@ class WPSP extends \WPSPCORE\WPSP {
 	 */
 	public static function instance() {
 		if (!static::$instance) {
-			$instance = new static(
-				__DIR__,
-				__NAMESPACE__,
-				Funcs::PREFIX_ENV,
-				[]
-			);
-			$instance->funcs = Funcs::instance();
+			$instance         = new static(__DIR__, __NAMESPACE__, Funcs::PREFIX_ENV, []);
+			$instance->funcs  = Funcs::instance();
 			static::$instance = $instance;
 		}
 		return static::$instance;
@@ -42,8 +35,15 @@ class WPSP extends \WPSPCORE\WPSP {
 	public static function start($handleRequest = true) {
 		$WPSP = static::instance();
 		$WPSP->setApplication(__DIR__, $handleRequest);
+
+		if (Funcs::config('app.debug')) {
+			static::overrideExceptionHandler();
+		}
+
 		if (function_exists('add_action')) {
-			add_action('init', function() { static::aferSetupApplication(); });
+			add_action('init', function() {
+				static::aferSetupApplication();
+			});
 		}
 		return $WPSP;
 	}
@@ -51,8 +51,13 @@ class WPSP extends \WPSPCORE\WPSP {
 	public static function startConsole() {
 		$WPSP = static::instance();
 		$WPSP->setApplicationForConsole(__DIR__);
+//		if (Funcs::config('app.debug')) {
+//			static::overrideExceptionHandler();
+//		}
 		if (function_exists('add_action')) {
-			add_action('init', function() { static::aferSetupApplicationForConsole(); });
+			add_action('init', function() {
+				static::aferSetupApplicationForConsole();
+			});
 		}
 		return $WPSP;
 	}
@@ -61,37 +66,29 @@ class WPSP extends \WPSPCORE\WPSP {
 	 *
 	 */
 
-	public function afterSetPaths() {}
+//	public function afterSetPaths() {}
 
-	public function afterBoostrap() {}
+//	public function afterBoostrap() {}
 
-	public function afterBoostrapConsole() {}
+//	public function afterBoostrapConsole() {}
 
-	public function afterBindings() {
-//		$this->application->singleton('db.factory', function ($app) {
-//			return new ConnectionFactory($app);
-//		});
-//		$this->application->singleton('db', function ($app) {
-//			return new DatabaseManager(
-//				$app,
-//				$app['db.factory']
-//			);
-//		});
-//		$this->application->alias('db', DatabaseManager::class);
+//	public function afterBindings() {}
+
+//	public function afterBindingsConsole() {}
+
+	/*
+	 *
+	 */
+
+	public function beforeHandleRequest() {
+		static::$instance->middlewares = require(Funcs::getBootstrapPath('/middlewares.php'));
 	}
 
-	public function afterBindingsConsole() {
-//		$this->application->singleton('db.factory', function ($app) {
-//			return new ConnectionFactory($app);
-//		});
-//		$this->application->singleton('db', function ($app) {
-//			return new DatabaseManager(
-//				$app,
-//				$app['db.factory']
-//			);
-//		});
-//		$this->application->alias('db', DatabaseManager::class);
-	}
+//	public function applyMiddlewares() {}
+
+//	public function beforeResponse() {}
+
+//	public function afterHandleRequest() {}
 
 	/*
 	 *
@@ -101,7 +98,6 @@ class WPSP extends \WPSPCORE\WPSP {
 		Updater::instance()->init();
 		WPTranslation::instance()->init();
 		static::shareVariablesForAllViews();
-		static::overrideExceptionHandler();
 	}
 
 	public static function aferSetupApplicationForConsole() {
@@ -109,7 +105,6 @@ class WPSP extends \WPSPCORE\WPSP {
 			Updater::instance()->init();
 			WPTranslation::instance()->init();
 			static::shareVariablesForAllViews();
-			static::overrideExceptionHandler();
 		}
 	}
 
@@ -129,11 +124,75 @@ class WPSP extends \WPSPCORE\WPSP {
 
 	public static function overrideExceptionHandler() {
 		$existsExceptionHandler = get_exception_handler();
+
 		if ($existsExceptionHandler instanceof ExceptionsHandler) return;
+
+		// 1. Chuyển đổi các PHP Warnings / Errors thành ErrorException một cách an toàn
+		set_error_handler(function($severity, $message, $file, $line) {
+			// Nếu lỗi bị ẩn đi bởi toán tử @ (error_reporting trả về 0) thì bỏ qua
+			if (!(error_reporting() & $severity)) {
+				return false;
+			}
+
+			// Chuẩn hóa tất cả dấu gạch chéo về dạng xuôi '/' để chạy chuẩn trên cả Windows & Linux
+			$normalizedFile = str_replace('\\', '/', $file);
+
+			// BỎ QUA các lỗi sinh ra từ view đã compile của Laravel hoặc thư mục vendor của framework
+			if (
+				str_contains($normalizedFile, 'storage/framework/views') ||
+				str_contains($normalizedFile, 'vendor/laravel')
+			) {
+				return false; // Để PHP tự xử lý mặc định, tránh đứt gãy luồng render lỗi
+			}
+
+			// LẤY FOLDER PATH CỦA WARNING/ERROR TẠI ĐÂY:
+//			$errorFolder 	= dirname($normalizedFile);
+//			$pluginDirName	= Funcs::getPluginDirNameFromPath($errorFolder);
+
+			throw new \ErrorException($message, 0, $severity, $file, $line);
+		});
+
+		// 2. Bộ bắt Exception an toàn có cơ chế chống lặp đệ quy (Anti-recursion lock)
 		set_exception_handler(function(\Throwable $e) {
-			$handler = new ExceptionsHandler();
+			static $isRenderingError = false;
+
+			// Nếu đang trong quá trình render lỗi trước đó mà lại phát sinh thêm lỗi mới (như lỗi Array to string conversion)
+			if ($isRenderingError) {
+				// Fallback khẩn cấp ra trình duyệt bằng wp_die đơn giản, không render view phức tạp nữa
+				wp_die(
+					'<h1>Fatal Error (Recursion Blocked)</h1>' .
+					'<p>' . esc_html($e->getMessage()) . ' in ' . esc_html($e->getFile()) . ':' . $e->getLine() . '</p>',
+					'Fatal Error',
+					['response' => 500]
+				);
+			}
+
+			$isRenderingError = true;
+
+			// LẤY FOLDER PATH CỦA EXCEPTION TẠI ĐÂY:
+//			$exceptionFile   = str_replace('\\', '/', $e->getFile());
+//			$exceptionFolder = dirname($exceptionFile);
+//			$pluginDirName   = Funcs::getPluginDirNameFromPath($exceptionFolder);
+
+			if (Funcs::isDebugBarValid() && $debugbar = Funcs::debugBar()) {
+				$debugbar?->addThrowable($e);
+				$debugbar?->addMessage($e->getMessage(), 'error', $e->getTrace());
+			}
+
+			try {
+				$app     = Funcs::app();
+				$handler = ($app !== null)
+					? $app->make(ExceptionsHandler::class)
+					: new ExceptionsHandler();
+			}
+			catch (\Throwable $ex) {
+				$handler = new ExceptionsHandler();
+			}
+
 			$handler->report($e);
 			$handler->render($e);
+
+			$isRenderingError = false;
 		});
 	}
 

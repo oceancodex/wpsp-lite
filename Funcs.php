@@ -3,10 +3,11 @@
 namespace WPSP;
 
 use Faker\Factory as Faker;
+use Illuminate\Http\Request;
 use NumberFormatter;
 use WPSP\App\Widen\Routes\RouteMap;
-use WPSP\App\Widen\Support\Facades\Auth;
 use WPSP\App\Widen\Support\Facades\RateLimiter;
+use WPSP\App\Widen\Support\Facades\Session;
 
 class Funcs extends \WPSPCORE\Funcs {
 
@@ -71,8 +72,12 @@ class Funcs extends \WPSPCORE\Funcs {
 		return static::instance()->_app($abstract, $parameters);
 	}
 
+	public static function env($var, $addPrefix = false, $default = null) {
+		return static::instance()->_env($var, $addPrefix, $default);
+	}
+
 	public static function auth($guard = null) {
-		return Auth::instance($guard);
+		return static::instance()->_auth($guard);
 	}
 
 	public static function view($viewName, $data = [], $mergeData = []) {
@@ -87,8 +92,12 @@ class Funcs extends \WPSPCORE\Funcs {
 		return static::instance()->_viewDetect($viewName);
 	}
 
-	public static function trans($string, $replaces = [], $wordpress = false) {
-		return static::instance()->_trans($string, $replaces, $wordpress);
+	public static function debug($message = '', $print = false, $varDump = false) {
+		static::instance()->_debug($message, $print, $varDump);
+	}
+
+	public static function debugBar() {
+		return static::instance()->_debugBar();
 	}
 
 	public static function asset($path, $secure = null) {
@@ -99,50 +108,93 @@ class Funcs extends \WPSPCORE\Funcs {
 		return static::instance()->_route($routeClass, $routeName, $args, $buildURL, $sanitize, RouteMap::instance()->getMap());
 	}
 
+	public static function trans($string, $replaces = [], $wordpress = false) {
+		return static::instance()->_trans($string, $replaces, $wordpress);
+	}
+
 	public static function config($key = null, $default = null) {
 		return static::instance()->_config($key, $default);
+	}
+
+	public static function locale() {
+		return static::instance()->_locale();
 	}
 
 	public static function notice($message = '', $type = 'info', $echo = false, $wrap = false, $class = null, $dismiss = true) {
 		static::instance()->_notice($message, $type, $echo, $wrap, $class, $dismiss);
 	}
 
+	public static function response($success = false, $data = [], $message = '') {
+		return static::instance()->_response($success, $data, $message);
+	}
+
+	public static function faker() {
+		try {
+			return Faker::create(Funcs::config('app.faker_locale', 'en_US'));
+		}
+		catch (\Throwable $e) {
+			return null;
+		}
+	}
+
+	public static function queue() {
+		return static::instance()->_app('queue');
+	}
+
+	public static function event(...$args) {
+		return static::instance()->_event($args);
+	}
+
+	public static function session($key = null) {
+		$session = Session::wpspInstance()->getFacade();
+
+		if ($key) {
+			return $session->get($key);
+		}
+
+		return $session;
+	}
+
+	public static function validate($data, $rules, $messages = [], $customAttributes = []) {
+		return static::validation()->validate($data, $rules, $messages, $customAttributes);
+	}
+
+	public static function validation() {
+		return static::instance()->_app('validation');
+	}
+
+	public static function rateLimiter() {
+		return RateLimiter::instance()->getRateLimiter();
+	}
+
 	/**
 	 * Tự động hiển thị admin notice khi thực hiện các actions.
 	 */
 	public static function actionNotice(?\Illuminate\Http\Request $request = null) {
-		if ($request?->query('saved') || isset($_GET['saved'])) {
+		if ($request?->query('saved') || isset($_GET['saved']) || static::session('saved')) {
 			Funcs::notice(Funcs::trans('messages.notice_saved'), $_GET['notice_type'] ?? 'success');
 		}
-		elseif ($request?->query('updated') || isset($_GET['updated'])) {
+		elseif ($request?->query('updated') || isset($_GET['updated']) || static::session('updated')) {
 			Funcs::notice(Funcs::trans('messages.notice_updated'), $_GET['notice_type'] ?? 'success');
 		}
-		elseif ($request?->query('trashed') ?? isset($_GET['trashed'])) {
+		elseif ($request?->query('trashed') ?? isset($_GET['trashed']) || static::session('trashed')) {
 			Funcs::notice(Funcs::trans('messages.notice_trashed'), $_GET['notice_type'] ?? 'success');
 		}
-		elseif ($request?->query('untrashed') ?? isset($_GET['untrashed'])) {
+		elseif ($request?->query('untrashed') ?? isset($_GET['untrashed']) || static::session('untrashed')) {
 			Funcs::notice(Funcs::trans('messages.notice_untrashed'), $_GET['notice_type'] ?? 'success');
 		}
-		elseif ($request?->query('deleted') ?? isset($_GET['deleted'])) {
+		elseif ($request?->query('deleted') ?? isset($_GET['deleted']) || static::session('deleted')) {
 			Funcs::notice(Funcs::trans('messages.notice_deleted'), $_GET['notice_type'] ?? 'success');
 		}
-		elseif ($request?->query('locked') ?? isset($_GET['locked'])) {
+		elseif ($request?->query('locked') ?? isset($_GET['locked']) || static::session('locked')) {
 			Funcs::notice(Funcs::trans('messages.notice_locked'), $_GET['notice_type'] ?? 'success');
 		}
-		elseif ($error = ($request?->query('error') ?? $_GET['error'] ?? null)) {
-			Funcs::notice(Funcs::trans('messages.notice_error', ['error' => $_GET['error']]), $_GET['notice_type'] ?? 'error');
+		elseif ($error = ($request?->query('error') ?? $_GET['error'] ?? null) || $err = static::session('error')) {
+			Funcs::notice(Funcs::trans('messages.notice_error', ['error' => $_GET['error'] ?? $err ?? '']), $_GET['notice_type'] ?? 'error');
 		}
-		elseif ($message = ($request?->query('message') ?? $_GET['message'] ?? null)) {
-			Funcs::notice(Funcs::trans('messages.notice_message', ['message' => $_GET['message']]), $_GET['notice_type'] ?? 'info');
+		elseif ($message = ($request?->query('message') ?? $_GET['message'] ?? null) || $msg = static::session('message')) {
+			Funcs::notice(Funcs::trans('messages.notice_message', ['message' => $_GET['message'] ?? $msg ?? '']), $_GET['notice_type'] ?? 'info');
 		}
-	}
-
-	/*
-	 *
-	 */
-
-	public static function rateLimiter() {
-		return RateLimiter::instance()->getRateLimiter();
 	}
 
 	/*
@@ -165,6 +217,10 @@ class Funcs extends \WPSPCORE\Funcs {
 		return static::instance()->_isDebug();
 	}
 
+	public static function isDebugBarValid() {
+		return static::instance()->_isDebugBarValid();
+	}
+
 	public static function isWPDebug() {
 		return static::instance()->_isWPDebug();
 	}
@@ -181,8 +237,12 @@ class Funcs extends \WPSPCORE\Funcs {
 		return static::instance()->_hasQueryParams($queryString, $targetParams, $relation);
 	}
 
-	public static function onlyHasQueryParams($queryString = null, $allowedParams = null) {
-		return static::instance()->_onlyHasQueryParams($queryString, $allowedParams);
+	public static function isOnlyHasQueryParams($queryString = null, $allowedParams = null) {
+		return static::instance()->_isOnlyHasQueryParams($queryString, $allowedParams);
+	}
+
+	public static function isWPInternalRequest(?Request $request = null) {
+		return static::instance()->_isWPInternalRequest($request);
 	}
 
 	/*
@@ -219,55 +279,6 @@ class Funcs extends \WPSPCORE\Funcs {
 
 	public static function unNumberFormat($value, $locale = 'vi') {
 		return static::instance()->_unNumberFormat($value, $locale);
-	}
-
-	/*
-	 *
-	 */
-
-	public static function env($var, $addPrefix = false, $default = null) {
-		return static::instance()->_env($var, $addPrefix, $default);
-	}
-
-	public static function debug($message = '', $print = false, $varDump = false) {
-		static::instance()->_debug($message, $print, $varDump);
-	}
-
-	public static function faker() {
-		try {
-			return Faker::create(Funcs::config('app.faker_locale', 'en_US'));
-		}
-		catch (\Throwable $e) {
-			return null;
-		}
-	}
-
-	public static function queue() {
-		return static::instance()->_getApplication('queue');
-	}
-
-	public static function event($event = null, $payload = []) {
-		$d = static::instance()->_getApplication('event')->dispatcher();
-		if ($event !== null) {
-			$d->dispatch($event, $payload);
-		}
-		return $d;
-	}
-
-	public static function locale() {
-		return static::instance()->_locale();
-	}
-
-	public static function response($success = false, $data = [], $message = '') {
-		return static::instance()->_response($success, $data, $message);
-	}
-
-	public static function validate($data, $rules, $messages = [], $customAttributes = []) {
-		return static::validation()->validate($data, $rules, $messages, $customAttributes);
-	}
-
-	public static function validation() {
-		return static::instance()->_getApplication('validation');
 	}
 
 }

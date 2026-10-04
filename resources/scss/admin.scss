@@ -1,7 +1,7 @@
 body {
 	&.php-error {
 		#adminmenuback, #adminmenuwrap {
-			margin-top: 0!important;
+			margin-top: 0 !important;
 		}
 	}
 }
@@ -12,6 +12,67 @@ body {
 			.wp-submenu {
 				border: 0 none;
 				border-left: none;
+			}
+		}
+	}
+}
+
+.popup-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, .4);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+
+	.popup-outer {
+		width: 1200px;
+		position: relative;
+	}
+}
+
+.phpdebugbar-widgets-toolbar {
+	display: flex;
+
+	input {
+		min-height: auto !important;
+	}
+
+	.phpdebugbar-icon-search {
+		margin-left: 5px;
+	}
+}
+
+.wpsp-exception-renderer {
+	.bg-white {
+		background-color: #1a1a1a !important;
+	}
+
+	.border {
+		border-color: #313131 !important;
+	}
+}
+
+html {
+	#app > main {
+		> section {
+			.leading-loose {
+				font-size: inherit !important;
+			}
+
+			main {
+				&.flex.items-stretch.flex-grow {
+					line-height: 0!important;
+				}
+			}
+		}
+	}
+
+	&.dark {
+		#app > main {
+			> div > .bg-white {
+				background-color: rgba(31, 41, 55, .5) !important;
 			}
 		}
 	}
