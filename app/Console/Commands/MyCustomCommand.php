@@ -2,7 +2,7 @@
 
 namespace WPSP\App\Console\Commands;
 
-use Illuminate\Console\Command;
+use WPSPCORE\App\Console\Command;
 
 class MyCustomCommand extends Command {
 

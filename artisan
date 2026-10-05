@@ -183,8 +183,7 @@ else {
 	 * ---
 	 * Xử lý command line.
 	 */
-	$app = new Application(__DIR__);
-	$app->instance('funcs', Funcs::instance());
-
+	$app = new Application(__DIR__, Funcs::instance());
+	$app->load(__DIR__ . '/app/Console/Commands');
 	exit($app->run($argv));
 }
