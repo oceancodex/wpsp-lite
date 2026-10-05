@@ -2,32 +2,11 @@
 
 namespace WPSP\App\WordPress\AdminPages\wpsp;
 
-use WPSP\App\Widen\Support\Facades\Request;
-use WPSP\App\Jobs\TestJob;
-use WPSP\App\Models\SettingsModel;
-use WPSP\App\Models\UsersModel;
-use WPSP\App\Models\WPUsersModel;
-use WPSP\App\Notifications\UsersVerifyEmailNotification;
-use WPSP\App\Pipes\Users\FilterByName;
+//use WPSP\App\Widen\Support\Facades\Request;
 use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Support\Facades\Artisan;
-use WPSP\App\Widen\Support\Facades\Auth;
-use WPSP\App\Widen\Support\Facades\Blade;
-use WPSP\App\Widen\Support\Facades\Bus;
-use WPSP\App\Widen\Support\Facades\Config;
-use WPSP\App\Widen\Support\Facades\File;
-use WPSP\App\Widen\Support\Facades\Hash;
-use WPSP\App\Widen\Support\Facades\Image;
-use WPSP\App\Widen\Support\Facades\MaintenanceMode;
-use WPSP\App\Widen\Support\Facades\Migration;
-use WPSP\App\Widen\Support\Facades\Notification;
-use WPSP\App\Widen\Support\Facades\Pipeline;
-use WPSP\App\Widen\Support\Facades\Queue;
-use WPSP\App\Widen\Support\Facades\Redirect;
-use WPSP\App\Widen\Support\Facades\Redis;
-use WPSP\App\Widen\Support\Facades\Storage;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
+use WPSP\App\Widen\Commons\Http\Request;
 use WPSPCORE\App\WordPress\AdminPages\BaseAdminPage;
 
 class wpsp extends BaseAdminPage {
@@ -198,22 +177,22 @@ class wpsp extends BaseAdminPage {
 		/**
 		 * Chuyển hướng đến tab "Database" nếu database version không hợp lệ.
 		 */
-		try {
-			if ($this->currentPage == $this->menu_slug) {
-				// Check database version and maybe redirect.
-				$this->checkDatabase = Migration::instance()->checkDatabaseVersion();
-				if (empty($this->checkDatabase['result']) && $this->currentTab !== 'database') {
-					$url = Funcs::instance()->_buildUrl($this->parent_slug, [
-						'page' => $this->menu_slug,
-						'tab'  => 'database',
-					]);
-					wp_redirect($url);
-				}
-			}
-		}
-		catch (\Throwable $e) {
-			Funcs::notice($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine(), 'error');
-		}
+//		try {
+//			if ($this->currentPage == $this->menu_slug) {
+//				// Check database version and maybe redirect.
+//				$this->checkDatabase = Migration::instance()->checkDatabaseVersion();
+//				if (empty($this->checkDatabase['result']) && $this->currentTab !== 'database') {
+//					$url = Funcs::instance()->_buildUrl($this->parent_slug, [
+//						'page' => $this->menu_slug,
+//						'tab'  => 'database',
+//					]);
+//					wp_redirect($url);
+//				}
+//			}
+//		}
+//		catch (\Throwable $e) {
+//			Funcs::notice($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine(), 'error');
+//		}
 	}
 
 	/*
@@ -221,7 +200,7 @@ class wpsp extends BaseAdminPage {
 	 */
 
 	public function index(Request $request) {
-		$request->session()->put('test_session_array', 'test_session_array'); // Test session trong tab Settings.
+//		$request->session()->put('test_session_array', 'test_session_array'); // Test session trong tab Settings.
 
 		// Test facade: Auth
 //		dump(Auth::user());
@@ -279,42 +258,42 @@ class wpsp extends BaseAdminPage {
 		$requestParams = $request->all();
 		$menuSlug      = $this->menu_slug;
 
-		try {
-//			activity()->useLog(Funcs::getAppShortName() . '-v4')
-//			          ?->event('Event: ' . $this->menu_slug)
-//			          ?->performedOn(SettingsModel::find(1))
-//			          ?->causedBy(get_current_user_id())
-//			          ?->withProperties(['prop_1' => 'prop_value_1'])
-//			          ?->log('Desc: ' . $this->menu_slug);
-
-			$settings     = SettingsModel::query()->where('key', 'settings')->pluck('value')->first();
-			$settings     = json_decode($settings ?? '', true);
-//			$test         = SettingsModel::query()->where('key', 'test')->pluck('value')->first();
-			$wpUser       = WPUsersModel::find(1)->toArray();
-//			$table        = $this->table;
-//			$checkLicense = License::checkLicense();
-
-			echo Funcs::view('admin-pages.wpsp.main', compact(
-				'requestParams',
-				'menuSlug',
-//			    'checkLicense',
-				'settings',
-//				'test',
-//				'table',
-				'wpUser'
-			))->with([
-				'checkDatabase' => $this->checkDatabase,
-			]);
-		}
-		catch (\Throwable $e) {
-			Funcs::notice($e->getMessage() . ' <code>(' . __CLASS__ . ')</code>', 'error');
+//		try {
+////			activity()->useLog(Funcs::getAppShortName() . '-v4')
+////			          ?->event('Event: ' . $this->menu_slug)
+////			          ?->performedOn(SettingsModel::find(1))
+////			          ?->causedBy(get_current_user_id())
+////			          ?->withProperties(['prop_1' => 'prop_value_1'])
+////			          ?->log('Desc: ' . $this->menu_slug);
+//
+//			$settings     = SettingsModel::query()->where('key', 'settings')->pluck('value')->first();
+//			$settings     = json_decode($settings ?? '', true);
+////			$test         = SettingsModel::query()->where('key', 'test')->pluck('value')->first();
+//			$wpUser       = WPUsersModel::find(1)->toArray();
+////			$table        = $this->table;
+////			$checkLicense = License::checkLicense();
+//
+//			echo Funcs::view('admin-pages.wpsp.main', compact(
+//				'requestParams',
+//				'menuSlug',
+////			    'checkLicense',
+//				'settings',
+////				'test',
+////				'table',
+//				'wpUser'
+//			))->with([
+//				'checkDatabase' => $this->checkDatabase,
+//			]);
+//		}
+//		catch (\Throwable $e) {
+//			Funcs::notice($e->getMessage() . ' <code>(' . __CLASS__ . ')</code>', 'error');
 
 			$user          = wp_get_current_user();
-			$checkDatabase = $this->checkDatabase;
+//			$checkDatabase = $this->checkDatabase;
 			$funcs         = Funcs::instance();
 
 			include(Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp/main.php'));
-		}
+//		}
 	}
 
 	public function create(Request $request) {}

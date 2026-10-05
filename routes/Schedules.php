@@ -22,8 +22,8 @@ class Schedules {
 		Route::schedule('wpsp_check_license', [CheckLicenseSchedule::class, 'handle'], ['interval' => 'everyMinute']);
 
 		// WPSP schedule system.
-		Schedule::name('WPSP')->call(function() { error_log('Schedule "WPSP" fired! - Closure function'); })->everyMinute();
-		Schedule::name('custom_schedule')->call(function() { (new custom_schedule())->wpspCall('handle'); })->everyMinute();
+//		Schedule::name('WPSP')->call(function() { error_log('Schedule "WPSP" fired! - Closure function'); })->everyMinute();
+//		Schedule::name('custom_schedule')->call(function() { (new custom_schedule())->wpspCall('handle'); })->everyMinute();
 //		Schedule::name('custom_schedule_run_command')->command('route:remap')->everyMinute();
 	}
 

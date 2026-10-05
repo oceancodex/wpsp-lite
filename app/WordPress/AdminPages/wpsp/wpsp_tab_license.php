@@ -2,12 +2,11 @@
 
 namespace WPSP\App\WordPress\AdminPages\wpsp;
 
-use Illuminate\Http\Request;
 use WPSP\App\Events\SettingsUpdatedEvent;
-use WPSP\App\Widen\Support\Facades\Cookie;
-use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\App\Models\SettingsModel;
+use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
+use WPSP\App\Widen\Commons\Http\Request;
 use WPSPCORE\App\WordPress\AdminPages\BaseAdminPage;
 
 class wpsp_tab_license extends BaseAdminPage {
@@ -139,8 +138,8 @@ class wpsp_tab_license extends BaseAdminPage {
 
 	public function matchedCurrentAccess() {
 		// Test thêm cookie.
-		$cookie = Cookie::make('wpsp-access-license', 1, 60);
-		response(null)->cookie($cookie)->sendHeaders();
+//		$cookie = Cookie::make('wpsp-access-license', 1, 60);
+//		response(null)->cookie($cookie)->sendHeaders();
 	}
 
 //	public function afterInit() {}

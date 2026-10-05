@@ -495,7 +495,7 @@ class ApisController extends BaseController {
 					return [
 						'success' => false,
 						'data'    => null,
-						'message' => 'Token name "'.$tokenName.'" already exists',
+						'message' => 'Token name "' . $tokenName . '" already exists',
 					];
 				}
 			}

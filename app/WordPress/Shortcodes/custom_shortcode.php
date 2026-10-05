@@ -2,10 +2,9 @@
 
 namespace WPSP\App\WordPress\Shortcodes;
 
-use Illuminate\Http\Request;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\App\WordPress\NavigationMenus\Menus\Menu1;
-use WPSP\App\WordPress\NavigationMenus\Menus\Menu2;
+use WPSP\App\Widen\Commons\Http\Request;
 use WPSPCORE\App\WordPress\Shortcodes\BaseShortcode;
 
 class custom_shortcode extends BaseShortcode {

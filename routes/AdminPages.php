@@ -54,67 +54,67 @@ class AdminPages {
 //		});
 
 		// Admin menu pages with class instances.
-//		Route::name('wpsp.')->middleware([
-//			'relation' => 'OR',
-//			[AdministratorCapability::class, 'handle'],
-//			[EditorCapability::class, 'handle'],
-//		])->group(function() {
+		Route::name('wpsp.')->middleware([
+			'relation' => 'OR',
+			[AdministratorCapability::class, 'handle'],
+			[EditorCapability::class, 'handle'],
+		])->group(function() {
 			Route::get('wpsp', [wpsp::class, 'index'])->name('index');
-//			Route::get('wpsp&tab=dashboard', [wpsp_tab_dashboard::class, 'index'])->name('dashboard');
-//			Route::name('license.')->middleware([
-//				'relation' => 'AND',
-//				[AdministratorCapability::class, 'handle'],
-//				[AuthenticationMiddleware::class, 'handle'],
-//			])->group(function() {
-//				Route::get('wpsp&tab=license', [wpsp_tab_license::class, 'index'])->name('index');
-//				Route::middleware(PreventRequestForgeryWithoutOrigin::class)->post('wpsp&tab=license', [wpsp_tab_license::class, 'update'])->name('update');
-//			});
-//			Route::get('wpsp&tab=database', [wpsp_tab_database::class, 'index'])->name('database');
-//			Route::name('settings.')->middleware([
-//				'relation' => 'OR',
-////				[AuthenticationMiddleware::class],
-////				VerifiedUserMiddleware::class
-//			])->group(function() {
-//				Route::get('wpsp&tab=settings', [wpsp_tab_settings::class, 'index'])->name('index');
-//				Route::post('wpsp&tab=settings', [wpsp_tab_settings::class, 'update'])->name('update');
-//			});
-//			Route::get('wpsp&tab=tools', [wpsp_tab_tools::class, 'index'])->name('tools');
-//			Route::name('table.')->group(function() {
-//				Route::get('wpsp&tab=table', [wpsp_tab_table::class, 'index'])->name('index');
-//				Route::post('wpsp&tab=table', [wpsp_tab_table::class, 'update'])->name('update');
-//			});
-//			Route::name('roles.')->group(function() {
-//				Route::get('wpsp&tab=roles', [wpsp_tab_roles::class, 'index'])->name('index');
-//				Route::post('wpsp&tab=roles', [wpsp_tab_roles::class, 'update'])->name('update');
-//				Route::get('wpsp&tab=roles&doaction=refresh', [wpsp_tab_roles::class, 'refresh'])->name('refresh');
-//			});
-//			Route::name('permissions.')->group(function() {
-//				Route::get('wpsp&tab=permissions', [wpsp_tab_permissions::class, 'index'])->name('index');
-////				Route::post('wpsp&tab=permissions', [wpsp_tab_permissions::class, 'update'])->name('update');
-//			});
-//			Route::name('users.')->group(function() {
-//				Route::get('wpsp&tab=users', [wpsp_tab_users::class, 'index'])->name('list');
-////				Route::get('wpsp&tab=users(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'index'])->name('list'); // [1] Khớp với URL có params và callback "index".
-//				Route::get('wpsp&tab=users(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'bulkUpdate'])->name('bulk_update');
-//				Route::get('wpsp&tab=users&doaction=create', [wpsp_tab_users::class, 'create'])->name('create');
-//				Route::post('wpsp&tab=users&doaction=create', [wpsp_tab_users::class, 'store'])->name('create');
-////				Route::get('wpsp&tab=users&doaction=show&id=(?P<id>\w+)?&abc=(?P<abc>\w+)?', [wpsp_tab_users::class, 'show'])->name('show');
-////				Route::get('wpsp&show=(?P<user>\d+)(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'show'])->name('show');
-//				Route::get('wpsp&tab=users&doaction=show&user={user?}(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'show'])->name('show');
-////				Route::get('wpsp&tab=users&doaction=show&user_id=(?P<user_id>\d+)(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'show'])->name('show');
-//				Route::get('wpsp&tab=users&doaction=edit&id=(?P<id>\d+)', [wpsp_tab_users::class, 'edit'])->middleware(AdministratorCapability::class)->name('edit');
-//				Route::post('wpsp&tab=users&doaction=edit&id=(?P<id>\d+)', [wpsp_tab_users::class, 'update'])->middleware(AdministratorCapability::class)->name('update');
-//				Route::get('wpsp&tab=users&doaction=delete&id=(?P<id>\d+)', [wpsp_tab_users::class, 'delete'])->middleware(AdministratorCapability::class)->name('delete');
-//			});
-//			Route::get('wpsp&tab=activity_log', [wpsp_tab_activity_log::class, 'index'])->name('activity_log');
-//			Route::get('wpsp_tab_list_users', [wpsp_list_users::class, 'index'])->name('list');
-//			Route::get('wpsp_child_example', [wpsp_child_example::class, 'index'])->name('child_example');
-//			Route::get('wpsp_test_facades', [wpsp_test_facades::class, 'create'], ['force_init' => true, 'force_init_slug' => 'wpsp_test_facades'])->name('test_facades');
-//			Route::get('edit.php?post_type=wpsp_content', [wpsp_child_post_type_wpsp_content::class, null])->name('list_wpsp_content');
-//			Route::get('edit-tags.php?taxonomy=wpsp_category', [wpsp_child_taxonomy_wpsp_category::class, null])->name('list_wpsp_category');
-//		});
-//
-//		Route::get('custom&edit=(?P<user>\d+)(?P<n>&?)(?P<queries>.*)', [wpsp_custom::class, 'index'], ['force_init' => true])->name('custom');
+			Route::get('wpsp&tab=dashboard', [wpsp_tab_dashboard::class, 'index'])->name('dashboard');
+			Route::name('license.')->middleware([
+				'relation' => 'AND',
+				[AdministratorCapability::class, 'handle'],
+				[AuthenticationMiddleware::class, 'handle'],
+			])->group(function() {
+				Route::get('wpsp&tab=license', [wpsp_tab_license::class, 'index'])->name('index');
+				Route::middleware(PreventRequestForgeryWithoutOrigin::class)->post('wpsp&tab=license', [wpsp_tab_license::class, 'update'])->name('update');
+			});
+			Route::get('wpsp&tab=database', [wpsp_tab_database::class, 'index'])->name('database');
+			Route::name('settings.')->middleware([
+				'relation' => 'OR',
+//				[AuthenticationMiddleware::class],
+//				VerifiedUserMiddleware::class
+			])->group(function() {
+				Route::get('wpsp&tab=settings', [wpsp_tab_settings::class, 'index'])->name('index');
+				Route::post('wpsp&tab=settings', [wpsp_tab_settings::class, 'update'])->name('update');
+			});
+			Route::get('wpsp&tab=tools', [wpsp_tab_tools::class, 'index'])->name('tools');
+			Route::name('table.')->group(function() {
+				Route::get('wpsp&tab=table', [wpsp_tab_table::class, 'index'])->name('index');
+				Route::post('wpsp&tab=table', [wpsp_tab_table::class, 'update'])->name('update');
+			});
+			Route::name('roles.')->group(function() {
+				Route::get('wpsp&tab=roles', [wpsp_tab_roles::class, 'index'])->name('index');
+				Route::post('wpsp&tab=roles', [wpsp_tab_roles::class, 'update'])->name('update');
+				Route::get('wpsp&tab=roles&doaction=refresh', [wpsp_tab_roles::class, 'refresh'])->name('refresh');
+			});
+			Route::name('permissions.')->group(function() {
+				Route::get('wpsp&tab=permissions', [wpsp_tab_permissions::class, 'index'])->name('index');
+//				Route::post('wpsp&tab=permissions', [wpsp_tab_permissions::class, 'update'])->name('update');
+			});
+			Route::name('users.')->group(function() {
+				Route::get('wpsp&tab=users', [wpsp_tab_users::class, 'index'])->name('list');
+//				Route::get('wpsp&tab=users(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'index'])->name('list'); // [1] Khớp với URL có params và callback "index".
+				Route::get('wpsp&tab=users(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'bulkUpdate'])->name('bulk_update');
+				Route::get('wpsp&tab=users&doaction=create', [wpsp_tab_users::class, 'create'])->name('create');
+				Route::post('wpsp&tab=users&doaction=create', [wpsp_tab_users::class, 'store'])->name('create');
+//				Route::get('wpsp&tab=users&doaction=show&id=(?P<id>\w+)?&abc=(?P<abc>\w+)?', [wpsp_tab_users::class, 'show'])->name('show');
+//				Route::get('wpsp&show=(?P<user>\d+)(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'show'])->name('show');
+				Route::get('wpsp&tab=users&doaction=show&user={user?}(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'show'])->name('show');
+//				Route::get('wpsp&tab=users&doaction=show&user_id=(?P<user_id>\d+)(?P<n>&?)(?P<queries>.*)', [wpsp_tab_users::class, 'show'])->name('show');
+				Route::get('wpsp&tab=users&doaction=edit&id=(?P<id>\d+)', [wpsp_tab_users::class, 'edit'])->middleware(AdministratorCapability::class)->name('edit');
+				Route::post('wpsp&tab=users&doaction=edit&id=(?P<id>\d+)', [wpsp_tab_users::class, 'update'])->middleware(AdministratorCapability::class)->name('update');
+				Route::get('wpsp&tab=users&doaction=delete&id=(?P<id>\d+)', [wpsp_tab_users::class, 'delete'])->middleware(AdministratorCapability::class)->name('delete');
+			});
+			Route::get('wpsp&tab=activity_log', [wpsp_tab_activity_log::class, 'index'])->name('activity_log');
+			Route::get('wpsp_tab_list_users', [wpsp_list_users::class, 'index'])->name('list');
+			Route::get('wpsp_child_example', [wpsp_child_example::class, 'index'])->name('child_example');
+			Route::get('wpsp_test_facades', [wpsp_test_facades::class, 'create'], ['force_init' => true, 'force_init_slug' => 'wpsp_test_facades'])->name('test_facades');
+			Route::get('edit.php?post_type=wpsp_content', [wpsp_child_post_type_wpsp_content::class, null])->name('list_wpsp_content');
+			Route::get('edit-tags.php?taxonomy=wpsp_category', [wpsp_child_taxonomy_wpsp_category::class, null])->name('list_wpsp_category');
+		});
+
+		Route::get('custom&edit=(?P<user>\d+)(?P<n>&?)(?P<queries>.*)', [wpsp_custom::class, 'index'], ['force_init' => true])->name('custom');
 
 		// Custom sub admin menu page with closure function
 //		Route::name('wpsp3.')->middleware(null)->group(function() {

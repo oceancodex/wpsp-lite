@@ -2,13 +2,11 @@
 
 namespace WPSP\App\WordPress\RewriteFrontPages;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSP\App\WordPress\Integrations\RankmathSEO\RankmathSEO;
-use WPSP\App\WordPress\Integrations\YoastSEO\YoastSEO;
+use WPSP\App\Widen\Commons\Http\Request;
 use WPSPCORE\App\WordPress\RewriteFrontPages\BaseRewriteFrontPage;
 
 class rewrite_demo extends BaseRewriteFrontPage {

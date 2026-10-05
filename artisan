@@ -113,7 +113,7 @@ $wpsp = WPSP::startConsole();
 /**
  * Tích hợp.
  */
-Integration::instance()->register();
+//Integration::instance()->register();
 
 /**
  * ---
@@ -159,10 +159,10 @@ if (defined('WPSP_ACTIVE') && WPSP_ACTIVE) {
  * ---
  * Xử lý command line.
  */
-$app = $wpsp->getApplication();
-Container::setInstance($app);
-Facade::setFacadeApplication($app);
-Model::setConnectionResolver($app['db']);
-Model::setEventDispatcher($app['events']);
-$status = $app->handleCommand(new ArgvInput);
-exit($status);
+//$app = $wpsp->getApplication();
+//Container::setInstance($app);
+//Facade::setFacadeApplication($app);
+//Model::setConnectionResolver($app['db']);
+//Model::setEventDispatcher($app['events']);
+//$status = $app->handleCommand(new ArgvInput);
+//exit($status);
