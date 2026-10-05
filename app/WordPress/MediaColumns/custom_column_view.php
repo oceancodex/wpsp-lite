@@ -4,7 +4,7 @@ namespace WPSP\App\WordPress\MediaColumns;
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSP\App\Widen\Commons\Http\Request;
+use WPSP\App\Widen\Support\Facades\Request;
 use WPSPCORE\App\WordPress\MediaColumns\BaseMediaColumn;
 
 class custom_column_view extends BaseMediaColumn {

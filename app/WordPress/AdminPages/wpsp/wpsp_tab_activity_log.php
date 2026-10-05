@@ -5,7 +5,7 @@ namespace WPSP\App\WordPress\AdminPages\wpsp;
 use Illuminate\Support\Facades\Hash;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSP\App\Widen\Commons\Http\Request;
+use WPSP\App\Widen\Support\Facades\Request;
 use WPSPCORE\App\WordPress\AdminPages\BaseAdminPage;
 
 class wpsp_tab_activity_log extends BaseAdminPage {
