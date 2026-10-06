@@ -254,7 +254,7 @@ class wpsp extends BaseAdminPage {
 //		Redis::del('user:1:name');
 //		$name = Redis::get('user:1:name');
 //		dump($name);
-
+		$request->capture();
 		$requestParams = $request->all();
 		$menuSlug      = $this->menu_slug;
 
