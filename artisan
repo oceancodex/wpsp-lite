@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
 use Symfony\Component\Console\Input\ArgvInput;
 use WPSP\App\Widen\Integrations\Integration;
+use WPSP\App\Widen\Routes\RouteManager;
 use WPSP\WPSP;
 use WPSP\Routes\Actions;
 use WPSP\Routes\AdminBarMenus;
@@ -39,46 +40,38 @@ use WPSPCORE\App\App\Application;
 
 define('WPSP_ARTISAN_START', microtime(true));
 
-if (class_exists('Illuminate\Foundation\Application')) {
-	require_once __DIR__ . '/ArtisanHelpers.php';
-	$ensureDBConnect = ensureDBConnect();
+require_once __DIR__ . '/ArtisanHelpers.php';
 
-	if ($ensureDBConnect) {
-		if (file_exists(__DIR__ . '/../../../wp-load.php')) {
-			try {
-				require_once __DIR__ . '/../../../wp-load.php';
+$ensureDBConnect = ensureDBConnect();
 
-				if (function_exists('is_plugin_active')) {
-					/**
-					 * Kiểm tra plugin đã được kích hoạt hay chưa.\
-					 * Khi plugin đã được kích hoạt và hoạt động thành công\
-					 * thì "artisan" (hay môi trường terminal) sẽ hoạt động với:
-					 * - Full tính năng của WordPress.
-					 * - Full tính năng của tất cả plugin đang hoạt động.
-					 * - Full tính năng của plugin này.
-					 */
-					$pluginDir      = plugin_dir_path(__FILE__);
-					$pluginDirName  = plugin_basename($pluginDir);
+if ($ensureDBConnect) {
+	if (file_exists(__DIR__ . '/../../../wp-load.php')) {
+		try {
+			require_once __DIR__ . '/../../../wp-load.php';
 
-					if (is_plugin_active($pluginDirName . '/main.php')) {
-						define('WPSP_ACTIVE', true);
-					}
-					else {
-						echo "------------------------------------\n";
-						echo "\033[32m[✓] You are running \"artisan\" in a WordPress environment!\033[0m\n";
-						echo "\033[33m[!] Please activate the plugin to use the full features of \"artisan\"!\033[0m\n";
-						echo "------------------------------------\n";
-					}
+			if (function_exists('is_plugin_active')) {
+				/**
+				 * Kiểm tra plugin đã được kích hoạt hay chưa.\
+				 * Khi plugin đã được kích hoạt và hoạt động thành công\
+				 * thì "artisan" (hay môi trường terminal) sẽ hoạt động với:
+				 * - Full tính năng của WordPress.
+				 * - Full tính năng của tất cả plugin đang hoạt động.
+				 * - Full tính năng của plugin này.
+				 */
+				$pluginDir     = plugin_dir_path(__FILE__);
+				$pluginDirName = plugin_basename($pluginDir);
+
+				if (is_plugin_active($pluginDirName . '/main.php')) {
+					define('WPSP_ACTIVE', true);
 				}
 				else {
 					echo "------------------------------------\n";
-					echo "\033[31m[X] You are running \"artisan\" in a non-WordPress environment!\033[0m\n";
-					echo "\033[31m[X] You may not be able to use all the features of \"artisan\"!\033[0m\n";
+					echo "\033[32m[✓] You are running \"artisan\" in a WordPress environment!\033[0m\n";
 					echo "\033[33m[!] Please activate the plugin to use the full features of \"artisan\"!\033[0m\n";
 					echo "------------------------------------\n";
 				}
 			}
-			catch (\Throwable $e) {
+			else {
 				echo "------------------------------------\n";
 				echo "\033[31m[X] You are running \"artisan\" in a non-WordPress environment!\033[0m\n";
 				echo "\033[31m[X] You may not be able to use all the features of \"artisan\"!\033[0m\n";
@@ -86,7 +79,7 @@ if (class_exists('Illuminate\Foundation\Application')) {
 				echo "------------------------------------\n";
 			}
 		}
-		else {
+		catch (\Throwable $e) {
 			echo "------------------------------------\n";
 			echo "\033[31m[X] You are running \"artisan\" in a non-WordPress environment!\033[0m\n";
 			echo "\033[31m[X] You may not be able to use all the features of \"artisan\"!\033[0m\n";
@@ -98,70 +91,69 @@ if (class_exists('Illuminate\Foundation\Application')) {
 		echo "------------------------------------\n";
 		echo "\033[31m[X] You are running \"artisan\" in a non-WordPress environment!\033[0m\n";
 		echo "\033[31m[X] You may not be able to use all the features of \"artisan\"!\033[0m\n";
-		echo "\033[33m[!] Please connect to the database and activate the plugin to use the full features of \"artisan\"!\033[0m\n";
+		echo "\033[33m[!] Please activate the plugin to use the full features of \"artisan\"!\033[0m\n";
 		echo "------------------------------------\n";
 	}
+}
+else {
+	echo "------------------------------------\n";
+	echo "\033[31m[X] You are running \"artisan\" in a non-WordPress environment!\033[0m\n";
+	echo "\033[31m[X] You may not be able to use all the features of \"artisan\"!\033[0m\n";
+	echo "\033[33m[!] Please connect to the database and activate the plugin to use the full features of \"artisan\"!\033[0m\n";
+	echo "------------------------------------\n";
+}
 
-	/**
-	 * Load composer autoload.
-	 */
-	require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-	/**
-	 * ---
-	 * Start application.
-	 */
+if (class_exists('Illuminate\Foundation\Application')) {
 	$wpsp = WPSP::startConsole();
+}
+else {
+	$wpsp = new Application(__DIR__, Funcs::instance());
+}
 
-	/**
-	 * Tích hợp.
-	 */
-	Integration::instance()->register();
+Integration::instance()->register();
 
-	/**
-	 * ---
-	 * Đăng ký routes.
-	 */
-	if (defined('WPSP_ACTIVE') && WPSP_ACTIVE) {
-		foreach ([
-			AdminPages::class,
-			Apis::class,
-			Ajaxs::class,
-			FrontPages::class,
-			RewriteFrontPages::class,
+if (defined('WPSP_ACTIVE') && WPSP_ACTIVE) {
+	foreach ([
+		AdminPages::class,
+		Apis::class,
+		Ajaxs::class,
+		FrontPages::class,
+		RewriteFrontPages::class,
 
-			AdminBarMenus::class,
-			Blocks::class,
-			CommentColumns::class,
-			Customizers::class,
-			DashboardWidgets::class,
-			MediaColumns::class,
-			MetaBoxes::class,
-			NavLocations::class,
-			PluginColumns::class,
-			PostTypeColumns::class,
-			PostTypes::class,
-			Schedules::class,
-			Shortcodes::class,
-			Taxonomies::class,
-			TaxonomyColumns::class,
-			ThemeTemplates::class,
-			UserColumns::class,
-			UserMetaBoxes::class,
-			Widgets::class,
-			WPRoles::class,
+		AdminBarMenus::class,
+		Blocks::class,
+		CommentColumns::class,
+		Customizers::class,
+		DashboardWidgets::class,
+		MediaColumns::class,
+		MetaBoxes::class,
+		NavLocations::class,
+		PluginColumns::class,
+		PostTypeColumns::class,
+		PostTypes::class,
+		Schedules::class,
+		Shortcodes::class,
+		Taxonomies::class,
+		TaxonomyColumns::class,
+		ThemeTemplates::class,
+		UserColumns::class,
+		UserMetaBoxes::class,
+		Widgets::class,
+		WPRoles::class,
 
-			Actions::class,
-			Filters::class,
-		] as $route) {
-			(new $route())->register();
-		}
+		Actions::class,
+		Filters::class,
+	] as $route) {
+		(new $route())->register();
 	}
+}
 
-	/**
-	 * ---
-	 * Xử lý command line.
-	 */
+RouteManager::instance()->executeAllRoutes(['Widgets']);
+RouteManager::instance()->executeRouteByTypes(['Widgets']);
+
+if (class_exists('Illuminate\Foundation\Application')) {
 	$app = $wpsp->getApplication();
 	Container::setInstance($app);
 	Facade::setFacadeApplication($app);
@@ -171,19 +163,5 @@ if (class_exists('Illuminate\Foundation\Application')) {
 	exit($status);
 }
 else {
-	/**
-	 * ---
-	 * Autoload.
-	 */
-	if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-		require __DIR__ . '/vendor/autoload.php';
-	}
-
-	/**
-	 * ---
-	 * Xử lý command line.
-	 */
-	$app = new Application(__DIR__, Funcs::instance());
-	$app->load(__DIR__ . '/app/Console/Commands');
-	exit($app->run($argv));
+	exit($wpsp->run($argv));
 }
