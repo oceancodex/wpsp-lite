@@ -561,7 +561,7 @@ class ApisController extends BaseController {
 		wp_send_json([
 			'success' => true,
 			'data'    => [
-				'access_token' => $accessToken->getKey().'|'.$plainAccessToken,
+				'access_token' => $accessToken->getKey() . '|' . $plainAccessToken,
 				'expires_at'   => $accessToken->expires_at,
 			],
 			'message' => 'Refresh access token successful',

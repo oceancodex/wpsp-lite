@@ -4,6 +4,8 @@ namespace WPSP\App\WordPress\RewriteFrontPages;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\App\Widen\Support\Facades\Request;
+use WPSP\App\WordPress\Integrations\RankmathSEO\RankmathSEO;
+use WPSP\App\WordPress\Integrations\YoastSEO\YoastSEO;
 use WPSPCORE\App\WordPress\RewriteFrontPages\BaseRewriteFrontPage;
 
 class wpsp_rewrite extends BaseRewriteFrontPage {
