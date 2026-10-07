@@ -222,7 +222,6 @@ class wpsp extends BaseAdminPage {
 	 */
 
 	public function index(Request $request) {
-		echo '<pre style="background: white; z-index: 9999; position: relative;">'; print_r($request); echo '</pre>';
 //		$request->session()->put('test_session_array', 'test_session_array'); // Test session trong tab Settings.
 
 		// Test facade: Auth
