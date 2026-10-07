@@ -97,7 +97,7 @@
 			"pestphp/pest-plugin": true,
 			"php-http/discovery": true
 		},
-		"autoloader-suffix": "_wpsp_1719507007"
+		"autoloader-suffix": "_wpsp_1719507008"
 	},
 	"minimum-stability": "stable",
 	"prefer-stable": true
