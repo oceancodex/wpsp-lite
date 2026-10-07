@@ -4,7 +4,7 @@ namespace WPSP\App\Exceptions;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Exceptions\BaseException;
+use WPSPCORELITE\App\Exceptions\BaseException;
 
 /**
  * Exception xử lý khi có lỗi trong query SQL.

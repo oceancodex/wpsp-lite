@@ -3,8 +3,8 @@
 namespace WPSP\App\WordPress\Taxonomies;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\Taxonomies\BaseTaxonomy;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\Taxonomies\BaseTaxonomy;
 
 /**
  * WordPress register taxonomy docs.

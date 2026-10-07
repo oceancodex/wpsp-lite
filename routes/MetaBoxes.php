@@ -5,7 +5,7 @@ namespace WPSP\Routes;
 use WPSP\App\Widen\Routes\MetaBoxes\MetaBoxes as Route;
 use WPSP\App\WordPress\MetaBoxes\wpsp_content;
 use WPSP\App\WordPress\MetaBoxes\wpsp_dashboard_metabox;
-use WPSPCORE\App\Routes\MetaBoxes\MetaBoxesRouteTrait;
+use WPSPCORELITE\App\Routes\MetaBoxes\MetaBoxesRouteTrait;
 
 class MetaBoxes {
 

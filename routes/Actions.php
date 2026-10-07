@@ -8,8 +8,8 @@ use WPSP\App\Http\Controllers\PagesController;
 use WPSP\App\Widen\Routes\Actions\Actions as Route;
 use WPSP\App\Widen\Routes\RouteManager;
 use WPSP\Funcs;
-use WPSPCORE\App\Integrations\LaravelDebugbar\Collectors\WPSPRouteCollector;
-use WPSPCORE\App\Routes\Actions\ActionsRouteTrait;
+use WPSPCORELITE\App\Integrations\LaravelDebugbar\Collectors\WPSPRouteCollector;
+use WPSPCORELITE\App\Routes\Actions\ActionsRouteTrait;
 
 class Actions {
 

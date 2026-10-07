@@ -18,7 +18,7 @@ use WPSP\App\Http\Requests\UsersCreateRequest;
 use WPSP\App\Http\Requests\UsersUpdateRequest;
 use WPSP\App\Models\UsersModel;
 use WPSP\Funcs;
-use WPSPCORE\App\Http\Controllers\BaseController;
+use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class ApisController extends BaseController {
 

@@ -3,8 +3,8 @@
 namespace WPSP\App\WordPress\PostTypes;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\PostTypes\BasePostType;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\PostTypes\BasePostType;
 
 /**
  * WordPress register post type docs.

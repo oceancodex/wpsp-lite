@@ -3,10 +3,10 @@
 namespace WPSP\App\WordPress\RewriteFrontPages;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Widen\Http\Request;
 use WPSP\App\WordPress\Integrations\RankmathSEO\RankmathSEO;
 use WPSP\App\WordPress\Integrations\YoastSEO\YoastSEO;
-use WPSPCORE\App\WordPress\RewriteFrontPages\BaseRewriteFrontPage;
+use WPSPCORELITE\App\WordPress\RewriteFrontPages\BaseRewriteFrontPage;
 
 class wpsp_rewrite extends BaseRewriteFrontPage {
 

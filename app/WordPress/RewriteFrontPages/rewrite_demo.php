@@ -6,8 +6,8 @@ use Illuminate\Support\Carbon;
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\RewriteFrontPages\BaseRewriteFrontPage;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\RewriteFrontPages\BaseRewriteFrontPage;
 
 class rewrite_demo extends BaseRewriteFrontPage {
 

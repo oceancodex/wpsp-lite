@@ -5,7 +5,7 @@ namespace WPSP\App\Widen\Routes;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
 
-class RouteMap extends \WPSPCORE\App\Routes\RouteMap {
+class RouteMap extends \WPSPCORELITE\App\Routes\RouteMap {
 
 	use InstancesTrait;
 

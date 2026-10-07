@@ -9,12 +9,12 @@ use WPSP\App\Widen\Routes\RouteMap;
 use WPSP\App\Widen\Support\Facades\RateLimiter;
 use WPSP\App\Widen\Support\Facades\Session;
 
-class Funcs extends \WPSPCORE\Funcs {
+class Funcs extends \WPSPCORELITE\Funcs {
 
 	const APP_MODE   = 'lite';
 	const PREFIX_ENV = 'WPSP_';
 
-	/** @var \WPSPCORE\Funcs|Funcs|null  */
+	/** @var \WPSPCORELITE\Funcs|Funcs|null  */
 	public static $instance = null;
 
 	/*
@@ -28,7 +28,7 @@ class Funcs extends \WPSPCORE\Funcs {
 	/**
 	 * Instance.
 	 *
-	 * @return \WPSPCORE\Funcs|Funcs|null
+	 * @return \WPSPCORELITE\Funcs|Funcs|null
 	 */
 	public static function instance() {
 		if (!static::$instance) {

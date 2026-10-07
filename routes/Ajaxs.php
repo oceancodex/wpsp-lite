@@ -7,7 +7,7 @@ use WPSP\App\Http\Middleware\AdministratorCapability;
 use WPSP\App\Http\Middleware\ApiTokenAuthentication;
 use WPSP\App\Http\Middleware\AuthenticationMiddleware;
 use WPSP\App\Http\Middleware\EditorCapability;
-use WPSPCORE\App\Routes\Ajaxs\AjaxsRouteTrait;
+use WPSPCORELITE\App\Routes\Ajaxs\AjaxsRouteTrait;
 
 class Ajaxs {
 

@@ -9,7 +9,7 @@ use WPSP\App\Http\Controllers\ApisController;
 use WPSP\App\Http\Middleware\ApiTokenAuthentication;
 use WPSP\App\Http\Middleware\AuthenticationMiddleware;
 use WPSP\App\Http\Middleware\SanctumMiddleware;
-use WPSPCORE\App\Routes\Apis\ApisRouteTrait;
+use WPSPCORELITE\App\Routes\Apis\ApisRouteTrait;
 
 class Apis {
 

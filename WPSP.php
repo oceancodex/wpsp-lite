@@ -7,9 +7,9 @@ use WPSP\App\Widen\Translation\WPTranslation;
 use WPSP\App\Widen\Updater\Updater;
 use WPSP\App\Widen\View\Share;
 
-class WPSP extends \WPSPCORE\WPSP {
+class WPSP extends \WPSPCORELITE\WPSP {
 
-	/** @var null|WPSP|\WPSPCORE\WPSP */
+	/** @var null|WPSP|\WPSPCORELITE\WPSP */
 	public static $instance = null;
 
 	/*
@@ -17,7 +17,7 @@ class WPSP extends \WPSPCORE\WPSP {
 	 */
 
 	/**
-	 * @return WPSP|\WPSPCORE\WPSP|null
+	 * @return WPSP|\WPSPCORELITE\WPSP|null
 	 */
 	public static function instance() {
 		if (!static::$instance) {

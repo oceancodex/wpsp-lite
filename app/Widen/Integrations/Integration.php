@@ -3,7 +3,7 @@
 namespace WPSP\App\Widen\Integrations;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Integrations\Integration as IntegrationCore;
+use WPSPCORELITE\App\Integrations\Integration as IntegrationCore;
 
 class Integration extends IntegrationCore {
 

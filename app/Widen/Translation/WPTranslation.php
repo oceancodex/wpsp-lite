@@ -3,7 +3,7 @@
 namespace WPSP\App\Widen\Translation;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Translation\BaseWPTranslation;
+use WPSPCORELITE\App\Translation\BaseWPTranslation;
 
 /**
  * @property self|null $instance

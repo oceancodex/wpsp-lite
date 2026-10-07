@@ -270,7 +270,7 @@
                                 <td>
                                     <div style="max-height: 300px; overflow-y: auto;">
                                         @php
-                                        if (isset($current_user) && $current_user instanceof \WPSPCORE\Auth\Models\DBAuthUserModel) {
+                                        if (isset($current_user) && $current_user instanceof \WPSPCORELITE\Auth\Models\DBAuthUserModel) {
 //                            				$permissions = $current_user->permissions;
                                             $permissions = $current_user->roles_and_permissions;
                                         }

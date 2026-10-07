@@ -4,8 +4,8 @@ namespace WPSP\App\WordPress\DashboardWidgets;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\DashboardWidgets\BaseDashboardWidget;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\DashboardWidgets\BaseDashboardWidget;
 
 class dashboard_widget_demo_view extends BaseDashboardWidget {
 

@@ -5,7 +5,7 @@ namespace WPSP\Routes;
 use WPSP\App\Widen\Routes\AdminBarMenus\AdminBarMenus as Route;
 use WPSP\App\WordPress\AdminBarMenus\wpsp;
 use WPSP\App\WordPress\AdminBarMenus\wpsp_tab_dashboard;
-use WPSPCORE\App\Routes\AdminBarMenus\AdminBarMenusRouteTrait;
+use WPSPCORELITE\App\Routes\AdminBarMenus\AdminBarMenusRouteTrait;
 
 class AdminBarMenus {
 

@@ -4,7 +4,7 @@ namespace WPSP\Routes;
 use WPSP\App\Widen\Routes\DashboardWidgets\DashboardWidgets as Route;
 use WPSP\App\WordPress\DashboardWidgets\dashboard_widget_demo;
 use WPSP\App\WordPress\DashboardWidgets\dashboard_widget_demo_view;
-use WPSPCORE\App\Routes\DashboardWidgets\DashboardWidgetsRouteTrait;
+use WPSPCORELITE\App\Routes\DashboardWidgets\DashboardWidgetsRouteTrait;
 
 class DashboardWidgets {
 

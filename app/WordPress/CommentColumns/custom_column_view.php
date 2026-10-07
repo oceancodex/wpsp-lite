@@ -4,8 +4,8 @@ namespace WPSP\App\WordPress\CommentColumns;
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\CommentColumns\BaseCommentColumn;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\CommentColumns\BaseCommentColumn;
 
 class custom_column_view extends BaseCommentColumn {
 

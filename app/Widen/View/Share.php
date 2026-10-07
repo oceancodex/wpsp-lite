@@ -9,7 +9,7 @@ use WPSP\App\Widen\Traits\InstancesTrait;
 /**
  * @property \Illuminate\View\Factory $view
  */
-class Share extends \WPSPCORE\App\View\Share {
+class Share extends \WPSPCORELITE\App\View\Share {
 
 	public $view = null;
 

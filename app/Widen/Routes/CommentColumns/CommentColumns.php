@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Routes\CommentColumns;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 
-class CommentColumns extends \WPSPCORE\App\Routes\CommentColumns\CommentColumns {
+class CommentColumns extends \WPSPCORELITE\App\Routes\CommentColumns\CommentColumns {
 
 	use InstancesTrait;
 

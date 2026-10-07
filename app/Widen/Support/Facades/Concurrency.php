@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Concurrency\Concurrency as ConcurrencyCore;
+use WPSPCORELITE\App\Concurrency\Concurrency as ConcurrencyCore;
 
 class Concurrency extends ConcurrencyCore {
 

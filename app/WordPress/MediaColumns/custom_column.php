@@ -3,8 +3,8 @@ namespace WPSP\App\WordPress\MediaColumns;
 
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\MediaColumns\BaseMediaColumn;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\MediaColumns\BaseMediaColumn;
 
 class custom_column extends BaseMediaColumn {
 

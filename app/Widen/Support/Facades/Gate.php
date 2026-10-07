@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Gate\Gate as GateCore;
+use WPSPCORELITE\App\Gate\Gate as GateCore;
 
 class Gate extends GateCore {
 

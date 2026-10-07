@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Hash\Hash as HashCore;
+use WPSPCORELITE\App\Hash\Hash as HashCore;
 
 class Hash extends HashCore {
 

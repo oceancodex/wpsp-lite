@@ -4,7 +4,7 @@ namespace WPSP\Routes;
 
 use WPSP\App\Http\Controllers\PagesController;
 use WPSP\App\Widen\Routes\Filters\Filters as Route;
-use WPSPCORE\App\Routes\Filters\FiltersRouteTrait;
+use WPSPCORELITE\App\Routes\Filters\FiltersRouteTrait;
 
 class Filters {
 

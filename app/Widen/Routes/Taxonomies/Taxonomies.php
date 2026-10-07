@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Routes\Taxonomies;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 
-class Taxonomies extends \WPSPCORE\App\Routes\Taxonomies\Taxonomies {
+class Taxonomies extends \WPSPCORELITE\App\Routes\Taxonomies\Taxonomies {
 
 	use InstancesTrait;
 

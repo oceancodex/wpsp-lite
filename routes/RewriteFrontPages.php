@@ -14,7 +14,7 @@ use WPSP\App\WordPress\RewriteFrontPages\rewrite_demo;
 use WPSP\App\WordPress\RewriteFrontPages\wpsp;
 use WPSP\App\WordPress\RewriteFrontPages\wpsp_rewrite;
 use WPSP\App\WordPress\RewriteFrontPages\wpsp_with_template;
-use WPSPCORE\App\Routes\RewriteFrontPages\RewriteFrontPagesRouteTrait;
+use WPSPCORELITE\App\Routes\RewriteFrontPages\RewriteFrontPagesRouteTrait;
 
 class RewriteFrontPages {
 

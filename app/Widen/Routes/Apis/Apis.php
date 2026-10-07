@@ -5,7 +5,7 @@ namespace WPSP\App\Widen\Routes\Apis;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
 
-class Apis extends \WPSPCORE\App\Routes\Apis\Apis {
+class Apis extends \WPSPCORELITE\App\Routes\Apis\Apis {
 
 	use InstancesTrait;
 

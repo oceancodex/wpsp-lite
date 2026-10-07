@@ -4,8 +4,8 @@ namespace WPSP\App\WordPress\ThemeTemplates;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\ThemeTemplates\BaseThemeTemplates;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\ThemeTemplates\BaseThemeTemplates;
 
 class wpsp_without_title extends BaseThemeTemplates {
 

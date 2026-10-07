@@ -5,8 +5,8 @@ namespace WPSP\App\WordPress\Customizers\customize_demo;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\App\WordPress\Customizers\customize_demo\Controls\ExampleControl;
 use WPSP\Funcs;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\Customizers\BaseCustomize;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\Customizers\BaseCustomize;
 
 /**
  * @see https://developer.wordpress.org/themes/classic-themes/customize-api/customizer-objects/

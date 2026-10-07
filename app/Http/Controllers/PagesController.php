@@ -5,7 +5,7 @@ namespace WPSP\App\Http\Controllers;
 use Illuminate\Http\Request;
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Http\Controllers\BaseController;
+use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class PagesController extends BaseController {
 

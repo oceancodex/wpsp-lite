@@ -12,7 +12,7 @@
 namespace WPSP\App\Widen\Integrations\LaravelIgnition;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Integrations\BaseIntegration;
+use WPSPCORELITE\App\Integrations\BaseIntegration;
 
 class LaravelIgnition extends BaseIntegration {
 
@@ -37,12 +37,12 @@ class LaravelIgnition extends BaseIntegration {
 			// Binds.
 			$app->singleton(
 				\Spatie\Ignition\Contracts\ConfigManager::class,
-				fn() => (new \WPSPCORE\App\Integrations\LaravelIgnition\Contracts\ConfigManager($app))
+				fn() => (new \WPSPCORELITE\App\Integrations\LaravelIgnition\Contracts\ConfigManager($app))
 			);
 
 			$app->singleton(
 				\Spatie\Ignition\Ignition::class,
-				fn() => (new \WPSPCORE\App\Integrations\LaravelIgnition\Ignition(
+				fn() => (new \WPSPCORELITE\App\Integrations\LaravelIgnition\Ignition(
 					$app->make(\Spatie\FlareClient\Flare::class),
 					$app,
 					$this->funcs->_getRouteManager())

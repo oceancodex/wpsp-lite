@@ -26,7 +26,7 @@ use WPSP\App\WordPress\AdminPages\wpsp\wpsp_tab_table;
 use WPSP\App\WordPress\AdminPages\wpsp\wpsp_tab_tools;
 use WPSP\App\WordPress\AdminPages\wpsp\wpsp_tab_users;
 use WPSP\App\WordPress\AdminPages\wpsp\wpsp_test_facades;
-use WPSPCORE\App\Routes\AdminPages\AdminPagesRouteTrait;
+use WPSPCORELITE\App\Routes\AdminPages\AdminPagesRouteTrait;
 
 class AdminPages {
 

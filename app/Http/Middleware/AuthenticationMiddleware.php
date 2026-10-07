@@ -6,8 +6,8 @@ use Closure;
 use Symfony\Component\HttpFoundation\Response;
 use WPSP\App\Widen\Support\Facades\Auth;
 use WPSP\Funcs;
-use WPSPCORE\App\Routes\RouteTrait;
-use WPSPCORE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Routes\RouteTrait;
+use WPSPCORELITE\App\Widen\Http\Request;
 
 class AuthenticationMiddleware {
 

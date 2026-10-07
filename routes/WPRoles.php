@@ -4,7 +4,7 @@ namespace WPSP\Routes;
 
 use WPSP\App\Widen\Routes\WPRoles\WPRoles as Route;
 use WPSP\App\WordPress\WPRoles\super_admin;
-use WPSPCORE\App\Routes\WPRoles\WPRolesRouteTrait;
+use WPSPCORELITE\App\Routes\WPRoles\WPRolesRouteTrait;
 
 class WPRoles {
 

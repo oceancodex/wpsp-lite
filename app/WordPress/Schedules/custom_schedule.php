@@ -4,7 +4,7 @@ namespace WPSP\App\WordPress\Schedules;
 
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\WordPress\Schedules\BaseSchedule;
+use WPSPCORELITE\App\WordPress\Schedules\BaseSchedule;
 
 class custom_schedule extends BaseSchedule {
 

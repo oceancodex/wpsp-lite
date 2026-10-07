@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Exceptions\Exceptions as ExceptionsCore;
+use WPSPCORELITE\App\Exceptions\Exceptions as ExceptionsCore;
 
 class Exceptions extends ExceptionsCore {
 

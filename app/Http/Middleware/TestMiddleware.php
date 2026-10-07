@@ -4,7 +4,7 @@ namespace WPSP\App\Http\Middleware;
 
 use Closure;
 use Symfony\Component\HttpFoundation\Response;
-use WPSPCORE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Widen\Http\Request;
 
 class TestMiddleware {
 

@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Routes\PostTypeColumns;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 
-class PostTypeColumns extends \WPSPCORE\App\Routes\PostTypeColumns\PostTypeColumns {
+class PostTypeColumns extends \WPSPCORELITE\App\Routes\PostTypeColumns\PostTypeColumns {
 
 	use InstancesTrait;
 

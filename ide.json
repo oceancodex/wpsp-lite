@@ -10,7 +10,7 @@
 					"parameters": [2]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_route"],
 					"parameters": [1]
 				},
@@ -39,17 +39,17 @@
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_view"],
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_viewInject"],
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_viewDetect"],
 					"parameters": [1]
 				},
@@ -76,17 +76,17 @@
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_getPublicUrl"],
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_getPublicPath"],
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_asset"],
 					"parameters": [1]
 				},
@@ -105,12 +105,12 @@
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_config"],
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_getConfigPath"],
 					"parameters": [1]
 				},
@@ -129,7 +129,7 @@
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_trans"],
 					"parameters": [1]
 				},
@@ -148,7 +148,7 @@
 					"parameters": [1]
 				},
 				{
-					"classFqn": ["\\WPSPCORE\\Funcs"],
+					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_env"],
 					"parameters": [1]
 				},

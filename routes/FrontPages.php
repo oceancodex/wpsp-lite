@@ -8,7 +8,7 @@ use WPSP\App\Http\Middleware\AuthenticationMiddleware;
 use WPSP\App\Http\Middleware\EnsureEmailIsVerified;
 use WPSP\App\WordPress\FrontPages\front_page_demo;
 use WPSP\App\WordPress\FrontPages\front_page_demo_view;
-use WPSPCORE\App\Routes\FrontPages\FrontPagesRouteTrait;
+use WPSPCORELITE\App\Routes\FrontPages\FrontPagesRouteTrait;
 
 class FrontPages {
 

@@ -2,7 +2,7 @@
 namespace WPSP\Routes;
 
 use WPSP\App\Widen\Routes\Blocks\Blocks as Route;
-use WPSPCORE\App\Routes\Blocks\BlocksRouteTrait;
+use WPSPCORELITE\App\Routes\Blocks\BlocksRouteTrait;
 use WPSP\App\WordPress\Blocks\block_demo;
 
 class Blocks {

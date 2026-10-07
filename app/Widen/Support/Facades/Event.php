@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Events\Events as EventsCore;
+use WPSPCORELITE\App\Events\Events as EventsCore;
 
 class Event extends EventsCore {
 

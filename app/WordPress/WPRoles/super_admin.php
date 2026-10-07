@@ -4,7 +4,7 @@ namespace WPSP\App\WordPress\WPRoles;
 
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\WordPress\WPRoles\BaseWPRole;
+use WPSPCORELITE\App\WordPress\WPRoles\BaseWPRole;
 
 class super_admin extends BaseWPRole {
 

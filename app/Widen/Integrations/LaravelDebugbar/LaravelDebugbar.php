@@ -15,7 +15,7 @@ use WPSP\App\Widen\Integrations\LaravelDebugbar\Collectors\WPSPRouteCollector;
 use WPSP\App\Widen\Routes\RouteManager;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Integrations\BaseIntegration;
+use WPSPCORELITE\App\Integrations\BaseIntegration;
 
 class LaravelDebugbar extends BaseIntegration {
 

@@ -3,8 +3,8 @@
 namespace WPSP\App\WordPress\ThemeTemplates;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\ThemeTemplates\BaseThemeTemplates;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\ThemeTemplates\BaseThemeTemplates;
 
 class wpsp_bigger_content_font_size extends BaseThemeTemplates {
 

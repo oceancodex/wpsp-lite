@@ -57,7 +57,7 @@
                     echo '<hr/><b>* Your roles:</b><br/>';
 					echo '<small style="color: #cc0000;font-family: monospace;">$current_user->roles->pluck(\'name\')->toArray()</small><br/>';
 					
-                    if ($current_user->roles instanceof \WPSPCORE\Permission\Models\DBRolesModel) {
+                    if ($current_user->roles instanceof \WPSPCORELITE\Permission\Models\DBRolesModel) {
                         echo '<pre>'; print_r($current_user->roles->toArray()); echo '</pre>';
                     }
                     else {
@@ -70,7 +70,7 @@
 
                     echo '<hr/>';
 
-                    if ($current_user instanceof \WPSPCORE\Auth\Models\DBAuthUserModel) {
+                    if ($current_user instanceof \WPSPCORELITE\Auth\Models\DBAuthUserModel) {
 //        				$permissions = $current_user->permissions;
                         $permissions = $current_user->roles_and_permissions;
                     }

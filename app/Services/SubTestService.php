@@ -3,7 +3,7 @@
 namespace WPSP\App\Services;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\BaseInstances;
+use WPSPCORELITE\BaseInstances;
 
 class SubTestService extends BaseInstances {
 

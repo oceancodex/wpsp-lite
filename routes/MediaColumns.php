@@ -5,7 +5,7 @@ namespace WPSP\Routes;
 use WPSP\App\Widen\Routes\MediaColumns\MediaColumns as Route;
 use WPSP\App\WordPress\MediaColumns\custom_column;
 use WPSP\App\WordPress\MediaColumns\custom_column_view;
-use WPSPCORE\App\Routes\MediaColumns\MediaColumnsRouteTrait;
+use WPSPCORELITE\App\Routes\MediaColumns\MediaColumnsRouteTrait;
 
 class MediaColumns {
 

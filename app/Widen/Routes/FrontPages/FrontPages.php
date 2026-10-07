@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Routes\FrontPages;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 
-class FrontPages extends \WPSPCORE\App\Routes\FrontPages\FrontPages {
+class FrontPages extends \WPSPCORELITE\App\Routes\FrontPages\FrontPages {
 
 	use InstancesTrait;
 

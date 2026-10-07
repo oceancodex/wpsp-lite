@@ -4,8 +4,8 @@ namespace WPSP\App\WordPress\FrontPages;
 
 use Illuminate\Support\Str;
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\FrontPages\BaseFrontPage;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\FrontPages\BaseFrontPage;
 
 class front_page_demo extends BaseFrontPage {
 

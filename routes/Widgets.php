@@ -4,7 +4,7 @@ namespace WPSP\Routes;
 use WPSP\App\Widen\Routes\Widgets\Widgets as Route;
 use WPSP\App\WordPress\Widgets\widget_demo;
 use WPSP\App\WordPress\Widgets\widget_demo_view;
-use WPSPCORE\App\Routes\Widgets\WidgetsRouteTrait;
+use WPSPCORELITE\App\Routes\Widgets\WidgetsRouteTrait;
 
 class Widgets {
 

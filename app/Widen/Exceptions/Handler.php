@@ -9,7 +9,7 @@ use WPSP\Funcs;
 /**
  * @property \WPSP\Funcs $funcs
  */
-class Handler extends \WPSPCORE\App\Exceptions\Handler {
+class Handler extends \WPSPCORELITE\App\Exceptions\Handler {
 
 	use InstancesTrait;
 

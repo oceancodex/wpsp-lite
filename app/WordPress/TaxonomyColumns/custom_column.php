@@ -3,8 +3,8 @@ namespace WPSP\App\WordPress\TaxonomyColumns;
 
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\TaxonomyColumns\BaseTaxonomyColumn;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\TaxonomyColumns\BaseTaxonomyColumn;
 
 class custom_column extends BaseTaxonomyColumn {
 

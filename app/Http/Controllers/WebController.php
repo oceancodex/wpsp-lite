@@ -3,7 +3,7 @@
 namespace WPSP\App\Http\Controllers;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Http\Controllers\BaseController;
+use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class WebController extends BaseController {
 

@@ -5,7 +5,7 @@ namespace WPSP\Routes;
 use WPSP\App\Widen\Routes\PostTypeColumns\PostTypeColumns as Route;
 use WPSP\App\WordPress\PostTypeColumns\custom_column;
 use WPSP\App\WordPress\PostTypeColumns\custom_column_view;
-use WPSPCORE\App\Routes\PostTypeColumns\PostTypeColumnsRouteTrait;
+use WPSPCORELITE\App\Routes\PostTypeColumns\PostTypeColumnsRouteTrait;
 
 class PostTypeColumns {
 

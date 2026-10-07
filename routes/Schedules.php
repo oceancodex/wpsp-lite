@@ -6,7 +6,7 @@ use WPSP\App\Widen\Routes\Schedules\Schedules as Route;
 use WPSP\App\Widen\Support\Facades\Schedule;
 use WPSP\App\WordPress\Schedules\CheckLicenseSchedule;
 use WPSP\Funcs;
-use WPSPCORE\App\Routes\Schedules\SchedulesRouteTrait;
+use WPSPCORELITE\App\Routes\Schedules\SchedulesRouteTrait;
 use WPSP\App\WordPress\Schedules\custom_schedule;
 
 class Schedules {

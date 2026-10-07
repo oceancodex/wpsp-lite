@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Schema\Schema as SchemaCore;
+use WPSPCORELITE\App\Schema\Schema as SchemaCore;
 
 class URL extends SchemaCore {
 

@@ -4,7 +4,7 @@ namespace WPSP\App\WordPress\Widgets;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\WordPress\Widgets\BaseWidget;
+use WPSPCORELITE\App\WordPress\Widgets\BaseWidget;
 
 class widget_demo_view extends BaseWidget {
 

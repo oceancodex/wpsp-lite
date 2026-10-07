@@ -7,7 +7,7 @@ use WPSP\App\Widen\Support\Facades\Cache;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use Spatie\Activitylog\Models\Activity as ActivityModel;
 use WPSP\Funcs;
-use WPSPCORE\App\WordPress\ListTables\BaseListTable;
+use WPSPCORELITE\App\WordPress\ListTables\BaseListTable;
 
 class ActivityLogListTable extends BaseListTable {
 

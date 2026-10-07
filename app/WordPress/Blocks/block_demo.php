@@ -4,7 +4,7 @@ namespace WPSP\App\WordPress\Blocks;
 use WPSP\App\Services\TestService;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\WordPress\Blocks\BaseBlock;
+use WPSPCORELITE\App\WordPress\Blocks\BaseBlock;
 
 /**
  * @docs https://developer.wordpress.org/block-editor/

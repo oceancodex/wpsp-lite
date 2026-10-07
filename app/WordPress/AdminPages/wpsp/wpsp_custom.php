@@ -5,8 +5,8 @@ namespace WPSP\App\WordPress\AdminPages\wpsp;
 use WPSP\App\Widen\Support\Facades\Migration;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Widen\Http\Request;
-use WPSPCORE\App\WordPress\AdminPages\BaseAdminPage;
+use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
 
 class wpsp_custom extends BaseAdminPage {
 

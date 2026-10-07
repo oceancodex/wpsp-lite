@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Pipeline\Pipeline as PipelineCore;
+use WPSPCORELITE\App\Pipeline\Pipeline as PipelineCore;
 
 class Pipeline extends PipelineCore {
 

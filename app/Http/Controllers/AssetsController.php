@@ -4,7 +4,7 @@ namespace WPSP\App\Http\Controllers;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Http\Controllers\BaseController;
+use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class AssetsController extends BaseController {
 

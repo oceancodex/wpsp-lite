@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Http\Http as HttpCore;
+use WPSPCORELITE\App\Http\Http as HttpCore;
 
 class Http extends HttpCore {
 

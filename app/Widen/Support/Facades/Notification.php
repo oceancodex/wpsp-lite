@@ -4,7 +4,7 @@ namespace WPSP\App\Widen\Support\Facades;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
-use WPSPCORE\App\Notification\Notification as NotificationCore;
+use WPSPCORELITE\App\Notification\Notification as NotificationCore;
 
 class Notification extends NotificationCore {
 

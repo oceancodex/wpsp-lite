@@ -5,7 +5,7 @@ namespace WPSP\Routes;
 use WPSP\App\Widen\Routes\UserColumns\UserColumns as Route;
 use WPSP\App\WordPress\UserColumns\custom_column;
 use WPSP\App\WordPress\UserColumns\custom_column_view;
-use WPSPCORE\App\Routes\UserColumns\UserColumnsRouteTrait;
+use WPSPCORELITE\App\Routes\UserColumns\UserColumnsRouteTrait;
 
 class UserColumns {
 
