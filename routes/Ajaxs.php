@@ -1,12 +1,12 @@
 <?php
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\Ajaxs\Ajaxs as Route;
-use WPSP\App\Http\Controllers\AjaxsController;
-use WPSP\App\Http\Middleware\AdministratorCapability;
-use WPSP\App\Http\Middleware\ApiTokenAuthentication;
-use WPSP\App\Http\Middleware\AuthenticationMiddleware;
-use WPSP\App\Http\Middleware\EditorCapability;
+use WPSPLITE\App\Widen\Routes\Ajaxs\Ajaxs as Route;
+use WPSPLITE\App\Http\Controllers\AjaxsController;
+use WPSPLITE\App\Http\Middleware\AdministratorCapability;
+use WPSPLITE\App\Http\Middleware\ApiTokenAuthentication;
+use WPSPLITE\App\Http\Middleware\AuthenticationMiddleware;
+use WPSPLITE\App\Http\Middleware\EditorCapability;
 use WPSPCORELITE\App\Routes\Ajaxs\AjaxsRouteTrait;
 
 class Ajaxs {
@@ -33,7 +33,7 @@ class Ajaxs {
 				])->name('demo4-child');
 			});
 		});
-		Route::post('wpsp_handle_database', [AjaxsController::class, 'handleDatabase'])->name('handle_database');
+		Route::post('wpsp_lite_handle_database', [AjaxsController::class, 'handleDatabase'])->name('handle_database');
 	}
 
 	/*

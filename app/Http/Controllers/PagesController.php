@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class PagesController extends BaseController {

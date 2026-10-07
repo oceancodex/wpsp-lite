@@ -1,17 +1,17 @@
 <?php
 
-namespace WPSP\App\WordPress\DashboardWidgets;
+namespace WPSPLITE\App\WordPress\DashboardWidgets;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\DashboardWidgets\BaseDashboardWidget;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
 class dashboard_widget_demo_view extends BaseDashboardWidget {
 
 	use InstancesTrait;
 
-	public $widget_id         = 'wpsp_dashboard_widget_demo_view';
+	public $widget_id         = 'wpsp_lite_dashboard_widget_demo_view';
 	public $widget_name       = 'WPSP Dashboard Widget Demo View';
 //	public $callback_args     = null;
 	public $context           = 'column3'; // 'normal', 'side', 'column3', 'column4'

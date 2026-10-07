@@ -20,12 +20,12 @@
     <br/>
 
     @if (!isset($current_user) || !$current_user)
-        <form method="POST" style="border: 1px solid red; padding: 20px;" action="{{ wpsp_route('Apis', 'auth.login', true) }}">
+        <form method="POST" style="border: 1px solid red; padding: 20px;" action="{{ wpsp_lite_route('Apis', 'auth.login', true) }}">
             @csrf
             <input type="hidden" name="action" value="login"/>
             <h3 style="margin-top: 0;">CUSTOM LOGIN FORM</h3>
-            <p>This is custom login form using: <b>wpsp-auth</b></p>
-				<?php wpsp_nonce_field('wp_rest'); ?>
+            <p>This is custom login form using: <b>wpsp-lite-auth</b></p>
+				<?php wpsp_lite_nonce_field('wp_rest'); ?>
 
             <div class="field" style="margin: 10px 0;">
                 <label style="margin-bottom: 5px; display: block;">Username or Email:</label>
@@ -44,7 +44,7 @@
             <button type="submit">Login</button>
         </form>
     @else
-        <form method="POST" style="border: 1px solid red; padding: 20px;" action="{{ wpsp_route('Apis', 'auth.logout', true) }}">
+        <form method="POST" style="border: 1px solid red; padding: 20px;" action="{{ wpsp_lite_route('Apis', 'auth.logout', true) }}">
             @csrf
             <input type="hidden" name="action" value="logout"/>
             <h3 style="margin-top: 0;">YOU ARE LOGGED IN !!!</h3>
@@ -97,7 +97,7 @@
 
                     echo '<hr/>';
                     echo '<b>* Check user can do somethings:</b><br/>';
-					echo '<small style="color: #cc0000;font-family: monospace;">wpsp_auth()->user()->can(\'edit_articles\')</small><br/><br/>';
+					echo '<small style="color: #cc0000;font-family: monospace;">wpsp_lite_auth()->user()->can(\'edit_articles\')</small><br/><br/>';
 					try {
                         if ($current_user && $current_user->can('edit_articles')) {
                             echo 'You can: <b>edit_articles</b> <br/><br/>';

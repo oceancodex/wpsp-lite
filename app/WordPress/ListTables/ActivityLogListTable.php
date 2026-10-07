@@ -1,12 +1,12 @@
 <?php
 
-namespace WPSP\App\WordPress\ListTables;
+namespace WPSPLITE\App\WordPress\ListTables;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Support\Facades\Cache;
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Support\Facades\Cache;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use Spatie\Activitylog\Models\Activity as ActivityModel;
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 use WPSPCORELITE\App\WordPress\ListTables\BaseListTable;
 
 class ActivityLogListTable extends BaseListTable {
@@ -21,8 +21,8 @@ class ActivityLogListTable extends BaseListTable {
 	 * Khai báo "allowScreenIds" để có thể kích hoạt tính năng "hidden columns" và "items per page" trên những screen (màn hình) cụ thể.
 	 *
 	 * Ví dụ:
-	 * - Admin page có screen id: "wpsp_page_wpsp_tab_roles"
-	 * - List table này chỉ khai báo: "wpsp_page_wpsp_tab_list_users"
+	 * - Admin page có screen id: "wpsp_lite_page_wpsp_lite_tab_roles"
+	 * - List table này chỉ khai báo: "wpsp_lite_page_wpsp_lite_tab_list_users"
 	 *
 	 * Như vậy không khớp, "hidden columns" và "items per page" sẽ không được kích hoạt.\
 	 * Mặc định "allowScreenIds" được đăng ký với tham số "page" trong URL.
@@ -79,7 +79,7 @@ class ActivityLogListTable extends BaseListTable {
 		 * Nếu "string" hoặc "array item" bắt đầu bằng đấu gạch chéo "/", xem như đó là Regex.
 		 */
 		$this->allowScreenIds = [
-			$this->funcs->_getAppShortName() . '_page_wpsp_tab_list_users',
+			$this->funcs->_getAppShortName() . '_page_wpsp_lite_tab_list_users',
 		];
 
 		/**

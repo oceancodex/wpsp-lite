@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\WordPress\NavigationMenus\Locations;
+namespace WPSPLITE\App\WordPress\NavigationMenus\Locations;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\App\WordPress\NavigationMenus\Locations\BaseNavigationLocation;
 
 class nav_primary extends BaseNavigationLocation {

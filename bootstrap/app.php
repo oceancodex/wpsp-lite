@@ -3,9 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use WPSP\WPSP;
+use WPSPLITE\WPSP;
 
-if (defined('WPSP_ORIGINAL_WP') && WPSP_ORIGINAL_WP) {
+if (defined('WPSP_LITE_ORIGINAL_WP') && WPSP_LITE_ORIGINAL_WP) {
 	$wpsp = WPSP::start(false);
 	$app  = $wpsp->getApplication();
 	return $app;

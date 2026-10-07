@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\NavigationMenus\Locations\Locations as Route;
-use WPSP\App\WordPress\NavigationMenus\Locations\nav_primary;
+use WPSPLITE\App\Widen\Routes\NavigationMenus\Locations\Locations as Route;
+use WPSPLITE\App\WordPress\NavigationMenus\Locations\nav_primary;
 use WPSPCORELITE\App\Routes\NavigationMenus\Locations\NavLocationsRouteTrait;
 
 class NavLocations {

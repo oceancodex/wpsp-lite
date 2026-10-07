@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP\App\WordPress\Shortcodes;
+namespace WPSPLITE\App\WordPress\Shortcodes;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\Shortcodes\BaseShortcode;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
 class rewrite_front_page_content extends BaseShortcode {
 

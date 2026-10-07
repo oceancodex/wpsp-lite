@@ -14,7 +14,7 @@ return [
     |
     */
 
-	'default' => env('WPSP_MAIL_MAILER', 'log'),
+	'default' => env('WPSP_LITE_MAIL_MAILER', 'log'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,14 +39,14 @@ return [
 
 		'smtp' => [
 			'transport' => 'smtp',
-			'scheme' => env('WPSP_MAIL_SCHEME'),
-			'url' => env('WPSP_MAIL_URL'),
-			'host' => env('WPSP_MAIL_HOST', '127.0.0.1'),
-			'port' => env('WPSP_MAIL_PORT', 2525),
-			'username' => env('WPSP_MAIL_USERNAME'),
-			'password' => env('WPSP_MAIL_PASSWORD'),
+			'scheme' => env('WPSP_LITE_MAIL_SCHEME'),
+			'url' => env('WPSP_LITE_MAIL_URL'),
+			'host' => env('WPSP_LITE_MAIL_HOST', '127.0.0.1'),
+			'port' => env('WPSP_LITE_MAIL_PORT', 2525),
+			'username' => env('WPSP_LITE_MAIL_USERNAME'),
+			'password' => env('WPSP_LITE_MAIL_PASSWORD'),
 			'timeout' => null,
-			'local_domain' => env('WPSP_MAIL_EHLO_DOMAIN', parse_url((string) env('WPSP_APP_URL', 'http://localhost'), PHP_URL_HOST)),
+			'local_domain' => env('WPSP_LITE_MAIL_EHLO_DOMAIN', parse_url((string) env('WPSP_LITE_APP_URL', 'http://localhost'), PHP_URL_HOST)),
 		],
 
 		'ses' => [
@@ -55,7 +55,7 @@ return [
 
 		'postmark' => [
 			'transport' => 'postmark',
-			// 'message_stream_id' => env('WPSP_POSTMARK_MESSAGE_STREAM_ID'),
+			// 'message_stream_id' => env('WPSP_LITE_POSTMARK_MESSAGE_STREAM_ID'),
 			// 'client' => [
 			//     'timeout' => 5,
 			// ],
@@ -67,12 +67,12 @@ return [
 
 		'sendmail' => [
 			'transport' => 'sendmail',
-			'path' => env('WPSP_MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
+			'path' => env('WPSP_LITE_MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
 		],
 
 		'log' => [
 			'transport' => 'log',
-			'channel' => env('WPSP_MAIL_LOG_CHANNEL'),
+			'channel' => env('WPSP_LITE_MAIL_LOG_CHANNEL'),
 		],
 
 		'array' => [
@@ -111,8 +111,8 @@ return [
     */
 
 	'from' => [
-		'address' => env('WPSP_MAIL_FROM_ADDRESS', 'hello@example.com'),
-		'name' => env('WPSP_MAIL_FROM_NAME', 'Example'),
+		'address' => env('WPSP_LITE_MAIL_FROM_ADDRESS', 'hello@example.com'),
+		'name' => env('WPSP_LITE_MAIL_FROM_NAME', 'Example'),
 	],
 
 ];

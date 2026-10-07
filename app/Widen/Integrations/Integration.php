@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Integrations;
+namespace WPSPLITE\App\Widen\Integrations;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\App\Integrations\Integration as IntegrationCore;
 
 class Integration extends IntegrationCore {
@@ -17,7 +17,7 @@ class Integration extends IntegrationCore {
 
 	public function specificIntegrationPackages() {
 		return [
-//			\WPSP\App\Widen\Integrations\LaravelDebugbar\LaravelDebugbar::class,
+//			\WPSPLITE\App\Widen\Integrations\LaravelDebugbar\LaravelDebugbar::class,
 		];
 	}
 

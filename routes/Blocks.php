@@ -1,9 +1,9 @@
 <?php
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\Blocks\Blocks as Route;
+use WPSPLITE\App\Widen\Routes\Blocks\Blocks as Route;
 use WPSPCORELITE\App\Routes\Blocks\BlocksRouteTrait;
-use WPSP\App\WordPress\Blocks\block_demo;
+use WPSPLITE\App\WordPress\Blocks\block_demo;
 
 class Blocks {
 

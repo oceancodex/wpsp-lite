@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP\App\WordPress\UserMetaBoxes;
+namespace WPSPLITE\App\WordPress\UserMetaBoxes;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\UserMetaBoxes\BaseUserMetaBox;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
 class custom_user_meta_box extends BaseUserMetaBox {
 

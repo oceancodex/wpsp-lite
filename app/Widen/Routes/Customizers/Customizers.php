@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Customizers;
+namespace WPSPLITE\App\Widen\Routes\Customizers;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class Customizers extends \WPSPCORELITE\App\Routes\Customizers\Customizers {
 

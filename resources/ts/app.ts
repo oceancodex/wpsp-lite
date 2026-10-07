@@ -16,7 +16,7 @@ class App {
 		jQuery(($) => {
 			$('body').on('click', '.button-csrf', (e) => {
 				let csrf = $(e.currentTarget).closest('form').find('input[name="_token"]').val();
-				let xsrf = decodeURIComponent(this.getCookie('wpsp-session-XSRF-TOKEN'));
+				let xsrf = decodeURIComponent(this.getCookie('wpsp-lite-session-XSRF-TOKEN'));
 				let append = $(e.currentTarget).data('append');
 				if (append) {
 					xsrf += append;
@@ -27,8 +27,8 @@ class App {
 					credentials: 'include',
 					headers    : {
 						'Content-Type': 'application/json',
-//						'wpsp-session-X-CSRF-TOKEN': csrf,
-						'wpsp-session-X-XSRF-TOKEN': xsrf,
+//						'wpsp-lite-session-X-CSRF-TOKEN': csrf,
+						'wpsp-lite-session-X-XSRF-TOKEN': xsrf,
 						'X-Requested-With'         : 'XMLHttpRequest'
 					},
 					body       : JSON.stringify({})

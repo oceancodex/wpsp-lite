@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 return [
 
@@ -18,8 +18,8 @@ return [
      |
      */
 
-    'enabled' => env('WPSP_DEBUGBAR_ENABLED'),
-    'collect_jobs' => env('WPSP_DEBUGBAR_COLLECT_JOBS', false),
+    'enabled' => env('WPSP_LITE_DEBUGBAR_ENABLED'),
+    'collect_jobs' => env('WPSP_LITE_DEBUGBAR_COLLECT_JOBS', false),
     'except' => [
         'telescope*',
         'horizon*',
@@ -37,31 +37,31 @@ return [
     */
 
     'collectors' => [
-        'phpinfo'         => env('WPSP_DEBUGBAR_COLLECTORS_PHPINFO', true),				// Php version
-        'messages'        => env('WPSP_DEBUGBAR_COLLECTORS_MESSAGES', true),				// Messages
-        'time'            => env('WPSP_DEBUGBAR_COLLECTORS_TIME', true),					// Time Datalogger
-        'memory'          => env('WPSP_DEBUGBAR_COLLECTORS_MEMORY', true),				// Memory usage
-        'exceptions'      => env('WPSP_DEBUGBAR_COLLECTORS_EXCEPTIONS', true),			// Exception displayer
-        'log'             => env('WPSP_DEBUGBAR_COLLECTORS_LOG', true),					// Logs from Monolog (merged in messages if enabled)
-        'db'              => env('WPSP_DEBUGBAR_COLLECTORS_DB', true),					// Show database (PDO) queries and bindings
-        'views'           => env('WPSP_DEBUGBAR_COLLECTORS_VIEWS', true),				// Views with their data
-        'route'           => env('WPSP_DEBUGBAR_COLLECTORS_ROUTE', true),				// Current route information
-        'auth'            => env('WPSP_DEBUGBAR_COLLECTORS_AUTH', true),					// Display Laravel authentication status
-        'gate'            => env('WPSP_DEBUGBAR_COLLECTORS_GATE', true),					// Display Laravel Gate checks
-        'session'         => env('WPSP_DEBUGBAR_COLLECTORS_SESSION', true),				// Display session data
-        'symfony_request' => env('WPSP_DEBUGBAR_COLLECTORS_SYMFONY_REQUEST', true),		// Default Request Data
-        'mail'            => env('WPSP_DEBUGBAR_COLLECTORS_MAIL', true),					// Catch mail messages
-        'laravel'         => env('WPSP_DEBUGBAR_COLLECTORS_LARAVEL', true),				// Laravel version and environment
-        'events'          => env('WPSP_DEBUGBAR_COLLECTORS_EVENTS', true),				// All events fired
-        'logs'            => env('WPSP_DEBUGBAR_COLLECTORS_LOGS', true),					// Add the latest log messages
-        'config'          => env('WPSP_DEBUGBAR_COLLECTORS_CONFIG', true),				// Display config settings
-        'cache'           => env('WPSP_DEBUGBAR_COLLECTORS_CACHE', true),				// Display cache events
-        'models'          => env('WPSP_DEBUGBAR_COLLECTORS_MODELS', true),				// Display models
-        'livewire'        => env('WPSP_DEBUGBAR_COLLECTORS_LIVEWIRE', true),				// Display Livewire (when available)
-        'inertia'         => env('WPSP_DEBUGBAR_COLLECTORS_INERTIA', true),				// Display Inertia (when available)
-        'jobs'            => env('WPSP_DEBUGBAR_COLLECTORS_JOBS', true),					// Display dispatched jobs
-        'pennant'         => env('WPSP_DEBUGBAR_COLLECTORS_PENNANT', true),				// Display Pennant feature flags
-        'http_client'     => env('WPSP_DEBUGBAR_COLLECTORS_HTTP_CLIENT', true),			// Display HTTP Client requests
+        'phpinfo'         => env('WPSP_LITE_DEBUGBAR_COLLECTORS_PHPINFO', true),				// Php version
+        'messages'        => env('WPSP_LITE_DEBUGBAR_COLLECTORS_MESSAGES', true),				// Messages
+        'time'            => env('WPSP_LITE_DEBUGBAR_COLLECTORS_TIME', true),					// Time Datalogger
+        'memory'          => env('WPSP_LITE_DEBUGBAR_COLLECTORS_MEMORY', true),				// Memory usage
+        'exceptions'      => env('WPSP_LITE_DEBUGBAR_COLLECTORS_EXCEPTIONS', true),			// Exception displayer
+        'log'             => env('WPSP_LITE_DEBUGBAR_COLLECTORS_LOG', true),					// Logs from Monolog (merged in messages if enabled)
+        'db'              => env('WPSP_LITE_DEBUGBAR_COLLECTORS_DB', true),					// Show database (PDO) queries and bindings
+        'views'           => env('WPSP_LITE_DEBUGBAR_COLLECTORS_VIEWS', true),				// Views with their data
+        'route'           => env('WPSP_LITE_DEBUGBAR_COLLECTORS_ROUTE', true),				// Current route information
+        'auth'            => env('WPSP_LITE_DEBUGBAR_COLLECTORS_AUTH', true),					// Display Laravel authentication status
+        'gate'            => env('WPSP_LITE_DEBUGBAR_COLLECTORS_GATE', true),					// Display Laravel Gate checks
+        'session'         => env('WPSP_LITE_DEBUGBAR_COLLECTORS_SESSION', true),				// Display session data
+        'symfony_request' => env('WPSP_LITE_DEBUGBAR_COLLECTORS_SYMFONY_REQUEST', true),		// Default Request Data
+        'mail'            => env('WPSP_LITE_DEBUGBAR_COLLECTORS_MAIL', true),					// Catch mail messages
+        'laravel'         => env('WPSP_LITE_DEBUGBAR_COLLECTORS_LARAVEL', true),				// Laravel version and environment
+        'events'          => env('WPSP_LITE_DEBUGBAR_COLLECTORS_EVENTS', true),				// All events fired
+        'logs'            => env('WPSP_LITE_DEBUGBAR_COLLECTORS_LOGS', true),					// Add the latest log messages
+        'config'          => env('WPSP_LITE_DEBUGBAR_COLLECTORS_CONFIG', true),				// Display config settings
+        'cache'           => env('WPSP_LITE_DEBUGBAR_COLLECTORS_CACHE', true),				// Display cache events
+        'models'          => env('WPSP_LITE_DEBUGBAR_COLLECTORS_MODELS', true),				// Display models
+        'livewire'        => env('WPSP_LITE_DEBUGBAR_COLLECTORS_LIVEWIRE', true),				// Display Livewire (when available)
+        'inertia'         => env('WPSP_LITE_DEBUGBAR_COLLECTORS_INERTIA', true),				// Display Inertia (when available)
+        'jobs'            => env('WPSP_LITE_DEBUGBAR_COLLECTORS_JOBS', true),					// Display dispatched jobs
+        'pennant'         => env('WPSP_LITE_DEBUGBAR_COLLECTORS_PENNANT', true),				// Display Pennant feature flags
+        'http_client'     => env('WPSP_LITE_DEBUGBAR_COLLECTORS_HTTP_CLIENT', true),			// Display HTTP Client requests
     ],
 
     /*
@@ -75,88 +75,88 @@ return [
 
     'options' => [
         'time' => [
-            'memory_usage' => env('WPSP_DEBUGBAR_OPTIONS_TIME_MEMORY_USAGE', false), // Calculated by subtracting memory start and end, it may be inaccurate
+            'memory_usage' => env('WPSP_LITE_DEBUGBAR_OPTIONS_TIME_MEMORY_USAGE', false), // Calculated by subtracting memory start and end, it may be inaccurate
         ],
         'messages' => [
-            'trace' => env('WPSP_DEBUGBAR_OPTIONS_MESSAGES_TRACE', true),                  // Trace the origin of the debug message
+            'trace' => env('WPSP_LITE_DEBUGBAR_OPTIONS_MESSAGES_TRACE', true),                  // Trace the origin of the debug message
             'backtrace_exclude_paths' => [],                                                      // Paths to exclude from backtrace. (in addition to defaults)
-            'capture_dumps' => env('WPSP_DEBUGBAR_OPTIONS_MESSAGES_CAPTURE_DUMPS', false), // Capture laravel `dump();` as message
-            'timeline' => env('WPSP_DEBUGBAR_OPTIONS_MESSAGES_TIMELINE', true),            // Add messages to the timeline
+            'capture_dumps' => env('WPSP_LITE_DEBUGBAR_OPTIONS_MESSAGES_CAPTURE_DUMPS', false), // Capture laravel `dump();` as message
+            'timeline' => env('WPSP_LITE_DEBUGBAR_OPTIONS_MESSAGES_TIMELINE', true),            // Add messages to the timeline
         ],
         'memory' => [
-            'reset_peak' => env('WPSP_DEBUGBAR_OPTIONS_MEMORY_RESET_PEAK', false),       // run memory_reset_peak_usage before collecting
-            'with_baseline' => env('WPSP_DEBUGBAR_OPTIONS_MEMORY_WITH_BASELINE', false), // Set boot memory usage as memory peak baseline
-            'precision' => (int) env('WPSP_DEBUGBAR_OPTIONS_MEMORY_PRECISION', 0),       // Memory rounding precision
+            'reset_peak' => env('WPSP_LITE_DEBUGBAR_OPTIONS_MEMORY_RESET_PEAK', false),       // run memory_reset_peak_usage before collecting
+            'with_baseline' => env('WPSP_LITE_DEBUGBAR_OPTIONS_MEMORY_WITH_BASELINE', false), // Set boot memory usage as memory peak baseline
+            'precision' => (int) env('WPSP_LITE_DEBUGBAR_OPTIONS_MEMORY_PRECISION', 0),       // Memory rounding precision
         ],
         'auth' => [
-            'show_name' => env('WPSP_DEBUGBAR_OPTIONS_AUTH_SHOW_NAME', true),     // Also show the users name/email in the debugbar
-            'show_guards' => env('WPSP_DEBUGBAR_OPTIONS_AUTH_SHOW_GUARDS', true), // Show the guards that are used
+            'show_name' => env('WPSP_LITE_DEBUGBAR_OPTIONS_AUTH_SHOW_NAME', true),     // Also show the users name/email in the debugbar
+            'show_guards' => env('WPSP_LITE_DEBUGBAR_OPTIONS_AUTH_SHOW_GUARDS', true), // Show the guards that are used
         ],
         'gate' => [
             'trace' => false,      // Trace the origin of the Gate checks
-            'timeline' => env('WPSP_DEBUGBAR_OPTIONS_GATE_TIMELINE', false),      // Add mails to the timeline
+            'timeline' => env('WPSP_LITE_DEBUGBAR_OPTIONS_GATE_TIMELINE', false),      // Add mails to the timeline
         ],
         'db' => [
-            'with_params'       => env('WPSP_DEBUGBAR_OPTIONS_WITH_PARAMS', true),   // Render SQL with the parameters substituted
+            'with_params'       => env('WPSP_LITE_DEBUGBAR_OPTIONS_WITH_PARAMS', true),   // Render SQL with the parameters substituted
             'exclude_paths'     => [       // Paths to exclude entirely from the collector
                 //'vendor/laravel/framework/src/Illuminate/Session', // Exclude sessions queries
             ],
-            'backtrace'         => env('WPSP_DEBUGBAR_OPTIONS_DB_BACKTRACE', true),   // Use a backtrace to find the origin of the query in your files.
+            'backtrace'         => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_BACKTRACE', true),   // Use a backtrace to find the origin of the query in your files.
             'backtrace_exclude_paths' => [],   // Paths to exclude from backtrace. (in addition to defaults)
-            'backtrace_editor_links' => env('WPSP_DEBUGBAR_OPTIONS_DB_BACKTRACE_EDITOR_LINKS', false), // Add editor links to backtrace entries (non-vendor files only)
-            'timeline'          => env('WPSP_DEBUGBAR_OPTIONS_DB_TIMELINE', false),  // Add the queries to the timeline
-            'duration_background'  => env('WPSP_DEBUGBAR_OPTIONS_DB_DURATION_BACKGROUND', true),   // Show shaded background on each query relative to how long it took to execute.
-            'explain'           => env('WPSP_DEBUGBAR_OPTIONS_DB_EXPLAIN_ENABLED', true), // Show EXPLAIN output on queries
-            'show_query_result' => env('WPSP_DEBUGBAR_OPTIONS_DB_SHOW_QUERY_RESULT', false), // Show option to re-run SELECT queries and show the result
-            'only_slow_queries' => env('WPSP_DEBUGBAR_OPTIONS_DB_ONLY_SLOW_QUERIES', true), // Only track queries that last longer than `slow_threshold`
-            'slow_threshold'    => env('WPSP_DEBUGBAR_OPTIONS_DB_SLOW_THRESHOLD', false), // Max query execution time (ms). Exceeding queries will be highlighted
-            'memory_usage'      => env('WPSP_DEBUGBAR_OPTIONS_DB_MEMORY_USAGE', false),   // Show queries memory usage
-            'soft_limit'       => (int) env('WPSP_DEBUGBAR_OPTIONS_DB_SOFT_LIMIT', 100),  // After the soft limit, no parameters/backtrace are captured
-            'hard_limit'       => (int) env('WPSP_DEBUGBAR_OPTIONS_DB_HARD_LIMIT', 500),  // After the hard limit, queries are ignored
+            'backtrace_editor_links' => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_BACKTRACE_EDITOR_LINKS', false), // Add editor links to backtrace entries (non-vendor files only)
+            'timeline'          => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_TIMELINE', false),  // Add the queries to the timeline
+            'duration_background'  => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_DURATION_BACKGROUND', true),   // Show shaded background on each query relative to how long it took to execute.
+            'explain'           => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_EXPLAIN_ENABLED', true), // Show EXPLAIN output on queries
+            'show_query_result' => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_SHOW_QUERY_RESULT', false), // Show option to re-run SELECT queries and show the result
+            'only_slow_queries' => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_ONLY_SLOW_QUERIES', true), // Only track queries that last longer than `slow_threshold`
+            'slow_threshold'    => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_SLOW_THRESHOLD', false), // Max query execution time (ms). Exceeding queries will be highlighted
+            'memory_usage'      => env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_MEMORY_USAGE', false),   // Show queries memory usage
+            'soft_limit'       => (int) env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_SOFT_LIMIT', 100),  // After the soft limit, no parameters/backtrace are captured
+            'hard_limit'       => (int) env('WPSP_LITE_DEBUGBAR_OPTIONS_DB_HARD_LIMIT', 500),  // After the hard limit, queries are ignored
         ],
         'mail' => [
-            'timeline' => env('WPSP_DEBUGBAR_OPTIONS_MAIL_TIMELINE', true),  // Add mails to the timeline
-            'show_body' => env('WPSP_DEBUGBAR_OPTIONS_MAIL_SHOW_BODY', true),
+            'timeline' => env('WPSP_LITE_DEBUGBAR_OPTIONS_MAIL_TIMELINE', true),  // Add mails to the timeline
+            'show_body' => env('WPSP_LITE_DEBUGBAR_OPTIONS_MAIL_SHOW_BODY', true),
         ],
         'views' => [
-            'timeline' => env('WPSP_DEBUGBAR_OPTIONS_VIEWS_TIMELINE', false),                  // Add the views to the timeline
-            'data' => env('WPSP_DEBUGBAR_OPTIONS_VIEWS_DATA', false),                         // True for all data, 'keys' for only names, false for no parameters.
-            'group' => (int) env('WPSP_DEBUGBAR_OPTIONS_VIEWS_GROUP', 50),                    // Group duplicate views. Pass value to auto-group, or true/false to force
+            'timeline' => env('WPSP_LITE_DEBUGBAR_OPTIONS_VIEWS_TIMELINE', false),                  // Add the views to the timeline
+            'data' => env('WPSP_LITE_DEBUGBAR_OPTIONS_VIEWS_DATA', false),                         // True for all data, 'keys' for only names, false for no parameters.
+            'group' => (int) env('WPSP_LITE_DEBUGBAR_OPTIONS_VIEWS_GROUP', 50),                    // Group duplicate views. Pass value to auto-group, or true/false to force
             'exclude_paths' => [    // Add the paths which you don't want to appear in the views
                 'vendor/filament',   // Exclude Filament components by default
             ],
         ],
         'inertia' => [
-            'pages' => env('WPSP_DEBUGBAR_OPTIONS_VIEWS_INERTIA_PAGES', 'js/Pages'),  // Path for Inertia views
+            'pages' => env('WPSP_LITE_DEBUGBAR_OPTIONS_VIEWS_INERTIA_PAGES', 'js/Pages'),  // Path for Inertia views
         ],
         'route' => [
-            'label' => env('WPSP_DEBUGBAR_OPTIONS_ROUTE_LABEL', true),  // Show complete route on bar
+            'label' => env('WPSP_LITE_DEBUGBAR_OPTIONS_ROUTE_LABEL', true),  // Show complete route on bar
         ],
         'session' => [
             'masked' => [], // List of keys that are masked
         ],
         'symfony_request' => [
-            'label' => env('WPSP_DEBUGBAR_OPTIONS_SYMFONY_REQUEST_LABEL', true),  // Show route on bar
+            'label' => env('WPSP_LITE_DEBUGBAR_OPTIONS_SYMFONY_REQUEST_LABEL', true),  // Show route on bar
             'masked' => [], // List of keys that are masked
         ],
         'events' => [
-            'data' => env('WPSP_DEBUGBAR_OPTIONS_EVENTS_DATA', false), // Collect events data
-            'listeners' => env('WPSP_DEBUGBAR_OPTIONS_EVENTS_LISTENERS', false), // Add listeners to the events data
+            'data' => env('WPSP_LITE_DEBUGBAR_OPTIONS_EVENTS_DATA', false), // Collect events data
+            'listeners' => env('WPSP_LITE_DEBUGBAR_OPTIONS_EVENTS_LISTENERS', false), // Add listeners to the events data
             'excluded' => [], // Example: ['eloquent.*', 'composing', Illuminate\Cache\Events\CacheHit::class]
         ],
         'logs' => [
-            'file' => env('WPSP_DEBUGBAR_OPTIONS_LOGS_FILE'),
+            'file' => env('WPSP_LITE_DEBUGBAR_OPTIONS_LOGS_FILE'),
         ],
         'config' => [
             'masked' => [],
         ],
         'cache' => [
-            'values' => env('WPSP_DEBUGBAR_OPTIONS_CACHE_VALUES', true), // Collect cache values
-            'timeline' => env('WPSP_DEBUGBAR_OPTIONS_CACHE_TIMELINE', false),  // Add cache events to the timeline
+            'values' => env('WPSP_LITE_DEBUGBAR_OPTIONS_CACHE_VALUES', true), // Collect cache values
+            'timeline' => env('WPSP_LITE_DEBUGBAR_OPTIONS_CACHE_TIMELINE', false),  // Add cache events to the timeline
         ],
         'http_client' => [
             'masked' => [],
-            'timeline' => env('WPSP_DEBUGBAR_OPTIONS_HTTP_CLIENT_TIMELINE', true),  // Add requests to the timeline
+            'timeline' => env('WPSP_LITE_DEBUGBAR_OPTIONS_HTTP_CLIENT_TIMELINE', true),  // Add requests to the timeline
         ],
     ],
 
@@ -164,7 +164,7 @@ return [
      * Add any additional DataCollectors by adding the class name of a DataCollector or invokable class.
      */
     'custom_collectors' => [
-        // MyCollector::class => env('WPSP_DEBUGBAR_COLLECTORS_MYCOLLECTOR', true),
+        // MyCollector::class => env('WPSP_LITE_DEBUGBAR_COLLECTORS_MYCOLLECTOR', true),
     ],
 
     /*
@@ -182,7 +182,7 @@ return [
     |
     */
 
-    'editor' => env('WPSP_DEBUGBAR_EDITOR') ?: env('WPSP_IGNITION_EDITOR', 'phpstorm'),
+    'editor' => env('WPSP_LITE_DEBUGBAR_EDITOR') ?: env('WPSP_LITE_IGNITION_EDITOR', 'phpstorm'),
 
     /*
     |--------------------------------------------------------------------------
@@ -203,11 +203,11 @@ return [
     | You can defer loading the dataset, so it will be loaded with ajax after the request is done. (Experimental)
     */
 
-    'capture_ajax' => env('WPSP_DEBUGBAR_CAPTURE_AJAX', true),
-    'add_ajax_timing' => env('WPSP_DEBUGBAR_ADD_AJAX_TIMING', true),
-    'ajax_handler_auto_show' => env('WPSP_DEBUGBAR_AJAX_HANDLER_AUTO_SHOW', true),
-    'ajax_handler_enable_tab' => env('WPSP_DEBUGBAR_AJAX_HANDLER_ENABLE_TAB', true),
-    'defer_datasets' => env('WPSP_DEBUGBAR_DEFER_DATASETS', false),
+    'capture_ajax' => env('WPSP_LITE_DEBUGBAR_CAPTURE_AJAX', true),
+    'add_ajax_timing' => env('WPSP_LITE_DEBUGBAR_ADD_AJAX_TIMING', true),
+    'ajax_handler_auto_show' => env('WPSP_LITE_DEBUGBAR_AJAX_HANDLER_AUTO_SHOW', true),
+    'ajax_handler_enable_tab' => env('WPSP_LITE_DEBUGBAR_AJAX_HANDLER_ENABLE_TAB', true),
+    'defer_datasets' => env('WPSP_LITE_DEBUGBAR_DEFER_DATASETS', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -232,8 +232,8 @@ return [
     |
     */
 
-    'remote_sites_path' => env('WPSP_DEBUGBAR_REMOTE_SITES_PATH'),
-    'local_sites_path' => env('WPSP_DEBUGBAR_LOCAL_SITES_PATH', env('WPSP_IGNITION_LOCAL_SITES_PATH')),
+    'remote_sites_path' => env('WPSP_LITE_DEBUGBAR_REMOTE_SITES_PATH'),
+    'local_sites_path' => env('WPSP_LITE_DEBUGBAR_LOCAL_SITES_PATH', env('WPSP_LITE_IGNITION_LOCAL_SITES_PATH')),
 
     /*
     |--------------------------------------------------------------------------
@@ -253,12 +253,12 @@ return [
     | Leaving it to null will allow localhost only.
     */
     'storage' => [
-        'enabled'    => env('WPSP_DEBUGBAR_STORAGE_ENABLED', true),
-        'open'       => env('WPSP_DEBUGBAR_OPEN_STORAGE'), // bool/callback.
-        'driver'     => env('WPSP_DEBUGBAR_STORAGE_DRIVER', 'file'), // redis, file, sqlite, pdo, custom
-        'path'       => env('WPSP_DEBUGBAR_STORAGE_PATH', Funcs::getStoragePath('debugbar')), // For file driver
-        'connection' => env('WPSP_DEBUGBAR_STORAGE_CONNECTION'), // Leave null for default connection (Redis/PDO)
-        'provider'   => env('WPSP_DEBUGBAR_STORAGE_PROVIDER', ''), // Instance of StorageInterface for custom driver
+        'enabled'    => env('WPSP_LITE_DEBUGBAR_STORAGE_ENABLED', true),
+        'open'       => env('WPSP_LITE_DEBUGBAR_OPEN_STORAGE'), // bool/callback.
+        'driver'     => env('WPSP_LITE_DEBUGBAR_STORAGE_DRIVER', 'file'), // redis, file, sqlite, pdo, custom
+        'path'       => env('WPSP_LITE_DEBUGBAR_STORAGE_PATH', Funcs::getStoragePath('debugbar')), // For file driver
+        'connection' => env('WPSP_LITE_DEBUGBAR_STORAGE_CONNECTION'), // Leave null for default connection (Redis/PDO)
+        'provider'   => env('WPSP_LITE_DEBUGBAR_STORAGE_PROVIDER', ''), // Instance of StorageInterface for custom driver
     ],
 
     /*
@@ -274,7 +274,7 @@ return [
      | Warning: Use with caution. Debugbar is a development tool and should never be exposed in non-trusted endpoints.
      |
     */
-    'force_allow_enable' => env('WPSP_DEBUGBAR_FORCE_ALLOW_ENABLE', false),
+    'force_allow_enable' => env('WPSP_LITE_DEBUGBAR_FORCE_ALLOW_ENABLE', false),
 
     /*
      |--------------------------------------------------------------------------
@@ -288,8 +288,8 @@ return [
      | So if you want syntax highlighting, set it to true.
      |
      */
-    'use_dist_files' => env('WPSP_DEBUGBAR_USE_DIST_FILES', true),
-    'include_vendors' => env('WPSP_DEBUGBAR_INCLUDE_VENDORS', true),
+    'use_dist_files' => env('WPSP_LITE_DEBUGBAR_USE_DIST_FILES', true),
+    'include_vendors' => env('WPSP_LITE_DEBUGBAR_INCLUDE_VENDORS', true),
 
     /*
      |--------------------------------------------------------------------------
@@ -309,8 +309,8 @@ return [
      | Defaults to E_ALL (all errors).
      |
      */
-    'error_handler' => env('WPSP_DEBUGBAR_ERROR_HANDLER', false),
-    'error_level' => env('WPSP_DEBUGBAR_ERROR_LEVEL', E_ALL),
+    'error_handler' => env('WPSP_LITE_DEBUGBAR_ERROR_HANDLER', false),
+    'error_level' => env('WPSP_LITE_DEBUGBAR_ERROR_LEVEL', E_ALL),
 
     /*
      |--------------------------------------------------------------------------
@@ -321,7 +321,7 @@ return [
      | Extension, without the server-side code. It uses Debugbar collectors instead.
      |
      */
-    'clockwork' => env('WPSP_DEBUGBAR_CLOCKWORK', false),
+    'clockwork' => env('WPSP_LITE_DEBUGBAR_CLOCKWORK', false),
 
     /*
      |--------------------------------------------------------------------------
@@ -334,7 +334,7 @@ return [
      |
      */
 
-    'inject' => env('WPSP_DEBUGBAR_INJECT', true),
+    'inject' => env('WPSP_LITE_DEBUGBAR_INJECT', true),
 
     /*
      |--------------------------------------------------------------------------
@@ -346,7 +346,7 @@ return [
      | from trying to overcome bugs like this: http://trac.nginx.org/nginx/ticket/97
      |
      */
-    'route_prefix' => env('WPSP_DEBUGBAR_ROUTE_PREFIX', '_debugbar'),
+    'route_prefix' => env('WPSP_LITE_DEBUGBAR_ROUTE_PREFIX', '_debugbar'),
 
     /*
      |--------------------------------------------------------------------------
@@ -365,7 +365,7 @@ return [
      | By default Debugbar route served from the same domain that request served.
      | To override default domain, specify it as a non-empty value.
      */
-    'route_domain' => env('WPSP_DEBUGBAR_ROUTE_DOMAIN', env('WPSP_APP_URL_FROM_PUBLIC')),
+    'route_domain' => env('WPSP_LITE_DEBUGBAR_ROUTE_DOMAIN', env('WPSP_LITE_APP_URL_FROM_PUBLIC')),
 
     /*
      |--------------------------------------------------------------------------
@@ -375,7 +375,7 @@ return [
      | Switches between light and dark theme. If set to auto it will respect system preferences
      | Possible values: auto, light, dark
      */
-    'theme' => env('WPSP_DEBUGBAR_THEME', 'auto'),
+    'theme' => env('WPSP_LITE_DEBUGBAR_THEME', 'auto'),
 
     /*
      |--------------------------------------------------------------------------
@@ -385,5 +385,5 @@ return [
      | By default, the Debugbar limits the number of frames returned by the 'debug_backtrace()' function.
      | If you need larger stacktraces, you can increase this number. Setting it to 0 will result in no limit.
      */
-    'debug_backtrace_limit' => (int) env('WPSP_DEBUGBAR_DEBUG_BACKTRACE_LIMIT', 50),
+    'debug_backtrace_limit' => (int) env('WPSP_LITE_DEBUGBAR_DEBUG_BACKTRACE_LIMIT', 50),
 ];

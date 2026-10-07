@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\Providers;
+namespace WPSPLITE\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

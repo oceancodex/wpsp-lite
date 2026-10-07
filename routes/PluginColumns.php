@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\PluginColumns\PluginColumns as Route;
-use WPSP\App\WordPress\PluginColumns\custom_column;
-use WPSP\App\WordPress\PluginColumns\custom_column_view;
+use WPSPLITE\App\Widen\Routes\PluginColumns\PluginColumns as Route;
+use WPSPLITE\App\WordPress\PluginColumns\custom_column;
+use WPSPLITE\App\WordPress\PluginColumns\custom_column_view;
 use WPSPCORELITE\App\Routes\PluginColumns\PluginColumnsRouteTrait;
 
 class PluginColumns {

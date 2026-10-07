@@ -1,5 +1,5 @@
-<div class="wpsp-admin-media-upload {{ $class ?? '' }}" data-no_image_url="{{ wpsp_asset('widen/media/images/no-image.jpg') }}">
-    <img class="preview-image d-block mb-2 border" style="max-width:118px;" alt="" src="{{ $url_value ?: wpsp_asset('widen/media/images/no-image.jpg') }}"/>
+<div class="wpsp-lite-admin-media-upload {{ $class ?? '' }}" data-no_image_url="{{ wpsp_lite_asset('widen/media/images/no-image.jpg') }}">
+    <img class="preview-image d-block mb-2 border" style="max-width:118px;" alt="" src="{{ $url_value ?: wpsp_lite_asset('widen/media/images/no-image.jpg') }}"/>
     <div class="hiddenx mb-2">
         <input type="text"
                id="{{ $attachment_id ?? '' }}"

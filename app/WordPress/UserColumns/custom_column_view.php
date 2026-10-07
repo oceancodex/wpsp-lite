@@ -1,11 +1,11 @@
 <?php
-namespace WPSP\App\WordPress\UserColumns;
+namespace WPSPLITE\App\WordPress\UserColumns;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\UserColumns\BaseUserColumn;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
 class custom_column_view extends BaseUserColumn {
 

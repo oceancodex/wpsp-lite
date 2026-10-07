@@ -1,10 +1,10 @@
 <?php
-namespace WPSP\App\WordPress\PluginColumns;
+namespace WPSPLITE\App\WordPress\PluginColumns;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\PluginColumns\BasePluginColumn;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class custom_column extends BasePluginColumn {
 

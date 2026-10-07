@@ -1,14 +1,14 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Http\Middleware\PreventRequestForgery;
-use WPSP\App\Http\Middleware\PreventRequestForgeryWithoutOrigin;
-use WPSP\App\Widen\Routes\Apis\Apis as Route;
-use WPSP\App\Http\Controllers\ApisController;
-use WPSP\App\Http\Middleware\ApiTokenAuthentication;
-use WPSP\App\Http\Middleware\AuthenticationMiddleware;
-use WPSP\App\Http\Middleware\SanctumMiddleware;
+use WPSPLITE\App\Http\Middleware\PreventRequestForgery;
+use WPSPLITE\App\Http\Middleware\PreventRequestForgeryWithoutOrigin;
+use WPSPLITE\App\Widen\Routes\Apis\Apis as Route;
+use WPSPLITE\App\Http\Controllers\ApisController;
+use WPSPLITE\App\Http\Middleware\ApiTokenAuthentication;
+use WPSPLITE\App\Http\Middleware\AuthenticationMiddleware;
+use WPSPLITE\App\Http\Middleware\SanctumMiddleware;
 use WPSPCORELITE\App\Routes\Apis\ApisRouteTrait;
 
 class Apis {
@@ -20,7 +20,7 @@ class Apis {
 	 */
 
 	public function apis() {
-		Route::namespace('wpsp')->version('v1')->group(function() {
+		Route::namespace('wpsp_lite')->version('v1')->group(function() {
 			Route::name('api-token.')->prefix('api-token')->group(function() {
 				Route::get('get', [ApisController::class, 'getApiToken'])->name('get');
 				Route::middleware([
@@ -58,8 +58,8 @@ class Apis {
 				Route::post('test-params-direct', [ApisController::class, 'validationParamsDirectTest'])->name('test-params-direct');
 				Route::post('test-params-form-request', [ApisController::class, 'validationParamsFormRequestTest'])->name('test-params-form-request');
 			});
-			Route::get('test-rate-limit', [ApisController::class, 'wpsp'])->name('test-rate-limit');
-			Route::middleware(PreventRequestForgeryWithoutOrigin::class)->post('test-rate-limit-token', [ApisController::class, 'wpsp'])->name('test-rate-limit');
+			Route::get('test-rate-limit', [ApisController::class, 'wpsp_lite'])->name('test-rate-limit');
+			Route::middleware(PreventRequestForgeryWithoutOrigin::class)->post('test-rate-limit-token', [ApisController::class, 'wpsp_lite'])->name('test-rate-limit');
 		});
 	}
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Ajaxs;
+namespace WPSPLITE\App\Widen\Routes\Ajaxs;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class Ajaxs extends \WPSPCORELITE\App\Routes\Ajaxs\Ajaxs {
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Filters;
+namespace WPSPLITE\App\Widen\Routes\Filters;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class Filters extends \WPSPCORELITE\App\Routes\Filters\Filters {
 

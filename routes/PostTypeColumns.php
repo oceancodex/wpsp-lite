@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\PostTypeColumns\PostTypeColumns as Route;
-use WPSP\App\WordPress\PostTypeColumns\custom_column;
-use WPSP\App\WordPress\PostTypeColumns\custom_column_view;
+use WPSPLITE\App\Widen\Routes\PostTypeColumns\PostTypeColumns as Route;
+use WPSPLITE\App\WordPress\PostTypeColumns\custom_column;
+use WPSPLITE\App\WordPress\PostTypeColumns\custom_column_view;
 use WPSPCORELITE\App\Routes\PostTypeColumns\PostTypeColumnsRouteTrait;
 
 class PostTypeColumns {

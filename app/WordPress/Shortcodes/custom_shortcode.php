@@ -1,12 +1,11 @@
 <?php
 
-namespace WPSP\App\WordPress\Shortcodes;
+namespace WPSPLITE\App\WordPress\Shortcodes;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORELITE\App\Widen\Http\Request;
-use WPSP\App\WordPress\NavigationMenus\Menus\Menu1;
-use WPSP\App\WordPress\NavigationMenus\Menus\Menu2;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\Shortcodes\BaseShortcode;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\WordPress\NavigationMenus\Menus\Menu1;
 
 class custom_shortcode extends BaseShortcode {
 

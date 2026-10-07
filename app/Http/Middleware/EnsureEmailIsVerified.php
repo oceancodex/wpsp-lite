@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Redirect;
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 class EnsureEmailIsVerified {
 

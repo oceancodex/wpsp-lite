@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\App\Widen\Support\Facades;
+namespace WPSPLITE\App\Widen\Support\Facades;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 use WPSPCORELITE\App\File\File as FileCore;
 
 class File extends FileCore {

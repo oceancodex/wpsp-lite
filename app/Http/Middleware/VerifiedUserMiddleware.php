@@ -1,18 +1,18 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
 use Symfony\Component\HttpFoundation\Response;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
+use WPSPLITE\Funcs;
 
 class VerifiedUserMiddleware {
 
 	/**
 	 * Handle an incoming request.
 	 *
-	 * @param \Closure(\WPSPCORELITE\App\Widen\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+	 * @param \Closure(\WPSPCORELITE\App\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
 	 */
 	public function handle(Request $request, Closure $next, $args = []): Response {
 		$requestPath = ltrim($request->getRequestUri(), '/\\');

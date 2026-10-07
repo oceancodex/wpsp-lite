@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\CommentColumns\CommentColumns as Route;
-use WPSP\App\WordPress\CommentColumns\custom_column;
-use WPSP\App\WordPress\CommentColumns\custom_column_view;
+use WPSPLITE\App\Widen\Routes\CommentColumns\CommentColumns as Route;
+use WPSPLITE\App\WordPress\CommentColumns\custom_column;
+use WPSPLITE\App\WordPress\CommentColumns\custom_column_view;
 use WPSPCORELITE\App\Routes\CommentColumns\CommentColumnsRouteTrait;
 
 class CommentColumns {

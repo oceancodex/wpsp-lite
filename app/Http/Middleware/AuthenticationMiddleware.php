@@ -1,13 +1,13 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
 use Symfony\Component\HttpFoundation\Response;
-use WPSP\App\Widen\Support\Facades\Auth;
-use WPSP\Funcs;
 use WPSPCORELITE\App\Routes\RouteTrait;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
+use WPSPLITE\App\Widen\Support\Facades\Auth;
+use WPSPLITE\Funcs;
 
 class AuthenticationMiddleware {
 
@@ -49,7 +49,7 @@ class AuthenticationMiddleware {
 							wp_send_json(Funcs::response(false, null, 'Authentication false'), 403);
 						}
 						else {
-							wp_redirect(Funcs::route('RewriteFrontPages', 'auth.login', true));
+							wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp_lite_auth.login', true));
 						}
 						return new Response('Authentication false', 403);
 					}

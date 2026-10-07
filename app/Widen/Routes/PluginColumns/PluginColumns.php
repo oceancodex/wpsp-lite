@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\PluginColumns;
+namespace WPSPLITE\App\Widen\Routes\PluginColumns;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class PluginColumns extends \WPSPCORELITE\App\Routes\PluginColumns\PluginColumns {
 

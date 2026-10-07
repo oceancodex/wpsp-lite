@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\MediaColumns\MediaColumns as Route;
-use WPSP\App\WordPress\MediaColumns\custom_column;
-use WPSP\App\WordPress\MediaColumns\custom_column_view;
+use WPSPLITE\App\Widen\Routes\MediaColumns\MediaColumns as Route;
+use WPSPLITE\App\WordPress\MediaColumns\custom_column;
+use WPSPLITE\App\WordPress\MediaColumns\custom_column_view;
 use WPSPCORELITE\App\Routes\MediaColumns\MediaColumnsRouteTrait;
 
 class MediaColumns {

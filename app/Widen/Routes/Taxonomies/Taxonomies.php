@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Taxonomies;
+namespace WPSPLITE\App\Widen\Routes\Taxonomies;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class Taxonomies extends \WPSPCORELITE\App\Routes\Taxonomies\Taxonomies {
 

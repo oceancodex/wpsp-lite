@@ -1,11 +1,11 @@
 <?php
-namespace WPSP\App\WordPress\TaxonomyColumns;
+namespace WPSPLITE\App\WordPress\TaxonomyColumns;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\TaxonomyColumns\BaseTaxonomyColumn;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
 class custom_column_view extends BaseTaxonomyColumn {
 
@@ -15,7 +15,7 @@ class custom_column_view extends BaseTaxonomyColumn {
 	public $column_title            = 'Custom column view';
 	public $column_add_priority     = 9999;
 	public $column_content_priority = 9999;
-	public $taxonomies              = ['category', 'wpsp_category', 'product_cat'];
+	public $taxonomies              = ['category', 'wpsp_lite_category', 'product_cat'];
 //	public $before_column           = [];
 //	public $after_column            = ['name'];
 	public $position                = 2;

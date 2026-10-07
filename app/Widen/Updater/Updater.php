@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Updater;
+namespace WPSPLITE\App\Widen\Updater;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\App\Updater\BaseUpdater;
 
 /**

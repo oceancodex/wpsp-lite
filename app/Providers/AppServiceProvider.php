@@ -1,13 +1,13 @@
 <?php
 
-namespace WPSP\App\Providers;
+namespace WPSPLITE\App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use WPSP\App\Widen\Support\Facades\Blade;
-use WPSP\App\Widen\Support\Facades\RateLimiter;
-use WPSP\Funcs;
+use WPSPLITE\App\Widen\Support\Facades\Blade;
+use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
+use WPSPLITE\Funcs;
 
 class AppServiceProvider extends ServiceProvider {
 

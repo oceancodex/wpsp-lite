@@ -15,23 +15,23 @@ return [
     */
 
 	'postmark' => [
-		'key' => env('WPSP_POSTMARK_API_KEY'),
+		'key' => env('WPSP_LITE_POSTMARK_API_KEY'),
 	],
 
 	'resend' => [
-		'key' => env('WPSP_RESEND_API_KEY'),
+		'key' => env('WPSP_LITE_RESEND_API_KEY'),
 	],
 
 	'ses' => [
-		'key' => env('WPSP_AWS_ACCESS_KEY_ID'),
-		'secret' => env('WPSP_AWS_SECRET_ACCESS_KEY'),
-		'region' => env('WPSP_AWS_DEFAULT_REGION', 'us-east-1'),
+		'key' => env('WPSP_LITE_AWS_ACCESS_KEY_ID'),
+		'secret' => env('WPSP_LITE_AWS_SECRET_ACCESS_KEY'),
+		'region' => env('WPSP_LITE_AWS_DEFAULT_REGION', 'us-east-1'),
 	],
 
 	'slack' => [
 		'notifications' => [
-			'bot_user_oauth_token' => env('WPSP_SLACK_BOT_USER_OAUTH_TOKEN'),
-			'channel' => env('WPSP_SLACK_BOT_USER_DEFAULT_CHANNEL'),
+			'bot_user_oauth_token' => env('WPSP_LITE_SLACK_BOT_USER_OAUTH_TOKEN'),
+			'channel' => env('WPSP_LITE_SLACK_BOT_USER_DEFAULT_CHANNEL'),
 		],
 	],
 

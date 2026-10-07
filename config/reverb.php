@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('WPSP_REVERB_SERVER', 'reverb'),
+    'default' => env('WPSP_LITE_REVERB_SERVER', 'reverb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,10 +29,10 @@ return [
     'servers' => [
 
         'reverb' => [
-            'host' => env('WPSP_REVERB_SERVER_HOST', '0.0.0.0'),
-            'port' => env('WPSP_REVERB_SERVER_PORT', 8080),
-            'path' => env('WPSP_REVERB_SERVER_PATH', ''),
-            'hostname' => env('WPSP_REVERB_HOST'),
+            'host' => env('WPSP_LITE_REVERB_SERVER_HOST', '0.0.0.0'),
+            'port' => env('WPSP_LITE_REVERB_SERVER_PORT', 8080),
+            'path' => env('WPSP_LITE_REVERB_SERVER_PATH', ''),
+            'hostname' => env('WPSP_LITE_REVERB_HOST'),
             'options' => [
                 'tls' => [
 //					'local_cert' => '/path/to/wpsp.local.crt',
@@ -40,22 +40,22 @@ return [
 //					'verify_peer' => false,
 				],
             ],
-            'max_request_size' => env('WPSP_REVERB_MAX_REQUEST_SIZE', 10_000),
+            'max_request_size' => env('WPSP_LITE_REVERB_MAX_REQUEST_SIZE', 10_000),
             'scaling' => [
-                'enabled' => env('WPSP_REVERB_SCALING_ENABLED', false),
-                'channel' => env('WPSP_REVERB_SCALING_CHANNEL', 'reverb'),
+                'enabled' => env('WPSP_LITE_REVERB_SCALING_ENABLED', false),
+                'channel' => env('WPSP_LITE_REVERB_SCALING_CHANNEL', 'reverb'),
                 'server' => [
-                    'url' => env('WPSP_REDIS_URL'),
-                    'host' => env('WPSP_REDIS_HOST', '127.0.0.1'),
-                    'port' => env('WPSP_REDIS_PORT', '6379'),
-                    'username' => env('WPSP_REDIS_USERNAME'),
-                    'password' => env('WPSP_REDIS_PASSWORD'),
-                    'database' => env('WPSP_REDIS_DB', '0'),
-                    'timeout' => env('WPSP_REDIS_TIMEOUT', 60),
+                    'url' => env('WPSP_LITE_REDIS_URL'),
+                    'host' => env('WPSP_LITE_REDIS_HOST', '127.0.0.1'),
+                    'port' => env('WPSP_LITE_REDIS_PORT', '6379'),
+                    'username' => env('WPSP_LITE_REDIS_USERNAME'),
+                    'password' => env('WPSP_LITE_REDIS_PASSWORD'),
+                    'database' => env('WPSP_LITE_REDIS_DB', '0'),
+                    'timeout' => env('WPSP_LITE_REDIS_TIMEOUT', 60),
                 ],
             ],
-            'pulse_ingest_interval' => env('WPSP_REVERB_PULSE_INGEST_INTERVAL', 15),
-            'telescope_ingest_interval' => env('WPSP_REVERB_TELESCOPE_INGEST_INTERVAL', 15),
+            'pulse_ingest_interval' => env('WPSP_LITE_REVERB_PULSE_INGEST_INTERVAL', 15),
+            'telescope_ingest_interval' => env('WPSP_LITE_REVERB_TELESCOPE_INGEST_INTERVAL', 15),
         ],
 
     ],
@@ -77,26 +77,26 @@ return [
 
         'apps' => [
             [
-                'key' => env('WPSP_REVERB_APP_KEY'),
-                'secret' => env('WPSP_REVERB_APP_SECRET'),
-                'app_id' => env('WPSP_REVERB_APP_ID'),
+                'key' => env('WPSP_LITE_REVERB_APP_KEY'),
+                'secret' => env('WPSP_LITE_REVERB_APP_SECRET'),
+                'app_id' => env('WPSP_LITE_REVERB_APP_ID'),
                 'options' => [
-                    'host' => env('WPSP_REVERB_HOST'),
-                    'port' => env('WPSP_REVERB_PORT', 443),
-                    'scheme' => env('WPSP_REVERB_SCHEME', 'https'),
-                    'useTLS' => env('WPSP_REVERB_SCHEME', 'https') === 'https',
+                    'host' => env('WPSP_LITE_REVERB_HOST'),
+                    'port' => env('WPSP_LITE_REVERB_PORT', 443),
+                    'scheme' => env('WPSP_LITE_REVERB_SCHEME', 'https'),
+                    'useTLS' => env('WPSP_LITE_REVERB_SCHEME', 'https') === 'https',
                 ],
                 'allowed_origins' => ['*'],
-                'ping_interval' => env('WPSP_REVERB_APP_PING_INTERVAL', 60),
-                'activity_timeout' => env('WPSP_REVERB_APP_ACTIVITY_TIMEOUT', 30),
-                'max_connections' => env('WPSP_REVERB_APP_MAX_CONNECTIONS'),
-                'max_message_size' => env('WPSP_REVERB_APP_MAX_MESSAGE_SIZE', 10_000),
-                'accept_client_events_from' => env('WPSP_REVERB_APP_ACCEPT_CLIENT_EVENTS_FROM', 'members'),
+                'ping_interval' => env('WPSP_LITE_REVERB_APP_PING_INTERVAL', 60),
+                'activity_timeout' => env('WPSP_LITE_REVERB_APP_ACTIVITY_TIMEOUT', 30),
+                'max_connections' => env('WPSP_LITE_REVERB_APP_MAX_CONNECTIONS'),
+                'max_message_size' => env('WPSP_LITE_REVERB_APP_MAX_MESSAGE_SIZE', 10_000),
+                'accept_client_events_from' => env('WPSP_LITE_REVERB_APP_ACCEPT_CLIENT_EVENTS_FROM', 'members'),
                 'rate_limiting' => [
-                    'enabled' => env('WPSP_REVERB_APP_RATE_LIMITING_ENABLED', false),
-                    'max_attempts' => env('WPSP_REVERB_APP_RATE_LIMIT_MAX_ATTEMPTS', 60),
-                    'decay_seconds' => env('WPSP_REVERB_APP_RATE_LIMIT_DECAY_SECONDS', 60),
-                    'terminate_on_limit' => env('WPSP_REVERB_APP_RATE_LIMIT_TERMINATE', false),
+                    'enabled' => env('WPSP_LITE_REVERB_APP_RATE_LIMITING_ENABLED', false),
+                    'max_attempts' => env('WPSP_LITE_REVERB_APP_RATE_LIMIT_MAX_ATTEMPTS', 60),
+                    'decay_seconds' => env('WPSP_LITE_REVERB_APP_RATE_LIMIT_DECAY_SECONDS', 60),
+                    'terminate_on_limit' => env('WPSP_LITE_REVERB_APP_RATE_LIMIT_TERMINATE', false),
                 ],
             ],
         ],

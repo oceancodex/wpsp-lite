@@ -17,8 +17,8 @@ class Admin {
 
 	public initWPMedia() {
 		jQuery(($) => {
-			$('body').on('click', '.wpsp-admin-media-upload .button-upload', function(e) {
-				const container = $(this).closest('.wpsp-admin-media-upload');
+			$('body').on('click', '.wpsp-lite-admin-media-upload .button-upload', function(e) {
+				const container = $(this).closest('.wpsp-lite-admin-media-upload');
 				const inputAttachment = container.find('.media-attachment-value');
 				const inputURL = container.find('.media-url-value');
 				const preview = container.find('.preview-image');
@@ -96,8 +96,8 @@ class Admin {
 			/**
 			 * Remove image
 			 */
-			$(document).on('click', '.wpsp-admin-media-upload .button-remove', function() {
-				const container = $(this).closest('.wpsp-admin-media-upload');
+			$(document).on('click', '.wpsp-lite-admin-media-upload .button-remove', function() {
+				const container = $(this).closest('.wpsp-lite-admin-media-upload');
 				let noImageURL = container.attr('data-no_image_url');
 
 				container.find('.media-attachment-value').val('');
@@ -108,7 +108,7 @@ class Admin {
 		});
 	}
 
-	public initDateTimePicker(selector = '.wpsp-admin-date-picker') {
+	public initDateTimePicker(selector = '.wpsp-lite-admin-date-picker') {
 		(function($) {
 			$.datepicker.setDefaults($.datepicker.regional["vi"]);
 			$(selector).datepicker({
@@ -168,17 +168,17 @@ class Admin {
 
 							$(this).closest('[data-repeater-item]').attr('data-repeater_item_unique_id', time);
 
-							$(this).find('.wpsp-autonumeric')
+							$(this).find('.wpsp-lite-autonumeric')
 								   .attr('id', repeaterItemBaseName + '[id]_' + time);
 
-							$(this).find('.wpsp-admin-date-picker')
+							$(this).find('.wpsp-lite-admin-date-picker')
 								   .attr('id', repeaterItemBaseName + '[transaction_at]_' + time)
 								   .removeClass('hasDatepicker')
 								   .datepicker('destroy');
 
 							let repeaterItemUniqueId = '[data-repeater_item_unique_id="' + time + '"]';
-							self.initAutoNumeric(repeaterItemUniqueId + ' .wpsp-autonumeric');
-							self.initDateTimePicker(repeaterItemUniqueId + ' .wpsp-admin-date-picker');
+							self.initAutoNumeric(repeaterItemUniqueId + ' .wpsp-lite-autonumeric');
+							self.initDateTimePicker(repeaterItemUniqueId + ' .wpsp-lite-admin-date-picker');
 
 							$(document).trigger('wpsp:repeater:show', [
 								$(this),
@@ -255,7 +255,7 @@ class Admin {
 		});
 	}
 
-	public initAutoNumeric(selector: any = '.wpsp-autonumeric', force = false) {
+	public initAutoNumeric(selector: any = '.wpsp-lite-autonumeric', force = false) {
 		jQuery(() => {
 			if (force) {
 				let an = (<any>window).AutoNumeric.getAutoNumericElement(selector);

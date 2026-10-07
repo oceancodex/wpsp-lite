@@ -1,12 +1,11 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery as PreventRequestForgeryCore;
-use Illuminate\Session\TokenMismatchException;
 use Symfony\Component\HttpFoundation\Response;
 
 class PreventRequestForgery extends PreventRequestForgeryCore {
@@ -16,8 +15,8 @@ class PreventRequestForgery extends PreventRequestForgeryCore {
 	/**
 	 * Handle an incoming request.
 	 *
-	 * @param \WPSPCORELITE\App\Widen\Http\Request $request
-	 * @param \Closure                         $next
+	 * @param \WPSPCORELITE\App\Http\Request $request
+	 * @param \Closure                                             $next
 	 *
 	 * @return mixed
 	 *
@@ -32,7 +31,7 @@ class PreventRequestForgery extends PreventRequestForgeryCore {
 	/**
 	 * Get the CSRF token from the request.
 	 *
-	 * @param \WPSPCORELITE\App\Widen\Http\Request $request
+	 * @param \WPSPCORELITE\App\Http\Request $request
 	 *
 	 * @return string|null
 	 */

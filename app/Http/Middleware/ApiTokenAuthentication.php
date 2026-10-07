@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
-use WPSP\App\Models\UsersModel;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
+use WPSPLITE\App\Models\UsersModel;
+use WPSPLITE\Funcs;
 
 class ApiTokenAuthentication {
 

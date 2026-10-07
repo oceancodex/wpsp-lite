@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\WordPress\NavigationMenus\Menus;
+namespace WPSPLITE\App\WordPress\NavigationMenus\Menus;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\NavigationMenus\Menus\BaseNavigationMenu;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class Menu2 extends BaseNavigationMenu {
 

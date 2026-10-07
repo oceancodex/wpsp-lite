@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\App\WordPress\WPRoles;
+namespace WPSPLITE\App\WordPress\WPRoles;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\App\WordPress\WPRoles\BaseWPRole;
 
 class super_admin extends BaseWPRole {
@@ -13,7 +13,7 @@ class super_admin extends BaseWPRole {
 //	public $role         = 'super_admin';
 	public $display_name = 'Super Admin';
 	public $capabilities = [
-		'wpsp',
+		'wpsp_lite',
 		'edit_pages',
 		'manage_options',
 //		'edit_themes',

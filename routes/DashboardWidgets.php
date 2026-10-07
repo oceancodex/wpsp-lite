@@ -1,9 +1,9 @@
 <?php
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\DashboardWidgets\DashboardWidgets as Route;
-use WPSP\App\WordPress\DashboardWidgets\dashboard_widget_demo;
-use WPSP\App\WordPress\DashboardWidgets\dashboard_widget_demo_view;
+use WPSPLITE\App\Widen\Routes\DashboardWidgets\DashboardWidgets as Route;
+use WPSPLITE\App\WordPress\DashboardWidgets\dashboard_widget_demo;
+use WPSPLITE\App\WordPress\DashboardWidgets\dashboard_widget_demo_view;
 use WPSPCORELITE\App\Routes\DashboardWidgets\DashboardWidgetsRouteTrait;
 
 class DashboardWidgets {

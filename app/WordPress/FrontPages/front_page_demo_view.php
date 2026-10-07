@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP\App\WordPress\FrontPages;
+namespace WPSPLITE\App\WordPress\FrontPages;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\FrontPages\BaseFrontPage;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
 class front_page_demo_view extends BaseFrontPage {
 

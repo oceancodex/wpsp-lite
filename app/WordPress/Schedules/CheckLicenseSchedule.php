@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\WordPress\Schedules;
+namespace WPSPLITE\App\WordPress\Schedules;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\App\WordPress\License\License;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\WordPress\License\License;
 use WPSPCORELITE\App\WordPress\Schedules\BaseSchedule;
 
 class CheckLicenseSchedule extends BaseSchedule {

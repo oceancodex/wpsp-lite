@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class WebController extends BaseController {

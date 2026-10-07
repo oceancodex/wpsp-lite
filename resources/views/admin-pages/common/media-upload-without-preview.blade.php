@@ -1,4 +1,4 @@
-<div class="wpsp-admin-media-upload {{ $class ?? '' }}" data-no_image_url="{{ wpsp_asset('widen/media/images/no-image.jpg') }}">
+<div class="wpsp-lite-admin-media-upload {{ $class ?? '' }}" data-no_image_url="{{ wpsp_lite_asset('widen/media/images/no-image.jpg') }}">
 	<div class="d-flex align-items-start gap-0">
 		<button class="button button-primary button-upload rounded-end-0" type="button" id="{{ $button_id ?? '' }}">Chọn tệp tin</button>
 		<div class="hiddenx mb-0 flex-grow-1">

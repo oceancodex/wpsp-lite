@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\UserColumns\UserColumns as Route;
-use WPSP\App\WordPress\UserColumns\custom_column;
-use WPSP\App\WordPress\UserColumns\custom_column_view;
+use WPSPLITE\App\Widen\Routes\UserColumns\UserColumns as Route;
+use WPSPLITE\App\WordPress\UserColumns\custom_column;
+use WPSPLITE\App\WordPress\UserColumns\custom_column_view;
 use WPSPCORELITE\App\Routes\UserColumns\UserColumnsRouteTrait;
 
 class UserColumns {

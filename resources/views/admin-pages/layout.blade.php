@@ -28,7 +28,7 @@
     @stack('breadcrumbs-stack')
     </div>
 
-    <div class="wpsp-admin-page-content">
+    <div class="wpsp-lite-admin-page-content">
 	    <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
 	    <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
         @yield('content')

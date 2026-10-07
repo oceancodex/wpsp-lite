@@ -1,10 +1,10 @@
 <?php
-namespace WPSP\App\WordPress\MediaColumns;
+namespace WPSPLITE\App\WordPress\MediaColumns;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\MediaColumns\BaseMediaColumn;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class custom_column extends BaseMediaColumn {
 

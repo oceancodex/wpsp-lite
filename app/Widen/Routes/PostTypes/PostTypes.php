@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\PostTypes;
+namespace WPSPLITE\App\Widen\Routes\PostTypes;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class PostTypes extends \WPSPCORELITE\App\Routes\PostTypes\PostTypes {
 

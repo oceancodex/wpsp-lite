@@ -1,9 +1,9 @@
 <?php
-namespace WPSP\App\WordPress\Blocks;
+namespace WPSPLITE\App\WordPress\Blocks;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 use WPSPCORELITE\App\WordPress\Blocks\BaseBlock;
 
 /**

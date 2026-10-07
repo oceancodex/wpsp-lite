@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\WordPress\Customizers\customize_demo\Controls;
+namespace WPSPLITE\App\WordPress\Customizers\customize_demo\Controls;
 
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 class ExampleControl extends \WP_Customize_Control {
 

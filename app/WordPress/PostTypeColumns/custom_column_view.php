@@ -1,11 +1,11 @@
 <?php
-namespace WPSP\App\WordPress\PostTypeColumns;
+namespace WPSPLITE\App\WordPress\PostTypeColumns;
 
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\PostTypeColumns\BasePostTypeColumn;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
 class custom_column_view extends BasePostTypeColumn {
 
@@ -15,7 +15,7 @@ class custom_column_view extends BasePostTypeColumn {
 	public $column_title            = 'Custom column view';
 	public $column_add_priority     = 9999;
 	public $column_content_priority = 9999;
-	public $post_types              = ['post', 'wpsp_content', 'product'];
+	public $post_types              = ['post', 'wpsp_lite_content', 'product'];
 //	public $before_column           = [];
 //	public $after_column            = ['title'];
 //	public $position                = 2;

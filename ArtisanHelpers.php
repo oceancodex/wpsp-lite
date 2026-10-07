@@ -158,7 +158,7 @@ function getEnvironmentVariables(string $file = '.env'): array {
  * @return bool
  */
 function ensureDBConnect(array $wpConfig = [], array $environment = []): bool {
-	$cacheFile = sys_get_temp_dir() . '/wpsp_db_connect.cache';
+	$cacheFile = sys_get_temp_dir() . '/wpsp_lite_db_connect.cache';
 	$ttl       = 3600;
 
 	// Nếu cache còn hạn thì dùng lại.
@@ -183,14 +183,14 @@ function ensureDBConnect(array $wpConfig = [], array $environment = []): bool {
 	}
 
 	try {
-		$connection = $wpConfig['DB_CONNECTION'] ?? $environmentVariables['WPSP_DB_CONNECTION'] ?? 'wp_wpsp';
-		$host       = $wpConfig['DB_HOST'] ?? $environmentVariables['WPSP_DB_HOST'] ?? 'localhost';
-		$port       = $wpConfig['DB_PORT'] ?? $environmentVariables['WPSP_DB_PORT'] ?? '3306';
-		$socket     = $wpConfig['DB_SOCKET'] ?? $environmentVariables['WPSP_DB_SOCKET'] ?? '';
-		$database   = $wpConfig['DB_NAME'] ?? $environmentVariables['WPSP_DB_DATABASE'] ?? 'local';
-		$user       = $wpConfig['DB_USER'] ?? $environmentVariables['WPSP_DB_USERNAME'] ?? 'root';
-		$password   = $wpConfig['DB_PASSWORD'] ?? $environmentVariables['WPSP_DB_PASSWORD'] ?? '';
-		$charset    = $wpConfig['DB_CHARSET'] ?? $environmentVariables['WPSP_DB_CHARSET'] ?? 'utf8mb4';
+		$connection = $wpConfig['DB_CONNECTION'] ?? $environmentVariables['WPSP_LITE_DB_CONNECTION'] ?? 'wp_wpsp';
+		$host       = $wpConfig['DB_HOST'] ?? $environmentVariables['WPSP_LITE_DB_HOST'] ?? 'localhost';
+		$port       = $wpConfig['DB_PORT'] ?? $environmentVariables['WPSP_LITE_DB_PORT'] ?? '3306';
+		$socket     = $wpConfig['DB_SOCKET'] ?? $environmentVariables['WPSP_LITE_DB_SOCKET'] ?? '';
+		$database   = $wpConfig['DB_NAME'] ?? $environmentVariables['WPSP_LITE_DB_DATABASE'] ?? 'local';
+		$user       = $wpConfig['DB_USER'] ?? $environmentVariables['WPSP_LITE_DB_USERNAME'] ?? 'root';
+		$password   = $wpConfig['DB_PASSWORD'] ?? $environmentVariables['WPSP_LITE_DB_PASSWORD'] ?? '';
+		$charset    = $wpConfig['DB_CHARSET'] ?? $environmentVariables['WPSP_LITE_DB_CHARSET'] ?? 'utf8mb4';
 
 		if ($socket) {
 			$host = explode(':', $host)[0];

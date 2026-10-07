@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\Services;
+namespace WPSPLITE\App\Services;
 
 class ExampleService {
 

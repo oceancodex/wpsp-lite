@@ -1,8 +1,8 @@
 <?php
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\Customizers\Customizers as Route;
-use WPSP\App\WordPress\Customizers\customize_demo\customize_demo;
+use WPSPLITE\App\Widen\Routes\Customizers\Customizers as Route;
+use WPSPLITE\App\WordPress\Customizers\customize_demo\customize_demo;
 use WPSPCORELITE\App\Routes\Customizers\CustomizersRouteTrait;
 
 class Customizers {

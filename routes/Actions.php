@@ -1,13 +1,13 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Exceptions\ModelNotFoundException;
-use WPSP\App\Http\Controllers\AssetsController;
-use WPSP\App\Http\Controllers\PagesController;
-use WPSP\App\Widen\Routes\Actions\Actions as Route;
-use WPSP\App\Widen\Routes\RouteManager;
-use WPSP\Funcs;
+use WPSPLITE\App\Exceptions\ModelNotFoundException;
+use WPSPLITE\App\Http\Controllers\AssetsController;
+use WPSPLITE\App\Http\Controllers\PagesController;
+use WPSPLITE\App\Widen\Routes\Actions\Actions as Route;
+use WPSPLITE\App\Widen\Routes\RouteManager;
+use WPSPLITE\Funcs;
 use WPSPCORELITE\App\Integrations\LaravelDebugbar\Collectors\WPSPRouteCollector;
 use WPSPCORELITE\App\Routes\Actions\ActionsRouteTrait;
 

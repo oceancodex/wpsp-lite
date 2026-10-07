@@ -1,19 +1,19 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Http\Middleware\AdministratorCapability;
-use WPSP\App\Http\Middleware\EditorCapability;
-use WPSP\App\Http\Middleware\TestMiddleware;
-use WPSP\App\Widen\Routes\RewriteFrontPages\RewriteFrontPages as Route;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\App\Http\Middleware\AuthenticationMiddleware;
-use WPSP\App\Http\Middleware\EnsureEmailIsVerified;
-use WPSP\App\WordPress\RewriteFrontPages\auth;
-use WPSP\App\WordPress\RewriteFrontPages\rewrite_demo;
-use WPSP\App\WordPress\RewriteFrontPages\wpsp;
-use WPSP\App\WordPress\RewriteFrontPages\wpsp_rewrite;
-use WPSP\App\WordPress\RewriteFrontPages\wpsp_with_template;
+use WPSPLITE\App\Http\Middleware\AdministratorCapability;
+use WPSPLITE\App\Http\Middleware\EditorCapability;
+use WPSPLITE\App\Http\Middleware\TestMiddleware;
+use WPSPLITE\App\Widen\Routes\RewriteFrontPages\RewriteFrontPages as Route;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Http\Middleware\AuthenticationMiddleware;
+use WPSPLITE\App\Http\Middleware\EnsureEmailIsVerified;
+use WPSPLITE\App\WordPress\RewriteFrontPages\wpsp_lite_auth;
+use WPSPLITE\App\WordPress\RewriteFrontPages\wpsp_lite_rewrite_demo;
+use WPSPLITE\App\WordPress\RewriteFrontPages\wpsp_lite;
+use WPSPLITE\App\WordPress\RewriteFrontPages\wpsp_lite_rewrite;
+use WPSPLITE\App\WordPress\RewriteFrontPages\wpsp_lite_with_template;
 use WPSPCORELITE\App\Routes\RewriteFrontPages\RewriteFrontPagesRouteTrait;
 
 class RewriteFrontPages {
@@ -25,33 +25,33 @@ class RewriteFrontPages {
 	 */
 
 	public function rewrite_front_pages() {
-		Route::name('auth.')->prefix('auth')->group(function() {
-			Route::get('login', [auth::class, 'login'])->name('login');
-			Route::get('register', [auth::class, 'register'])->name('register');
-			Route::get('forgot-password', [auth::class, 'forgotPassword'])->name('forgot_password');
-			Route::get('reset-password/{token}', [auth::class, 'resetPassword'])->name('reset_password');
+		Route::name('wpsp_lite_auth.')->prefix('wpsp-lite-auth')->group(function() {
+			Route::get('login', [wpsp_lite_auth::class, 'login'])->name('login');
+			Route::get('register', [wpsp_lite_auth::class, 'register'])->name('register');
+			Route::get('forgot-password', [wpsp_lite_auth::class, 'forgotPassword'])->name('forgot_password');
+			Route::get('reset-password/{token}', [wpsp_lite_auth::class, 'resetPassword'])->name('reset_password');
 		});
-		Route::name('verification.')->group(function() {
-			Route::get('/email/resend', [auth::class, 'resend'])->name('resend');
-			Route::get('/email/notice', [auth::class, 'notice'])->name('notice');
-			Route::get('/email/verify/{id}/{hash}', [auth::class, 'verify'])->middleware(AuthenticationMiddleware::class)->name('verify');
+		Route::name('wpsp_lite_verification.')->prefix('wpsp-lite-verification')->group(function() {
+			Route::get('/email/resend', [wpsp_lite_auth::class, 'resend'])->name('resend');
+			Route::get('/email/notice', [wpsp_lite_auth::class, 'notice'])->name('notice');
+			Route::get('/email/verify/{id}/{hash}', [wpsp_lite_auth::class, 'verify'])->middleware(AuthenticationMiddleware::class)->name('verify');
 		});
-		Route::name('wpsp.')->group(function() {
-			Route::get('wpsp\/(?P<endpoint>[^\/]+)$', [wpsp::class, 'index'])/*->middleware(AuthenticationMiddleware::class, EnsureEmailIsVerified::class)*/->name('index');
-			Route::post('wpsp\/(?P<endpoint>[^\/]+)$', [wpsp::class, 'update']);
-			Route::get('wpsp-rewrite\/(.*?)\/?$', [wpsp_rewrite::class, 'index']);
-			Route::get('wpsp-rewrite-params(?P<queries>.*)$', [wpsp_rewrite::class, 'index'], ['force_regex' => true]);
-//			Route::get('wpsp-rewrite/{slug}', [wpsp_rewrite::class, 'index']);
-			Route::get('wpsp-with-template\/?$', [wpsp_with_template::class, 'index']);
+		Route::name('wpsp_lite.')->group(function() {
+			Route::get('wpsp-lite\/(?P<endpoint>[^\/]+)$', [wpsp_lite::class, 'index'])/*->middleware(AuthenticationMiddleware::class, EnsureEmailIsVerified::class)*/->name('index');
+			Route::post('wpsp-lite\/(?P<endpoint>[^\/]+)$', [wpsp_lite::class, 'update']);
+			Route::get('wpsp-lite-rewrite\/(.*?)\/?$', [wpsp_lite_rewrite::class, 'index']);
+			Route::get('wpsp-lite-rewrite-params(?P<queries>.*)$', [wpsp_lite_rewrite::class, 'index'], ['force_regex' => true]);
+//			Route::get('wpsp-lite-rewrite/{slug}', [wpsp_lite_rewrite::class, 'index']);
+			Route::get('wpsp-lite-with-template\/?$', [wpsp_lite_with_template::class, 'index']);
 		});
-		Route::name('rewrite-demo.')->prefix('rewrite-demo')->group(function() {
+		Route::name('wpsp_lite_rewrite_demo.')->prefix('wpsp-lite-rewrite-demo')->group(function() {
 //			Route::get('\/([\S\s]*)\/([\S\s]*)', [rewrite_demo::class, 'index'])->name('index');
 //			Route::get('\/([\S\s]*)\/(?P<endpoint>[^\/]+)', [rewrite_demo::class, 'index'])->name('index');
 
 			Route::middleware([
 				['relation' => 'OR', 'throttle:30rpm', EditorCapability::class],
 				['relation' => 'AND', AdministratorCapability::class, TestMiddleware::class]
-			])->get('test\/(?P<slug>[^\/\?]+)(?:\?(?P<queries>.*))?', [rewrite_demo::class, 'index'], ['route_arg_1' => 'route_arg_1_value'])->name('index');
+			])->get('wpsp-lite-test\/(?P<slug>[^\/\?]+)(?:\?(?P<queries>.*))?', [wpsp_lite_rewrite_demo::class, 'index'], ['route_arg_1' => 'route_arg_1_value'])->name('index');
 
 //			Route::middleware([
 //				'relation' => 'OR', 'throttle:30rpm', EditorCapability::class

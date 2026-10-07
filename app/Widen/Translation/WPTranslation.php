@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Translation;
+namespace WPSPLITE\App\Widen\Translation;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\App\Translation\BaseWPTranslation;
 
 /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\FrontPages\FrontPages as Route;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\App\Http\Middleware\AuthenticationMiddleware;
-use WPSP\App\Http\Middleware\EnsureEmailIsVerified;
-use WPSP\App\WordPress\FrontPages\front_page_demo;
-use WPSP\App\WordPress\FrontPages\front_page_demo_view;
+use WPSPLITE\App\Widen\Routes\FrontPages\FrontPages as Route;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Http\Middleware\AuthenticationMiddleware;
+use WPSPLITE\App\Http\Middleware\EnsureEmailIsVerified;
+use WPSPLITE\App\WordPress\FrontPages\front_page_demo;
+use WPSPLITE\App\WordPress\FrontPages\front_page_demo_view;
 use WPSPCORELITE\App\Routes\FrontPages\FrontPagesRouteTrait;
 
 class FrontPages {

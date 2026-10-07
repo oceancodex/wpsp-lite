@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\TaxonomyColumns\TaxonomyColumns as Route;
-use WPSP\App\WordPress\TaxonomyColumns\custom_column;
-use WPSP\App\WordPress\TaxonomyColumns\custom_column_view;
+use WPSPLITE\App\Widen\Routes\TaxonomyColumns\TaxonomyColumns as Route;
+use WPSPLITE\App\WordPress\TaxonomyColumns\custom_column;
+use WPSPLITE\App\WordPress\TaxonomyColumns\custom_column_view;
 use WPSPCORELITE\App\Routes\TaxonomyColumns\TaxonomyColumnsRouteTrait;
 
 class TaxonomyColumns {

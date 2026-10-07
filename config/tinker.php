@@ -58,6 +58,6 @@ return [
     |
     */
 
-    'trust_project' => env('WPSP_TINKER_TRUST_PROJECT', 'always'),
+    'trust_project' => env('WPSP_LITE_TINKER_TRUST_PROJECT', 'always'),
 
 ];

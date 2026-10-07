@@ -4,7 +4,7 @@ use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 return [
 
@@ -19,7 +19,7 @@ return [
     |
     */
 
-	'default' => env('WPSP_LOG_CHANNEL', 'stack'),
+	'default' => env('WPSP_LITE_LOG_CHANNEL', 'stack'),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,8 +33,8 @@ return [
     */
 
 	'deprecations' => [
-		'channel' => env('WPSP_LOG_DEPRECATIONS_CHANNEL', 'null'),
-		'trace' => env('WPSP_LOG_DEPRECATIONS_TRACE', false),
+		'channel' => env('WPSP_LITE_LOG_DEPRECATIONS_CHANNEL', 'null'),
+		'trace' => env('WPSP_LITE_LOG_DEPRECATIONS_TRACE', false),
 	],
 
     /*
@@ -61,67 +61,67 @@ return [
 
 		'stack' => [
 			'driver' => 'stack',
-			'channels' => explode(',', (string) env('WPSP_LOG_STACK', 'single')),
+			'channels' => explode(',', (string) env('WPSP_LITE_LOG_STACK', 'single')),
 			'ignore_exceptions' => false,
 		],
 
 		'single' => [
 			'driver' => 'single',
 			'path' => Funcs::instance()->_getStoragePath('logs/application.log'),
-			'level' => env('WPSP_LOG_LEVEL', 'debug'),
+			'level' => env('WPSP_LITE_LOG_LEVEL', 'debug'),
 			'replace_placeholders' => true,
 		],
 
 		'daily' => [
 			'driver' => 'daily',
 			'path' => Funcs::instance()->_getStoragePath('logs/application.log'),
-			'level' => env('WPSP_LOG_LEVEL', 'debug'),
-			'days' => env('WPSP_LOG_DAILY_DAYS', 14),
+			'level' => env('WPSP_LITE_LOG_LEVEL', 'debug'),
+			'days' => env('WPSP_LITE_LOG_DAILY_DAYS', 14),
 			'replace_placeholders' => true,
 		],
 
 		'slack' => [
 			'driver' => 'slack',
-			'url' => env('WPSP_LOG_SLACK_WEBHOOK_URL'),
-			'username' => env('WPSP_LOG_SLACK_USERNAME', 'Application Log'),
-			'emoji' => env('WPSP_LOG_SLACK_EMOJI', ':boom:'),
-			'level' => env('WPSP_LOG_LEVEL', 'critical'),
+			'url' => env('WPSP_LITE_LOG_SLACK_WEBHOOK_URL'),
+			'username' => env('WPSP_LITE_LOG_SLACK_USERNAME', 'Application Log'),
+			'emoji' => env('WPSP_LITE_LOG_SLACK_EMOJI', ':boom:'),
+			'level' => env('WPSP_LITE_LOG_LEVEL', 'critical'),
 			'replace_placeholders' => true,
 		],
 
 		'papertrail' => [
 			'driver' => 'monolog',
-			'level' => env('WPSP_LOG_LEVEL', 'debug'),
-			'handler' => env('WPSP_LOG_PAPERTRAIL_HANDLER', SyslogUdpHandler::class),
+			'level' => env('WPSP_LITE_LOG_LEVEL', 'debug'),
+			'handler' => env('WPSP_LITE_LOG_PAPERTRAIL_HANDLER', SyslogUdpHandler::class),
 			'handler_with' => [
-				'host' => env('WPSP_PAPERTRAIL_URL'),
-				'port' => env('WPSP_PAPERTRAIL_PORT'),
-				'connectionString' => 'tls://' . env('WPSP_PAPERTRAIL_URL') . ':' . env('WPSP_PAPERTRAIL_PORT'),
+				'host' => env('WPSP_LITE_PAPERTRAIL_URL'),
+				'port' => env('WPSP_LITE_PAPERTRAIL_PORT'),
+				'connectionString' => 'tls://' . env('WPSP_LITE_PAPERTRAIL_URL') . ':' . env('WPSP_LITE_PAPERTRAIL_PORT'),
 			],
 			'processors' => [PsrLogMessageProcessor::class],
 		],
 
 		'stderr' => [
 			'driver' => 'monolog',
-			'level' => env('WPSP_LOG_LEVEL', 'debug'),
+			'level' => env('WPSP_LITE_LOG_LEVEL', 'debug'),
 			'handler' => StreamHandler::class,
 			'handler_with' => [
 				'stream' => 'php://stderr',
 			],
-			'formatter' => env('WPSP_LOG_STDERR_FORMATTER'),
+			'formatter' => env('WPSP_LITE_LOG_STDERR_FORMATTER'),
 			'processors' => [PsrLogMessageProcessor::class],
 		],
 
 		'syslog' => [
 			'driver' => 'syslog',
-			'level' => env('WPSP_LOG_LEVEL', 'debug'),
-			'facility' => env('WPSP_LOG_SYSLOG_FACILITY', LOG_USER),
+			'level' => env('WPSP_LITE_LOG_LEVEL', 'debug'),
+			'facility' => env('WPSP_LITE_LOG_SYSLOG_FACILITY', LOG_USER),
 			'replace_placeholders' => true,
 		],
 
 		'errorlog' => [
 			'driver' => 'errorlog',
-			'level' => env('WPSP_LOG_LEVEL', 'debug'),
+			'level' => env('WPSP_LITE_LOG_LEVEL', 'debug'),
 			'replace_placeholders' => true,
 		],
 

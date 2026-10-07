@@ -1,1 +1,1 @@
-console.log("Enqueued: wpsp-control-script.js");
+console.log("Enqueued: wpsp-lite-control-script.js");

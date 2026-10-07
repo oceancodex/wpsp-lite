@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\AdminBarMenus;
+namespace WPSPLITE\App\Widen\Routes\AdminBarMenus;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class AdminBarMenus extends \WPSPCORELITE\App\Routes\AdminBarMenus\AdminBarMenus {
 

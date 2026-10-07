@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP;
+namespace WPSPLITE;
 
-use WPSP\App\Widen\Exceptions\Handler as ExceptionsHandler;
-use WPSP\App\Widen\Translation\WPTranslation;
-use WPSP\App\Widen\Updater\Updater;
-use WPSP\App\Widen\View\Share;
+use WPSPLITE\App\Widen\Exceptions\Handler as ExceptionsHandler;
+use WPSPLITE\App\Widen\Translation\WPTranslation;
+use WPSPLITE\App\Widen\Updater\Updater;
+use WPSPLITE\App\Widen\View\Share;
 
 class WPSP extends \WPSPCORELITE\WPSP {
 
@@ -21,7 +21,14 @@ class WPSP extends \WPSPCORELITE\WPSP {
 	 */
 	public static function instance() {
 		if (!static::$instance) {
-			$instance         = new static(__DIR__, __NAMESPACE__, Funcs::PREFIX_ENV, ['app_mode' => 'full']);
+			$instance         = new static(
+				__DIR__,
+				__NAMESPACE__,
+				Funcs::PREFIX_ENV,
+				[
+					'app_mode' => 'full'
+				]
+			);
 			$instance->funcs  = Funcs::instance();
 			static::$instance = $instance;
 		}
@@ -36,29 +43,33 @@ class WPSP extends \WPSPCORELITE\WPSP {
 		$WPSP = static::instance();
 		$WPSP->setApplication(__DIR__, $handleRequest);
 
-		if (Funcs::config('app.debug')) {
-			static::overrideExceptionHandler();
-		}
+//		if (Funcs::config('app.debug')) {
+//			static::overrideExceptionHandler();
+//		}
 
 		if (function_exists('add_action')) {
 			add_action('init', function() {
 				static::aferSetupApplication();
 			});
 		}
+
 		return $WPSP;
 	}
 
 	public static function startConsole() {
 		$WPSP = static::instance();
 		$WPSP->setApplicationForConsole(__DIR__);
+
 //		if (Funcs::config('app.debug')) {
 //			static::overrideExceptionHandler();
 //		}
+
 		if (function_exists('add_action')) {
 			add_action('init', function() {
 				static::aferSetupApplicationForConsole();
 			});
 		}
+
 		return $WPSP;
 	}
 
@@ -97,15 +108,13 @@ class WPSP extends \WPSPCORELITE\WPSP {
 	public static function aferSetupApplication() {
 		Updater::instance()->init();
 		WPTranslation::instance()->init();
-		static::shareVariablesForAllViews();
+//		static::shareVariablesForAllViews();
 	}
 
 	public static function aferSetupApplicationForConsole() {
-		if (defined('WPSP_ACTIVE')) {
-			Updater::instance()->init();
-			WPTranslation::instance()->init();
-			static::shareVariablesForAllViews();
-		}
+		Updater::instance()->init();
+		WPTranslation::instance()->init();
+//		static::shareVariablesForAllViews();
 	}
 
 	/*

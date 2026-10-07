@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -16,8 +16,8 @@ class PreventRequestForgeryWithoutOrigin extends PreventRequestForgery {
 	/**
 	 * Handle an incoming request.
 	 *
-	 * @param \WPSPCORELITE\App\Widen\Http\Request $request
-	 * @param \Closure                         $next
+	 * @param \WPSPCORELITE\App\Http\Request $request
+	 * @param \Closure                                             $next
 	 *
 	 * @return mixed
 	 *
@@ -46,7 +46,7 @@ class PreventRequestForgeryWithoutOrigin extends PreventRequestForgery {
 	/**
 	 * Get the CSRF token from the request.
 	 *
-	 * @param \WPSPCORELITE\App\Widen\Http\Request $request
+	 * @param \WPSPCORELITE\App\Http\Request $request
 	 *
 	 * @return string|null
 	 */

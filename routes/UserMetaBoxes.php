@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\UserMetaBoxes\UserMetaBoxes as Route;
-use WPSP\App\WordPress\UserMetaBoxes\custom_user_meta_box;
+use WPSPLITE\App\Widen\Routes\UserMetaBoxes\UserMetaBoxes as Route;
+use WPSPLITE\App\WordPress\UserMetaBoxes\custom_user_meta_box;
 use WPSPCORELITE\App\Routes\UserMetaBoxes\UserMetaBoxesRouteTrait;
 
 class UserMetaBoxes {

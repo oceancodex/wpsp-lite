@@ -1,12 +1,12 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use WPSP\App\Widen\Support\Facades\Migration;
-use WPSP\App\Widen\Support\Facades\RateLimiter;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
+use WPSPLITE\App\Widen\Support\Facades\Migration;
+use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class AjaxsController extends BaseController {

@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\WPRoles;
+namespace WPSPLITE\App\Widen\Routes\WPRoles;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class WPRoles extends \WPSPCORELITE\App\Routes\WPRoles\WPRoles {
 

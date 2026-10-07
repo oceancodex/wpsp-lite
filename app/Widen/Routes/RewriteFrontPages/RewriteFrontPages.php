@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\RewriteFrontPages;
+namespace WPSPLITE\App\Widen\Routes\RewriteFrontPages;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class RewriteFrontPages extends \WPSPCORELITE\App\Routes\RewriteFrontPages\RewriteFrontPages {
 

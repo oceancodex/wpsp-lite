@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
 use WPSPCORELITE\App\Http\Controllers\BaseController;
 

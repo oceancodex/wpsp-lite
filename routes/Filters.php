@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\Routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Http\Controllers\PagesController;
-use WPSP\App\Widen\Routes\Filters\Filters as Route;
+use WPSPLITE\App\Http\Controllers\PagesController;
+use WPSPLITE\App\Widen\Routes\Filters\Filters as Route;
 use WPSPCORELITE\App\Routes\Filters\FiltersRouteTrait;
 
 class Filters {

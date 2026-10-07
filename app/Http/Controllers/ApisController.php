@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Auth\Events\PasswordReset;
@@ -8,16 +8,16 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use WPSP\App\Events\UsersRegisteredEvent;
-use WPSP\App\Widen\Support\Facades\Auth;
-use WPSP\App\Widen\Support\Facades\Event;
-use WPSP\App\Widen\Support\Facades\Password;
-use WPSP\App\Widen\Support\Facades\RateLimiter;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\App\Http\Requests\UsersCreateRequest;
-use WPSP\App\Http\Requests\UsersUpdateRequest;
-use WPSP\App\Models\UsersModel;
-use WPSP\Funcs;
+use WPSPLITE\App\Events\UsersRegisteredEvent;
+use WPSPLITE\App\Widen\Support\Facades\Auth;
+use WPSPLITE\App\Widen\Support\Facades\Event;
+use WPSPLITE\App\Widen\Support\Facades\Password;
+use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Http\Requests\UsersCreateRequest;
+use WPSPLITE\App\Http\Requests\UsersUpdateRequest;
+use WPSPLITE\App\Models\UsersModel;
+use WPSPLITE\Funcs;
 use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class ApisController extends BaseController {
@@ -56,7 +56,7 @@ class ApisController extends BaseController {
 		if (false === $rateLimitAccepted) {
 			// Test HttpException.
 //			header('Content-Type: text/html; charset=utf-8');
-//			throw new \WPSP\App\Exceptions\HttpException(
+//			throw new \WPSPLITE\App\Exceptions\HttpException(
 //				429,
 //				'Bạn đã gửi quá nhiều request. Vui lòng thử lại sau.',
 //				['Retry-After' => 60]

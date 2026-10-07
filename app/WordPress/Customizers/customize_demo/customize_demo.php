@@ -1,12 +1,12 @@
 <?php
 
-namespace WPSP\App\WordPress\Customizers\customize_demo;
+namespace WPSPLITE\App\WordPress\Customizers\customize_demo;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\App\WordPress\Customizers\customize_demo\Controls\ExampleControl;
-use WPSP\Funcs;
-use WPSPCORELITE\App\Widen\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\Customizers\BaseCustomize;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\WordPress\Customizers\customize_demo\Controls\ExampleControl;
+use WPSPLITE\Funcs;
 
 /**
  * @see https://developer.wordpress.org/themes/classic-themes/customize-api/customizer-objects/
@@ -134,7 +134,7 @@ class customize_demo extends BaseCustomize {
 	public function controlStyles() {}
 
 	public function controlScripts() {
-		wp_enqueue_script($this->name . '-control-script', Funcs::asset('js/Customizers/wpsp-control-script.js'), null, time(), ['in_footer' => 'true']);
+		wp_enqueue_script($this->name . '-control-script', Funcs::asset('js/Customizers/wpsp-lite-control-script.js'), null, time(), ['in_footer' => 'true']);
 	}
 
 	public function controlLocalizeScripts() {}
@@ -146,7 +146,7 @@ class customize_demo extends BaseCustomize {
 	public function previewStyles() {}
 
 	public function previewScripts() {
-		wp_enqueue_script($this->name . '-preview-script', Funcs::asset('js/Customizers/wpsp-preview-script.js'), ['customize-preview'], time(), ['in_footer' => 'true']);
+		wp_enqueue_script($this->name . '-preview-script', Funcs::asset('js/Customizers/wpsp-lite-preview-script.js'), ['customize-preview'], time(), ['in_footer' => 'true']);
 	}
 
 	public function previewLocalizeScripts() {}

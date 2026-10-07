@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Services;
+namespace WPSPLITE\App\Services;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\BaseInstances;
 
 class SubTestService extends BaseInstances {

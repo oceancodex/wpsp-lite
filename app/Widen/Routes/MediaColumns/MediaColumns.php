@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\MediaColumns;
+namespace WPSPLITE\App\Widen\Routes\MediaColumns;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class MediaColumns extends \WPSPCORELITE\App\Routes\MediaColumns\MediaColumns {
 

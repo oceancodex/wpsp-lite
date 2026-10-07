@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\AdminPages;
+namespace WPSPLITE\App\Widen\Routes\AdminPages;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class AdminPages extends \WPSPCORELITE\App\Routes\AdminPages\AdminPages {
 

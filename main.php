@@ -18,6 +18,6 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if (!defined('WPSP_ARTISAN_START') && !defined('WPSP_ORIGINAL_WP')) {
+if (!defined('WPSP_LITE_ARTISAN_START') && !defined('WPSP_LITE_ORIGINAL_WP')) {
 	require_once __DIR__ . '/bootstrap/plugin.php';
 }

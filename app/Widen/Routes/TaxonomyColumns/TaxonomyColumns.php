@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\TaxonomyColumns;
+namespace WPSPLITE\App\Widen\Routes\TaxonomyColumns;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class TaxonomyColumns extends \WPSPCORELITE\App\Routes\TaxonomyColumns\TaxonomyColumns {
 

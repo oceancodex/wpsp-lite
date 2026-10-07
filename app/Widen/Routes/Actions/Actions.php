@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Actions;
+namespace WPSPLITE\App\Widen\Routes\Actions;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class Actions extends \WPSPCORELITE\App\Routes\Actions\Actions {
 

@@ -13,7 +13,7 @@ return [
     |
     */
 
-	'default' => env('WPSP_QUEUE_CONNECTION', 'database'),
+	'default' => env('WPSP_LITE_QUEUE_CONNECTION', 'database'),
 
     /*
     |--------------------------------------------------------------------------
@@ -37,38 +37,38 @@ return [
 
 		'database' => [
 			'driver' => 'database',
-			'connection' => env('WPSP_DB_QUEUE_CONNECTION', env('WPSP_DB_CONNECTION')),
-			'table' => env('WPSP_DB_QUEUE_TABLE', 'jobs'),
-			'queue' => env('WPSP_DB_QUEUE', 'default'),
-			'retry_after' => (int) env('WPSP_DB_QUEUE_RETRY_AFTER', 90),
+			'connection' => env('WPSP_LITE_DB_QUEUE_CONNECTION', env('WPSP_LITE_DB_CONNECTION')),
+			'table' => env('WPSP_LITE_DB_QUEUE_TABLE', 'jobs'),
+			'queue' => env('WPSP_LITE_DB_QUEUE', 'default'),
+			'retry_after' => (int) env('WPSP_LITE_DB_QUEUE_RETRY_AFTER', 90),
 			'after_commit' => false,
 		],
 
 		'beanstalkd' => [
 			'driver' => 'beanstalkd',
-			'host' => env('WPSP_BEANSTALKD_QUEUE_HOST', 'localhost'),
-			'queue' => env('WPSP_BEANSTALKD_QUEUE', 'default'),
-			'retry_after' => (int) env('WPSP_BEANSTALKD_QUEUE_RETRY_AFTER', 90),
+			'host' => env('WPSP_LITE_BEANSTALKD_QUEUE_HOST', 'localhost'),
+			'queue' => env('WPSP_LITE_BEANSTALKD_QUEUE', 'default'),
+			'retry_after' => (int) env('WPSP_LITE_BEANSTALKD_QUEUE_RETRY_AFTER', 90),
 			'block_for' => 0,
 			'after_commit' => false,
 		],
 
 		'sqs' => [
 			'driver' => 'sqs',
-			'key' => env('WPSP_AWS_ACCESS_KEY_ID'),
-			'secret' => env('WPSP_AWS_SECRET_ACCESS_KEY', true),
-			'prefix' => env('WPSP_SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
-			'queue' => env('WPSP_SQS_QUEUE', 'default'),
-			'suffix' => env('WPSP_SQS_SUFFIX'),
-			'region' => env('WPSP_AWS_DEFAULT_REGION', 'us-east-1'),
+			'key' => env('WPSP_LITE_AWS_ACCESS_KEY_ID'),
+			'secret' => env('WPSP_LITE_AWS_SECRET_ACCESS_KEY', true),
+			'prefix' => env('WPSP_LITE_SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+			'queue' => env('WPSP_LITE_SQS_QUEUE', 'default'),
+			'suffix' => env('WPSP_LITE_SQS_SUFFIX'),
+			'region' => env('WPSP_LITE_AWS_DEFAULT_REGION', 'us-east-1'),
 			'after_commit' => false,
 		],
 
 		'redis' => [
 			'driver' => 'redis',
-			'connection' => env('WPSP_REDIS_QUEUE_CONNECTION', 'default'),
-			'queue' => env('WPSP_REDIS_QUEUE', 'default'),
-			'retry_after' => (int) env('WPSP_REDIS_QUEUE_RETRY_AFTER', 90),
+			'connection' => env('WPSP_LITE_REDIS_QUEUE_CONNECTION', 'default'),
+			'queue' => env('WPSP_LITE_REDIS_QUEUE', 'default'),
+			'retry_after' => (int) env('WPSP_LITE_REDIS_QUEUE_RETRY_AFTER', 90),
 			'block_for' => null,
 			'after_commit' => false,
 		],
@@ -103,7 +103,7 @@ return [
     */
 
 	'batching' => [
-		'database' => env('WPSP_DB_CONNECTION', 'default'),
+		'database' => env('WPSP_LITE_DB_CONNECTION', 'default'),
 		'table' => 'job_batches',
 	],
 
@@ -121,8 +121,8 @@ return [
     */
 
 	'failed' => [
-		'driver' => env('WPSP_QUEUE_FAILED_DRIVER', 'database-uuids'),
-		'database' => env('WPSP_DB_CONNECTION', 'default'),
+		'driver' => env('WPSP_LITE_QUEUE_FAILED_DRIVER', 'database-uuids'),
+		'database' => env('WPSP_LITE_DB_CONNECTION', 'default'),
 		'table' => 'failed_jobs',
 	],
 

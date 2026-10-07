@@ -1,5 +1,5 @@
 {
-	"name": "oceancodex/wpsp-lite",
+	"name": "oceancodex/wpsp-lite-lite",
 	"version": "13.1.61",
 	"description": "WPSP Framework - WordPress Starter Plugin - Lite",
 	"keywords": [
@@ -39,13 +39,13 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"WPSP\\": "",
-			"WPSP\\App\\": "app/",
-			"WPSP\\Tests\\": "tests/",
-			"WPSP\\Routes\\": "routes/",
-			"WPSP\\Database\\Factories\\": "database/factories/",
-			"WPSP\\Database\\Migrations\\": "database/migrations/",
-			"WPSP\\Database\\Seeders\\": "database/seeders/"
+			"WPSPLITE\\": "",
+			"WPSPLITE\\App\\": "app/",
+			"WPSPLITE\\Tests\\": "tests/",
+			"WPSPLITE\\Routes\\": "routes/",
+			"WPSPLITE\\Database\\Factories\\": "database/factories/",
+			"WPSPLITE\\Database\\Migrations\\": "database/migrations/",
+			"WPSPLITE\\Database\\Seeders\\": "database/seeders/"
 		},
 		"files": [
 			"app/Helpers/Helpers.php"
@@ -56,7 +56,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"WPSP\\Tests\\": "tests/"
+			"WPSPLITE\\Tests\\": "tests/"
 		}
 	},
 	"authors": [
@@ -97,7 +97,7 @@
 			"pestphp/pest-plugin": true,
 			"php-http/discovery": true
 		},
-		"autoloader-suffix": "_wpsp_1719507008"
+		"autoloader-suffix": "_wpsp_lite_1719507008"
 	},
 	"minimum-stability": "stable",
 	"prefer-stable": true

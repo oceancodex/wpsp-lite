@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'editor' => env('WPSP_IGNITION_EDITOR', 'phpstorm'),
+    'editor' => env('WPSP_LITE_IGNITION_EDITOR', 'phpstorm'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'theme' => env('WPSP_IGNITION_THEME', 'auto'),
+    'theme' => env('WPSP_LITE_IGNITION_THEME', 'auto'),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'enable_share_button' => env('WPSP_IGNITION_SHARING_ENABLED', true),
+    'enable_share_button' => env('WPSP_LITE_IGNITION_SHARING_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'register_commands' => env('WPSP_REGISTER_IGNITION_COMMANDS', false),
+    'register_commands' => env('WPSP_LITE_REGISTER_IGNITION_COMMANDS', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -153,11 +153,11 @@ return [
     | can override this behaviour and enable or disable runnable solutions
     | regardless of the application's environment.
     |
-    | Default: env('WPSP_IGNITION_ENABLE_RUNNABLE_SOLUTIONS')
+    | Default: env('WPSP_LITE_IGNITION_ENABLE_RUNNABLE_SOLUTIONS')
     |
     */
 
-    'enable_runnable_solutions' => env('WPSP_IGNITION_ENABLE_RUNNABLE_SOLUTIONS'),
+    'enable_runnable_solutions' => env('WPSP_LITE_IGNITION_ENABLE_RUNNABLE_SOLUTIONS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -182,8 +182,8 @@ return [
     |
     */
 
-    'remote_sites_path' => env('WPSP_IGNITION_REMOTE_SITES_PATH', base_path()),
-    'local_sites_path' => env('WPSP_IGNITION_LOCAL_SITES_PATH', ''),
+    'remote_sites_path' => env('WPSP_LITE_IGNITION_REMOTE_SITES_PATH', base_path()),
+    'local_sites_path' => env('WPSP_LITE_IGNITION_LOCAL_SITES_PATH', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -243,7 +243,7 @@ return [
      * When a key is set, we'll send your exceptions to Open AI to generate a solution
      */
 
-    'open_ai_key' => env('WPSP_IGNITION_OPEN_AI_KEY'),
+    'open_ai_key' => env('WPSP_LITE_IGNITION_OPEN_AI_KEY'),
 
     /*
     |--------------------------------------------------------------------------

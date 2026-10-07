@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\CommentColumns;
+namespace WPSPLITE\App\Widen\Routes\CommentColumns;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class CommentColumns extends \WPSPCORELITE\App\Routes\CommentColumns\CommentColumns {
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\App\WordPress\Widgets;
+namespace WPSPLITE\App\WordPress\Widgets;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 use WPSPCORELITE\App\WordPress\Widgets\BaseWidget;
 
 class widget_demo_view extends BaseWidget {

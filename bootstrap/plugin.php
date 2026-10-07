@@ -1,40 +1,40 @@
 <?php
 
-use WPSP\App\Widen\Integrations\Integration;
-use WPSP\App\Widen\Routes\RouteManager;
-use WPSP\App\Widen\Routes\RouteMap;
-use WPSP\WPSP;
-use WPSP\Routes\Actions;
-use WPSP\Routes\AdminBarMenus;
-use WPSP\Routes\AdminPages;
-use WPSP\Routes\Ajaxs;
-use WPSP\Routes\Apis;
-use WPSP\Routes\Blocks;
-use WPSP\Routes\CommentColumns;
-use WPSP\Routes\Customizers;
-use WPSP\Routes\DashboardWidgets;
-use WPSP\Routes\Filters;
-use WPSP\Routes\FrontPages;
-use WPSP\Routes\MediaColumns;
-use WPSP\Routes\MetaBoxes;
-use WPSP\Routes\NavLocations;
-use WPSP\Routes\PluginColumns;
-use WPSP\Routes\PostTypeColumns;
-use WPSP\Routes\PostTypes;
-use WPSP\Routes\RewriteFrontPages;
-use WPSP\Routes\Schedules;
-use WPSP\Routes\Shortcodes;
-use WPSP\Routes\Taxonomies;
-use WPSP\Routes\TaxonomyColumns;
-use WPSP\Routes\ThemeTemplates;
-use WPSP\Routes\UserColumns;
-use WPSP\Routes\UserMetaBoxes;
-use WPSP\Routes\Widgets;
-use WPSP\Routes\WPRoles;
+use WPSPLITE\App\Widen\Integrations\Integration;
+use WPSPLITE\App\Widen\Routes\RouteManager;
+use WPSPLITE\App\Widen\Routes\RouteMap;
+use WPSPLITE\WPSP;
+use WPSPLITE\Routes\Actions;
+use WPSPLITE\Routes\AdminBarMenus;
+use WPSPLITE\Routes\AdminPages;
+use WPSPLITE\Routes\Ajaxs;
+use WPSPLITE\Routes\Apis;
+use WPSPLITE\Routes\Blocks;
+use WPSPLITE\Routes\CommentColumns;
+use WPSPLITE\Routes\Customizers;
+use WPSPLITE\Routes\DashboardWidgets;
+use WPSPLITE\Routes\Filters;
+use WPSPLITE\Routes\FrontPages;
+use WPSPLITE\Routes\MediaColumns;
+use WPSPLITE\Routes\MetaBoxes;
+use WPSPLITE\Routes\NavLocations;
+use WPSPLITE\Routes\PluginColumns;
+use WPSPLITE\Routes\PostTypeColumns;
+use WPSPLITE\Routes\PostTypes;
+use WPSPLITE\Routes\RewriteFrontPages;
+use WPSPLITE\Routes\Schedules;
+use WPSPLITE\Routes\Shortcodes;
+use WPSPLITE\Routes\Taxonomies;
+use WPSPLITE\Routes\TaxonomyColumns;
+use WPSPLITE\Routes\ThemeTemplates;
+use WPSPLITE\Routes\UserColumns;
+use WPSPLITE\Routes\UserMetaBoxes;
+use WPSPLITE\Routes\Widgets;
+use WPSPLITE\Routes\WPRoles;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-define('WPSP_LITE_PLUGIN_START', microtime(true));
+define('WPSP_LITE_LITE_PLUGIN_START', microtime(true));
 
 /**
  * ---

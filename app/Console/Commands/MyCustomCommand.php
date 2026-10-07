@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\Console\Commands;
+namespace WPSPLITE\App\Console\Commands;
 
 use WPSPCORELITE\App\Console\Command;
 
@@ -32,7 +32,7 @@ class MyCustomCommand extends Command {
 		);
 		*/
 
-		echo do_shortcode('[wpsp_content id="8"]');
+		echo do_shortcode('[wpsp_lite_content id="8"]');
 
 		$this->newLine();
 
