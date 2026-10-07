@@ -4,6 +4,7 @@ namespace WPSP\App\WordPress\ThemeTemplates;
 
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\App\Widen\Support\Facades\Request;
+use WPSP\Funcs;
 use WPSPCORE\App\WordPress\ThemeTemplates\BaseThemeTemplates;
 
 class wpsp_right_content extends BaseThemeTemplates {

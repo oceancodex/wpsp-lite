@@ -3,7 +3,29 @@
 namespace WPSP\App\WordPress\AdminPages\wpsp;
 
 //use WPSP\App\Widen\Support\Facades\Request;
+use WPSP\App\Jobs\TestJob;
+use WPSP\App\Models\SettingsModel;
+use WPSP\App\Models\UsersModel;
+use WPSP\App\Models\WPUsersModel;
+use WPSP\App\Notifications\UsersVerifyEmailNotification;
+use WPSP\App\Pipes\Users\FilterByName;
 use WPSP\App\Services\TestService;
+use WPSP\App\Widen\Support\Facades\Artisan;
+use WPSP\App\Widen\Support\Facades\Auth;
+use WPSP\App\Widen\Support\Facades\Blade;
+use WPSP\App\Widen\Support\Facades\Bus;
+use WPSP\App\Widen\Support\Facades\Config;
+use WPSP\App\Widen\Support\Facades\File;
+use WPSP\App\Widen\Support\Facades\Hash;
+use WPSP\App\Widen\Support\Facades\Image;
+use WPSP\App\Widen\Support\Facades\MaintenanceMode;
+use WPSP\App\Widen\Support\Facades\Migration;
+use WPSP\App\Widen\Support\Facades\Notification;
+use WPSP\App\Widen\Support\Facades\Pipeline;
+use WPSP\App\Widen\Support\Facades\Queue;
+use WPSP\App\Widen\Support\Facades\Redirect;
+use WPSP\App\Widen\Support\Facades\Redis;
+use WPSP\App\Widen\Support\Facades\Storage;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
 use WPSP\App\Widen\Support\Facades\Request;
@@ -200,6 +222,7 @@ class wpsp extends BaseAdminPage {
 	 */
 
 	public function index(Request $request) {
+		echo '<pre style="background: white; z-index: 9999; position: relative;">'; print_r($request); echo '</pre>';
 //		$request->session()->put('test_session_array', 'test_session_array'); // Test session trong tab Settings.
 
 		// Test facade: Auth
@@ -254,7 +277,7 @@ class wpsp extends BaseAdminPage {
 //		Redis::del('user:1:name');
 //		$name = Redis::get('user:1:name');
 //		dump($name);
-		$request->capture();
+
 		$requestParams = $request->all();
 		$menuSlug      = $this->menu_slug;
 

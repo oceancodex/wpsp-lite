@@ -2,6 +2,8 @@
 
 use WPSP\App\Widen\Integrations\Integration;
 use WPSP\App\Widen\Routes\RouteManager;
+use WPSP\App\Widen\Routes\RouteMap;
+use WPSP\WPSP;
 use WPSP\Routes\Actions;
 use WPSP\Routes\AdminBarMenus;
 use WPSP\Routes\AdminPages;
@@ -39,7 +41,7 @@ define('WPSP_PLUGIN_START', microtime(true));
  * Start application.
  */
 //add_action('init', function() {
-	$wpsp = new \WPSPCORE\App\Widen\Commons\Application\Application(__DIR__);
+//	$wpsp = WPSP::start();
 //}, 10);
 
 /**

@@ -4,6 +4,7 @@ namespace WPSP\App\WordPress\AdminPages\wpsp;
 
 use WPSP\App\Events\SettingsUpdatedEvent;
 use WPSP\App\Models\SettingsModel;
+use WPSP\App\Widen\Support\Facades\Cookie;
 use WPSP\App\Widen\Traits\InstancesTrait;
 use WPSP\Funcs;
 use WPSP\App\Widen\Support\Facades\Request;

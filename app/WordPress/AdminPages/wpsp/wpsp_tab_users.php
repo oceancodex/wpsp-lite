@@ -3,6 +3,7 @@
 namespace WPSP\App\WordPress\AdminPages\wpsp;
 
 use Illuminate\Support\Facades\Hash;
+use WPSP\App\Widen\Support\Facades\Auth;
 use WPSP\App\Http\Requests\UsersUpdateRequest;
 use WPSP\App\Models\UsersModel;
 use WPSP\App\Widen\Traits\InstancesTrait;
