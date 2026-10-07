@@ -41,7 +41,7 @@ define('WPSP_PLUGIN_START', microtime(true));
  * Start application.
  */
 //add_action('init', function() {
-//	$wpsp = WPSP::start();
+	$wpsp = WPSP::start();
 //}, 10);
 
 /**
