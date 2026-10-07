@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
  * Run WPRP Original with full load WordPress.\
  * Đặt giá trị thành "true" nếu bạn muốn load thêm WordPress.
  */
-define('WPSP_ORIGINAL_WP', false);
+define('WPSP_LITE_ORIGINAL_WP', false);
 
 /**
  * ---
  * Start WPSP Original.
  */
-define('WPSP_ORIGINAL_START', microtime(true));
+define('WPSP_LITE_ORIGINAL_START', microtime(true));
 
 /**
  * ---

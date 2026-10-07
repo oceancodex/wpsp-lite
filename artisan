@@ -36,7 +36,7 @@ use WPSP\Routes\Widgets;
 use WPSP\Routes\WPRoles;
 use WPSP\WPSP;
 
-define('WPSP_ARTISAN_START', microtime(true));
+define('WPSP_LITE_ARTISAN_START', microtime(true));
 
 require_once __DIR__ . '/ArtisanHelpers.php';
 
@@ -60,7 +60,7 @@ if ($ensureDBConnect) {
 				$pluginDirName = plugin_basename($pluginDir);
 
 				if (is_plugin_active($pluginDirName . '/main.php')) {
-					define('WPSP_ACTIVE', true);
+					define('WPSP_LITE_ACTIVE', true);
 				}
 				else {
 					echo "------------------------------------\n";
