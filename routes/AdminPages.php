@@ -4,6 +4,7 @@ namespace WPSPLITE\Routes;
 
 use WPSPLITE\App\Http\Middleware\PreventRequestForgery;
 use WPSPLITE\App\Http\Middleware\PreventRequestForgeryWithoutOrigin;
+use WPSPLITE\App\Http\Middleware\TestMiddleware;
 use WPSPLITE\App\Http\Middleware\VerifiedUserMiddleware;
 use WPSPLITE\App\Widen\Routes\AdminPages\AdminPages as Route;
 use WPSPLITE\App\Http\Middleware\AdministratorCapability;
@@ -64,6 +65,7 @@ class AdminPages {
 			Route::name('license.')->middleware([
 				'relation' => 'AND',
 				[AdministratorCapability::class, 'handle'],
+				[TestMiddleware::class, 'handle'],
 //				[AuthenticationMiddleware::class, 'handle'],
 			])->group(function() {
 				Route::get('wpsp_lite&tab=license', [wpsp_lite_tab_license::class, 'index'])->name('index');
