@@ -102,6 +102,7 @@ class wpsp_lite_tab_tools extends BaseAdminPage {
 		 * và screen layout columns.
 		 */
 		$this->pagenow = $this->funcs->_slugParams(['page', 'tab']);
+		$this->screenId = $this->funcs->_slugParams(['page', 'tab']);
 
 		/**
 		 * Lấy các parameters từ URL để tái sử dụng trong Class này.

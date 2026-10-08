@@ -247,7 +247,7 @@ file_put_contents(__DIR__ . '/../main.php', $mainContent);
 
 // Replace in "ArtisanHelpers.php" file.
 $artisanHelperContent = file_get_contents(__DIR__ . '/../ArtisanHelpers.php');
-$artisanHelperContent = preg_replace('/wpsp_lite/', $projectShortName . '_', $artisanHelperContent);
+$artisanHelperContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $artisanHelperContent);
 $artisanHelperContent = preg_replace('/WPSP_LITE_/', $prefixEnv, $artisanHelperContent);
 file_put_contents(__DIR__ . '/../ArtisanHelpers.php', $artisanHelperContent);
 
@@ -259,7 +259,7 @@ file_put_contents(__DIR__ . '/../composer.json', $composerContent);
 
 // Replace in "ide.json" file.
 $ideContent = file_get_contents(__DIR__ . '/../ide.json');
-$ideContent = preg_replace('/wpsp_lite/iu', $prefixHelpers, $ideContent);
+$ideContent = preg_replace('/wpsp_lite_/iu', $prefixHelpers, $ideContent);
 file_put_contents(__DIR__ . '/../ide.json', $ideContent);
 
 // Replace in "scoper.inc.php" file.
@@ -276,14 +276,14 @@ file_put_contents(__DIR__ . '/../ide.json', $ideContent);
 
 // Replace in "app/Helpers/Helpers.php" file.
 $helperContent = file_get_contents(__DIR__ . '/../app/Helpers/Helpers.php');
-$helperContent = preg_replace('/wpsp_lite/', $prefixHelpers, $helperContent);
+$helperContent = preg_replace('/wpsp_lite_/', $prefixHelpers, $helperContent);
 file_put_contents(__DIR__ . '/../app/Helpers/Helpers.php', $helperContent);
 
 // Replace in Model files.
 $modelPaths = getDirContents(__DIR__ . '/../app/Models');
 foreach ($modelPaths as $modelPath) {
 	$modelContent = file_get_contents($modelPath);
-	$modelContent = preg_replace('/wpsp_lite\'/', $prefixDBTable . '\'', $modelContent);
+	$modelContent = preg_replace('/wpsp_lite_\'/', $prefixDBTable . '\'', $modelContent);
 	$modelContent = preg_replace('/\'wp_wpsp\'/', '\'' . $wpTablePrefix . $projectShortName . '\'', $modelContent);
 	$modelContent = preg_replace('/\'wpsp\'/', '\'' . $projectShortName . '\'', $modelContent);
 	file_put_contents($modelPath, $modelContent);
@@ -306,7 +306,7 @@ file_put_contents(__DIR__ . '/../app/WordPress/AdminPages/wpsp/wpsp_lite_tab_use
 // Replace in config files.
 foreach (getDirContents(__DIR__ . '/../config') as $configPath) {
 	$configContent = file_get_contents($configPath);
-	$configContent = preg_replace('/wpsp_lite\'/', $prefixDBTable . '\'', $configContent);
+	$configContent = preg_replace('/wpsp_lite_\'/', $prefixDBTable . '\'', $configContent);
 	$configContent = preg_replace('/\'wp_wpsp\'/', '\'' . $wpTablePrefix . $projectShortName . '\'', $configContent);
 	$configContent = preg_replace('/\'wpsp\'/', '\'' . $projectShortName . '\'', $configContent);
 	file_put_contents($configPath, $configContent);
@@ -350,12 +350,12 @@ file_put_contents(__DIR__ . '/../public/plugin.json', $pluginContent);
 
 // Replace in "Database.min.js" file.
 $databaseMinContent = file_get_contents(__DIR__ . '/../public/ts/web/admin-pages/wpsp/Database.min.js');
-$databaseMinContent = preg_replace('/wpsp_lite/', $projectShortName . '_', $databaseMinContent);
+$databaseMinContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $databaseMinContent);
 file_put_contents(__DIR__ . '/../public/ts/web/admin-pages/wpsp/Database.min.js', $databaseMinContent);
 
 // Replace in "admin.min.js" file.
 $adminMinContent = file_get_contents(__DIR__ . '/../public/ts/web/admin.min.js');
-$adminMinContent = preg_replace('/wpsp_lite/', $projectShortName . '_', $adminMinContent);
+$adminMinContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $adminMinContent);
 $adminMinContent = preg_replace('/wpsp-lite-admin/', $projectShortName . '-admin', $adminMinContent);
 $adminMinContent = preg_replace('/wpsp-lite-autonumeric/', $projectShortName . '-autonumeric', $adminMinContent);
 file_put_contents(__DIR__ . '/../public/ts/web/admin.min.js', $adminMinContent);
@@ -384,12 +384,12 @@ foreach ($viewPaths as $viewPath) {
 
 // Replace in "Database.ts" file.
 $databaseContent = file_get_contents(__DIR__ . '/../resources/ts/web/admin-pages/wpsp/Database.ts');
-$databaseContent = preg_replace('/wpsp_lite/', $projectShortName . '_', $databaseContent);
+$databaseContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $databaseContent);
 file_put_contents(__DIR__ . '/../resources/ts/web/admin-pages/wpsp/Database.ts', $databaseContent);
 
 // Replace in "admin.ts" file.
 $adminTSContent = file_get_contents(__DIR__ . '/../resources/ts/web/admin.ts');
-$adminTSContent = preg_replace('/wpsp_lite/', $projectShortName . '_', $adminTSContent);
+$adminTSContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $adminTSContent);
 $adminTSContent = preg_replace('/wpsp-lite-admin/', $projectShortName . '-admin', $adminTSContent);
 $adminTSContent = preg_replace('/wpsp-lite-autonumeric/', $projectShortName . '-autonumeric', $adminTSContent);
 file_put_contents(__DIR__ . '/../resources/ts/web/admin.ts', $adminTSContent);
