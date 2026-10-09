@@ -2,9 +2,9 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
+use WPSPCORELITE\App\Support\Facades\Request\Request as RequestCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
-use WPSPCORELITE\App\Request\Request as RequestCore;
 
 class Request extends RequestCore {
 

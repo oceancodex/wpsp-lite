@@ -3,10 +3,8 @@
 namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
-use Symfony\Component\HttpFoundation\Response;
 use WPSPCORELITE\App\Routes\RouteTrait;
 use WPSPCORELITE\App\Http\Request;
-use WPSPLITE\App\Widen\Support\Facades\Auth;
 use WPSPLITE\Funcs;
 
 class AuthenticationMiddleware {
@@ -14,7 +12,7 @@ class AuthenticationMiddleware {
 	use RouteTrait;
 
 	public function handle(Request $request, Closure $next, $args = []) {
-		if (!Auth::check()) {
+		if (is_user_logged_in()) {
 			$requestPath = ltrim($request->getRequestUri(), '/\\');
 
 			/**
@@ -35,8 +33,8 @@ class AuthenticationMiddleware {
 				|| @preg_match(Funcs::instance()->_regexPath($args['route']->fullPathRegex), $requestPath)
 			) {
 				$currentBlockMiddleware = $args['current_block_middleware'] ?? [];
-				$relation    = $currentBlockMiddleware['relation'] ?? 'and';
-				$relation    = strtolower($relation);
+				$relation               = $currentBlockMiddleware['relation'] ?? 'and';
+				$relation               = strtolower($relation);
 
 				/**
 				 * Nếu relation là "OR" thì chỉ redirect khi middleware này là middleware cuối cùng trong middleware group.
@@ -49,9 +47,10 @@ class AuthenticationMiddleware {
 							wp_send_json(Funcs::response(false, null, 'Authentication false'), 403);
 						}
 						else {
-							wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp_lite_auth.login', true));
+							return wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp_lite_auth.login', true));
 						}
-						return new Response('Authentication false', 403);
+
+						return new \WP_HTTP_Response('Authentication false', 403);
 					}
 				}
 
@@ -63,10 +62,10 @@ class AuthenticationMiddleware {
 						wp_send_json(Funcs::response(false, null, 'Authentication false'), 403);
 					}
 					else {
-						wp_redirect(Funcs::route('RewriteFrontPages', 'auth.login', true));
-						exit;
+						return wp_redirect(Funcs::route('AdminPages', 'wpsp_lite.index', ['error' => 'AuthenticationMiddleware'], true));
 					}
-					return new Response('Authentication false', 403);
+
+					return new \WP_HTTP_Response('Authentication false', 403);
 				}
 			}
 

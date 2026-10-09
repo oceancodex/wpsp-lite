@@ -3,11 +3,11 @@
 namespace WPSPLITE;
 
 use Faker\Factory as Faker;
-use Illuminate\Http\Request;
 use NumberFormatter;
 use WPSPLITE\App\Widen\Routes\RouteMap;
 use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
 use WPSPLITE\App\Widen\Support\Facades\Session;
+use WPSPCORELITE\App\Http\Request;
 
 class Funcs extends \WPSPCORELITE\Funcs {
 
@@ -172,7 +172,7 @@ class Funcs extends \WPSPCORELITE\Funcs {
 	/**
 	 * Tự động hiển thị admin notice khi thực hiện các actions.
 	 */
-	public static function actionNotice(?\Illuminate\Http\Request $request = null) {
+	public static function actionNotice(?Request $request = null) {
 		if ($request?->query('saved') || isset($_GET['saved'])) {
 			Funcs::notice(Funcs::trans('messages.notice_saved'), $_GET['notice_type'] ?? 'success');
 		}
@@ -192,7 +192,7 @@ class Funcs extends \WPSPCORELITE\Funcs {
 			Funcs::notice(Funcs::trans('messages.notice_locked'), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($error = ($request?->query('error') ?? $_GET['error'] ?? null)) {
-			Funcs::notice(Funcs::trans('messages.notice_error', ['error' => $_GET['error'] ?? $err ?? '']), $_GET['notice_type'] ?? 'error');
+			Funcs::notice(Funcs::trans($error, ['error' => $_GET['error'] ?? $err ?? '']), $_GET['notice_type'] ?? 'error');
 		}
 		elseif ($message = ($request?->query('message') ?? $_GET['message'] ?? null)) {
 			Funcs::notice(Funcs::trans('messages.notice_message', ['message' => $_GET['message'] ?? $msg ?? '']), $_GET['notice_type'] ?? 'info');

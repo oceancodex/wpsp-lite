@@ -2,9 +2,9 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
+use WPSPCORELITE\App\Support\Facades\Artisan\Artisan as ArtisanCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
-use WPSPCORELITE\App\Artisan\Artisan as ArtisanCore;
 
 class Artisan extends ArtisanCore {
 

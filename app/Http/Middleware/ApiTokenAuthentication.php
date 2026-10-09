@@ -15,11 +15,6 @@ class ApiTokenAuthentication {
 			return false;
 		}
 
-		$tokenHash = hash('sha256', $token);
-		if (!UsersModel::where('api_token', $tokenHash)->first()) {
-			return false;
-		}
-
 		return true;
 	}
 
