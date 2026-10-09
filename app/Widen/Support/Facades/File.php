@@ -2,9 +2,9 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
+use WPSPCORELITE\App\Support\Facades\File\File as FileCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
-use WPSPCORELITE\App\File\File as FileCore;
 
 class File extends FileCore {
 
