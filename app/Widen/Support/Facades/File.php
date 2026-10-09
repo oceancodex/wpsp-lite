@@ -24,7 +24,7 @@ class File extends FileCore {
 				Funcs::instance()->_getPrefixEnv(),
 				[]
 			);
-			$instance->setFacade();
+//			$instance->setFacade();
 			static::$instance = $instance;
 		}
 		return static::$instance;
