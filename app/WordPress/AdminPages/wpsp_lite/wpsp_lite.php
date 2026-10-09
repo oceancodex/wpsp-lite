@@ -200,8 +200,8 @@ class wpsp_lite extends BaseAdminPage {
 	 */
 
 	public function index(Request $request) {
-		$code = Artisan::call('custom:my-custom-command');
-		echo '<pre style="background:#1e1e1e;color:#d4d4d4;padding:16px;border-radius:4px;overflow:auto;">' . Artisan::outputHtml() . '</pre>';
+//		$code = Artisan::call('custom:my-custom-command');
+//		echo '<pre style="background:#1e1e1e;color:#d4d4d4;padding:16px;border-radius:4px;overflow:auto;">' . Artisan::outputHtml() . '</pre>';
 
 //		$request->session()->put('test_session_array', 'test_session_array'); // Test session trong tab Settings.
 
