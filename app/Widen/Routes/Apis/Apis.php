@@ -1,15 +1,15 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Apis;
+namespace WPSPLITE\App\Widen\Routes\Apis;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
-class Apis extends \WPSPCORE\App\Routes\Apis\Apis {
+class Apis extends \WPSPCORELITE\App\Routes\Apis\Apis {
 
 	use InstancesTrait;
 
-//	public $defaultNamespace = 'wpsp';
+//	public $defaultNamespace = 'wpsp_lite';
 	public $defaultVersion   = 'v1';
 
 	/*

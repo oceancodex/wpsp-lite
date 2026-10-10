@@ -4,4 +4,4 @@
     <hr class="wp-header-end">
     <?php global $notice; echo $notice ?? '' ?>
     <?php if (isset($navigation)) { include($navigation); } ?>
-    <div class="wpsp-admin-page-content">
+    <div class="wpsp-lite-admin-page-content">

@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\Database\Factories;
+namespace WPSPLITE\Database\Factories;
 
-use WPSP\App\Models\UsersModel;
+use WPSPLITE\App\Models\UsersModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;

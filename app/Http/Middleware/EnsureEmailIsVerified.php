@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Redirect;
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 class EnsureEmailIsVerified {
 
@@ -22,8 +22,8 @@ class EnsureEmailIsVerified {
 		 * Nếu không kiểm tra path thì sẽ luôn bị redirect về trang login với bất cứ request nào.
 		 */
 		if (
-			(is_admin() && preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath))
-			|| preg_match('/^' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
+			(is_admin() && @preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath))
+			|| @preg_match('/^' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
 		) {
 			if (!$request->user() || ($request->user() instanceof MustVerifyEmail && !$request->user()->hasVerifiedEmail())) {
 				if ($request->expectsJson()) {

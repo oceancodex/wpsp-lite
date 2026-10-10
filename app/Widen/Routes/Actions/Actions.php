@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Actions;
+namespace WPSPLITE\App\Widen\Routes\Actions;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class Actions extends \WPSPCORE\App\Routes\Actions\Actions {
+class Actions extends \WPSPCORELITE\App\Routes\Actions\Actions {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class Actions extends \WPSPCORE\App\Routes\Actions\Actions {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

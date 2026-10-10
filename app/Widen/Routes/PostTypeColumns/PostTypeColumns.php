@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\PostTypeColumns;
+namespace WPSPLITE\App\Widen\Routes\PostTypeColumns;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class PostTypeColumns extends \WPSPCORE\App\Routes\PostTypeColumns\PostTypeColumns {
+class PostTypeColumns extends \WPSPCORELITE\App\Routes\PostTypeColumns\PostTypeColumns {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class PostTypeColumns extends \WPSPCORE\App\Routes\PostTypeColumns\PostTypeColum
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

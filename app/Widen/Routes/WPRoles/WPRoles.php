@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\WPRoles;
+namespace WPSPLITE\App\Widen\Routes\WPRoles;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class WPRoles extends \WPSPCORE\App\Routes\WPRoles\WPRoles {
+class WPRoles extends \WPSPCORELITE\App\Routes\WPRoles\WPRoles {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class WPRoles extends \WPSPCORE\App\Routes\WPRoles\WPRoles {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

@@ -38,7 +38,7 @@ export default function Edit({ attributes, setAttributes }) {
 			<p>
 				{ __(
 					'Custom block "block-demo" - editor content',
-					'wpsp'
+					'wpsp_lite'
 				) }
 			</p>
 			<div>

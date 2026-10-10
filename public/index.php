@@ -5,15 +5,16 @@ use Illuminate\Http\Request;
 
 /**
  * ---
- * Run WPRP Original with full load WordPress.
+ * Run WPRP Original with full load WordPress.\
+ * Đặt giá trị thành "true" nếu bạn muốn load thêm WordPress.
  */
-define('WPSP_ORIGINAL_WP', false);
+define('WPSP_LITE_LITE_ORIGINAL_WP', false);
 
 /**
  * ---
  * Start WPSP Original.
  */
-define('WPSP_ORIGINAL_START', microtime(true));
+define('WPSP_LITE_LITE_ORIGINAL_START', microtime(true));
 
 /**
  * ---
@@ -27,7 +28,7 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
  * ---
  * Load full WordPress if you need.
  */
-if (defined('WPSP_ORIGINAL_WP') && WPSP_ORIGINAL_WP) {
+if (defined('WPSP_LITE_ORIGINAL_WP') && WPSP_LITE_ORIGINAL_WP) {
 	require_once __DIR__.'/../../../../wp-load.php';
 }
 

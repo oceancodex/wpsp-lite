@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\AdminBarMenus;
+namespace WPSPLITE\App\Widen\Routes\AdminBarMenus;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class AdminBarMenus extends \WPSPCORE\App\Routes\AdminBarMenus\AdminBarMenus {
+class AdminBarMenus extends \WPSPCORELITE\App\Routes\AdminBarMenus\AdminBarMenus {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class AdminBarMenus extends \WPSPCORE\App\Routes\AdminBarMenus\AdminBarMenus {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace WPSP\routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\Shortcodes\Shortcodes as Route;
-use WPSP\App\WordPress\Shortcodes\custom_shortcode;
-use WPSP\App\WordPress\Shortcodes\rewrite_front_page_content;
-use WPSP\App\WordPress\Shortcodes\wpsp_content;
-use WPSPCORE\App\Routes\Shortcodes\ShortcodesRouteTrait;
+use WPSPLITE\App\Widen\Routes\Shortcodes\Shortcodes as Route;
+use WPSPLITE\App\WordPress\Shortcodes\custom_shortcode;
+use WPSPLITE\App\WordPress\Shortcodes\rewrite_front_page_content;
+use WPSPLITE\App\WordPress\Shortcodes\wpsp_lite_content;
+use WPSPCORELITE\App\Routes\Shortcodes\ShortcodesRouteTrait;
 
 class Shortcodes {
 
@@ -17,7 +17,7 @@ class Shortcodes {
 	 */
 
 	public function shortcodes() {
-		Route::shortcode('wpsp_content', [wpsp_content::class, 'index']);
+		Route::shortcode('wpsp_lite_content', [wpsp_lite_content::class, 'index']);
 		Route::shortcode('rewrite_front_page_content', [rewrite_front_page_content::class, 'index']);
 		Route::shortcode('custom_shortcode', [custom_shortcode::class, 'index']);
 	}

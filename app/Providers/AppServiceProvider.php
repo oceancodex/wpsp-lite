@@ -1,8 +1,9 @@
 <?php
 
-namespace WPSP\App\Providers;
+namespace WPSPLITE\App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use WPSPCORELITE\App\Http\Request;
+use WPSPCORELITE\App\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
 

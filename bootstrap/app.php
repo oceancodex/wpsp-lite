@@ -3,9 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use WPSP\WPSP;
+use WPSPLITE\WPSP;
 
-if (defined('WPSP_ORIGINAL_WP') && WPSP_ORIGINAL_WP) {
+if (defined('WPSP_LITE_ORIGINAL_WP') && WPSP_LITE_ORIGINAL_WP) {
 	$wpsp = WPSP::start(false);
 	$app  = $wpsp->getApplication();
 	return $app;
@@ -16,6 +16,7 @@ else {
 			web     : __DIR__ . '/../routes/original/web.php',
 			api     : __DIR__ . '/../routes/original/api.php',
 			commands: __DIR__ . '/../routes/original/console.php',
+			channels: __DIR__ . '/../routes/original/channels.php',
 			health  : '/up',
 //			apiPrefix: 'api/admin',
 		)
@@ -23,6 +24,8 @@ else {
 			//
 		})
 		->withExceptions(function(Exceptions $exceptions): void {
-			//
+			$exceptions->shouldRenderJsonWhen(
+				fn(\Illuminate\Http\Request $request) => $request->is('api/*') || $request->expectsJson(),
+			);
 		})->create();
 }

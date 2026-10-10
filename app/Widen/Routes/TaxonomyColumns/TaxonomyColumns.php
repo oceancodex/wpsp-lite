@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\TaxonomyColumns;
+namespace WPSPLITE\App\Widen\Routes\TaxonomyColumns;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class TaxonomyColumns extends \WPSPCORE\App\Routes\TaxonomyColumns\TaxonomyColumns {
+class TaxonomyColumns extends \WPSPCORELITE\App\Routes\TaxonomyColumns\TaxonomyColumns {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class TaxonomyColumns extends \WPSPCORE\App\Routes\TaxonomyColumns\TaxonomyColum
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

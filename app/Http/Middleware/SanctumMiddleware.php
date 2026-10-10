@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
 use Laravel\Sanctum\PersonalAccessToken;

@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP\App\Widen\Routes;
+namespace WPSPLITE\App\Widen\Routes;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\Funcs;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 
-class RouteMap extends \WPSPCORE\App\Routes\RouteMap {
+class RouteMap extends \WPSPCORELITE\App\Routes\RouteMap {
 
 	use InstancesTrait;
 

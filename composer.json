@@ -1,6 +1,6 @@
 {
-	"name": "oceancodex/wpsp-lite",
-	"version": "13.1.11",
+	"name": "oceancodex/wpsp-lite-lite",
+	"version": "13.1.61",
 	"description": "WPSP Framework - WordPress Starter Plugin - Lite",
 	"keywords": [
 		"wordpress plugin",
@@ -17,23 +17,15 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": "^8.3",
+		"ext-fileinfo": "*",
 		"ext-intl": "*",
 		"ext-json": "*",
 		"ext-mbstring": "*",
+		"ext-mysqli": "*",
 		"ext-pdo": "*",
-		"ext-readline": "*",
-		"laravel/sanctum": "^4.0",
-		"oceancodex/wpsp-core-lite": "^13.0",
-		"spatie/laravel-activitylog": "^4.12",
-		"spatie/laravel-permission": "^6.25"
+		"oceancodex/wpsp-core-lite": "^13.0"
 	},
 	"require-dev": {
-		"fakerphp/faker": "^v1.24",
-		"laravel/pail": "^v1.2",
-		"laravel/pao": "^1.0",
-		"laravel/pint": "^v1.29",
-		"mockery/mockery": "^1.6",
-		"nunomaduro/collision": "^v8.9",
 		"phpunit/phpunit": "^12.5"
 	},
 	"repositories": [
@@ -47,11 +39,13 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"WPSP\\": "",
-			"WPSP\\App\\": "app/",
-			"WPSP\\Database\\Factories\\": "database/factories/",
-			"WPSP\\Database\\Migrations\\": "database/migrations/",
-			"WPSP\\Database\\Seeders\\": "database/seeders/"
+			"WPSPLITE\\": "",
+			"WPSPLITE\\App\\": "app/",
+			"WPSPLITE\\Tests\\": "tests/",
+			"WPSPLITE\\Routes\\": "routes/",
+			"WPSPLITE\\Database\\Factories\\": "database/factories/",
+			"WPSPLITE\\Database\\Migrations\\": "database/migrations/",
+			"WPSPLITE\\Database\\Seeders\\": "database/seeders/"
 		},
 		"files": [
 			"app/Helpers/Helpers.php"
@@ -62,7 +56,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"WPSP\\Tests\\": "tests/"
+			"WPSPLITE\\Tests\\": "tests/"
 		}
 	},
 	"authors": [
@@ -72,9 +66,15 @@
 		}
 	],
 	"scripts": {
-		"dev": [],
-		"test": [],
 		"setup": [],
+		"dev": [
+			"Composer\\Config::disableProcessTimeout",
+			"npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
+		],
+		"test": [
+			"@php artisan config:clear --ansi @no_additional_args",
+			"@php artisan test"
+		],
 		"post-install-cmd": [
 			"@php -r \"@unlink('bootstrap/cache/services.php'); @unlink('bootstrap/cache/packages.php');\""
 		],
@@ -83,7 +83,9 @@
 		],
 		"post-autoload-dump": [],
 		"post-root-package-install": [],
-		"post-create-project-cmd": [],
+		"post-create-project-cmd": [
+			"@php -r \"file_exists('database/database.sqlite') || @touch('database/database.sqlite');\""
+		],
 		"pre-package-uninstall": []
 	},
 	"config": {
@@ -95,7 +97,7 @@
 			"pestphp/pest-plugin": true,
 			"php-http/discovery": true
 		},
-		"autoloader-suffix": "_wpsp_1719507008"
+		"autoloader-suffix": "_wpsp_lite_1719507008"
 	},
 	"minimum-stability": "stable",
 	"prefer-stable": true

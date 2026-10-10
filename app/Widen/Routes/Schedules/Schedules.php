@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Schedules;
+namespace WPSPLITE\App\Widen\Routes\Schedules;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class Schedules extends \WPSPCORE\App\Routes\Schedules\Schedules {
+class Schedules extends \WPSPCORELITE\App\Routes\Schedules\Schedules {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class Schedules extends \WPSPCORE\App\Routes\Schedules\Schedules {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }
