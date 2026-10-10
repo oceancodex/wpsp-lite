@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 return [
 
@@ -16,7 +16,7 @@ return [
     |
     */
 
-	'default' => env('WPSP_CACHE_STORE', 'database'),
+	'default' => env('WPSP_LITE_CACHE_STORE', 'database'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,10 +54,10 @@ return [
 
 		'database' => [
 			'driver' => 'database',
-			'connection' => env('WPSP_DB_CACHE_CONNECTION'),
-			'table' => env('WPSP_DB_CACHE_TABLE', 'cache'),
-			'lock_connection' => env('WPSP_DB_CACHE_LOCK_CONNECTION'),
-			'lock_table' => env('WPSP_DB_CACHE_LOCK_TABLE'),
+			'connection' => env('WPSP_LITE_DB_CACHE_CONNECTION'),
+			'table' => env('WPSP_LITE_DB_CACHE_TABLE', 'cache'),
+			'lock_connection' => env('WPSP_LITE_DB_CACHE_LOCK_CONNECTION'),
+			'lock_table' => env('WPSP_LITE_DB_CACHE_LOCK_TABLE'),
 		],
 
 		'file' => [
@@ -68,18 +68,18 @@ return [
 
 		'memcached' => [
 			'driver' => 'memcached',
-			'persistent_id' => env('WPSP_MEMCACHED_PERSISTENT_ID'),
+			'persistent_id' => env('WPSP_LITE_MEMCACHED_PERSISTENT_ID'),
 			'sasl' => [
-				env('WPSP_MEMCACHED_USERNAME'),
-				env('WPSP_MEMCACHED_PASSWORD'),
+				env('WPSP_LITE_MEMCACHED_USERNAME'),
+				env('WPSP_LITE_MEMCACHED_PASSWORD'),
 			],
 			'options' => [
 				// Memcached::OPT_CONNECT_TIMEOUT => 2000,
 			],
 			'servers' => [
 				[
-					'host' => env('WPSP_MEMCACHED_HOST', '127.0.0.1'),
-					'port' => env('WPSP_MEMCACHED_PORT', 11211),
+					'host' => env('WPSP_LITE_MEMCACHED_HOST', '127.0.0.1'),
+					'port' => env('WPSP_LITE_MEMCACHED_PORT', 11211),
 					'weight' => 100,
 				],
 			],
@@ -87,17 +87,17 @@ return [
 
 		'redis' => [
 			'driver' => 'redis',
-			'connection' => env('WPSP_REDIS_CACHE_CONNECTION', 'cache'),
-			'lock_connection' => env('WPSP_REDIS_CACHE_LOCK_CONNECTION', 'default'),
+			'connection' => env('WPSP_LITE_REDIS_CACHE_CONNECTION', 'cache'),
+			'lock_connection' => env('WPSP_LITE_REDIS_CACHE_LOCK_CONNECTION', 'default'),
 		],
 
 		'dynamodb' => [
 			'driver' => 'dynamodb',
-			'key' => env('WPSP_AWS_ACCESS_KEY_ID'),
-			'secret' => env('WPSP_AWS_SECRET_ACCESS_KEY'),
-			'region' => env('WPSP_AWS_DEFAULT_REGION', 'us-east-1'),
-			'table' => env('WPSP_DYNAMODB_CACHE_TABLE', 'cache'),
-			'endpoint' => env('WPSP_DYNAMODB_ENDPOINT'),
+			'key' => env('WPSP_LITE_AWS_ACCESS_KEY_ID'),
+			'secret' => env('WPSP_LITE_AWS_SECRET_ACCESS_KEY'),
+			'region' => env('WPSP_LITE_AWS_DEFAULT_REGION', 'us-east-1'),
+			'table' => env('WPSP_LITE_DYNAMODB_CACHE_TABLE', 'cache'),
+			'endpoint' => env('WPSP_LITE_DYNAMODB_ENDPOINT'),
 		],
 
 		'octane' => [
@@ -125,6 +125,19 @@ return [
     |
     */
 
-	'prefix' => env('WPSP_CACHE_PREFIX', Str::slug((string) env('WPSP_APP_SHORT_NAME', 'wpsp')).'-cache-'),
+	'prefix' => env('WPSP_LITE_CACHE_PREFIX', Str::slug((string) env('WPSP_LITE_APP_SHORT_NAME', 'wpsp_lite')).'-cache-'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Serializable Classes
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the classes that can be unserialized from cache
+    | storage. By default, no PHP classes will be unserialized from your
+    | cache to prevent gadget chain attacks if your APP_KEY is leaked.
+    |
+    */
+
+    'serializable_classes' => true,
 
 ];

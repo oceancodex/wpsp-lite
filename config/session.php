@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 return [
 
@@ -19,7 +19,7 @@ return [
     |
     */
 
-	'driver' => env('WPSP_SESSION_DRIVER', 'database'),
+	'driver' => env('WPSP_LITE_SESSION_DRIVER', 'database'),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,9 +33,9 @@ return [
     |
     */
 
-	'lifetime' => (int) env('WPSP_SESSION_LIFETIME', 120),
+	'lifetime' => (int) env('WPSP_LITE_SESSION_LIFETIME', 120),
 
-	'expire_on_close' => env('WPSP_SESSION_EXPIRE_ON_CLOSE', false),
+	'expire_on_close' => env('WPSP_LITE_SESSION_EXPIRE_ON_CLOSE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -48,7 +48,7 @@ return [
     |
     */
 
-	'encrypt' => env('WPSP_SESSION_ENCRYPT', false),
+	'encrypt' => env('WPSP_LITE_SESSION_ENCRYPT', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -74,7 +74,7 @@ return [
     |
     */
 
-	'connection' => env('WPSP_SESSION_CONNECTION'),
+	'connection' => env('WPSP_LITE_SESSION_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ return [
     |
     */
 
-	'table' => env('WPSP_SESSION_TABLE', 'sessions'),
+	'table' => env('WPSP_LITE_SESSION_TABLE', 'sessions'),
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ return [
     |
     */
 
-	'store' => env('WPSP_SESSION_STORE'),
+	'store' => env('WPSP_LITE_SESSION_STORE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -129,8 +129,8 @@ return [
     */
 
 	'cookie' => env(
-		'WPSP_SESSION_COOKIE',
-		Str::slug((string) env('WPSP_APP_SHORT_NAME', 'wpsp')).'-session'
+		'WPSP_LITE_SESSION_COOKIE',
+		Str::slug((string) env('WPSP_LITE_APP_SHORT_NAME', 'wpsp_lite')).'-session'
 	),
 
     /*
@@ -144,7 +144,7 @@ return [
     |
     */
 
-	'path' => env('WPSP_SESSION_PATH', '/'),
+	'path' => env('WPSP_LITE_SESSION_PATH', '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -157,7 +157,7 @@ return [
     |
     */
 
-	'domain' => env('WPSP_SESSION_DOMAIN'),
+	'domain' => env('WPSP_LITE_SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -170,7 +170,7 @@ return [
     |
     */
 
-	'secure' => env('WPSP_SESSION_SECURE_COOKIE', false),
+	'secure' => env('WPSP_LITE_SESSION_SECURE_COOKIE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -183,7 +183,7 @@ return [
     |
     */
 
-	'http_only' => env('WPSP_SESSION_HTTP_ONLY', true),
+	'http_only' => env('WPSP_LITE_SESSION_HTTP_ONLY', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -200,7 +200,7 @@ return [
     |
     */
 
-	'same_site' => env('WPSP_SESSION_SAME_SITE', 'lax'),
+	'same_site' => env('WPSP_LITE_SESSION_SAME_SITE', 'lax'),
 
     /*
     |--------------------------------------------------------------------------
@@ -213,6 +213,22 @@ return [
     |
     */
 
-	'partitioned' => env('WPSP_SESSION_PARTITIONED_COOKIE', false),
+	'partitioned' => env('WPSP_LITE_SESSION_PARTITIONED_COOKIE', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Session Serialization
+    |--------------------------------------------------------------------------
+    |
+    | This value controls the serialization strategy for session data, which
+    | is JSON by default. Setting this to "php" allows the storage of PHP
+    | objects in the session but can make an application vulnerable to
+    | "gadget chain" serialization attacks if the APP_KEY is leaked.
+    |
+    | Supported: "json", "php"
+    |
+    */
+
+    'serialization' => 'json',
 
 ];

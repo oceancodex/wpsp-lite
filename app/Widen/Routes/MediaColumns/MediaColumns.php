@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\MediaColumns;
+namespace WPSPLITE\App\Widen\Routes\MediaColumns;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class MediaColumns extends \WPSPCORE\App\Routes\MediaColumns\MediaColumns {
+class MediaColumns extends \WPSPCORELITE\App\Routes\MediaColumns\MediaColumns {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class MediaColumns extends \WPSPCORE\App\Routes\MediaColumns\MediaColumns {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

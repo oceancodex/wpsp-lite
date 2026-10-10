@@ -1,5 +1,5 @@
 <?php
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 return [
 
@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'default' => env('WPSP_FILESYSTEM_DRIVER', 'local'),
+    'default' => env('WPSP_LITE_FILESYSTEM_DRIVER', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
         'public' => [
             'driver'     => 'local',
             'root'       => Funcs::instance()->_getStoragePath('app/public'),
-            'url'        => rtrim(env('WPSP_APP_URL', 'http://localhost'), '/') . '/storage',
+            'url'        => rtrim(env('WPSP_LITE_APP_URL', 'http://localhost'), '/') . '/storage',
             'visibility' => 'public',
             'throw'      => false,
             'report'	 => false,
@@ -50,13 +50,13 @@ return [
 
         's3' => [
             'driver'                  => 's3',
-            'key'                     => env('WPSP_AWS_ACCESS_KEY_ID'),
-            'secret'                  => env('WPSP_AWS_SECRET_ACCESS_KEY'),
-            'region'                  => env('WPSP_AWS_DEFAULT_REGION'),
-            'bucket'                  => env('WPSP_AWS_BUCKET'),
-            'url'                     => env('WPSP_AWS_URL'),
-            'endpoint'                => env('WPSP_AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('WPSP_AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'key'                     => env('WPSP_LITE_AWS_ACCESS_KEY_ID'),
+            'secret'                  => env('WPSP_LITE_AWS_SECRET_ACCESS_KEY'),
+            'region'                  => env('WPSP_LITE_AWS_DEFAULT_REGION'),
+            'bucket'                  => env('WPSP_LITE_AWS_BUCKET'),
+            'url'                     => env('WPSP_LITE_AWS_URL'),
+            'endpoint'                => env('WPSP_LITE_AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('WPSP_LITE_AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw'                   => false,
             'report' 				  => false,
         ],

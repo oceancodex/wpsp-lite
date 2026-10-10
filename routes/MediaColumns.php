@@ -1,10 +1,11 @@
 <?php
 
-namespace WPSP\routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\MediaColumns\MediaColumns as Route;
-use WPSP\App\WordPress\MediaColumns\custom_column;
-use WPSPCORE\App\Routes\MediaColumns\MediaColumnsRouteTrait;
+use WPSPLITE\App\Widen\Routes\MediaColumns\MediaColumns as Route;
+use WPSPLITE\App\WordPress\MediaColumns\custom_column;
+use WPSPLITE\App\WordPress\MediaColumns\custom_column_view;
+use WPSPCORELITE\App\Routes\MediaColumns\MediaColumnsRouteTrait;
 
 class MediaColumns {
 
@@ -16,6 +17,7 @@ class MediaColumns {
 
 	public function media_columns() {
 		Route::column('custom_column', [custom_column::class, 'index']);
+		Route::column('custom_column_view', [custom_column_view::class, 'index']);
 	}
 
 	/*

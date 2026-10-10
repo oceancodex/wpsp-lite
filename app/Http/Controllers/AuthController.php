@@ -1,8 +1,8 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
-use WPSPCORE\App\Http\Controllers\BaseController;
+use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class AuthController extends BaseController {
 

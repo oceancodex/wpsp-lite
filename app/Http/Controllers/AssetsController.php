@@ -1,34 +1,56 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
-use WPSP\Funcs;
-use WPSPCORE\App\Http\Controllers\BaseController;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
+use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class AssetsController extends BaseController {
 
-	public function frontend() {
-//		wp_enqueue_style(Funcs::config('app.short_name') . '-frontend', Funcs::asset('/css/frontend.min.css'), 9999, time());
-//		wp_enqueue_script(Funcs::config('app.short_name') . '-frontend', Funcs::asset('/js/web/main.min.js'), 9999, time(), true);
+	use InstancesTrait;
 
-		if (Funcs::env('WPSP_APP_DEBUG_LIVE_RELOAD') === 'true') {
-			wp_enqueue_script(Funcs::config('app.short_name') . '-socketio', Funcs::asset('widen/plugins/socketio/socket.io.min.js'), 9999, time(), ['in_footer' => 'true']);
-			wp_enqueue_script(Funcs::config('app.short_name') . '-live-reload', Funcs::asset('node/live-reload.js'), ['jquery'], time(), ['in_footer' => 'true']);
+	/*
+	 *
+	 */
+
+	public $version = null;
+
+	/*
+	 *
+	 */
+
+	public function __instanceConstruct() {
+		$this->version = Funcs::getVersion();
+	}
+
+	/*
+	 *
+	 */
+
+	public function frontend() {
+//		wp_enqueue_style(Funcs::config('app.short_name') . '-frontend', Funcs::asset('/css/frontend.min.css'), null, $this->version);
+//		wp_enqueue_script(Funcs::config('app.short_name') . '-frontend', Funcs::asset('/js/web/main.min.js'), null, $this->version, true);
+
+		if (Funcs::config('app.debug_live_reload')) {
+			wp_enqueue_script(Funcs::config('app.short_name') . '-socketio', Funcs::asset('widen/plugins/socketio/socket.io.min.js'), null, $this->version, ['in_footer' => 'true']);
+			wp_enqueue_script(Funcs::config('app.short_name') . '-live-reload', Funcs::asset('node/live-reload.js'), ['jquery'], $this->version, ['in_footer' => 'true']);
 		}
 	}
 
 	public function backend() {
-		wp_enqueue_style(Funcs::config('app.short_name') . '-backend', Funcs::asset('/scss/admin.min.css'), 9999, time());
+		wp_enqueue_style(Funcs::config('app.short_name') . '-backend-scss', Funcs::asset('/scss/admin.min.css'), null, $this->version);
+		wp_enqueue_style(Funcs::config('app.short_name') . '-loading-indicator', Funcs::asset('/widen/plugins/loading-indicator/css/loading-indicator.css'), null, $this->version);
 
-		if (Funcs::env('WPSP_APP_DEBUG_LIVE_RELOAD') === 'true') {
-			wp_enqueue_script(Funcs::config('app.short_name') . '-socketio', Funcs::asset('widen/plugins/socketio/socket.io.min.js'), 9999, time(), ['in_footer' => 'true']);
-			wp_enqueue_script(Funcs::config('app.short_name') . '-live-reload', Funcs::asset('node/live-reload.js'), ['jquery'], time(), ['in_footer' => 'true']);
+		if (Funcs::config('app.debug_live_reload')) {
+			wp_enqueue_script(Funcs::config('app.short_name') . '-socketio', Funcs::asset('widen/plugins/socketio/socket.io.min.js'), null, $this->version, ['in_footer' => 'true']);
+			wp_enqueue_script(Funcs::config('app.short_name') . '-live-reload', Funcs::asset('node/live-reload.js'), ['jquery'], $this->version, ['in_footer' => 'true']);
 		}
 
 //		wp_enqueue_script('dashboard');
 		wp_enqueue_script('postbox');
-
-		wp_enqueue_script(Funcs::config('app.short_name') . '-backend', Funcs::asset('/ts/app.min.js'), 9999, time(), true);
+		wp_enqueue_script(Funcs::config('app.short_name') . '-backend-app', Funcs::asset('/ts/app.min.js'), null, $this->version, true);
+		wp_enqueue_script(Funcs::config('app.short_name') . '-loading-indicator', Funcs::asset('widen/plugins/loading-indicator/js/loading-indicator.js'), null, $this->version, true);
 	}
 
 }

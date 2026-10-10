@@ -1,20 +1,18 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use WPSP\App\Widen\Support\Facades\Auth;
-use WPSP\Funcs;
-use WPSPCORE\App\Routes\RouteTrait;
+use WPSPCORELITE\App\Routes\RouteTrait;
+use WPSPCORELITE\App\Http\Request;
+use WPSPLITE\Funcs;
 
 class AuthenticationMiddleware {
 
 	use RouteTrait;
 
 	public function handle(Request $request, Closure $next, $args = []) {
-		if (!Auth::check()) {
+		if (is_user_logged_in()) {
 			$requestPath = ltrim($request->getRequestUri(), '/\\');
 
 			/**
@@ -24,12 +22,19 @@ class AuthenticationMiddleware {
 			 * Nếu không kiểm tra path thì sẽ luôn bị redirect về trang login với bất cứ request nào.
 			 */
 			if (
-				(is_admin() && preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath))
-				|| preg_match('/^' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
+				(is_admin()
+					&& (
+						@preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
+						|| @preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->fullPathRegex) . '$/iu', $requestPath)
+					)
+				)
+				|| @preg_match('/^' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
+				|| @preg_match('/' . Funcs::instance()->_regexPath($args['route']->fullPathRegex) . '/iu', $requestPath)
+				|| @preg_match(Funcs::instance()->_regexPath($args['route']->fullPathRegex), $requestPath)
 			) {
 				$currentBlockMiddleware = $args['current_block_middleware'] ?? [];
-				$relation    = $currentBlockMiddleware['relation'] ?? 'and';
-				$relation    = strtolower($relation);
+				$relation               = $currentBlockMiddleware['relation'] ?? 'and';
+				$relation               = strtolower($relation);
 
 				/**
 				 * Nếu relation là "OR" thì chỉ redirect khi middleware này là middleware cuối cùng trong middleware group.
@@ -42,9 +47,10 @@ class AuthenticationMiddleware {
 							wp_send_json(Funcs::response(false, null, 'Authentication false'), 403);
 						}
 						else {
-							wp_redirect(Funcs::route('RewriteFrontPages', 'auth.login', true));
+							return wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp_lite_auth.login', true));
 						}
-						return new Response('Authentication false', 403);
+
+						return new \WP_HTTP_Response('Authentication false', 403);
 					}
 				}
 
@@ -56,12 +62,15 @@ class AuthenticationMiddleware {
 						wp_send_json(Funcs::response(false, null, 'Authentication false'), 403);
 					}
 					else {
-						wp_redirect(Funcs::route('RewriteFrontPages', 'auth.login', true));
-						exit;
+						return wp_redirect(Funcs::route('AdminPages', 'wpsp_lite.index', ['error' => 'AuthenticationMiddleware'], true));
 					}
-					return new Response('Authentication false', 403);
+
+					return new \WP_HTTP_Response('Authentication false', 403);
 				}
 			}
+
+			// Return false tại đây để chạy middleware phía sau.
+			return false;
 		}
 
 		return $next($request);

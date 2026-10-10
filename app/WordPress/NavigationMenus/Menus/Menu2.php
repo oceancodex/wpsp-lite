@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\WordPress\NavigationMenus\Menus;
+namespace WPSPLITE\App\WordPress\NavigationMenus\Menus;
 
-use Illuminate\Http\Request;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\WordPress\NavigationMenus\Menus\BaseNavigationMenu;
+use WPSPCORELITE\App\Http\Request;
+use WPSPCORELITE\App\WordPress\NavigationMenus\Menus\BaseNavigationMenu;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class Menu2 extends BaseNavigationMenu {
 
@@ -59,7 +59,7 @@ class Menu2 extends BaseNavigationMenu {
 	 */
 
 	public function fallback() {
-		return function () {
+		return function() {
 			return 'Menu 2 fallback...';
 		};
 	}

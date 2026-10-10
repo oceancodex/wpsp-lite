@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\Database\Seeders;
+namespace WPSPLITE\Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

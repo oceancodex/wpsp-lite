@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\PostTypes\PostTypes as Route;
-use WPSP\App\WordPress\PostTypes\wpsp_content;
-use WPSPCORE\App\Routes\PostTypes\PostTypesRouteTrait;
+use WPSPLITE\App\Widen\Routes\PostTypes\PostTypes as Route;
+use WPSPLITE\App\WordPress\PostTypes\wpsp_lite_content;
+use WPSPCORELITE\App\Routes\PostTypes\PostTypesRouteTrait;
 
 class PostTypes {
 
@@ -15,7 +15,7 @@ class PostTypes {
 	 */
 
 	public function post_types() {
-		Route::post_type('wpsp_content', [wpsp_content::class]);
+		Route::post_type('wpsp_lite_content', [wpsp_lite_content::class]);
 	}
 
 	/*

@@ -1,6 +1,6 @@
 <?php
 
-$appUrl         = env('WPSP_APP_URL');
+$appUrl         = env('WPSP_LITE_APP_URL');
 $host           = $appUrl ? parse_url($appUrl, PHP_URL_HOST) : null;
 $port           = $appUrl ? parse_url($appUrl, PHP_URL_PORT) : null;
 $appDomain      = $host ? $host . ($port ? ':' . $port : '') : '';
@@ -20,7 +20,7 @@ return [
 	*/
 
 	'stateful' => explode(',', env(
-		'WPSP_SANCTUM_STATEFUL_DOMAINS',
+		'WPSP_LITE_SANCTUM_STATEFUL_DOMAINS',
 		rtrim($defaultDomains . ($appDomain ? ',' . $appDomain : ''), ',')
 	)),
 
@@ -64,7 +64,7 @@ return [
 	|
 	*/
 
-	'token_prefix' => env('WPSP_SANCTUM_TOKEN_PREFIX', 'wpsp_'),
+	'token_prefix' => env('WPSP_LITE_SANCTUM_TOKEN_PREFIX', 'wpsp_lite'),
 
 	/*
 	|--------------------------------------------------------------------------

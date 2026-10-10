@@ -1,12 +1,12 @@
 <?php
 
-namespace WPSP\Database\Seeders;
+namespace WPSPLITE\Database\Seeders;
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use WPSP\App\Models\SettingsModel;
+use WPSPLITE\App\Models\SettingsModel;
 
 class SettingsSeeder extends Seeder {
 

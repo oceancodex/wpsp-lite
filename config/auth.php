@@ -14,8 +14,8 @@ return [
     */
 
 	'defaults' => [
-		'guard' => env('WPSP_AUTH_GUARD', 'web'),
-		'passwords' => env('WPSP_AUTH_PASSWORD_BROKER', 'users'),
+		'guard' => env('WPSP_LITE_AUTH_GUARD', 'web'),
+		'passwords' => env('WPSP_LITE_AUTH_PASSWORD_BROKER', 'users'),
 	],
 
     /*
@@ -62,12 +62,12 @@ return [
 	'providers' => [
 		'users' => [
 			'driver' => 'eloquent',
-			'model'  => env('WPSP_AUTH_MODEL', \WPSP\App\Models\UsersModel::class),
+			'model'  => env('WPSP_LITE_AUTH_MODEL', \WPSPLITE\App\Models\UsersModel::class),
 		],
 
 		'wp_users' => [
 			'driver' => 'eloquent',
-			'model'  => env('WPSP_AUTH_WP_MODEL', \WPSP\App\Models\WPUsersModel::class),
+			'model'  => env('WPSP_LITE_AUTH_WP_MODEL', \WPSPLITE\App\Models\WPUsersModel::class),
 		]
 
 //		'users' => [
@@ -98,7 +98,7 @@ return [
 	'passwords' => [
 		'users' => [
 			'provider' => 'users',
-			'table' => env('WPSP_AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+			'table' => env('WPSP_LITE_AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
 			'expire' => 60,
 			'throttle' => 60,
 		],
@@ -115,6 +115,6 @@ return [
     |
     */
 
-	'password_timeout' => env('WPSP_AUTH_PASSWORD_TIMEOUT', 10800),
+	'password_timeout' => env('WPSP_LITE_AUTH_PASSWORD_TIMEOUT', 10800),
 
 ];

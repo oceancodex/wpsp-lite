@@ -28,7 +28,7 @@
     @stack('breadcrumbs-stack')
     </div>
 
-    <div class="wpsp-admin-page-content">
+    <div class="wpsp-lite-admin-page-content">
 	    <?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false); ?>
 	    <?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false); ?>
         @yield('content')
@@ -42,5 +42,26 @@
 
 @yield('after-wrap')
 @stack('after-wrap-stack')
+
+<script>
+	toastr.options = {
+		"closeButton"      : true,
+		"debug"            : false,
+		"newestOnTop"      : true,
+		"progressBar"      : false,
+		"positionClass"    : "toast-bottom-right",
+		"preventDuplicates": false,
+		"onclick"          : null,
+		"showDuration"     : "300",
+		"hideDuration"     : "1000",
+		"timeOut"          : "5000",
+		"extendedTimeOut"  : "1000",
+		"showEasing"       : "swing",
+		"hideEasing"       : "linear",
+		"showMethod"       : "fadeIn",
+		"hideMethod"       : "fadeOut"
+	}
+	toastr.success('ToastrJs is working!');
+</script>
 
 @stack('scripts')

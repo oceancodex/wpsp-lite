@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\AdminPages;
+namespace WPSPLITE\App\Widen\Routes\AdminPages;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class AdminPages extends \WPSPCORE\App\Routes\AdminPages\AdminPages {
+class AdminPages extends \WPSPCORELITE\App\Routes\AdminPages\AdminPages {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class AdminPages extends \WPSPCORE\App\Routes\AdminPages\AdminPages {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

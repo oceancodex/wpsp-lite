@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Auth\Events\PasswordReset;
@@ -8,21 +8,25 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use WPSP\App\Events\UsersRegisteredEvent;
-use WPSP\App\Widen\Support\Facades\Auth;
-use WPSP\App\Widen\Support\Facades\Event;
-use WPSP\App\Widen\Support\Facades\Password;
-use WPSP\App\Widen\Support\Facades\RateLimiter;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSP\App\Http\Requests\UsersCreateRequest;
-use WPSP\App\Http\Requests\UsersUpdateRequest;
-use WPSP\App\Models\UsersModel;
-use WPSP\Funcs;
-use WPSPCORE\App\Http\Controllers\BaseController;
+use WPSPLITE\App\Events\UsersRegisteredEvent;
+use WPSPLITE\App\Widen\Support\Facades\Auth;
+use WPSPLITE\App\Widen\Support\Facades\Event;
+use WPSPLITE\App\Widen\Support\Facades\Password;
+use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Http\Requests\UsersCreateRequest;
+use WPSPLITE\App\Http\Requests\UsersUpdateRequest;
+use WPSPLITE\App\Models\UsersModel;
+use WPSPLITE\Funcs;
+use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class ApisController extends BaseController {
 
 	use InstancesTrait;
+
+	/*
+	 *
+	 */
 
 	public function wpsp(\WP_REST_Request $wpRestRequest, $path, $fullPath, $requestPath) {
 		// Lấy nonce từ request Rest API.
@@ -52,7 +56,7 @@ class ApisController extends BaseController {
 		if (false === $rateLimitAccepted) {
 			// Test HttpException.
 //			header('Content-Type: text/html; charset=utf-8');
-//			throw new \WPSP\App\Exceptions\HttpException(
+//			throw new \WPSPLITE\App\Exceptions\HttpException(
 //				429,
 //				'Bạn đã gửi quá nhiều request. Vui lòng thử lại sau.',
 //				['Retry-After' => 60]
@@ -151,8 +155,19 @@ class ApisController extends BaseController {
 		// Login user (optional)
 		Auth::login($user);
 
-		// Redirect to intended or home
-		wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp.index', ['endpoint' => 'abc'], true));
+		if (Funcs::wantsJson()) {
+			wp_send_json([
+				'success' => true,
+				'data'    => [
+					'user' => Funcs::auth()->user()->toArray(),
+				],
+				'message' => 'Login successful',
+			]);
+		}
+		else {
+			// Redirect to intended or home
+			wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp.index', ['endpoint' => 'abc'], true));
+		}
 		exit;
 	}
 
@@ -170,10 +185,11 @@ class ApisController extends BaseController {
 			}
 
 			// Get parameters.
-			$login    = sanitize_text_field($_POST['login'] ?? '');
-			$password = ($_POST['password'] ?? '');
-			$remember = isset($_POST['remember']) && $_POST['remember'];
-			$redirect = isset($_POST['redirect_to']) ? esc_url_raw($_POST['redirect_to']) : (wp_get_referer() ?? $this->request->getRequestUri());
+			$login 	  = sanitize_text_field($wpRestRequest->get_param('login'));
+			$password = $wpRestRequest->get_param('password');
+			$remember = $wpRestRequest->get_param('remember');
+			$redirect = $wpRestRequest->get_param('redirect_to') ? esc_url_raw($wpRestRequest->get_param('redirect_to')) : (wp_get_referer() ?? $this->request->getRequestUri());
+
 			if ($redirect == '/auth/login') {
 				$redirect = Funcs::route('AdminPages', 'wpsp.index', true);
 			}
@@ -262,13 +278,6 @@ class ApisController extends BaseController {
 	public function logout(\WP_REST_Request $wpRestRequest, $path, $fullPath, $requestPath) {
 		Funcs::auth()->logout();
 
-		$session = Funcs::app('session');
-		$clientSession = $_COOKIE['wpsp-session'] ?? null;
-		if ($clientSession) {
-			$session->setId($clientSession);
-			$session->save();
-		}
-
 		if (Funcs::wantsJson()) {
 			wp_send_json([
 				'success' => true,
@@ -315,11 +324,29 @@ class ApisController extends BaseController {
 			$request->only('email')
 		);
 
-		if ($status === Password::ResetLinkSent) {
-			wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' => 'reset-link-sent'], true));
+		if (Funcs::wantsJson()) {
+			if ($status === Password::ResetLinkSent) {
+				wp_send_json([
+					'success' => true,
+					'data'    => null,
+					'message' => 'reset-link-sent',
+				]);
+			}
+			else {
+				wp_send_json([
+					'success' => false,
+					'data'    => null,
+					'message' => 'reset-link-sent-failed',
+				]);
+			}
 		}
 		else {
-			wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['error' => 'reset-link-sent-failed'], true));
+			if ($status === Password::ResetLinkSent) {
+				wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' => 'reset-link-sent'], true));
+			}
+			else {
+				wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['error' => 'reset-link-sent-failed'], true));
+			}
 		}
 
 		exit;
@@ -347,11 +374,29 @@ class ApisController extends BaseController {
 			}
 		);
 
-		if ($status === Password::PasswordReset) {
-			wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' => 'changed-password'], true));
+		if (Funcs::wantsJson()) {
+			if ($status === Password::PasswordReset) {
+				wp_send_json([
+					'success' => true,
+					'data'    => null,
+					'message' => 'changed-password',
+				]);
+			}
+			else {
+				wp_send_json([
+					'success' => false,
+					'data'    => null,
+					'message' => 'reset-password-failed',
+				]);
+			}
 		}
 		else {
-			wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' =>  $status], true));
+			if ($status === Password::PasswordReset) {
+				wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' => 'changed-password'], true));
+			}
+			else {
+				wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' =>  $status], true));
+			}
 		}
 
 		exit;
@@ -428,7 +473,7 @@ class ApisController extends BaseController {
 			try {
 				// Create token with specific abilities
 				$tokenName = 'api-token';
-				$token    = $user->createToken($tokenName, [
+				$token     = $user->createToken($tokenName, [
 					'read:posts',
 					'create:posts',
 					'edit:posts',
@@ -438,10 +483,10 @@ class ApisController extends BaseController {
 					return [
 						'success' => true,
 						'data'    => [
-							'name'          => $tokenName,
-							'token_type'    => 'Bearer',
-							'access_token'  => $token->plainTextToken,
-							'expires_at'    => $token->accessToken->expires_at,
+							'name'         => $tokenName,
+							'token_type'   => 'Bearer',
+							'access_token' => $token->plainTextToken,
+							'expires_at'   => $token->accessToken->expires_at,
 						],
 						'message' => 'Generate access token successful',
 					];
@@ -467,49 +512,104 @@ class ApisController extends BaseController {
 	}
 
 	public function sanctumRefreshAccessToken(\WP_REST_Request $wpRestRequest, $path, $fullPath, $requestPath) {
-		$refreshToken = $this->funcs->_getBearerToken();
+		$accessToken = $this->funcs->_getBearerToken();
+		$accessToken = $accessToken ? explode('|', $accessToken)[1] : null;
 
-		if (!$refreshToken) {
-			return [
-				'success' => false,
-				'data'    => null,
-				'message' => 'Invalid refresh token',
-			];
-		}
-
-		// Get token from database.
-		$token = PersonalAccessTokensModel::query()->where('refresh_token', hash('sha256', $refreshToken))->first();
-
-		if (!$token) {
+		if (!$accessToken) {
 			wp_send_json([
 				'success' => false,
 				'data'    => null,
-				'message' => 'Invalid refresh token',
+				'message' => 'Invalid access token',
 			], 401);
 			exit;
 		}
 
-		// Tạo token mới
-		$plainToken     = sprintf(
+		// Tìm user sở hữu refresh token này qua quan hệ tokens() của HasApiTokens.
+		$user = UsersModel::query()->whereHas('tokens', function($q) use ($accessToken) {
+			$q->where('token', hash('sha256', $accessToken));
+		})->first();
+
+		if (!$user) {
+			wp_send_json([
+				'success' => false,
+				'data'    => null,
+				'message' => 'Invalid access token',
+			], 401);
+			exit;
+		}
+
+		// Lấy đúng token row từ quan hệ.
+		/** @var \Laravel\Sanctum\PersonalAccessToken $accessToken */
+		$accessToken = $user->tokens()
+			->where('token', hash('sha256', $accessToken))
+			->first();
+
+		// Sinh token mới.
+		$plainAccessToken = sprintf(
 			'%s%s%s',
 			$this->funcs->_config('sanctum.token_prefix', ''),
-			$tokenEntropy = Str::random(64),
-			hash('crc32b', $tokenEntropy)
+			$accessEntropy = Str::random(64),
+			hash('crc32b', $accessEntropy)
 		);
-		$newAccessToken = hash('sha256', $plainToken);
 
-		$token->update([
-			'token'      => $newAccessToken,
-			'expires_at' => Carbon::now()->addDays(60),
-		]);
+		$accessToken->forceFill([
+			'token'        => hash('sha256', $plainAccessToken),
+			'expires_at'   => Carbon::now()->addMonths(2),
+			'last_used_at' => Carbon::now(),
+		])->save();
 
 		wp_send_json([
 			'success' => true,
 			'data'    => [
-				'access_token'  => $token->getKey() . '|' . $plainToken,
-				'refresh_token' => $refreshToken,
+				'access_token' => $accessToken->getKey() . '|' . $plainAccessToken,
+				'expires_at'   => $accessToken->expires_at,
 			],
 			'message' => 'Refresh access token successful',
+		]);
+		exit;
+	}
+
+	public function sanctumRevokeAccessToken(\WP_REST_Request $wpRestRequest, $path, $fullPath, $requestPath) {
+		$accessToken = $this->funcs->_getBearerToken();
+		$accessToken = $accessToken ? explode('|', $accessToken)[1] : null;
+
+		if (!$accessToken) {
+			wp_send_json([
+				'success' => false,
+				'data'    => null,
+				'message' => 'Invalid access token',
+			], 401);
+			exit;
+		}
+
+		// Tìm user sở hữu refresh token này qua quan hệ tokens() của HasApiTokens.
+		$user = UsersModel::query()->whereHas('tokens', function($q) use ($accessToken) {
+			$q->where('token', hash('sha256', $accessToken));
+		})->first();
+
+		if (!$user) {
+			wp_send_json([
+				'success' => false,
+				'data'    => null,
+				'message' => 'Invalid access token',
+			], 401);
+			exit;
+		}
+
+		// Lấy đúng token row từ quan hệ.
+		/** @var \Laravel\Sanctum\PersonalAccessToken $accessToken */
+		$accessToken = $user->tokens()
+			->where('token', hash('sha256', $accessToken))
+			->first();
+
+		if ($accessToken) {
+			$accessToken->delete();
+		}
+
+		wp_send_json([
+			'success' => true,
+			'data'    => null,
+			'message' => 'Revoke access token successful',
 		]);
 		exit;
 	}
@@ -539,10 +639,10 @@ class ApisController extends BaseController {
 	public function validationParamsDirectTest(\WP_REST_Request $wpRestRequest, $path, $fullPath, $requestPath) {
 
 		// Sử dụng validation của class hiện tại.
-		$this->validation->validate($wpRestRequest->get_params(), [
+		$this->request->validate([
 		    'username' => 'required|string|max:255|unique:cm_users,username',
 			'email'    => 'required|email',
-		]);
+		], $wpRestRequest->get_params());
 
 		// Sử dụng validation của $request.
 //		$this->request->validate([
@@ -559,7 +659,11 @@ class ApisController extends BaseController {
 
 	public function validationParamsFormRequestTest(\WP_REST_Request $wpRestRequest, $path, $fullPath, $requestPath) {
 		// Validate dữ liệu qua FormRequest.
-		$request = new UsersUpdateRequest();
+		$app     = Funcs::app();
+		$request = UsersUpdateRequest::createFrom($this->request);
+		$request->setContainer($app);
+		$request->setRedirector($app->make('redirect'));
+		$request->validateResolved();
 		$request->validated();
 
 		wp_send_json([

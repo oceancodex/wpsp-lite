@@ -1,0 +1,1 @@
+<textarea style="width: 100%;" onclick="this.select();">[wpsp_lite_content id="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</textarea>

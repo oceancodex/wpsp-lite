@@ -1,11 +1,11 @@
 <?php
 
-namespace WPSP\App\WordPress\License;
+namespace WPSPLITE\App\WordPress\License;
 
-use Illuminate\Support\Facades\Http;
-use WPSP\App\Models\SettingsModel;
-use WPSP\App\Widen\Support\Facades\Cache;
-use WPSP\Funcs;
+use WPSPLITE\App\Models\SettingsModel;
+use WPSPLITE\App\Widen\Support\Facades\Cache;
+use WPSPLITE\App\Widen\Support\Facades\Http;
+use WPSPLITE\Funcs;
 
 class License {
 

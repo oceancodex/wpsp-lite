@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => env('WPSP_HASH_DRIVER', 'bcrypt'),
+    'driver' => env('WPSP_LITE_HASH_DRIVER', 'bcrypt'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,9 +29,9 @@ return [
     */
 
     'bcrypt' => [
-        'rounds' => env('WPSP_BCRYPT_ROUNDS', 12),
-        'verify' => env('WPSP_HASH_VERIFY', true),
-        'limit' => env('WPSP_BCRYPT_LIMIT', null),
+        'rounds' => env('WPSP_LITE_BCRYPT_ROUNDS', 12),
+        'verify' => env('WPSP_LITE_HASH_VERIFY', true),
+        'limit' => env('WPSP_LITE_BCRYPT_LIMIT', null),
     ],
 
     /*
@@ -46,10 +46,10 @@ return [
     */
 
     'argon' => [
-        'memory' => env('WPSP_ARGON_MEMORY', 65536),
-        'threads' => env('WPSP_ARGON_THREADS', 1),
-        'time' => env('WPSP_ARGON_TIME', 4),
-        'verify' => env('WPSP_HASH_VERIFY', true),
+        'memory' => env('WPSP_LITE_ARGON_MEMORY', 65536),
+        'threads' => env('WPSP_LITE_ARGON_THREADS', 1),
+        'time' => env('WPSP_LITE_ARGON_TIME', 4),
+        'verify' => env('WPSP_LITE_HASH_VERIFY', true),
     ],
 
     /*

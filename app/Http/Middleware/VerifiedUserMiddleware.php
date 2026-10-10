@@ -1,18 +1,18 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use WPSP\Funcs;
+use WPSPCORELITE\App\Http\Request;
+use WPSPLITE\Funcs;
 
 class VerifiedUserMiddleware {
 
 	/**
 	 * Handle an incoming request.
 	 *
-	 * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+	 * @param \Closure(\WPSPCORELITE\App\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
 	 */
 	public function handle(Request $request, Closure $next, $args = []): Response {
 		$requestPath = ltrim($request->getRequestUri(), '/\\');
@@ -24,12 +24,19 @@ class VerifiedUserMiddleware {
 		 * Nếu không kiểm tra path thì sẽ luôn bị redirect về trang login với bất cứ request nào.
 		 */
 		if (
-			(is_admin() && preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath))
-			|| preg_match('/^' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
+			(is_admin()
+				&& (
+					@preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
+					|| @preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->fullPathRegex) . '$/iu', $requestPath)
+				)
+			)
+			|| @preg_match('/^' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
+			|| @preg_match('/' . Funcs::instance()->_regexPath($args['route']->fullPathRegex) . '/iu', $requestPath)
+			|| @preg_match(Funcs::instance()->_regexPath($args['route']->fullPathRegex), $requestPath)
 		) {
 			if (!$request->user()?->hasVerifiedEmail()) {
 				$verificationUrl = Funcs::route('RewriteFrontPages', 'verification.resend', true);
-				$response = new Response('Tài khoản của bạn chưa xác thực! Vui lòng xác thực tài khoản <a href="'.$verificationUrl.'">tại đây</a>.', 403);
+				$response = new Response('Tài khoản của bạn chưa xác thực! Vui lòng xác thực tài khoản <a href="' . $verificationUrl . '">tại đây</a>.', 403);
 				$response->send();
 				die();
 			}

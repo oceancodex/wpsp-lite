@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\NavigationMenus\Locations\Locations as Route;
-use WPSP\App\WordPress\NavigationMenus\Locations\nav_primary;
-use WPSPCORE\App\Routes\NavigationMenus\Locations\NavLocationsRouteTrait;
+use WPSPLITE\App\Widen\Routes\NavigationMenus\Locations\Locations as Route;
+use WPSPLITE\App\WordPress\NavigationMenus\Locations\nav_primary;
+use WPSPCORELITE\App\Routes\NavigationMenus\Locations\NavLocationsRouteTrait;
 
 class NavLocations {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\WordPress\Integrations\YoastSEO;
+namespace WPSPLITE\App\WordPress\Integrations\YoastSEO;
 
 class YoastSEO {
 

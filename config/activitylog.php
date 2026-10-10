@@ -5,7 +5,7 @@ return [
 	/*
 	 * If set to false, no activities will be saved to the database.
 	 */
-	'enabled' => env('WPSP_ACTIVITY_LOGGER_ENABLED', true),
+	'enabled' => env('WPSP_LITE_ACTIVITY_LOGGER_ENABLED', true),
 
 	/*
 	 * When the clean-command is executed, all recording activities older than
@@ -35,18 +35,18 @@ return [
 	 * It should implement the Spatie\Activitylog\Contracts\Activity interface
 	 * and extend Illuminate\Database\Eloquent\Model.
 	 */
-	'activity_model' => \Spatie\Activitylog\Models\Activity::class, //\WPSP\App\Widen\Integrations\ActivityLog\Models\ActivityLogModel::class,
+	'activity_model' => \Spatie\Activitylog\Models\Activity::class, //\WPSPLITE\App\Widen\Integrations\ActivityLog\Models\ActivityLogModel::class,
 
 	/*
 	 * This is the name of the table that will be created by the migration and
 	 * used by the Activity model shipped with this package.
 	 */
-	'table_name' => env('WPSP_ACTIVITY_LOGGER_TABLE_NAME', 'activity_log'),
+	'table_name' => env('WPSP_LITE_ACTIVITY_LOGGER_TABLE_NAME', 'activity_log'),
 
 	/*
 	 * This is the database connection that will be used by the migration and
 	 * the Activity model shipped with this package. In case it's not set
 	 * Laravel's database.default will be used instead.
 	 */
-	'database_connection' => env('WPSP_ACTIVITY_LOGGER_DB_CONNECTION'),
+	'database_connection' => env('WPSP_LITE_ACTIVITY_LOGGER_DB_CONNECTION'),
 ];

@@ -1,13 +1,13 @@
 <?php
 
-namespace WPSP\Database\Seeders;
+namespace WPSPLITE\Database\Seeders;
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use WPSP\App\Models\UsersModel;
+use WPSPLITE\App\Models\UsersModel;
 use Illuminate\Support\Facades\Hash;
-use WPSP\Funcs;
+use WPSPLITE\Funcs;
 
 class UsersSeeder extends Seeder {
 

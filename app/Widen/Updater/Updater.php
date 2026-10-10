@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\App\Widen\Updater;
+namespace WPSPLITE\App\Widen\Updater;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\Updater\BaseUpdater;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPCORELITE\App\Updater\BaseUpdater;
 
 /**
  * @property self|null $instance
@@ -24,7 +24,7 @@ class Updater extends BaseUpdater {
 	 */
 
 	public function customProperties() {
-//		$this->checkForUpdatesLabel = class_exists('\WPSPCORE\Translation\Translator') ? Funcs::trans('messages.check_for_updates') : Funcs::trans('Check for updates', null, true);
+//		$this->checkForUpdatesLabel = class_exists('\WPSPCORELITE\Translation\Translator') ? Funcs::trans('messages.check_for_updates') : Funcs::trans('Check for updates', null, true);
 //		$this->packageUrl           = Funcs::config('updater.package_url') ?: Funcs::instance()->_getPublicUrl() . '/plugin.json';
 	}
 

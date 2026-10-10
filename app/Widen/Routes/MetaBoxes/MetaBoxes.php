@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\MetaBoxes;
+namespace WPSPLITE\App\Widen\Routes\MetaBoxes;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class MetaBoxes extends \WPSPCORE\App\Routes\MetaBoxes\MetaBoxes {
+class MetaBoxes extends \WPSPCORELITE\App\Routes\MetaBoxes\MetaBoxes {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class MetaBoxes extends \WPSPCORE\App\Routes\MetaBoxes\MetaBoxes {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }
