@@ -64,7 +64,7 @@ input = [].concat(...input);
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
-	process.env.APP_URL = env.WPSP_LITE_APP_URL_FROM_PUBLIC;
+	process.env.APP_URL = env.WPSPLITE_APP_URL_FROM_PUBLIC;
 
 	return {
 		resolve: {

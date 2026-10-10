@@ -183,14 +183,14 @@ function ensureDBConnect(array $wpConfig = [], array $environment = []): bool {
 	}
 
 	try {
-		$connection = $wpConfig['DB_CONNECTION'] ?? $environmentVariables['WPSP_LITE_DB_CONNECTION'] ?? 'wp_wpsp';
-		$host       = $wpConfig['DB_HOST'] ?? $environmentVariables['WPSP_LITE_DB_HOST'] ?? 'localhost';
-		$port       = $wpConfig['DB_PORT'] ?? $environmentVariables['WPSP_LITE_DB_PORT'] ?? '3306';
-		$socket     = $wpConfig['DB_SOCKET'] ?? $environmentVariables['WPSP_LITE_DB_SOCKET'] ?? '';
-		$database   = $wpConfig['DB_NAME'] ?? $environmentVariables['WPSP_LITE_DB_DATABASE'] ?? 'local';
-		$user       = $wpConfig['DB_USER'] ?? $environmentVariables['WPSP_LITE_DB_USERNAME'] ?? 'root';
-		$password   = $wpConfig['DB_PASSWORD'] ?? $environmentVariables['WPSP_LITE_DB_PASSWORD'] ?? '';
-		$charset    = $wpConfig['DB_CHARSET'] ?? $environmentVariables['WPSP_LITE_DB_CHARSET'] ?? 'utf8mb4';
+		$connection = $wpConfig['DB_CONNECTION'] ?? $environmentVariables['WPSPLITE_DB_CONNECTION'] ?? 'wp_wpsp';
+		$host       = $wpConfig['DB_HOST'] ?? $environmentVariables['WPSPLITE_DB_HOST'] ?? 'localhost';
+		$port       = $wpConfig['DB_PORT'] ?? $environmentVariables['WPSPLITE_DB_PORT'] ?? '3306';
+		$socket     = $wpConfig['DB_SOCKET'] ?? $environmentVariables['WPSPLITE_DB_SOCKET'] ?? '';
+		$database   = $wpConfig['DB_NAME'] ?? $environmentVariables['WPSPLITE_DB_DATABASE'] ?? 'local';
+		$user       = $wpConfig['DB_USER'] ?? $environmentVariables['WPSPLITE_DB_USERNAME'] ?? 'root';
+		$password   = $wpConfig['DB_PASSWORD'] ?? $environmentVariables['WPSPLITE_DB_PASSWORD'] ?? '';
+		$charset    = $wpConfig['DB_CHARSET'] ?? $environmentVariables['WPSPLITE_DB_CHARSET'] ?? 'utf8mb4';
 
 		if ($socket) {
 			$host = explode(':', $host)[0];

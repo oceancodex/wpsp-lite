@@ -18,19 +18,19 @@
         </include>
     </source>
     <php>
-        <env name="WPSP_LITE_APP_ENV" value="testing"/>
-        <env name="WPSP_LITE_APP_MAINTENANCE_DRIVER" value="file"/>
-        <env name="WPSP_LITE_BCRYPT_ROUNDS" value="4"/>
-        <env name="WPSP_LITE_BROADCAST_CONNECTION" value="null"/>
-        <env name="WPSP_LITE_CACHE_STORE" value="array"/>
-        <env name="WPSP_LITE_DB_CONNECTION" value="sqlite"/>
-        <env name="WPSP_LITE_DB_DATABASE" value=":memory:"/>
-        <env name="WPSP_LITE_DB_URL" value=""/>
-        <env name="WPSP_LITE_MAIL_MAILER" value="array"/>
-        <env name="WPSP_LITE_QUEUE_CONNECTION" value="sync"/>
-        <env name="WPSP_LITE_SESSION_DRIVER" value="array"/>
-        <env name="WPSP_LITE_PULSE_ENABLED" value="false"/>
-        <env name="WPSP_LITE_TELESCOPE_ENABLED" value="false"/>
-        <env name="WPSP_LITE_NIGHTWATCH_ENABLED" value="false"/>
+        <env name="WPSPLITE_APP_ENV" value="testing"/>
+        <env name="WPSPLITE_APP_MAINTENANCE_DRIVER" value="file"/>
+        <env name="WPSPLITE_BCRYPT_ROUNDS" value="4"/>
+        <env name="WPSPLITE_BROADCAST_CONNECTION" value="null"/>
+        <env name="WPSPLITE_CACHE_STORE" value="array"/>
+        <env name="WPSPLITE_DB_CONNECTION" value="sqlite"/>
+        <env name="WPSPLITE_DB_DATABASE" value=":memory:"/>
+        <env name="WPSPLITE_DB_URL" value=""/>
+        <env name="WPSPLITE_MAIL_MAILER" value="array"/>
+        <env name="WPSPLITE_QUEUE_CONNECTION" value="sync"/>
+        <env name="WPSPLITE_SESSION_DRIVER" value="array"/>
+        <env name="WPSPLITE_PULSE_ENABLED" value="false"/>
+        <env name="WPSPLITE_TELESCOPE_ENABLED" value="false"/>
+        <env name="WPSPLITE_NIGHTWATCH_ENABLED" value="false"/>
     </php>
 </phpunit>

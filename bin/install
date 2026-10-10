@@ -165,7 +165,7 @@ foreach ($filePaths as $filePath) {
 	$content  = file_get_contents($realPath);
 	$content  = preg_replace('/namespace WPSP/', 'namespace ' . $rootNamespace, $content);
 	$content  = preg_replace('/WPSPLITE\\\/', $rootNamespace . '\\', $content);
-	$content  = preg_replace('/WPSP_LITE_/', $prefixEnv, $content);
+	$content  = preg_replace('/WPSPLITE_/', $prefixEnv, $content);
 	file_put_contents($realPath, $content);
 }
 
@@ -182,7 +182,7 @@ foreach ($filePaths as $filePath) {
 	$fileContent = file_get_contents($filePath);
 	$fileContent = preg_replace('/namespace WPSP/', 'namespace ' . $rootNamespace, $fileContent);
 	$fileContent = preg_replace('/WPSPLITE\\\/', $rootNamespace . '\\', $fileContent);
-	$fileContent = preg_replace('/WPSP_LITE_/', $prefixEnv, $fileContent);
+	$fileContent = preg_replace('/WPSPLITE_/', $prefixEnv, $fileContent);
 	file_put_contents($filePath, $fileContent);
 }
 
@@ -242,13 +242,13 @@ $mainContent = file_get_contents(__DIR__ . '/../main.php');
 $mainContent = preg_replace('/Plugin Name:(\s*)(.*?)\n/', "Plugin Name:$1" . $projectName . "\n", $mainContent);
 $mainContent = preg_replace('/Description:(\s*)(.*?)\n/', "Description:$1" . $projectName . " using WPSP Framework - WordPress Starter Plugin\n", $mainContent);
 $mainContent = preg_replace('/Text Domain:(\s*)(.*?)\n/', "Text Domain:$1" . $textDomain . "\n", $mainContent);
-$mainContent = preg_replace('/WPSP_LITE_/', $prefixEnv, $mainContent);
+$mainContent = preg_replace('/WPSPLITE_/', $prefixEnv, $mainContent);
 file_put_contents(__DIR__ . '/../main.php', $mainContent);
 
 // Replace in "ArtisanHelpers.php" file.
 $artisanHelperContent = file_get_contents(__DIR__ . '/../ArtisanHelpers.php');
 $artisanHelperContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $artisanHelperContent);
-$artisanHelperContent = preg_replace('/WPSP_LITE_/', $prefixEnv, $artisanHelperContent);
+$artisanHelperContent = preg_replace('/WPSPLITE_/', $prefixEnv, $artisanHelperContent);
 file_put_contents(__DIR__ . '/../ArtisanHelpers.php', $artisanHelperContent);
 
 // Replace in "composer.json" file.
