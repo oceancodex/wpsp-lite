@@ -139,10 +139,10 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 	public function matchedCurrentAccess() {
 //		$this->adminPageMetaBoxes = $this->adminPageMetaBoxes();
 
-		Funcs::viewInject('admin-pages.wpsp.settings', [
-			'admin_page_meta_boxes' => $this->getSortedAdminPageMetaBoxes(),
-			'screen_columns' => $this->getScreenColumns(),
-		]);
+//		Funcs::viewInject('admin-pages.wpsp.settings', [
+//			'admin_page_meta_boxes' => $this->getSortedAdminPageMetaBoxes(),
+//			'screen_columns' => $this->getScreenColumns(),
+//		]);
 	}
 
 //	public function afterInit() {}
@@ -159,18 +159,18 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 			'side' => [
 				'submitdiv' => [
 					'title' => 'Submit',
-					'view'  => Funcs::viewDetect('admin-pages.wpsp.settings.submit'),
+					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/submit.php'),
 				],
 			],
 			'normal' => [
 				'inputsdiv' => [
 					'title' => 'Settings',
-					'view'  => Funcs::viewDetect('admin-pages.wpsp.settings.inputs'),
+					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/inputs.php'),
 					'data'  => ['settings' => $settings ?? []],
 				],
 				'testhiddendiv' => [
 					'title' => 'Test hidden',
-					'view'  => Funcs::viewDetect('admin-pages.wpsp.settings.test-hidden'),
+					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/test-hidden.php'),
 				],
 			],
 			'advanced' => [],
@@ -197,7 +197,7 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 
 	public function edit(Request $request, $id) {}
 
-	public function update(SettingsUpdateRequest $request) {
+	public function update(Request $request) {
 //		dd($this->request->route());
 
 //		try {

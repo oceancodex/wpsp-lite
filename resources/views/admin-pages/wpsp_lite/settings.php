@@ -1,59 +1,32 @@
 <form method="POST">
     <input name="action" value="save_settings" type="hidden"/>
-    <div id="poststuff" class="row gx-3">
-        <div class="col">
-            <div class="meta-box-sortables ui-sortable">
-                <div class="postbox">
 
-                    <div class="postbox-header">
-                        <h2 class="hndle ui-sortable-handle"><?php echo wpsp_lite_trans('Settings', null, true) ?></h2>
-                        <div class="handle-actions">
-                            <button type="button" class="handlediv" aria-expanded="true">
-                                <span class="toggle-indicator"></span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="inside form-table w-auto">
-
-                        <div class="input-group mt-2 mb-3">
-                            <label for="settings[setting_1]">
-                                <?php echo wpsp_lite_trans('Title', null, true) ?>:
-                                <input type="text" id="settings[setting_1]" name="settings[setting_1]" class="w-100 mt-1" value="<?php echo $settings['setting_1'] ?? '' ?>"/>
-                            </label>
-                        </div>
-
-                        <div class="input-group mt-2 mb-3">
-                            <label for="settings[setting_2]">
-                                <?php echo wpsp_lite_trans('Title', null, true) ?>:
-                                <input type="text" id="settings[setting_2]" name="settings[setting_2]" class="w-100 mt-1" value="<?php echo $settings['setting_2'] ?? '' ?>"/>
-                            </label>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="settings[logo]">
-                                Logo:
-                                <div>
-                                    <img id="preview_logo" style="max-width:200px; display:block; margin-top:10px;" alt="" src="<?php echo $settings['logo'] ?? '' ?>"/>
-                                    <br/>
-                                    <input type="text"
-                                           name="settings[logo]"
-                                           id="settings[logo]"
-                                           value="<?php echo $settings['logo'] ?? '' ?>"
-                                           class="mb-2"
-                                           style="max-width: 600px; width: 100%; display: block;"/>
-                                    <button class="button" type="button" id="upload_logo_button">Chọn ảnh</button>
-                                </div>
-                            </label>
-                        </div>
-
-                    </div>
-
-                </div>
-                <button type="submit" class="button button-primary"><?php echo wpsp_lite_trans('Save changes', null, true) ?></button>
-            </div>
-        </div>
-    </div>
+	<div id="poststuff">
+		<div id="post-body" class="metabox-holder columns-<?php echo htmlspecialchars($screen_columns ?? 2, ENT_QUOTES, 'UTF-8'); ?>">
+			<div id="postbox-container-1" class="postbox-container">
+				<div id="side-sortables" class="meta-box-sortables ui-sortable">
+					<?php if (!empty($admin_page_meta_boxes['side'])): ?>
+						<?php foreach ($admin_page_meta_boxes['side'] as $admin_page_meta_box): ?>
+							<?php if ($admin_page_meta_box && isset($admin_page_meta_box['view'])): ?>
+								<?php include_once $admin_page_meta_box['view']; ?>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</div>
+			</div>
+			<div id="postbox-container-2" class="postbox-container">
+				<div id="normal-sortables" class="meta-box-sortables ui-sortable">
+					<?php if (!empty($admin_page_meta_boxes['normal'])): ?>
+						<?php foreach ($admin_page_meta_boxes['normal'] as $admin_page_meta_box): ?>
+							<?php if ($admin_page_meta_box && isset($admin_page_meta_box['view'])): ?>
+								<?php include_once $admin_page_meta_box['view']; ?>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+	</div>
 </form>
 
 <?php
@@ -87,3 +60,7 @@
 		});
 	});
 </script>
+
+
+<script src="<?php echo wpsp_lite_asset('widen/plugins/autonumeric/autoNumeric.min.js'); ?>"></script>
+<script src="<?php echo wpsp_lite_asset('widen/plugins/jquery-repeater/jquery.repeater.min.js'); ?>"></script>

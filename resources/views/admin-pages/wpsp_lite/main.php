@@ -48,5 +48,7 @@ else {
 $navigation = wpsp_lite_resources_path('/views/admin-pages/wpsp_lite/navigation.php');
 
 include wpsp_lite_resources_path('/views/admin-pages/header.php');
+wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false);
+wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false);
 include $view;
 include wpsp_lite_resources_path('/views/admin-pages/footer.php');

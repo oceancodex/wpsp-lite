@@ -5,6 +5,7 @@ namespace WPSPLITE\App\WordPress\AdminPages\wpsp_lite;
 use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
 use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Support\Facades\App;
 use WPSPLITE\App\Widen\Support\Facades\Artisan;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
@@ -36,7 +37,7 @@ class wpsp_lite extends BaseAdminPage {
 //	public $isSubmenuPage          = false;
 //	public $removeFirstSubmenu     = true;
 
-//	public $showScreenOptions      = true;
+	public $showScreenOptions      = true;
 //	public $screenBase			   = null;
 //	public $screenId			   = null;
 //	public $pagenow				   = null;
@@ -56,6 +57,8 @@ class wpsp_lite extends BaseAdminPage {
 	private $currentPage           = null;
 	private $table                 = null;
 	private $checkDatabase         = null;
+	private $admin_page_meta_boxes = null;
+	private $screen_columns        = null;
 
 	/*
 	 *
@@ -130,6 +133,12 @@ class wpsp_lite extends BaseAdminPage {
 		$this->currentPage = $this->request->get('page');
 //		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.dashboard')) . ' - ' . Funcs::config('app.name');
 //		$this->page_title  = $this->testService->subTestService->exampleService->example();
+
+		if ($this->currentTab == 'settings') {
+			$tabSettings = App::make(wpsp_lite_tab_settings::class);
+			$this->admin_page_meta_boxes = $tabSettings->getSortedAdminPageMetaBoxes();
+			$this->screen_columns = $tabSettings->getScreenColumns();
+		}
 	}
 
 	/*
@@ -291,11 +300,14 @@ class wpsp_lite extends BaseAdminPage {
 //		catch (\Throwable $e) {
 //			Funcs::notice($e->getMessage() . ' <code>(' . __CLASS__ . ')</code>', 'error');
 
-			$user          = wp_get_current_user();
+			$current_user  = wp_get_current_user();
 //			$checkDatabase = $this->checkDatabase;
 			$funcs         = Funcs::instance();
 
-			include(Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/main.php'));
+			$admin_page_meta_boxes = $this->admin_page_meta_boxes;
+			$screen_columns = $this->screen_columns;
+
+			include_once(Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/main.php'));
 //		}
 	}
 
