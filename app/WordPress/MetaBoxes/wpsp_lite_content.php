@@ -37,6 +37,7 @@ class wpsp_lite_content extends BaseMetaBox {
 
 	public function index($post, $meta_box, Request $request) {
 		echo Funcs::view('meta-boxes.wpsp', compact('post', 'meta_box'));
+		include_once Funcs::getResourcesPath('/views/meta-boxes/wpsp.php');
 	}
 
 }
