@@ -34,7 +34,7 @@ use WPSPLITE\Routes\WPRoles;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-define('WPSPLITE_LITE_PLUGIN_START', microtime(true));
+define('WPSP_LITE_LITE_PLUGIN_START', microtime(true));
 
 /**
  * ---

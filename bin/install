@@ -130,27 +130,27 @@ echo "\n";
 /**
  * Copy .env.example to .env.
  */
-$envExample     = __DIR__ . '/../.env.example';
-$envDestination = __DIR__ . '/../.env';
-if (!file_exists($envExample)) {
-	fwrite(STDERR, red("The .env.example file not found. Try again later!\n"));
-	exit(1);
-}
-if (file_exists($envDestination)) {
-	fwrite(STDOUT, yellow("The .env file already exists. Skipped.\n"));
-}
-if (!copy($envExample, $envDestination)) {
-	fwrite(STDERR, red("Failed to create .env file. Try again later!\n"));
-	exit(1);
-}
-fwrite(STDOUT, green("The .env file created successfully.\n"));
+//$envExample     = __DIR__ . '/../.env.example';
+//$envDestination = __DIR__ . '/../.env';
+//if (!file_exists($envExample)) {
+//	fwrite(STDERR, red("The .env.example file not found. Try again later!\n"));
+//	exit(1);
+//}
+//if (file_exists($envDestination)) {
+//	fwrite(STDOUT, yellow("The .env file already exists. Skipped.\n"));
+//}
+//if (!copy($envExample, $envDestination)) {
+//	fwrite(STDERR, red("Failed to create .env file. Try again later!\n"));
+//	exit(1);
+//}
+//fwrite(STDOUT, green("The .env file created successfully.\n"));
 
 /**
  * Replace files in root directory.
  */
 $filePaths = [
-	'/../.env',
-	'/../.env.example',
+//	'/../.env',
+//	'/../.env.example',
 	'/../artisan',
 	'/../Funcs.php',
 	'/../WPSP.php',
@@ -165,7 +165,7 @@ foreach ($filePaths as $filePath) {
 	$content  = file_get_contents($realPath);
 	$content  = preg_replace('/namespace WPSP/', 'namespace ' . $rootNamespace, $content);
 	$content  = preg_replace('/WPSPLITE\\\/', $rootNamespace . '\\', $content);
-	$content  = preg_replace('/WPSPLITE_/', $prefixEnv, $content);
+	$content  = preg_replace('/WPSP_LITE_/', $prefixEnv, $content);
 	file_put_contents($realPath, $content);
 }
 
@@ -182,7 +182,7 @@ foreach ($filePaths as $filePath) {
 	$fileContent = file_get_contents($filePath);
 	$fileContent = preg_replace('/namespace WPSP/', 'namespace ' . $rootNamespace, $fileContent);
 	$fileContent = preg_replace('/WPSPLITE\\\/', $rootNamespace . '\\', $fileContent);
-	$fileContent = preg_replace('/WPSPLITE_/', $prefixEnv, $fileContent);
+	$fileContent = preg_replace('/WPSP_LITE_/', $prefixEnv, $fileContent);
 	file_put_contents($filePath, $fileContent);
 }
 
@@ -211,44 +211,44 @@ function replaceInEnvAndEnvExample($envContent, $projectName, $projectShortName,
 	return $envContent;
 }
 
-// Replace in ".env.example" file.
-$envExampleContent = file_get_contents(__DIR__ . '/../.env.example');
-$envExampleContent = replaceInEnvAndEnvExample(
-	$envExampleContent,
-	$projectName,
-	$projectShortName,
-	$projectDirName,
-	$prefixEnv,
-	$prefixDBTable,
-	$wpTablePrefix
-);
-file_put_contents(__DIR__ . '/../.env.example', $envExampleContent);
-
-// Replace in ".env" file.
-$envContent = file_get_contents(__DIR__ . '/../.env');
-$envContent = replaceInEnvAndEnvExample(
-	$envContent,
-	$projectName,
-	$projectShortName,
-	$projectDirName,
-	$prefixEnv,
-	$prefixDBTable,
-	$wpTablePrefix
-);
-file_put_contents(__DIR__ . '/../.env', $envContent);
+//// Replace in ".env.example" file.
+//$envExampleContent = file_get_contents(__DIR__ . '/../.env.example');
+//$envExampleContent = replaceInEnvAndEnvExample(
+//	$envExampleContent,
+//	$projectName,
+//	$projectShortName,
+//	$projectDirName,
+//	$prefixEnv,
+//	$prefixDBTable,
+//	$wpTablePrefix
+//);
+//file_put_contents(__DIR__ . '/../.env.example', $envExampleContent);
+//
+//// Replace in ".env" file.
+//$envContent = file_get_contents(__DIR__ . '/../.env');
+//$envContent = replaceInEnvAndEnvExample(
+//	$envContent,
+//	$projectName,
+//	$projectShortName,
+//	$projectDirName,
+//	$prefixEnv,
+//	$prefixDBTable,
+//	$wpTablePrefix
+//);
+//file_put_contents(__DIR__ . '/../.env', $envContent);
 
 // Replace in "main.php" file.
 $mainContent = file_get_contents(__DIR__ . '/../main.php');
 $mainContent = preg_replace('/Plugin Name:(\s*)(.*?)\n/', "Plugin Name:$1" . $projectName . "\n", $mainContent);
 $mainContent = preg_replace('/Description:(\s*)(.*?)\n/', "Description:$1" . $projectName . " using WPSP Framework - WordPress Starter Plugin\n", $mainContent);
 $mainContent = preg_replace('/Text Domain:(\s*)(.*?)\n/', "Text Domain:$1" . $textDomain . "\n", $mainContent);
-$mainContent = preg_replace('/WPSPLITE_/', $prefixEnv, $mainContent);
+$mainContent = preg_replace('/WPSP_LITE_/', $prefixEnv, $mainContent);
 file_put_contents(__DIR__ . '/../main.php', $mainContent);
 
 // Replace in "ArtisanHelpers.php" file.
 $artisanHelperContent = file_get_contents(__DIR__ . '/../ArtisanHelpers.php');
 $artisanHelperContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $artisanHelperContent);
-$artisanHelperContent = preg_replace('/WPSPLITE_/', $prefixEnv, $artisanHelperContent);
+$artisanHelperContent = preg_replace('/WPSP_LITE_/', $prefixEnv, $artisanHelperContent);
 file_put_contents(__DIR__ . '/../ArtisanHelpers.php', $artisanHelperContent);
 
 // Replace in "composer.json" file.
@@ -279,15 +279,15 @@ $helperContent = file_get_contents(__DIR__ . '/../app/Helpers/Helpers.php');
 $helperContent = preg_replace('/wpsp_lite_/', $prefixHelpers, $helperContent);
 file_put_contents(__DIR__ . '/../app/Helpers/Helpers.php', $helperContent);
 
-// Replace in Model files.
-$modelPaths = getDirContents(__DIR__ . '/../app/Models');
-foreach ($modelPaths as $modelPath) {
-	$modelContent = file_get_contents($modelPath);
-	$modelContent = preg_replace('/wpsp_lite_\'/', $prefixDBTable . '\'', $modelContent);
-	$modelContent = preg_replace('/\'wp_wpsp\'/', '\'' . $wpTablePrefix . $projectShortName . '\'', $modelContent);
-	$modelContent = preg_replace('/\'wpsp\'/', '\'' . $projectShortName . '\'', $modelContent);
-	file_put_contents($modelPath, $modelContent);
-}
+//// Replace in Model files.
+//$modelPaths = getDirContents(__DIR__ . '/../app/Models');
+//foreach ($modelPaths as $modelPath) {
+//	$modelContent = file_get_contents($modelPath);
+//	$modelContent = preg_replace('/wpsp_lite_\'/', $prefixDBTable . '\'', $modelContent);
+//	$modelContent = preg_replace('/\'wp_wpsp\'/', '\'' . $wpTablePrefix . $projectShortName . '\'', $modelContent);
+//	$modelContent = preg_replace('/\'wpsp\'/', '\'' . $projectShortName . '\'', $modelContent);
+//	file_put_contents($modelPath, $modelContent);
+//}
 
 // Rename "app/Helpers/Helpers.php" file.
 rename(__DIR__ . '/../app/Helpers/Helpers.php', __DIR__ . '/../app/Helpers/' . $prefixEnv . 'Helpers_' . $time . '.php');
@@ -307,8 +307,8 @@ file_put_contents(__DIR__ . '/../app/WordPress/AdminPages/wpsp/wpsp_lite_tab_use
 foreach (getDirContents(__DIR__ . '/../config') as $configPath) {
 	$configContent = file_get_contents($configPath);
 	$configContent = preg_replace('/wpsp_lite_\'/', $prefixDBTable . '\'', $configContent);
-	$configContent = preg_replace('/\'wp_wpsp\'/', '\'' . $wpTablePrefix . $projectShortName . '\'', $configContent);
-	$configContent = preg_replace('/\'wpsp\'/', '\'' . $projectShortName . '\'', $configContent);
+	$configContent = preg_replace('/\'wp_wpsp_lite\'/', '\'' . $wpTablePrefix . $projectShortName . '\'', $configContent);
+	$configContent = preg_replace('/\'wpsp_lite\'/', '\'' . $projectShortName . '\'', $configContent);
 	file_put_contents($configPath, $configContent);
 }
 
@@ -319,11 +319,11 @@ foreach (getDirContents(__DIR__ . '/../config') as $configPath) {
  */
 
 // Replace in language files.
-$potContent = file_get_contents(__DIR__ . '/../lang/wpsp.pot');
+$potContent = file_get_contents(__DIR__ . '/../lang/wpsp-lite.pot');
 $potContent = preg_replace('/Project-Id-Version: (.*?)\\n/', 'Project-Id-Version: ' . $projectName . '\n', $potContent);
 $potContent = preg_replace('/X-Domain: (.*?)"/', 'X-Domain: ' . $textDomain . '"', $potContent);
-file_put_contents(__DIR__ . '/../lang/wpsp.pot', $potContent);
-rename(__DIR__ . '/../lang/wpsp.pot', __DIR__ . '/../lang/' . $textDomain . '.pot');
+file_put_contents(__DIR__ . '/../lang/wpsp-lite.pot', $potContent);
+rename(__DIR__ . '/../lang/wpsp-lite.pot', __DIR__ . '/../lang/' . $textDomain . '.pot');
 
 $poContent = file_get_contents(__DIR__ . '/../lang/wpsp-lite-vi.po');
 $poContent = preg_replace('/Project-Id-Version: (.*?)\\n/', 'Project-Id-Version: ' . $projectName . '\n', $poContent);

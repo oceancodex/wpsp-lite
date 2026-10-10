@@ -32,7 +32,7 @@ use WPSPLITE\Routes\Widgets;
 use WPSPLITE\Routes\WPRoles;
 use WPSPLITE\WPSP;
 
-define('WPSPLITE_LITE_ARTISAN_START', microtime(true));
+define('WPSP_LITE_LITE_ARTISAN_START', microtime(true));
 
 require_once __DIR__ . '/ArtisanHelpers.php';
 
@@ -56,7 +56,7 @@ if ($ensureDBConnect) {
 				$pluginDirName = plugin_basename($pluginDir);
 
 				if (is_plugin_active($pluginDirName . '/main.php')) {
-					define('WPSPLITE_LITE_ACTIVE', true);
+					define('WPSP_LITE_LITE_ACTIVE', true);
 				}
 				else {
 					echo "------------------------------------\n";
@@ -103,7 +103,7 @@ $wpsp = WPSP::startConsole();
 
 Integration::instance()->register();
 
-if (defined('WPSPLITE_ACTIVE') && WPSPLITE_ACTIVE) {
+if (defined('WPSP_LITE_ACTIVE') && WPSP_LITE_ACTIVE) {
 	foreach ([
 		AdminPages::class,
 		Apis::class,

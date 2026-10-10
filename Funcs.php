@@ -12,7 +12,7 @@ use WPSPCORELITE\App\Http\Request;
 class Funcs extends \WPSPCORELITE\Funcs {
 
 	const APP_MODE   = 'lite';
-	const PREFIX_ENV = 'WPSPLITE_';
+	const PREFIX_ENV = 'WPSP_LITE_';
 
 	/** @var \WPSPCORELITE\Funcs|Funcs|null  */
 	public static $instance = null;
