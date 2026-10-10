@@ -163,7 +163,7 @@ $filePaths = [
 foreach ($filePaths as $filePath) {
 	$realPath = __DIR__ . $filePath;
 	$content  = file_get_contents($realPath);
-	$content  = preg_replace('/namespace WPSP/', 'namespace ' . $rootNamespace, $content);
+	$content  = preg_replace('/namespace WPSPLITE/', 'namespace ' . $rootNamespace, $content);
 	$content  = preg_replace('/WPSPLITE\\\/', $rootNamespace . '\\', $content);
 	$content  = preg_replace('/WPSP_LITE_/', $prefixEnv, $content);
 	file_put_contents($realPath, $content);
@@ -175,12 +175,12 @@ foreach ($filePaths as $filePath) {
 $filePaths = [];
 $filePaths = array_merge($filePaths, getDirContents(__DIR__ . '/../app'));
 $filePaths = array_merge($filePaths, getDirContents(__DIR__ . '/../config'));
-$filePaths = array_merge($filePaths, getDirContents(__DIR__ . '/../database'));
+//$filePaths = array_merge($filePaths, getDirContents(__DIR__ . '/../database'));
 $filePaths = array_merge($filePaths, getDirContents(__DIR__ . '/../routes'));
 $filePaths = array_merge($filePaths, getDirContents(__DIR__ . '/../tests'));
 foreach ($filePaths as $filePath) {
 	$fileContent = file_get_contents($filePath);
-	$fileContent = preg_replace('/namespace WPSP/', 'namespace ' . $rootNamespace, $fileContent);
+	$fileContent = preg_replace('/namespace WPSPLITE/', 'namespace ' . $rootNamespace, $fileContent);
 	$fileContent = preg_replace('/WPSPLITE\\\/', $rootNamespace . '\\', $fileContent);
 	$fileContent = preg_replace('/WPSP_LITE_/', $prefixEnv, $fileContent);
 	file_put_contents($filePath, $fileContent);
@@ -293,9 +293,9 @@ file_put_contents(__DIR__ . '/../app/Helpers/Helpers.php', $helperContent);
 rename(__DIR__ . '/../app/Helpers/Helpers.php', __DIR__ . '/../app/Helpers/' . $prefixEnv . 'Helpers_' . $time . '.php');
 
 // Replace for all files in "AdminPages" folder.
-$tabUsersContent = file_get_contents(__DIR__ . '/../app/WordPress/AdminPages/wpsp/wpsp_lite_tab_users.php');
+$tabUsersContent = file_get_contents(__DIR__ . '/../app/WordPress/AdminPages/wpsp_lite/wpsp_lite_tab_users.php');
 $tabUsersContent = preg_replace('/wpsp_lite_view_inject/iu', $prefixHelpers . 'view_inject', $tabUsersContent);
-file_put_contents(__DIR__ . '/../app/WordPress/AdminPages/wpsp/wpsp_lite_tab_users.php', $tabUsersContent);
+file_put_contents(__DIR__ . '/../app/WordPress/AdminPages/wpsp_lite/wpsp_lite_tab_users.php', $tabUsersContent);
 
 /**
  * ---
