@@ -156,7 +156,7 @@ $filePaths = [
 	'/../WPSP.php',
 	'/../composer.json',
 	'/../ide.json',
-	'/../bootstrap/app.php',
+//	'/../bootstrap/app.php',
 	'/../bootstrap/plugin.php',
 	'/../bootstrap/providers.php',
 ];
@@ -349,9 +349,9 @@ $pluginContent = preg_replace('/name": "(.+?)"/', 'name": "' . $projectName . '"
 file_put_contents(__DIR__ . '/../public/plugin.json', $pluginContent);
 
 // Replace in "Database.min.js" file.
-$databaseMinContent = file_get_contents(__DIR__ . '/../public/ts/web/admin-pages/wpsp/Database.min.js');
+$databaseMinContent = file_get_contents(__DIR__ . '/../public/ts/web/admin-pages/wpsp-lite/Database.min.js');
 $databaseMinContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $databaseMinContent);
-file_put_contents(__DIR__ . '/../public/ts/web/admin-pages/wpsp/Database.min.js', $databaseMinContent);
+file_put_contents(__DIR__ . '/../public/ts/web/admin-pages/wpsp-lite/Database.min.js', $databaseMinContent);
 
 // Replace in "admin.min.js" file.
 $adminMinContent = file_get_contents(__DIR__ . '/../public/ts/web/admin.min.js');
@@ -383,9 +383,9 @@ foreach ($viewPaths as $viewPath) {
 }
 
 // Replace in "Database.ts" file.
-$databaseContent = file_get_contents(__DIR__ . '/../resources/ts/web/admin-pages/wpsp/Database.ts');
+$databaseContent = file_get_contents(__DIR__ . '/../resources/ts/web/admin-pages/wpsp-lite/Database.ts');
 $databaseContent = preg_replace('/wpsp_lite_/', $projectShortName . '_', $databaseContent);
-file_put_contents(__DIR__ . '/../resources/ts/web/admin-pages/wpsp/Database.ts', $databaseContent);
+file_put_contents(__DIR__ . '/../resources/ts/web/admin-pages/wpsp-lite/Database.ts', $databaseContent);
 
 // Replace in "admin.ts" file.
 $adminTSContent = file_get_contents(__DIR__ . '/../resources/ts/web/admin.ts');
