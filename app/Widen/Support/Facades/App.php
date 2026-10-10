@@ -2,7 +2,7 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
-use WPSPCORELITE\App\Support\Facades\App\App as AppCore;
+use WPSPCORELITE\App\Support\Facades\App as AppCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
 
