@@ -9,6 +9,10 @@ use WPSPLITE\App\Widen\Support\Facades\App;
 use WPSPLITE\App\Widen\Support\Facades\Artisan;
 use WPSPLITE\App\Widen\Support\Facades\File;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\WordPress\ListTables\Permissions;
+use WPSPLITE\App\WordPress\ListTables\Roles;
+use WPSPLITE\App\WordPress\ListTables\Settings;
+use WPSPLITE\App\WordPress\ListTables\Users;
 use WPSPLITE\Funcs;
 
 class wpsp_lite extends BaseAdminPage {
@@ -139,6 +143,26 @@ class wpsp_lite extends BaseAdminPage {
 			$tabSettings = App::make(wpsp_lite_tab_settings::class);
 			$this->admin_page_meta_boxes = $tabSettings->getSortedAdminPageMetaBoxes();
 			$this->screen_columns = $tabSettings->getScreenColumns();
+		}
+		elseif ($this->currentTab == 'table') {
+			add_action('current_screen', function() {
+				$this->table = new Settings();
+			});
+		}
+		elseif ($this->currentTab == 'roles') {
+			add_action('current_screen', function() {
+				$this->table = new Roles();
+			});
+		}
+		elseif ($this->currentTab == 'permissions') {
+			add_action('current_screen', function() {
+				$this->table = new Permissions();
+			});
+		}
+		elseif ($this->currentTab == 'users' || $this->currentTab == 'activity_log') {
+			add_action('current_screen', function() {
+				$this->table = new Users();
+			});
 		}
 	}
 
@@ -309,6 +333,8 @@ class wpsp_lite extends BaseAdminPage {
 
 			$admin_page_meta_boxes = $this->admin_page_meta_boxes;
 			$screen_columns = $this->screen_columns;
+
+			$table = $this->table;
 
 			include_once(Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/main.php'));
 //		}

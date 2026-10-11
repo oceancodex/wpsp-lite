@@ -365,9 +365,9 @@ class Settings extends BaseListTable {
 			 * Nếu lỗi database, trả về dummy data tránh crash admin page
 			 */
 			return [
-				['id' => 1, '_id' => 1, 'key' => 'Key 1', 'value' => 'Value 1'],
-				['id' => 2, '_id' => 2, 'key' => 'Key 2', 'value' => 'Value 2'],
-				['id' => 3, '_id' => 3, 'key' => 'Key 3', 'value' => 'Value 3'],
+				['id' => 1, '_id' => 1, 'key' => 'Key 1', 'value' => 'Value 1', 'label' => 'Value 1'],
+				['id' => 2, '_id' => 2, 'key' => 'Key 2', 'value' => 'Value 2', 'label' => 'Value 2'],
+				['id' => 3, '_id' => 3, 'key' => 'Key 3', 'value' => 'Value 3', 'label' => 'Value 3'],
 			];
 //		}
 	}
