@@ -3,9 +3,7 @@
 namespace WPSPLITE\App\WordPress\ListTables;
 
 use WPSPLITE\App\Services\TestService;
-use WPSPLITE\App\Widen\Support\Facades\Cache;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
-use WPSPLITE\App\Models\SettingsModel;
 use WPSPLITE\Funcs;
 use WPSPCORELITE\App\WordPress\ListTables\BaseListTable;
 
@@ -316,17 +314,17 @@ class Settings extends BaseListTable {
 	 * Truy vấn database và trả về danh sách dữ liệu cho bảng.
 	 */
 	public function get_data() {
-		try {
+//		try {
 //			$model = SettingsModel::query();
-			$data  = SettingsModel::hierarchyPaginate(
-				$this->itemsPerPage,
-				$this->paged,
-				'parent_setting_id',
-				'value',
-				$this->orderby,
-				$this->order
-			);
-			$items = $data['items'];
+//			$data  = SettingsModel::hierarchyPaginate(
+//				$this->itemsPerPage,
+//				$this->paged,
+//				'parent_setting_id',
+//				'value',
+//				$this->orderby,
+//				$this->order
+//			);
+//			$items = $data['items'];
 
 			/**
 			 * Cache tổng số lượng bản ghi trong 300s\
@@ -335,7 +333,7 @@ class Settings extends BaseListTable {
 //			$this->total_items = Cache::remember('settings.total', 300, function() use ($model) {
 //				return $model->count();
 //			});
-			$this->total_items = $data['total'] ?? 0;
+//			$this->total_items = $data['total'] ?? 0;
 
 //			$take = $this->itemsPerPage;          // số item mỗi trang
 //			$skip = ($this->paged - 1) * $take;   // offset trong SQL
@@ -360,9 +358,9 @@ class Settings extends BaseListTable {
 //					->toArray();
 //			});
 
-			return $items;
-		}
-		catch (\Throwable $e) {
+//			return $items;
+//		}
+//		catch (\Throwable $e) {
 			/**
 			 * Nếu lỗi database, trả về dummy data tránh crash admin page
 			 */
@@ -371,7 +369,7 @@ class Settings extends BaseListTable {
 				['id' => 2, '_id' => 2, 'key' => 'Key 2', 'value' => 'Value 2'],
 				['id' => 3, '_id' => 3, 'key' => 'Key 3', 'value' => 'Value 3'],
 			];
-		}
+//		}
 	}
 
 
