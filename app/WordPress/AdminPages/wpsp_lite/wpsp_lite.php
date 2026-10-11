@@ -7,6 +7,7 @@ use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
 use WPSPLITE\App\Services\TestService;
 use WPSPLITE\App\Widen\Support\Facades\App;
 use WPSPLITE\App\Widen\Support\Facades\Artisan;
+use WPSPLITE\App\Widen\Support\Facades\File;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
 
@@ -209,6 +210,8 @@ class wpsp_lite extends BaseAdminPage {
 	 */
 
 	public function index(Request $request) {
+//		File::put(Funcs::getResourcesPath('test.txt'), 'test');
+
 //		$code = Artisan::call('custom:my-custom-command');
 //		echo '<pre style="background:#1e1e1e;color:#d4d4d4;padding:16px;border-radius:4px;overflow:auto;">' . Artisan::outputHtml() . '</pre>';
 

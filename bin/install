@@ -421,18 +421,6 @@ echo "\n\n";
 exec('composer update');
 
 echo "\n";
-echo green('Running "php artisan key:generate --ansi"');
-echo "\n";
-
-exec('php artisan key:generate --ansi');
-
-echo "\n";
-echo green('Running "php artisan migrate --graceful --ansi"');
-echo "\n";
-
-exec('php artisan migrate --graceful --ansi');
-
-echo "\n";
 echo green('Running "php artisan route:remap"');
 echo "\n";
 
