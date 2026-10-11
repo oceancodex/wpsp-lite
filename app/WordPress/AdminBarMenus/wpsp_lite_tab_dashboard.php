@@ -12,7 +12,7 @@ class wpsp_lite_tab_dashboard extends BaseAdminBarMenu {
 	// Args.
 	public $id     = 'wpsp_lite_tab_dashboard';
 	public $title  = 'Tab: Dashboard';
-	public $href   = '/wp-admin/admin.php?page=wpsp&tab=dashboard';
+	public $href   = '/wp-admin/admin.php?page=wpsp_lite&tab=dashboard';
 	public $parent = 'wpsp_lite';
 	public $meta   = [];
 
