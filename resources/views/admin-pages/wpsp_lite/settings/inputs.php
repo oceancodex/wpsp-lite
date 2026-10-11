@@ -136,7 +136,7 @@ $noImageUrl = wpsp_lite_asset('widen/media/images/no-image.jpg');
 		<!-- Expiry Date -->
 		<div class="input-group mt-3">
 			<label for="settings[expiry_date]">
-				<?php echo wpsp_lite_trans('messages.expiry_date'); ?>:
+				<?php echo wpsp_lite_trans('Expiry date', null, true); ?>:
 				<input type="text"
 					   id="settings[expiry_date]"
 					   name="settings[expiry_date]"

@@ -303,9 +303,9 @@ class wpsp_lite extends BaseAdminPage {
 //		catch (\Throwable $e) {
 //			Funcs::notice($e->getMessage() . ' <code>(' . __CLASS__ . ')</code>', 'error');
 
-			$current_user  = wp_get_current_user();
-//			$checkDatabase = $this->checkDatabase;
-			$funcs         = Funcs::instance();
+			$current_wp_user = wp_get_current_user();
+//			$checkDatabase   = $this->checkDatabase;
+			$funcs           = Funcs::instance();
 
 			$admin_page_meta_boxes = $this->admin_page_meta_boxes;
 			$screen_columns = $this->screen_columns;
