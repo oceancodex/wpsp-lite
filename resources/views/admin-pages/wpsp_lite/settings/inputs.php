@@ -136,7 +136,7 @@ $noImageUrl = wpsp_lite_asset('widen/media/images/no-image.jpg');
 		<!-- Expiry Date -->
 		<div class="input-group mt-3">
 			<label for="settings[expiry_date]">
-				<?php echo wpsp_lite_trans('messages.expiry_date'); ?>:
+				<?php echo wpsp_lite_trans('Expiry date', null, true); ?>:
 				<input type="text"
 					   id="settings[expiry_date]"
 					   name="settings[expiry_date]"
@@ -191,17 +191,30 @@ $noImageUrl = wpsp_lite_asset('widen/media/images/no-image.jpg');
 			<a href="javascript:void(0);" class="button-open-popup button button-primary" data-target_popup_selector="#popup_demo">Popup demo</a>
 
 			<!-- Popup HTML Inline -->
-			<div id="popup_demo" class="wpsp-popup-wrapper" style="display: none;">
-				<div class="wpsp-popup-container">
-					<div class="wpsp-popup-header">
-						<h3 class="wpsp-popup-title">Popup demo</h3>
-					</div>
-					<div class="wpsp-popup-content">
-						Đây là popup demo
-					</div>
-					<div class="wpsp-popup-footer">
-						<button class="button button-secondary me-2 button-close-popup">Hủy bỏ</button>
-						<button class="button button-primary">Lưu lại</button>
+			<div class="popup-overlay" id="popup_demo" style="display:none;">
+				<div class="popup-outer">
+					<div id="poststuff" class="pt-0">
+						<div class="meta-box-sortables ui-sortable">
+							<div class="postbox mb-0">
+								<div class="postbox-header">
+									<h2 class="ui-sortable-handle">
+										Popup demo
+									</h2>
+									<div class="handle-actions">
+										<button type="button" class="button-close-popup bg-transparent border-0 fw-bold fs-6 me-1" style="cursor:pointer;">
+											✕
+										</button>
+									</div>
+								</div>
+								<div class="inside w-auto pt-1" style="max-height: 950px; overflow: auto;">
+									Đây là popup demo
+								</div>
+								<div class="postbox-footer bg-light border-top text-end" style="padding: 12px;">
+									<button class="button button-secondary me-2 button-close-popup">Hủy bỏ</button>
+									<button class="button button-primary">Lưu lại</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

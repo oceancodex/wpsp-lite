@@ -3,9 +3,7 @@
 namespace WPSPLITE\App\WordPress\ListTables;
 
 use WPSPLITE\App\Services\TestService;
-use WPSPLITE\App\Widen\Support\Facades\Cache;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
-use WPSPLITE\App\Models\SettingsModel;
 use WPSPLITE\Funcs;
 use WPSPCORELITE\App\WordPress\ListTables\BaseListTable;
 
@@ -218,7 +216,7 @@ class Settings extends BaseListTable {
 	 * Bulk edit form.
 	 */
 	public function bulk_edit_form() {
-		echo Funcs::view('admin-pages.wpsp.users.bulk-edit')->with(['testService' => $this->testService]);
+		echo Funcs::view('admin-pages.wpsp_lite.users.bulk-edit')->with(['testService' => $this->testService]);
 	}
 
 
@@ -231,7 +229,7 @@ class Settings extends BaseListTable {
 	 */
 	public function extra_tablenav($which) {
 		if ($which == 'top') {
-			echo Funcs::view('admin-pages.wpsp.settings.tablenav');
+			echo Funcs::view('admin-pages.wpsp_lite.settings.tablenav');
 		}
 	}
 
@@ -300,9 +298,9 @@ class Settings extends BaseListTable {
 	public function column_name($item) {
 		$actions = [
 			'custom' => '<a href="/admin.php?page=custom&edit=' . $item['id'] . '">Custom</a>',
-			'show'   => '<a href="' . Funcs::route('AdminPages', 'wpsp.settings.show', ['setting' => $item['id']], true) . '">Show</a>',
-			'edit'   => '<a href="' . Funcs::route('AdminPages', 'wpsp.settings.edit', ['id' => $item['id']], true) . '">Edit</a>',
-			'delete' => '<a href="' . Funcs::route('AdminPages', 'wpsp.settings.delete', ['id' => $item['id']], true) . '">Delete</a>',
+			'show'   => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.settings.show', ['setting' => $item['id']], true) . '">Show</a>',
+			'edit'   => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.settings.edit', ['id' => $item['id']], true) . '">Edit</a>',
+			'delete' => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.settings.delete', ['id' => $item['id']], true) . '">Delete</a>',
 		];
 
 		return sprintf('%1$s %2$s', $item['name'], $this->row_actions($actions));
@@ -316,17 +314,17 @@ class Settings extends BaseListTable {
 	 * Truy vấn database và trả về danh sách dữ liệu cho bảng.
 	 */
 	public function get_data() {
-		try {
+//		try {
 //			$model = SettingsModel::query();
-			$data  = SettingsModel::hierarchyPaginate(
-				$this->itemsPerPage,
-				$this->paged,
-				'parent_setting_id',
-				'value',
-				$this->orderby,
-				$this->order
-			);
-			$items = $data['items'];
+//			$data  = SettingsModel::hierarchyPaginate(
+//				$this->itemsPerPage,
+//				$this->paged,
+//				'parent_setting_id',
+//				'value',
+//				$this->orderby,
+//				$this->order
+//			);
+//			$items = $data['items'];
 
 			/**
 			 * Cache tổng số lượng bản ghi trong 300s\
@@ -335,7 +333,7 @@ class Settings extends BaseListTable {
 //			$this->total_items = Cache::remember('settings.total', 300, function() use ($model) {
 //				return $model->count();
 //			});
-			$this->total_items = $data['total'] ?? 0;
+//			$this->total_items = $data['total'] ?? 0;
 
 //			$take = $this->itemsPerPage;          // số item mỗi trang
 //			$skip = ($this->paged - 1) * $take;   // offset trong SQL
@@ -360,18 +358,18 @@ class Settings extends BaseListTable {
 //					->toArray();
 //			});
 
-			return $items;
-		}
-		catch (\Throwable $e) {
+//			return $items;
+//		}
+//		catch (\Throwable $e) {
 			/**
 			 * Nếu lỗi database, trả về dummy data tránh crash admin page
 			 */
 			return [
-				['id' => 1, '_id' => 1, 'key' => 'Key 1', 'value' => 'Value 1'],
-				['id' => 2, '_id' => 2, 'key' => 'Key 2', 'value' => 'Value 2'],
-				['id' => 3, '_id' => 3, 'key' => 'Key 3', 'value' => 'Value 3'],
+				['id' => 1, '_id' => 1, 'key' => 'Key 1', 'value' => 'Value 1', 'label' => 'Value 1'],
+				['id' => 2, '_id' => 2, 'key' => 'Key 2', 'value' => 'Value 2', 'label' => 'Value 2'],
+				['id' => 3, '_id' => 3, 'key' => 'Key 3', 'value' => 'Value 3', 'label' => 'Value 3'],
 			];
-		}
+//		}
 	}
 
 

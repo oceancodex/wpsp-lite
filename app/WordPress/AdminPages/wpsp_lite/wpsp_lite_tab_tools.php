@@ -17,7 +17,7 @@ class wpsp_lite_tab_tools extends BaseAdminPage {
 	public $menu_title             = 'Tab: Tools';
 	public $page_title             = 'Tab: Tools';
 	public $capability             = 'manage_options';
-//	public $menu_slug              = 'wpsp&tab=tools';
+//	public $menu_slug              = 'wpsp_lite&tab=tools';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';
@@ -95,14 +95,13 @@ class wpsp_lite_tab_tools extends BaseAdminPage {
 		 * Ví dụ: page=wpsp_lite&tab=list => wpsp_lite_page_wpsp_lite_tab_list\
 		 * Như vậy thì screen options sẽ độc lập giữa các page.
 		 */
-//		$this->screenId = $this->funcs->_slugParams(['page', 'tab']);
+		$this->screenId = $this->funcs->_slugParams(['page', 'tab']);
 
 		/**
 		 * Ghi đè "pagenow" để gửi Ajax sắp xếp lại các metaboxes trong admin page\
 		 * và screen layout columns.
 		 */
 		$this->pagenow = $this->funcs->_slugParams(['page', 'tab']);
-		$this->screenId = $this->funcs->_slugParams(['page', 'tab']);
 
 		/**
 		 * Lấy các parameters từ URL để tái sử dụng trong Class này.
@@ -136,7 +135,7 @@ class wpsp_lite_tab_tools extends BaseAdminPage {
 //	public function afterLoadAdminPage($adminPage) {}
 
 	public function matchedCurrentAccess() {
-		Funcs::viewInject('admin-pages.wpsp.tools', [
+		Funcs::viewInject('admin-pages.wpsp_lite.tools', [
 			'screen_columns' => $this->getScreenColumns(),
 		]);
 
@@ -169,7 +168,24 @@ class wpsp_lite_tab_tools extends BaseAdminPage {
 				'side',
 				'high'
 			);
+
+			add_meta_box(
+				'wpsp_lite_tools_metabox_3',
+				__('Test hidden', 'wpsp_lite'),
+				$this->prepareAdminPageMethod('create'),
+				$screen,
+				'normal',
+				'low'
+			);
 		});
+
+		add_filter('default_hidden_meta_boxes', function($hidden, $screen) {
+			if ($this->screenId === $screen->id) {
+				$hidden[] = 'wpsp_lite_tools_metabox_3';
+			}
+
+			return $hidden;
+		}, 10, 2);
 	}
 
 	/*
@@ -181,7 +197,10 @@ class wpsp_lite_tab_tools extends BaseAdminPage {
 		echo '<pre style="background:white;z-index:9999;position:relative;margin-bottom:0;">'; print_r($request->getRequestUri()); echo '</pre>';
 	}
 
-	public function create(Request $request) {}
+	public function create(Request $request) {
+		echo '<p class="mt-0">Đây là meta box được tạo bởi phương thức "add_meta_box". Khi meta box được tạo bởi phương thức này, screen options sẽ được hiển thị tự động.</p>';
+		echo '<pre style="background:white;z-index:9999;position:relative;margin-bottom:0;">'; print_r($request->getBasePath()); echo '</pre>';
+	}
 
 	public function store(Request $request) {}
 

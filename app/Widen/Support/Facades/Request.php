@@ -2,7 +2,7 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
-use WPSPCORELITE\App\Support\Facades\Request\Request as RequestCore;
+use WPSPCORELITE\App\Support\Facades\Request as RequestCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
 

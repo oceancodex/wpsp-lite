@@ -17,7 +17,7 @@ class wpsp_lite_tab_activity_log extends BaseAdminPage {
 	public $menu_title             = 'Tab: Activity log';
 //	public $page_title             = 'Tab: Activity log';
 	public $capability             = 'manage_options';
-//	public $menu_slug              = 'wpsp&tab=activity_log';
+//	public $menu_slug              = 'wpsp_lite&tab=activity_log';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';
@@ -137,7 +137,7 @@ class wpsp_lite_tab_activity_log extends BaseAdminPage {
 	public function matchedCurrentAccess() {
 		add_action('current_screen', function($screen) {
 			$this->table = new \WPSPLITE\App\WordPress\ListTables\ActivityLogListTable();
-			Funcs::viewInject('admin-pages.wpsp.activity_log', function($view) {
+			Funcs::viewInject('admin-pages.wpsp_lite.activity_log', function($view) {
 				$view->with('table', $this->table);
 			});
 		});

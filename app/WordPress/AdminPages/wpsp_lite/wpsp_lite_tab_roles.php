@@ -19,7 +19,7 @@ class wpsp_lite_tab_roles extends BaseAdminPage {
 	public $menu_title             = 'Tab: Roles';
 //	public $page_title             = 'Tab: Roles';
 	public $capability             = 'manage_options';
-//	public $menu_slug              = 'wpsp&tab=roles';
+//	public $menu_slug              = 'wpsp_lite&tab=roles';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';
@@ -149,10 +149,10 @@ class wpsp_lite_tab_roles extends BaseAdminPage {
 		if ($isListPage) {
 			add_action('current_screen', function($screen) {
 				$this->table = new \WPSPLITE\App\WordPress\ListTables\Roles();
-//				Funcs::viewInject('admin-pages.wpsp.roles', function($view) {
+//				Funcs::viewInject('admin-pages.wpsp_lite.roles', function($view) {
 //					$view->with('table', $this->table);
 //				});
-//				View::composer('admin-pages.wpsp.roles', function($view) {
+//				View::composer('admin-pages.wpsp_lite.roles', function($view) {
 //					$view->with('table', $this->table);
 //				});
 			});

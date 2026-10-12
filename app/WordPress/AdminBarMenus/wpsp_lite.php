@@ -12,7 +12,7 @@ class wpsp_lite extends BaseAdminBarMenu {
 	// Args.
 	public $id     = 'wpsp_lite';
 	public $title  = 'WPSP';
-	public $href   = '/wp-admin/admin.php?page=wpsp';
+	public $href   = '/wp-admin/admin.php?page=wpsp_lite';
 	public $parent = '';
 	public $meta   = [];
 

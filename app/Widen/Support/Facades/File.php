@@ -2,7 +2,7 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
-use WPSPCORELITE\App\Support\Facades\File\File as FileCore;
+use WPSPCORELITE\App\Support\Facades\File as FileCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
 
@@ -24,7 +24,7 @@ class File extends FileCore {
 				Funcs::instance()->_getPrefixEnv(),
 				[]
 			);
-//			$instance->setFacade();
+			$instance->setFacade();
 			static::$instance = $instance;
 		}
 		return static::$instance;

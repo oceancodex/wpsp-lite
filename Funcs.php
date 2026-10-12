@@ -174,22 +174,22 @@ class Funcs extends \WPSPCORELITE\Funcs {
 	 */
 	public static function actionNotice(?Request $request = null) {
 		if ($request?->query('saved') || isset($_GET['saved'])) {
-			Funcs::notice(Funcs::trans('messages.notice_saved'), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Saved', null, true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('updated') || isset($_GET['updated'])) {
-			Funcs::notice(Funcs::trans('messages.notice_updated'), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Updated', null, true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('trashed') ?? isset($_GET['trashed'])) {
-			Funcs::notice(Funcs::trans('messages.notice_trashed'), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Trashed', null, true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('untrashed') ?? isset($_GET['untrashed'])) {
-			Funcs::notice(Funcs::trans('messages.notice_untrashed'), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Untrashed', null, true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('deleted') ?? isset($_GET['deleted'])) {
-			Funcs::notice(Funcs::trans('messages.notice_deleted'), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Deleted', null, true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('locked') ?? isset($_GET['locked'])) {
-			Funcs::notice(Funcs::trans('messages.notice_locked'), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Locked', null, true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($error = ($request?->query('error') ?? $_GET['error'] ?? null)) {
 			Funcs::notice(Funcs::trans($error, ['error' => $_GET['error'] ?? $err ?? '']), $_GET['notice_type'] ?? 'error');
