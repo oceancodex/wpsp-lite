@@ -1,9 +1,8 @@
 {
-    "/js/echo.min.js": "/js/echo.min.js",
     "/js/app.min.js": "/js/app.min.js",
     "/ts/app.min.js": "/ts/app.min.js",
     "/ts/web/admin.min.js": "/ts/web/admin.min.js",
-    "/ts/web/admin-pages/wpsp/Database.min.js": "/ts/web/admin-pages/wpsp/Database.min.js",
+    "/ts/web/admin-pages/wpsp-lite/Database.min.js": "/ts/web/admin-pages/wpsp-lite/Database.min.js",
     "/scss/app.min.css": "/scss/app.min.css",
     "/scss/frontend.min.css": "/scss/frontend.min.css",
     "/scss/_breakpoints.min.css": "/scss/_breakpoints.min.css",

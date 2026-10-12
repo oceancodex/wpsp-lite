@@ -43,7 +43,7 @@ $isHidden = isset($admin_page_meta_boxes['hidden'][$id]) && $admin_page_meta_box
 
 	<div class="postbox-footer">
 		<div class="bg-light border-top" style="padding: 12px;">
-			<button type="submit" class="button button-primary"><?php echo wpsp_lite_trans('messages.save_changes'); ?></button>
+			<button type="submit" class="button button-primary">Lưu thay đổi</button>
 		</div>
 	</div>
 

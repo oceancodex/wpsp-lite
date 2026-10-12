@@ -16,7 +16,7 @@ class wpsp_lite_tab_dashboard extends BaseAdminPage {
 	public $menu_title             = 'Tab: Dashboard';
 	public $page_title             = 'Tab: Dashboard';
 	public $capability             = 'read';
-//	public $menu_slug              = 'wpsp&tab=dashboard';
+//	public $menu_slug              = 'wpsp_lite&tab=dashboard';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';

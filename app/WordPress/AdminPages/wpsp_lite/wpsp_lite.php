@@ -7,7 +7,12 @@ use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
 use WPSPLITE\App\Services\TestService;
 use WPSPLITE\App\Widen\Support\Facades\App;
 use WPSPLITE\App\Widen\Support\Facades\Artisan;
+use WPSPLITE\App\Widen\Support\Facades\File;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\WordPress\ListTables\Permissions;
+use WPSPLITE\App\WordPress\ListTables\Roles;
+use WPSPLITE\App\WordPress\ListTables\Settings;
+use WPSPLITE\App\WordPress\ListTables\Users;
 use WPSPLITE\Funcs;
 
 class wpsp_lite extends BaseAdminPage {
@@ -139,6 +144,26 @@ class wpsp_lite extends BaseAdminPage {
 			$this->admin_page_meta_boxes = $tabSettings->getSortedAdminPageMetaBoxes();
 			$this->screen_columns = $tabSettings->getScreenColumns();
 		}
+		elseif ($this->currentTab == 'table') {
+			add_action('current_screen', function() {
+				$this->table = new Settings();
+			});
+		}
+		elseif ($this->currentTab == 'roles') {
+			add_action('current_screen', function() {
+				$this->table = new Roles();
+			});
+		}
+		elseif ($this->currentTab == 'permissions') {
+			add_action('current_screen', function() {
+				$this->table = new Permissions();
+			});
+		}
+		elseif ($this->currentTab == 'users' || $this->currentTab == 'activity_log') {
+			add_action('current_screen', function() {
+				$this->table = new Users();
+			});
+		}
 	}
 
 	/*
@@ -209,6 +234,8 @@ class wpsp_lite extends BaseAdminPage {
 	 */
 
 	public function index(Request $request) {
+//		File::put(Funcs::getResourcesPath('test.txt'), 'test');
+
 //		$code = Artisan::call('custom:my-custom-command');
 //		echo '<pre style="background:#1e1e1e;color:#d4d4d4;padding:16px;border-radius:4px;overflow:auto;">' . Artisan::outputHtml() . '</pre>';
 
@@ -285,7 +312,7 @@ class wpsp_lite extends BaseAdminPage {
 ////			$table        = $this->table;
 ////			$checkLicense = License::checkLicense();
 //
-//			echo Funcs::view('admin-pages.wpsp.main', compact(
+//			echo Funcs::view('admin-pages.wpsp_lite.main', compact(
 //				'requestParams',
 //				'menuSlug',
 ////			    'checkLicense',
@@ -300,12 +327,14 @@ class wpsp_lite extends BaseAdminPage {
 //		catch (\Throwable $e) {
 //			Funcs::notice($e->getMessage() . ' <code>(' . __CLASS__ . ')</code>', 'error');
 
-			$current_user  = wp_get_current_user();
-//			$checkDatabase = $this->checkDatabase;
-			$funcs         = Funcs::instance();
+			$current_wp_user = wp_get_current_user();
+//			$checkDatabase   = $this->checkDatabase;
+			$funcs           = Funcs::instance();
 
 			$admin_page_meta_boxes = $this->admin_page_meta_boxes;
 			$screen_columns = $this->screen_columns;
+
+			$table = $this->table;
 
 			include_once(Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/main.php'));
 //		}

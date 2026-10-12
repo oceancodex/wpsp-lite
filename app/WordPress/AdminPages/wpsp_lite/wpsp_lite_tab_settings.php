@@ -19,7 +19,7 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 	public $menu_title             = 'Tab: Settings';
 //	public $page_title             = 'Tab: Settings';
 	public $capability             = 'manage_options';
-//	public $menu_slug              = 'wpsp&tab=settings';
+//	public $menu_slug              = 'wpsp_lite&tab=settings';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';
@@ -139,7 +139,7 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 	public function matchedCurrentAccess() {
 //		$this->adminPageMetaBoxes = $this->adminPageMetaBoxes();
 
-//		Funcs::viewInject('admin-pages.wpsp.settings', [
+//		Funcs::viewInject('admin-pages.wpsp_lite.settings', [
 //			'admin_page_meta_boxes' => $this->getSortedAdminPageMetaBoxes(),
 //			'screen_columns' => $this->getScreenColumns(),
 //		]);
@@ -237,9 +237,9 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 			$test     = $request->input('test');
 
 //		    $existSettings = Cache::getItemValue('settings');
-			$existSettings = SettingsModel::query()->where('key', 'settings')->first();
-			$existSettings = json_decode($existSettings['value'] ?? '', true);
-			$existSettings = array_merge($existSettings ?? [], $settings ?? []);
+//			$existSettings = SettingsModel::query()->where('key', 'settings')->first();
+//			$existSettings = json_decode($existSettings['value'] ?? '', true);
+//			$existSettings = array_merge($existSettings ?? [], $settings ?? []);
 
 			// Save settings into cache.
 //	        Cache::set('settings', function() use ($existSettings) {
@@ -250,23 +250,23 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 //		    Cache::delete('license_information');
 
 			// Save settings into database.
-			$settings = SettingsModel::query()->updateOrCreate([
-				'key' => 'settings',
-			], [
-				'value' => json_encode($existSettings),
-			]);
+//			$settings = SettingsModel::query()->updateOrCreate([
+//				'key' => 'settings',
+//			], [
+//				'value' => json_encode($existSettings),
+//			]);
 
-			if ($test) {
-				$test = SettingsModel::query()->updateOrCreate([
-					'key' => 'test',
-				], [
-					'value' => $test,
-				]);
-			}
+//			if ($test) {
+//				$test = SettingsModel::query()->updateOrCreate([
+//					'key' => 'test',
+//				], [
+//					'value' => $test,
+//				]);
+//			}
 
-			return redirect()->back()->with(['updated' => true])->withInput()->send();
+//			return redirect()->back()->with(['updated' => true])->withInput()->send();
 
-//			wp_redirect(Funcs::route('AdminPages', 'wpsp.settings.index', ['updated' => true], true));
+			return wp_redirect(Funcs::route('AdminPages', 'wpsp_lite.settings.index', ['updated' => true], true));
 //		}
 //		catch (\Throwable $e) {
 //			Funcs::notice($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine() . ' => File: ' . __FILE__, 'error');

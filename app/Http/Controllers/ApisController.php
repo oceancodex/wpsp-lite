@@ -166,7 +166,7 @@ class ApisController extends BaseController {
 		}
 		else {
 			// Redirect to intended or home
-			wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp.index', ['endpoint' => 'abc'], true));
+			wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp_lite.index', ['endpoint' => 'abc'], true));
 		}
 		exit;
 	}
@@ -191,7 +191,7 @@ class ApisController extends BaseController {
 			$redirect = $wpRestRequest->get_param('redirect_to') ? esc_url_raw($wpRestRequest->get_param('redirect_to')) : (wp_get_referer() ?? $this->request->getRequestUri());
 
 			if ($redirect == '/auth/login') {
-				$redirect = Funcs::route('AdminPages', 'wpsp.index', true);
+				$redirect = Funcs::route('AdminPages', 'wpsp_lite.index', true);
 			}
 
 			// Check missing parameters.
@@ -342,10 +342,10 @@ class ApisController extends BaseController {
 		}
 		else {
 			if ($status === Password::ResetLinkSent) {
-				wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' => 'reset-link-sent'], true));
+				wp_redirect(Funcs::route('AdminPages', 'wpsp_lite.dashboard', ['success' => 'reset-link-sent'], true));
 			}
 			else {
-				wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['error' => 'reset-link-sent-failed'], true));
+				wp_redirect(Funcs::route('AdminPages', 'wpsp_lite.dashboard', ['error' => 'reset-link-sent-failed'], true));
 			}
 		}
 
@@ -392,10 +392,10 @@ class ApisController extends BaseController {
 		}
 		else {
 			if ($status === Password::PasswordReset) {
-				wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' => 'changed-password'], true));
+				wp_redirect(Funcs::route('AdminPages', 'wpsp_lite.dashboard', ['success' => 'changed-password'], true));
 			}
 			else {
-				wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['success' =>  $status], true));
+				wp_redirect(Funcs::route('AdminPages', 'wpsp_lite.dashboard', ['success' =>  $status], true));
 			}
 		}
 

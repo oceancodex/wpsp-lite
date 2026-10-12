@@ -19,7 +19,7 @@ class wpsp_lite_tab_license extends BaseAdminPage {
 	public $menu_title             = 'Tab: License';
 	public $page_title             = 'Tab: License';
 	public $capability             = 'manage_options';
-//	public $menu_slug              = 'wpsp&tab=license';
+//	public $menu_slug              = 'wpsp_lite&tab=license';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';

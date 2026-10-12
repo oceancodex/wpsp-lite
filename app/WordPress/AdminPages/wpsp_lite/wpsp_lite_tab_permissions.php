@@ -17,7 +17,7 @@ class wpsp_lite_tab_permissions extends BaseAdminPage {
 	public $menu_title             = 'Tab: Permissions';
 //	public $page_title             = 'Tab: Permissions';
 	public $capability             = 'manage_options';
-//	public $menu_slug              = 'wpsp&tab=permissions';
+//	public $menu_slug              = 'wpsp_lite&tab=permissions';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';
@@ -147,7 +147,7 @@ class wpsp_lite_tab_permissions extends BaseAdminPage {
 		if ($isListPage) {
 			add_action('current_screen', function($screen) {
 				$this->table = new \WPSPLITE\App\WordPress\ListTables\Permissions();
-				Funcs::viewInject('admin-pages.wpsp.permissions', function($view) {
+				Funcs::viewInject('admin-pages.wpsp_lite.permissions', function($view) {
 					$view->with('table', $this->table);
 				});
 			});

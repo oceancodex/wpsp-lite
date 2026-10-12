@@ -18,7 +18,7 @@ class wpsp_lite_tab_table extends BaseAdminPage {
 	public $menu_title             = 'Tab: Table';
 	public $page_title             = 'Tab: Table'; // Thẻ <title>, chỉ hoạt động khi menu_slug theo chuẩn WordPress.
 	public $capability             = 'manage_options';
-//	public $menu_slug              = 'wpsp&tab=table';
+//	public $menu_slug              = 'wpsp_lite&tab=table';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';
@@ -148,7 +148,7 @@ class wpsp_lite_tab_table extends BaseAdminPage {
 		if ($isListPage) {
 			add_action('current_screen', function($screen) {
 				$this->table = new \WPSPLITE\App\WordPress\ListTables\Settings();
-				Funcs::viewInject('admin-pages.wpsp.table', function($view) {
+				Funcs::viewInject('admin-pages.wpsp_lite.table', function($view) {
 					$view->with('table', $this->table);
 				});
 			});

@@ -192,7 +192,7 @@ class wpsp_lite_list_users extends BaseAdminPage {
 	public function index(Request $request) {
 		$requestParams = $request->all();
 		$menuSlug      = $this->menu_slug;
-		echo Funcs::view('admin-pages.wpsp.wpsp_lite_list_users', compact('requestParams', 'menuSlug'))->with([
+		echo Funcs::view('admin-pages.wpsp_lite.wpsp_lite_list_users', compact('requestParams', 'menuSlug'))->with([
 			'table' => $this->table ?? new \WPSPLITE\App\WordPress\ListTables\Users(), // Nếu khởi tạo List Table ở đây sẽ không kích hoạt screen option columns và item per pages.
 		]);
 	}

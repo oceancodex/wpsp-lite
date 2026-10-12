@@ -17,7 +17,7 @@ class wpsp_lite_tab_database extends BaseAdminPage {
 	public $menu_title             = 'Tab: Database';
 //	public $page_title             = 'Tab: Database';
 	public $capability             = 'manage_options';
-//	public $menu_slug              = 'wpsp&tab=database';
+//	public $menu_slug              = 'wpsp_lite&tab=database';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
 	public $parent_slug            = 'wpsp_lite';
