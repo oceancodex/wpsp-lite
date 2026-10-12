@@ -1,10 +1,10 @@
 <?php
-namespace WPSP\routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\Widgets\Widgets as Route;
-use WPSP\App\WordPress\Widgets\widget_demo;
-use WPSP\App\WordPress\Widgets\widget_demo_view;
-use WPSPCORE\App\Routes\Widgets\WidgetsRouteTrait;
+use WPSPLITE\App\Widen\Routes\Widgets\Widgets as Route;
+use WPSPLITE\App\WordPress\Widgets\widget_demo;
+use WPSPLITE\App\WordPress\Widgets\widget_demo_view;
+use WPSPCORELITE\App\Routes\Widgets\WidgetsRouteTrait;
 
 class Widgets {
 

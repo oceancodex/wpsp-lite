@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Widgets;
+namespace WPSPLITE\App\Widen\Routes\Widgets;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class Widgets extends \WPSPCORE\App\Routes\Widgets\Widgets {
+class Widgets extends \WPSPCORELITE\App\Routes\Widgets\Widgets {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class Widgets extends \WPSPCORE\App\Routes\Widgets\Widgets {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

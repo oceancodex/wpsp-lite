@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ wpsp_asset('auth/main.css') }}" />
+    <link rel="stylesheet" href="{{ wpsp_lite_asset('auth/main.css') }}" />
     <title>Register</title>
 </head>
 
@@ -17,8 +17,8 @@
         Register
     </div>
 
-    <form method="POST" action="{{ wpsp_route('Apis', 'auth.register', true) }}" class="form">
-	    <?php wpsp_nonce_field('wp_rest'); ?>
+    <form method="POST" action="{{ wpsp_lite_route('Apis', 'auth.register', true) }}" class="form">
+	    <?php wpsp_lite_nonce_field('wp_rest'); ?>
         <label for="name">Name</label>
         <input type="text" name="name" id="name" tabindex="1" value="user_{{ time() }}"/>
         <label for="email">Email address</label>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ wpsp_asset('auth/main.css') }}" />
+    <link rel="stylesheet" href="{{ wpsp_lite_asset('auth/main.css') }}" />
     <title>Sign in</title>
 </head>
 
@@ -28,7 +28,7 @@
     @endif
 
     <div class="login-callout">
-        Chưa nhận được email? <a href="{{ wpsp_route('RewriteFrontPages', 'verification.resend', true) }}">Gửi lại</a>.
+        Chưa nhận được email? <a href="{{ wpsp_lite_route('RewriteFrontPages', 'verification.resend', true) }}">Gửi lại</a>.
     </div>
 
     <div class="footer">

@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Customizers;
+namespace WPSPLITE\App\Widen\Routes\Customizers;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class Customizers extends \WPSPCORE\App\Routes\Customizers\Customizers {
+class Customizers extends \WPSPCORELITE\App\Routes\Customizers\Customizers {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class Customizers extends \WPSPCORE\App\Routes\Customizers\Customizers {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

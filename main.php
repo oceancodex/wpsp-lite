@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:         WPSP Framework - WordPress Starter Plugin - Lite
- * Description:         WPSP Framework - WordPress Starter Plugin - PHP ^8.2
- * Version:             12.1.10
+ * Description:         WPSP Framework - WordPress Starter Plugin - PHP ^8.3
+ * Version:             12.1.61
  * Requires at least:   6.1
  * Requires PHP:        8.2
  * Text Domain:         wpsp
@@ -18,6 +18,6 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if (!defined('WPSP_ARTISAN_START') && !defined('WPSP_ORIGINAL_WP')) {
+if (!defined('WPSP_LITE_ARTISAN_START') && !defined('WPSP_LITE_ORIGINAL_WP')) {
 	require_once __DIR__ . '/bootstrap/plugin.php';
 }

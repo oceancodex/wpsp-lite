@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\Tests;
+namespace WPSPLITE\Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 

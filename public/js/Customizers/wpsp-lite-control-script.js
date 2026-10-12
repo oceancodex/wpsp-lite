@@ -1,0 +1,1 @@
+console.log("Enqueued: wpsp-lite-control-script.js");

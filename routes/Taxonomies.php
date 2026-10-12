@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\Taxonomies\Taxonomies as Route;
-use WPSP\App\WordPress\Taxonomies\wpsp_category;
-use WPSPCORE\App\Routes\Taxonomies\TaxonomiesRouteTrait;
+use WPSPLITE\App\Widen\Routes\Taxonomies\Taxonomies as Route;
+use WPSPLITE\App\WordPress\Taxonomies\wpsp_lite_category;
+use WPSPCORELITE\App\Routes\Taxonomies\TaxonomiesRouteTrait;
 
 class Taxonomies {
 
@@ -15,7 +15,7 @@ class Taxonomies {
 	 */
 
 	public function taxonomies() {
-		Route::taxonomy('wpsp_category', [wpsp_category::class]);
+		Route::taxonomy('wpsp_lite_category', [wpsp_lite_category::class]);
 	}
 
 	/*

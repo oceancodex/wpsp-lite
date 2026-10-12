@@ -1,10 +1,10 @@
 <?php
-namespace WPSP\App\WordPress\TaxonomyColumns;
+namespace WPSPLITE\App\WordPress\TaxonomyColumns;
 
-use Illuminate\Http\Request;
-use WPSP\App\Services\TestService;
-use WPSP\App\Widen\Traits\InstancesTrait;
-use WPSPCORE\App\WordPress\TaxonomyColumns\BaseTaxonomyColumn;
+use WPSPCORELITE\App\Http\Request;
+use WPSPCORELITE\App\WordPress\TaxonomyColumns\BaseTaxonomyColumn;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class custom_column extends BaseTaxonomyColumn {
 
@@ -14,7 +14,7 @@ class custom_column extends BaseTaxonomyColumn {
 	public $column_title            = 'Custom column';
 	public $column_add_priority     = 9999;
 	public $column_content_priority = 9999;
-	public $taxonomies              = ['category', 'wpsp_category', 'product_cat'];
+	public $taxonomies              = ['category', 'wpsp_lite_category', 'product_cat'];
 //	public $before_column           = [];
 //	public $after_column            = ['name'];
 	public $position                = 2;
@@ -31,7 +31,7 @@ class custom_column extends BaseTaxonomyColumn {
 	 */
 
 	public function index($content, $column_name, $term_id, Request $request, TestService $testService) {
-		echo $term_id . ' - ' . $testService->test() . ' > ' . $testService->subTestService->subTest();
+		return $term_id . ' - ' . $testService->test() . ' > ' . $testService->subTestService->subTest();
 	}
 
 	/*

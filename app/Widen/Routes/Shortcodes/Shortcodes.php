@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Shortcodes;
+namespace WPSPLITE\App\Widen\Routes\Shortcodes;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class Shortcodes extends \WPSPCORE\App\Routes\Shortcodes\Shortcodes {
+class Shortcodes extends \WPSPCORELITE\App\Routes\Shortcodes\Shortcodes {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class Shortcodes extends \WPSPCORE\App\Routes\Shortcodes\Shortcodes {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

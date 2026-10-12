@@ -1,10 +1,11 @@
 <?php
 
-namespace WPSP\routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\TaxonomyColumns\TaxonomyColumns as Route;
-use WPSP\App\WordPress\TaxonomyColumns\custom_column;
-use WPSPCORE\App\Routes\TaxonomyColumns\TaxonomyColumnsRouteTrait;
+use WPSPLITE\App\Widen\Routes\TaxonomyColumns\TaxonomyColumns as Route;
+use WPSPLITE\App\WordPress\TaxonomyColumns\custom_column;
+use WPSPLITE\App\WordPress\TaxonomyColumns\custom_column_view;
+use WPSPCORELITE\App\Routes\TaxonomyColumns\TaxonomyColumnsRouteTrait;
 
 class TaxonomyColumns {
 
@@ -16,6 +17,7 @@ class TaxonomyColumns {
 
 	public function taxonomy_columns() {
 		Route::column('custom_column', [custom_column::class, 'index']);
+		Route::column('custom_column_view', [custom_column_view::class, 'index']);
 	}
 
 	/*

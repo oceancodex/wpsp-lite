@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Custom page template: wpsp-right-content
+ * Template Name: Custom page template: wpsp-lite-right-content
  *
  * @see https://developer.wordpress.org/themes/classic-themes/templates/page-template-files/
  */

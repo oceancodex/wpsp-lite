@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\Tests\Unit;
+namespace WPSPLITE\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
