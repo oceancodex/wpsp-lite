@@ -23,10 +23,10 @@
 		"ext-mbstring": "*",
 		"ext-mysqli": "*",
 		"ext-pdo": "*",
-		"oceancodex/wpsp-core-lite": "^13.0"
+		"oceancodex/wpsp-core-lite": "^12.0"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^12.5"
+		"phpunit/phpunit": "^11.5"
 	},
 	"repositories": [
 		{
