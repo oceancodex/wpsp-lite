@@ -1,0 +1,16 @@
+@section('title')
+    {{ wpsp_lite_trans('Activity log', null, true) }}
+@endsection
+
+@section('content')
+	<form method="GET">
+		<input type="hidden" name="page" value="{{ $_REQUEST['page'] ?? '' }}"/>
+		<input type="hidden" name="tab" value="{{ $_REQUEST['tab'] ?? '' }}"/>
+		@php
+//			$table?->prepare_items();
+//			$table?->views();
+//			$table?->search_box('Search', 'search_id');
+//			$table?->display();
+		@endphp
+	</form>
+@endsection

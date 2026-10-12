@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 
 class BearerMiddleware {
 
@@ -13,6 +13,9 @@ class BearerMiddleware {
 		}
 		elseif (method_exists($request, 'get_headers')) {
 			return $request->get_headers()['Authorization'] == 'Bearer 123456789';
+		}
+		elseif (method_exists($request, 'header')) {
+			return $request->header('Authorization') == 'Bearer 123456789';
 		}
 		return false;
 	}

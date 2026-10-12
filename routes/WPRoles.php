@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\routes;
+namespace WPSPLITE\Routes;
 
-use WPSP\App\Widen\Routes\WPRoles\WPRoles as Route;
-use WPSP\App\WordPress\WPRoles\super_admin;
-use WPSPCORE\App\Routes\WPRoles\WPRolesRouteTrait;
+use WPSPLITE\App\Widen\Routes\WPRoles\WPRoles as Route;
+use WPSPLITE\App\WordPress\WPRoles\super_admin;
+use WPSPCORELITE\App\Routes\WPRoles\WPRolesRouteTrait;
 
 class WPRoles {
 

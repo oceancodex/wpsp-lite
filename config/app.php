@@ -13,7 +13,7 @@ return [
     |
     */
 
-	'name' => env('WPSP_APP_NAME', 'WPSP Framework - WordPress Starter Plugin - Lite'),
+	'name' => 'WPSP Framework - WordPress Starter Plugin',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ return [
 	|--------------------------------------------------------------------------
 	*/
 
-	'short_name' => env('WPSP_APP_SHORT_NAME', 'wpsp'),
+	'short_name' => 'wpsp_lite',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ return [
     |
     */
 
-	'env' => env('WPSP_APP_ENV', 'production'),
+	'env' => 'production',
 
     /*
     |--------------------------------------------------------------------------
@@ -47,23 +47,15 @@ return [
     |
     */
 
-	'debug' => (bool) env('WPSP_APP_DEBUG', false),
+    'debug' => false,
 
-	/*
-	|--------------------------------------------------------------------------
-	| Application Debug Type
-	|--------------------------------------------------------------------------
-	*/
+    'debug_handler' => null,
 
-	'debug_type' => env('WPSP_APP_DEBUG_TYPE', 'simple'),
+    'debug_monitor' => false,
 
-	/*
-	|--------------------------------------------------------------------------
-	| Application Live Reload Mode
-	|--------------------------------------------------------------------------
-	*/
+    'debug_type' => 'simple',
 
-	'live_reload' => env('WPSP_APP_LIVE_RELOAD', false),
+    'debug_live_reload' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -76,7 +68,7 @@ return [
     |
     */
 
-	'url' => env('WPSP_APP_URL', 'https://localhost'),
+	'url' => function_exists('home_url') ? home_url() : 'https://localhost',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -84,7 +76,7 @@ return [
 	|--------------------------------------------------------------------------
 	*/
 
-	'asset_url' => defined('WPSP_ORIGINAL_START') ? env('WPSP_ASSET_ORIGINAL_URL') : env('WPSP_ASSET_URL'),
+	'asset_url' => '/wp-content/plugins/' . \WPSPLITE\Funcs::getPluginDirName() . '/public',
 
     /*
     |--------------------------------------------------------------------------
@@ -97,7 +89,7 @@ return [
     |
     */
 
-    'timezone' => env('WPSP_APP_TIMEZONE', 'UTC'),
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -110,11 +102,11 @@ return [
     |
     */
 
-	'locale' => \WPSP\Funcs::locale() ?? env('WPSP_APP_LOCALE', 'en'),
+	'locale' => \WPSPLITE\Funcs::locale() ?? 'en',
 
-	'fallback_locale' => env('WPSP_APP_FALLBACK_LOCALE', 'en'),
+	'fallback_locale' => 'en',
 
-	'faker_locale' => env('WPSP_APP_FAKER_LOCALE', 'en_US'),
+	'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
@@ -129,11 +121,11 @@ return [
 
 	'cipher' => 'AES-256-CBC',
 
-	'key' => env('WPSP_APP_KEY'),
+	'key' => null,
 
 	'previous_keys' => [
 		...array_filter(
-			explode(',', (string) env('WPSP_APP_PREVIOUS_KEYS', ''))
+			explode(',', '')
 		),
 	],
 
@@ -151,8 +143,8 @@ return [
     */
 
 	'maintenance' => [
-		'driver' => env('WPSP_APP_MAINTENANCE_DRIVER', 'file'),
-		'store' => env('WPSP_APP_MAINTENANCE_STORE', 'database'),
+		'driver' => 'file',
+		'store' => 'database',
 	],
 
 ];

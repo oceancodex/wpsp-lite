@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Custom page template: wpsp-bigger-content-font-size
+ * Template Name: Custom page template: wpsp-lite-bigger-content-font-size
  *
  * @see https://developer.wordpress.org/themes/classic-themes/templates/page-template-files/
  */

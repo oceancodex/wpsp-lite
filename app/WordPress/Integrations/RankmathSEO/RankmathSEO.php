@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSP\App\WordPress\Integrations\RankmathSEO;
+namespace WPSPLITE\App\WordPress\Integrations\RankmathSEO;
 
 class RankmathSEO {
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace WPSP\App\Http\Middleware;
+namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
+use WPSPCORELITE\App\Http\Request;
 
 class FrontendMiddleware {
 

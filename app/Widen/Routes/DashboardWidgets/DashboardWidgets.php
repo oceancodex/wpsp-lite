@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\DashboardWidgets;
+namespace WPSPLITE\App\Widen\Routes\DashboardWidgets;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class DashboardWidgets extends \WPSPCORE\App\Routes\DashboardWidgets\DashboardWidgets {
+class DashboardWidgets extends \WPSPCORELITE\App\Routes\DashboardWidgets\DashboardWidgets {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class DashboardWidgets extends \WPSPCORE\App\Routes\DashboardWidgets\DashboardWi
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

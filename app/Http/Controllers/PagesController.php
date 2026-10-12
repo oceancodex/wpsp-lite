@@ -1,12 +1,19 @@
 <?php
 
-namespace WPSP\App\Http\Controllers;
+namespace WPSPLITE\App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use WPSP\App\Services\TestService;
-use WPSPCORE\App\Http\Controllers\BaseController;
+use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPCORELITE\App\Http\Controllers\BaseController;
 
 class PagesController extends BaseController {
+
+	use InstancesTrait;
+
+	/*
+	 *
+	 */
 
 	public function index(Request $request) {
 		echo '<pre style="background:white;z-index:9999;position:relative">'; print_r('OK'); echo '</pre>';

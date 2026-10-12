@@ -1,1 +1,1 @@
-<textarea style="width: 100%;" onclick="this.select();">[wpsp_content id="{{ $post->ID }}" name="{{ $post->post_title }}"]</textarea>
+<textarea style="width: 100%;" onclick="this.select();">[wpsp_lite_content id="{{ $post->ID }}" name="{{ $post->post_title }}"]</textarea>

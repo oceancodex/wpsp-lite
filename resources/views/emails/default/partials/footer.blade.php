@@ -3,7 +3,7 @@
         <td align="center" class="main-container">
 
             <div class="footer">
-                <p>Copyright 2025. WPSP Framework - WordPress Starter Plugin - Lite</p>
+                <p>Copyright 2025. WPSP Framework - WordPress Starter Plugin</p>
             </div>
 
         </td>

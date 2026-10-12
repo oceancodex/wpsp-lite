@@ -1,10 +1,10 @@
 <?php
 
-namespace WPSP\App\Widen\Routes\Blocks;
+namespace WPSPLITE\App\Widen\Routes\Blocks;
 
-use WPSP\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
-class Blocks extends \WPSPCORE\App\Routes\Blocks\Blocks {
+class Blocks extends \WPSPCORELITE\App\Routes\Blocks\Blocks {
 
 	use InstancesTrait;
 
@@ -12,6 +12,6 @@ class Blocks extends \WPSPCORE\App\Routes\Blocks\Blocks {
 	 *
 	 */
 
-	public function customProperties() {}
+//	public function customProperties() {}
 
 }

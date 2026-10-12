@@ -1,9 +1,8 @@
 <?php
 
-namespace WPSP\Tests\Feature;
+namespace WPSPLITE\Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
-use WPSP\Tests\TestCase;
+use WPSPLITE\Tests\TestCase;
 
 class ExampleTest extends TestCase {
 

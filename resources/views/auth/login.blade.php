@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ wpsp_asset('auth/main.css') }}" />
+    <link rel="stylesheet" href="{{ wpsp_lite_asset('auth/main.css') }}" />
     <title>Sign in</title>
 </head>
 
@@ -17,12 +17,12 @@
         Sign in
     </div>
 
-    <form method="POST" action="{{ wpsp_route('Apis', 'auth.login', true) }}" class="form">
-	    <?php wpsp_nonce_field('wp_rest'); ?>
+    <form method="POST" action="{{ wpsp_lite_route('Apis', 'auth.login', true) }}" class="form">
+	    <?php wpsp_lite_nonce_field('wp_rest'); ?>
         <label for="login">Username or email address</label>
         <input type="text" name="login" id="login" tabindex="1" value="admin"/>
         <label for="password">Password
-            <a class="label-link" href="{{ wpsp_route('RewriteFrontPages', 'auth.forgot_password', true) }}"> Forgot password? </a>
+            <a class="label-link" href="{{ wpsp_lite_route('RewriteFrontPages', 'auth.forgot_password', true) }}"> Forgot password? </a>
         </label>
         <input type="text" name="password" id="password" tabindex="1" value="123@123##"/>
         <div style="display: flex; align-items: center;">
