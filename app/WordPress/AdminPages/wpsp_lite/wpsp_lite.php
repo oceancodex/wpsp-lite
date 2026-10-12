@@ -236,6 +236,8 @@ class wpsp_lite extends BaseAdminPage {
 	public function index(Request $request) {
 //		File::put(Funcs::getResourcesPath('test.txt'), 'test');
 
+//		echo '<pre style="background: white; z-index: 9999; position: relative;">'; print_r(Funcs::app('test_service')->test()); echo '</pre>';
+
 //		$code = Artisan::call('custom:my-custom-command');
 //		echo '<pre style="background:#1e1e1e;color:#d4d4d4;padding:16px;border-radius:4px;overflow:auto;">' . Artisan::outputHtml() . '</pre>';
 
