@@ -147,7 +147,7 @@ class wpsp_lite_tab_permissions extends BaseAdminPage {
 		if ($isListPage) {
 			add_action('current_screen', function($screen) {
 				$this->table = new \WPSPLITE\App\WordPress\ListTables\Permissions();
-				Funcs::viewInject('admin-pages.wpsp.permissions', function($view) {
+				Funcs::viewInject('admin-pages.wpsp_lite.permissions', function($view) {
 					$view->with('table', $this->table);
 				});
 			});

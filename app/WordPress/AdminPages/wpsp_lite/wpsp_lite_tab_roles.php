@@ -149,10 +149,10 @@ class wpsp_lite_tab_roles extends BaseAdminPage {
 		if ($isListPage) {
 			add_action('current_screen', function($screen) {
 				$this->table = new \WPSPLITE\App\WordPress\ListTables\Roles();
-//				Funcs::viewInject('admin-pages.wpsp.roles', function($view) {
+//				Funcs::viewInject('admin-pages.wpsp_lite.roles', function($view) {
 //					$view->with('table', $this->table);
 //				});
-//				View::composer('admin-pages.wpsp.roles', function($view) {
+//				View::composer('admin-pages.wpsp_lite.roles', function($view) {
 //					$view->with('table', $this->table);
 //				});
 			});

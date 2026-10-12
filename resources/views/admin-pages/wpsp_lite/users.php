@@ -159,12 +159,13 @@ elseif(
 else :
 ?>
     <form method="GET">
-        <input type="hidden" name="page" value="{{ $_REQUEST['page'] ?? '' }}"/>
-        <input type="hidden" name="tab" value="{{ $_REQUEST['tab'] ?? '' }}"/>
+        <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?? '' ?>"/>
+        <input type="hidden" name="tab" value="<?php echo $_REQUEST['tab'] ?? '' ?>"/>
         <?php
             $table?->prepare_items();
             $table?->views();
             $table?->search_box('Search', 'search_id');
+			$table?->bulk_edit_form();
             $table?->display();
         ?>
     </form>

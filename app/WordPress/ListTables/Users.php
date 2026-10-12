@@ -218,7 +218,9 @@ class Users extends BaseListTable {
 	 * Bulk edit form.
 	 */
 	public function bulk_edit_form() {
-		echo Funcs::view('admin-pages.wpsp.users.bulk-edit')->with(['testService' => $this->testService]);
+//		echo Funcs::view('admin-pages.wpsp_lite.users.bulk-edit')->with(['testService' => $this->testService]);
+		$testService = $this->testService;
+		require Funcs::getResourcesPath('/views/admin-pages/wpsp_lite/users/bulk-edit.php');
 	}
 
 
@@ -305,9 +307,9 @@ class Users extends BaseListTable {
 	public function column_name($item) {
 		$actions = [
 			'custom' => '<a href="/admin.php?page=custom&edit=' . $item['id'] . '">Custom</a>',
-			'show'   => '<a href="' . Funcs::route('AdminPages', 'wpsp.users.show', ['user' => $item['id']], true) . '">Show</a>',
-			'edit'   => '<a href="' . Funcs::route('AdminPages', 'wpsp.users.edit', ['id' => $item['id']], true) . '">Edit</a>',
-			'delete' => '<a href="' . Funcs::route('AdminPages', 'wpsp.users.delete', ['id' => $item['id']], true) . '">Delete</a>',
+			'show'   => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.users.show', ['user' => $item['id']], true) . '">Show</a>',
+			'edit'   => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.users.edit', ['id' => $item['id']], true) . '">Edit</a>',
+			'delete' => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.users.delete', ['id' => $item['id']], true) . '">Delete</a>',
 		];
 
 		return sprintf('%1$s %2$s', $item['name'], $this->row_actions($actions));

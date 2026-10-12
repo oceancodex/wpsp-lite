@@ -312,7 +312,7 @@ class wpsp_lite extends BaseAdminPage {
 ////			$table        = $this->table;
 ////			$checkLicense = License::checkLicense();
 //
-//			echo Funcs::view('admin-pages.wpsp.main', compact(
+//			echo Funcs::view('admin-pages.wpsp_lite.main', compact(
 //				'requestParams',
 //				'menuSlug',
 ////			    'checkLicense',

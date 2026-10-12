@@ -135,7 +135,7 @@ class wpsp_lite_tab_tools extends BaseAdminPage {
 //	public function afterLoadAdminPage($adminPage) {}
 
 	public function matchedCurrentAccess() {
-		Funcs::viewInject('admin-pages.wpsp.tools', [
+		Funcs::viewInject('admin-pages.wpsp_lite.tools', [
 			'screen_columns' => $this->getScreenColumns(),
 		]);
 

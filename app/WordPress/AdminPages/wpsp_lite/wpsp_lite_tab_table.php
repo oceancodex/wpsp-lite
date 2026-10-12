@@ -148,7 +148,7 @@ class wpsp_lite_tab_table extends BaseAdminPage {
 		if ($isListPage) {
 			add_action('current_screen', function($screen) {
 				$this->table = new \WPSPLITE\App\WordPress\ListTables\Settings();
-				Funcs::viewInject('admin-pages.wpsp.table', function($view) {
+				Funcs::viewInject('admin-pages.wpsp_lite.table', function($view) {
 					$view->with('table', $this->table);
 				});
 			});

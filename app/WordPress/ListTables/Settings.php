@@ -216,7 +216,7 @@ class Settings extends BaseListTable {
 	 * Bulk edit form.
 	 */
 	public function bulk_edit_form() {
-		echo Funcs::view('admin-pages.wpsp.users.bulk-edit')->with(['testService' => $this->testService]);
+		echo Funcs::view('admin-pages.wpsp_lite.users.bulk-edit')->with(['testService' => $this->testService]);
 	}
 
 
@@ -229,7 +229,7 @@ class Settings extends BaseListTable {
 	 */
 	public function extra_tablenav($which) {
 		if ($which == 'top') {
-			echo Funcs::view('admin-pages.wpsp.settings.tablenav');
+			echo Funcs::view('admin-pages.wpsp_lite.settings.tablenav');
 		}
 	}
 
@@ -298,9 +298,9 @@ class Settings extends BaseListTable {
 	public function column_name($item) {
 		$actions = [
 			'custom' => '<a href="/admin.php?page=custom&edit=' . $item['id'] . '">Custom</a>',
-			'show'   => '<a href="' . Funcs::route('AdminPages', 'wpsp.settings.show', ['setting' => $item['id']], true) . '">Show</a>',
-			'edit'   => '<a href="' . Funcs::route('AdminPages', 'wpsp.settings.edit', ['id' => $item['id']], true) . '">Edit</a>',
-			'delete' => '<a href="' . Funcs::route('AdminPages', 'wpsp.settings.delete', ['id' => $item['id']], true) . '">Delete</a>',
+			'show'   => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.settings.show', ['setting' => $item['id']], true) . '">Show</a>',
+			'edit'   => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.settings.edit', ['id' => $item['id']], true) . '">Edit</a>',
+			'delete' => '<a href="' . Funcs::route('AdminPages', 'wpsp_lite.settings.delete', ['id' => $item['id']], true) . '">Delete</a>',
 		];
 
 		return sprintf('%1$s %2$s', $item['name'], $this->row_actions($actions));

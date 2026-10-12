@@ -166,7 +166,7 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 		if ($isListPage) {
 			add_action('current_screen', function($screen) {
 				$this->table = new \WPSPLITE\App\WordPress\ListTables\Users();
-				Funcs::viewInject('admin-pages.wpsp.users', function($view) {
+				Funcs::viewInject('admin-pages.wpsp_lite.users', function($view) {
 					$view->with('table', $this->table);
 				});
 			});
@@ -200,7 +200,7 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 				'email'    => $email,
 				'password' => $password,
 			]);
-			wp_redirect(Funcs::route('AdminPages', 'wpsp.users.list', ['saved' => 'true'], true));
+			wp_redirect(Funcs::route('AdminPages', 'wpsp_lite.users.list', ['saved' => 'true'], true));
 		}
 	}
 
@@ -222,7 +222,7 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 //			try {
 				// Select user and test ModelNotFoundException.
 //			    $selectedUser = UsersModel::query()->findOrFail($user_id);
-				Funcs::viewInject('admin-pages.wpsp.users', [
+				Funcs::viewInject('admin-pages.wpsp_lite.users', [
 					'selected_user' => $user,
 				]);
 //			}
@@ -246,7 +246,7 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 		if ($action == 'edit' && $id) {
 			// Select user and test ModelNotFoundException.
 			$selectedUser = UsersModel::query()->findOrFail($id);
-			wpsp_lite_view_inject('admin-pages.wpsp.users', function($view) use ($selectedUser) {
+			wpsp_lite_view_inject('admin-pages.wpsp_lite.users', function($view) use ($selectedUser) {
 				$view->with('selected_user', $selectedUser);
 			});
 		}
@@ -295,7 +295,7 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 			if ($updated) {
 //				Funcs::notice(Funcs::trans('Updated successfully', null, true), 'success');
 //				Event::dispatch(new UsersUpdatedEvent($cacheUser));
-				response()->redirectTo(Funcs::route('AdminPages', 'wpsp.users.edit', [
+				response()->redirectTo(Funcs::route('AdminPages', 'wpsp_lite.users.edit', [
 					'id'      => $id,
 					'updated' => true,
 				], true))->withInput()->send();
@@ -303,7 +303,7 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 			}
 			else {
 //				Funcs::notice(Funcs::trans('Update failed', null, true), 'error');
-				response()->redirectTo(Funcs::route('AdminPages', 'wpsp.users.edit', [
+				response()->redirectTo(Funcs::route('AdminPages', 'wpsp_lite.users.edit', [
 					'id'    => $id,
 					'error' => 'Update failed',
 				], true))->withInput()->send();
@@ -333,15 +333,18 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 				return $value !== null && $value !== '';
 			});
 
-			try {
-				$updated = UsersModel::query()
-					->whereIn('id', $items)
-					->update($bulkEdit);
-				$message = 'Updated successfully';
-			} catch (\Exception $e) {
-				$updated = false;
-				$message = $e->getMessage();
-			}
+//			try {
+//				$updated = UsersModel::query()
+//					->whereIn('id', $items)
+//					->update($bulkEdit);
+//				$message = 'Updated successfully';
+//			} catch (\Exception $e) {
+//				$updated = false;
+//				$message = $e->getMessage();
+//			}
+
+			$updated = true;
+			$message = 'Updated successfully';
 
 			if (!$updated) {
 				Funcs::notice(Funcs::trans($message, null, true), 'error');

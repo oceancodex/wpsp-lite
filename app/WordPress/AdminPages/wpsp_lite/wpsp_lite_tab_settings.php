@@ -139,7 +139,7 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 	public function matchedCurrentAccess() {
 //		$this->adminPageMetaBoxes = $this->adminPageMetaBoxes();
 
-//		Funcs::viewInject('admin-pages.wpsp.settings', [
+//		Funcs::viewInject('admin-pages.wpsp_lite.settings', [
 //			'admin_page_meta_boxes' => $this->getSortedAdminPageMetaBoxes(),
 //			'screen_columns' => $this->getScreenColumns(),
 //		]);

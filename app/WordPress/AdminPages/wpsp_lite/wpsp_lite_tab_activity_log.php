@@ -137,7 +137,7 @@ class wpsp_lite_tab_activity_log extends BaseAdminPage {
 	public function matchedCurrentAccess() {
 		add_action('current_screen', function($screen) {
 			$this->table = new \WPSPLITE\App\WordPress\ListTables\ActivityLogListTable();
-			Funcs::viewInject('admin-pages.wpsp.activity_log', function($view) {
+			Funcs::viewInject('admin-pages.wpsp_lite.activity_log', function($view) {
 				$view->with('table', $this->table);
 			});
 		});
