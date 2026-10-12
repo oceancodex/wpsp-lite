@@ -25,15 +25,15 @@ class EnsureEmailIsVerified {
 			(is_admin() && @preg_match('/page=' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath))
 			|| @preg_match('/^' . Funcs::instance()->_regexPath($args['route']->path) . '$/iu', $requestPath)
 		) {
-			if (!$request->user() || ($request->user() instanceof MustVerifyEmail && !$request->user()->hasVerifiedEmail())) {
-				if ($request->expectsJson()) {
-					wp_send_json(Funcs::response(false, null, 'Your email address is not verified.'), 403);
-				}
-				else {
-					Redirect::to(Funcs::route('RewriteFrontPages', 'verification.notice'))->send();
-					exit;
-				}
-			}
+//			if (!$request->user() || ($request->user() instanceof MustVerifyEmail && !$request->user()->hasVerifiedEmail())) {
+//				if ($request->expectsJson()) {
+//					wp_send_json(Funcs::response(false, null, 'Your email address is not verified.'), 403);
+//				}
+//				else {
+//					return wp_redirect(Funcs::route('RewriteFrontPages', 'wpsp_lite_verification.notice', true));
+//					exit;
+//				}
+//			}
 		}
 
 		return $next($request);

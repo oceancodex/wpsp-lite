@@ -3,7 +3,6 @@
 namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
-use Symfony\Component\HttpFoundation\Response;
 use WPSPCORELITE\App\Http\Request;
 use WPSPLITE\Funcs;
 
@@ -14,7 +13,7 @@ class VerifiedUserMiddleware {
 	 *
 	 * @param \Closure(\WPSPCORELITE\App\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
 	 */
-	public function handle(Request $request, Closure $next, $args = []): Response {
+	public function handle(Request $request, Closure $next, $args = []) {
 		$requestPath = ltrim($request->getRequestUri(), '/\\');
 
 		/**
@@ -36,9 +35,8 @@ class VerifiedUserMiddleware {
 		) {
 			if (!$request->user()?->hasVerifiedEmail()) {
 				$verificationUrl = Funcs::route('RewriteFrontPages', 'verification.resend', true);
-				$response = new Response('Tài khoản của bạn chưa xác thực! Vui lòng xác thực tài khoản <a href="' . $verificationUrl . '">tại đây</a>.', 403);
-				$response->send();
-				die();
+				$response = new \WP_HTTP_Response('Tài khoản của bạn chưa xác thực! Vui lòng xác thực tài khoản <a href="' . $verificationUrl . '">tại đây</a>.', 403);
+				return $response;
 			}
 		}
 

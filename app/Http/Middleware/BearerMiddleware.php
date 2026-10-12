@@ -14,6 +14,9 @@ class BearerMiddleware {
 		elseif (method_exists($request, 'get_headers')) {
 			return $request->get_headers()['Authorization'] == 'Bearer 123456789';
 		}
+		elseif (method_exists($request, 'header')) {
+			return $request->header('Authorization') == 'Bearer 123456789';
+		}
 		return false;
 	}
 
