@@ -2,8 +2,8 @@
 
 namespace WPSPLITE\App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use WPSPLITE\App\Services\TestService;
+use WPSPLITE\App\Widen\Support\Facades\Request;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPCORELITE\App\Http\Controllers\BaseController;
 
