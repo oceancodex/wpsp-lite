@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: WPSP - Page template center content
+ * Template Name: Custom page template: wpsp-lite-right-content
  *
  * @see https://developer.wordpress.org/themes/classic-themes/templates/page-template-files/
  */
@@ -9,10 +9,10 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-get_header('header');
+get_header();
 ?>
 <div class="content-area">
-	<main class="site-main" style="text-align: center;">
+	<main class="site-main" style="text-align: right;">
 		<?php
 		while (have_posts()) : the_post();
 			the_content();

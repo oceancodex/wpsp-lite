@@ -2,9 +2,9 @@
 
 namespace WPSPLITE\App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use WPSPLITE\App\Widen\Support\Facades\Migration;
 use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
+use WPSPLITE\App\Widen\Support\Facades\Request;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
 use WPSPCORELITE\App\Http\Controllers\BaseController;
