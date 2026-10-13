@@ -13,7 +13,7 @@ class wpsp_lite_center_content extends BaseThemeTemplates {
 //	public $name       = 'wpsp-lite-center-content';
 	public $label      = 'WPSP - Template center content';
 //	public $path       = null;
-	public $post_types = ['page'];
+	public $post_types = ['page', 'wpsp_lite_content'];
 
 	/*
 	 *
