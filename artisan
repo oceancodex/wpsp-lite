@@ -32,7 +32,7 @@ use WPSPLITE\Routes\Widgets;
 use WPSPLITE\Routes\WPRoles;
 use WPSPLITE\WPSP;
 
-define('WPSP_LITE_LITE_ARTISAN_START', microtime(true));
+define('WPSP_LITE_ARTISAN_START', microtime(true));
 
 require_once __DIR__ . '/ArtisanHelpers.php';
 
@@ -56,7 +56,7 @@ if ($ensureDBConnect) {
 				$pluginDirName = plugin_basename($pluginDir);
 
 				if (is_plugin_active($pluginDirName . '/main.php')) {
-					define('WPSP_LITE_LITE_ACTIVE', true);
+					define('WPSP_LITE_ACTIVE', true);
 				}
 				else {
 					echo "------------------------------------\n";
@@ -97,51 +97,85 @@ else {
 	echo "------------------------------------\n";
 }
 
-require __DIR__ . '/vendor/autoload.php';
+try {
+	/**
+	 * Load composer autoload.
+	 */
+	@require __DIR__ . '/vendor/autoload.php';
 
-$wpsp = WPSP::startConsole();
+	/**
+	 * ---
+	 * Start application.
+	 */
+	$wpsp = WPSP::startConsole();
 
-Integration::instance()->register();
+	/**
+	 * Tích hợp.
+	 */
+	Integration::instance()->register();
 
-if (defined('WPSP_LITE_ACTIVE') && WPSP_LITE_ACTIVE) {
-	foreach ([
-		AdminPages::class,
-		Apis::class,
-		Ajaxs::class,
-		FrontPages::class,
-		RewriteFrontPages::class,
+	/**
+	 * ---
+	 * Đăng ký routes.
+	 */
+	if (defined('WPSP_LITE_ACTIVE') && WPSP_LITE_ACTIVE) {
+		foreach ([
+			AdminPages::class,
+			Apis::class,
+			Ajaxs::class,
+			FrontPages::class,
+			RewriteFrontPages::class,
 
-		AdminBarMenus::class,
-		Blocks::class,
-		CommentColumns::class,
-		Customizers::class,
-		DashboardWidgets::class,
-		MediaColumns::class,
-		MetaBoxes::class,
-		NavLocations::class,
-		PluginColumns::class,
-		PostTypeColumns::class,
-		PostTypes::class,
-		Schedules::class,
-		Shortcodes::class,
-		Taxonomies::class,
-		TaxonomyColumns::class,
-		ThemeTemplates::class,
-		UserColumns::class,
-		UserMetaBoxes::class,
-		Widgets::class,
-		WPRoles::class,
+			AdminBarMenus::class,
+			Blocks::class,
+			CommentColumns::class,
+			Customizers::class,
+			DashboardWidgets::class,
+			MediaColumns::class,
+			MetaBoxes::class,
+			NavLocations::class,
+			PluginColumns::class,
+			PostTypeColumns::class,
+			PostTypes::class,
+			Schedules::class,
+			Shortcodes::class,
+			Taxonomies::class,
+			TaxonomyColumns::class,
+			ThemeTemplates::class,
+			UserColumns::class,
+			UserMetaBoxes::class,
+			Widgets::class,
+			WPRoles::class,
 
-		Actions::class,
-		Filters::class,
-	] as $route) {
-		(new $route())->register();
+			Actions::class,
+			Filters::class,
+		] as $route) {
+			(new $route())->register();
+		}
 	}
+
+	/**
+	 * ---
+	 * Chạy tất cả các route đã đăng ký.
+	 */
+	RouteManager::instance()->executeAllRoutes(['Widgets']);
+
+	/**
+	 * Chạy các route với types của chúng được chỉ định.
+	 */
+	RouteManager::instance()->executeRouteByTypes(['Widgets']);
+
+	/**
+	 * ---
+	 * Xử lý command line.
+	 */
+	$app    = $wpsp->getApplication();
+	$status = $app->handleCommand($argv);
+	exit($status);
 }
-
-RouteManager::instance()->executeAllRoutes(['Widgets']);
-RouteManager::instance()->executeRouteByTypes(['Widgets']);
-
-$app = $wpsp->getApplication();
-$status = $app->handleCommand($argv);
-exit($status);
+catch (\Throwable $e) {
+	echo "\n";
+	echo "\033[31m[X] " . $e->getMessage() . "\033[0m\n";
+	echo "\n";
+	exit(1);
+}
