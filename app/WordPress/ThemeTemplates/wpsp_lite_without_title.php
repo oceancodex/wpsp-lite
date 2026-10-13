@@ -12,7 +12,7 @@ class wpsp_lite_without_title extends BaseThemeTemplates {
 	use InstancesTrait;
 
 	public $name       = 'wpsp-lite-without-title';
-	public $label      = 'WPSP - Template without title';
+	public $label      = 'WPSP Lite - Template without title';
 //	public $path       = null;
 	public $post_types = ['page'];
 
