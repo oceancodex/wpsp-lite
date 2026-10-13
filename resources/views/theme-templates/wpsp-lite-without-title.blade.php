@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: WPSP - Page template without title
+ * Template Name: WPSP Lite - Page template without title
  *
  * @see https://developer.wordpress.org/themes/classic-themes/templates/page-template-files/
  */
@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-get_header('header');
+get_header();
 ?>
 <div class="content-area">
 	<main class="site-main">

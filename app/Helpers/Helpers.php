@@ -1,10 +1,8 @@
 <?php
 
-use WPSPLITE\App\Widen\Support\Facades\Auth;
-use WPSPLITE\App\Widen\Support\Facades\Cache;
-use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
 use WPSPLITE\Funcs;
 use WPSPLITE\WPSP;
+use WPSPCORELITE\App\Http\Request;
 
 if (!function_exists('wpsp_lite_app')) {
 	function wpsp_lite_app($abstract = null, $parameters = []) {
@@ -124,12 +122,12 @@ if (!function_exists('wpsp_lite_validation')) {
 }
 if (!function_exists('wpsp_lite_cache')) {
 	function wpsp_lite_cache() {
-		return Cache::instance();
+//		return Cache::instance();
 	}
 }
 if (!function_exists('wpsp_lite_rate_limiter')) {
 	function wpsp_lite_rate_limiter() {
-		return RateLimiter::instance()->getRateLimiter();
+//		return RateLimiter::instance()->getRateLimiter();
 	}
 }
 
@@ -139,47 +137,47 @@ if (!function_exists('wpsp_lite_rate_limiter')) {
 
 if (!function_exists('wpsp_lite_abort')) {
 	function wpsp_lite_abort($code, $message = '', $headers = []) {
-		throw new \WPSPLITE\App\Exceptions\HttpException($code, $message, $headers);
+		return new \WP_HTTP_Response($message, $code, $headers);
 	}
 }
 if (!function_exists('wpsp_lite_abort_500')) {
 	function wpsp_lite_abort_500($message = 'Internal Server Error') {
-		wpsp_lite_abort(500, $message);
+		return wpsp_lite_abort(500, $message);
 	}
 }
 if (!function_exists('wpsp_lite_abort_404')) {
 	function wpsp_lite_abort_404($message = 'Page not found') {
-		wpsp_lite_abort(404, $message);
+		return wpsp_lite_abort(404, $message);
 	}
 }
 if (!function_exists('wpsp_lite_abort_403')) {
 	function wpsp_lite_abort_403(string $message = 'Forbidden') {
-		wpsp_lite_abort(403, $message);
+		return wpsp_lite_abort(403, $message);
 	}
 }
 if (!function_exists('wpsp_lite_abort_503')) {
 	function wpsp_lite_abort_503(string $message = 'Service Unavailable') {
-		wpsp_lite_abort(503, $message);
+		return wpsp_lite_abort(503, $message);
 	}
 }
 if (!function_exists('wpsp_lite_abort_401')) {
 	function wpsp_lite_abort_401(string $message = 'Unauthorized') {
-		wpsp_lite_abort(401, $message);
+		return wpsp_lite_abort(401, $message);
 	}
 }
 if (!function_exists('wpsp_lite_abort_400')) {
 	function wpsp_lite_abort_400(string $message = 'Bad Request') {
-		wpsp_lite_abort(400, $message);
+		return wpsp_lite_abort(400, $message);
 	}
 }
 if (!function_exists('wpsp_lite_abort_422')) {
 	function wpsp_lite_abort_422(string $message = 'Unprocessable Entity') {
-		wpsp_lite_abort(422, $message);
+		return wpsp_lite_abort(422, $message);
 	}
 }
 if (!function_exists('wpsp_lite_abort_405')) {
 	function wpsp_lite_abort_405(string $message = 'Method Not Allowed') {
-		wpsp_lite_abort(405, $message);
+		return wpsp_lite_abort(405, $message);
 	}
 }
 
@@ -188,7 +186,7 @@ if (!function_exists('wpsp_lite_abort_405')) {
  */
 
 if (!function_exists('wpsp_lite_action_notice')) {
-	function wpsp_lite_action_notice(?\Illuminate\Http\Request $request = null) {
+	function wpsp_lite_action_notice(?Request $request = null) {
 		Funcs::actionNotice($request);
 	}
 }

@@ -54,7 +54,7 @@ class wpsp_lite_with_template extends BaseRewriteFrontPage {
 //			echo 'User can "api_edit_articles".<br/><br/>';
 //		}
 
-		$this->seo();
+//		$this->seo();
 //		$post->post_content = 'Rewrite front page for path: ' . $this->path;
 	}
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: WPSP - Page template without header and footer
+ * Template Name: WPSP Lite - Page template without header and footer
  *
  * @see https://developer.wordpress.org/themes/classic-themes/templates/page-template-files/
  */
