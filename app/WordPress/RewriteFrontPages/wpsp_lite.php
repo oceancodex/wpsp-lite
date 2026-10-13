@@ -59,7 +59,7 @@ class wpsp_lite extends BaseRewriteFrontPage {
 		echo 'Rewrite front page for path: ' . $this->path . '<br/><br/>';
 
 //		remove_shortcode('rewrite_front_page_content');
-		echo Funcs::view('rewrite-front-pages.wpsp')->render();
+//		echo Funcs::view('rewrite-front-pages.wpsp')->render();
 	}
 
 	public function update($path = null) {

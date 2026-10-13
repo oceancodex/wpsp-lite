@@ -12,7 +12,7 @@ class wpsp_lite_without_header_footer extends BaseThemeTemplates {
 	use InstancesTrait;
 
 //	public $name       = 'wpsp-lite-without-header-footer';
-	public $label      = 'WPSP - Template without header and footer';
+	public $label      = 'WPSP Lite - Template without header and footer';
 //	public $path       = null;
 	public $post_types = ['page'];
 

@@ -11,7 +11,7 @@ class wpsp_lite_center_content extends BaseThemeTemplates {
 	use InstancesTrait;
 
 //	public $name       = 'wpsp-lite-center-content';
-	public $label      = 'WPSP - Template center content';
+	public $label      = 'WPSP Lite - Template center content';
 //	public $path       = null;
 	public $post_types = ['page', 'wpsp_lite_content'];
 
