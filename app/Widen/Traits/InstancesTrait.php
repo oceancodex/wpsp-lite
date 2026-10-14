@@ -21,7 +21,7 @@ trait InstancesTrait {
 				$funcs->_getMainPath(),
 				$funcs->_getRootNamespace(),
 				$funcs->_getPrefixEnv(),
-				['app_mode' => 'lite']
+				[]
 			);
 		}
 
