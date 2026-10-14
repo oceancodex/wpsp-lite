@@ -299,34 +299,36 @@ class wpsp_lite extends BaseAdminPage {
 		$requestParams = $request->all();
 		$menuSlug      = $this->menu_slug;
 
-//		try {
-////			activity()->useLog(Funcs::getAppShortName() . '-v4')
-////			          ?->event('Event: ' . $this->menu_slug)
-////			          ?->performedOn(SettingsModel::find(1))
-////			          ?->causedBy(get_current_user_id())
-////			          ?->withProperties(['prop_1' => 'prop_value_1'])
-////			          ?->log('Desc: ' . $this->menu_slug);
-//
+		try {
+//			activity()->useLog(Funcs::getAppShortName() . '-v4')
+//			          ?->event('Event: ' . $this->menu_slug)
+//			          ?->performedOn(SettingsModel::find(1))
+//			          ?->causedBy(get_current_user_id())
+//			          ?->withProperties(['prop_1' => 'prop_value_1'])
+//			          ?->log('Desc: ' . $this->menu_slug);
+
 //			$settings     = SettingsModel::query()->where('key', 'settings')->pluck('value')->first();
 //			$settings     = json_decode($settings ?? '', true);
-////			$test         = SettingsModel::query()->where('key', 'test')->pluck('value')->first();
+//			$test         = SettingsModel::query()->where('key', 'test')->pluck('value')->first();
 //			$wpUser       = WPUsersModel::find(1)->toArray();
-////			$table        = $this->table;
-////			$checkLicense = License::checkLicense();
-//
-//			echo Funcs::view('admin-pages.wpsp_lite.main', compact(
-//				'requestParams',
-//				'menuSlug',
-////			    'checkLicense',
+//			$table        = $this->table;
+//			$checkLicense = License::checkLicense();
+			$current_wp_user = wp_get_current_user();
+
+			echo Funcs::view('admin-pages.wpsp_lite.main', compact(
+				'requestParams',
+				'menuSlug',
+//			    'checkLicense',
 //				'settings',
-////				'test',
-////				'table',
-//				'wpUser'
-//			))->with([
-//				'checkDatabase' => $this->checkDatabase,
-//			]);
-//		}
-//		catch (\Throwable $e) {
+//				'test',
+//				'table',
+//				'wpUser',
+				'current_wp_user',
+			))->with([
+				'checkDatabase' => $this->checkDatabase,
+			]);
+		}
+		catch (\Throwable $e) {
 //			Funcs::notice($e->getMessage() . ' <code>(' . __CLASS__ . ')</code>', 'error');
 
 			$current_wp_user = wp_get_current_user();
@@ -339,7 +341,7 @@ class wpsp_lite extends BaseAdminPage {
 			$table = $this->table;
 
 			include_once(Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/main.php'));
-//		}
+		}
 	}
 
 	public function create(Request $request) {}
