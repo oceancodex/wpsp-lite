@@ -22,6 +22,7 @@ class Apis {
 	public function apis() {
 		Route::namespace('wpsp_lite')->version('v1')->group(function() {
 			Route::name('users.')->prefix('users')->group(function() {
+				Route::get('\/?', [ApisController::class, 'wpsp_lite']);
 				Route::middleware(AuthenticationMiddleware::class)->group(function() {
 //					Route::post('(?P<id>\w+)/update', [ApisController::class, 'usersUpdate'])->name('update');
 					Route::post('{id}/update', [ApisController::class, 'usersUpdate'])->name('update');
