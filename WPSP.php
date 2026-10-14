@@ -25,9 +25,7 @@ class WPSP extends \WPSPCORELITE\WPSP {
 				__DIR__,
 				__NAMESPACE__,
 				Funcs::PREFIX_ENV,
-				[
-					'app_mode' => 'full'
-				]
+				[]
 			);
 			$instance->funcs  = Funcs::instance();
 			static::$instance = $instance;
