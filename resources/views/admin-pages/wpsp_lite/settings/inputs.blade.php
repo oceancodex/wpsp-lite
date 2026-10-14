@@ -9,10 +9,10 @@
 				@include('admin-pages.common.media-upload', [
 					'attachment_id' => 'settings[logo_attachment_id]',
 					'attachment_name' => 'settings[logo_attachment_id]',
-					'attachment_value' => old('settings.logo_attachment_id') ?? $settings['logo_attachment_id'] ?? '',
+					'attachment_value' => $settings['logo_attachment_id'] ?? '',
 					'url_id' => 'settings[logo]',
 					'url_name' => 'settings[logo]',
-					'url_value' => old('settings.logo') ?? $settings['logo'] ?? '',
+					'url_value' => $settings['logo'] ?? '',
 					'class' => 'mt-1',
 					'button_id' => 'settings[logo]button',
 				])
@@ -22,7 +22,7 @@
         <div class="input-group mt-3">
             <label for="test">
                 Test (required, min: 10):
-                <input type="text" id="test" name="test" class="w-100 mt-1" value="{{ old('test') ?? $test ?? '' }}"/>
+                <input type="text" id="test" name="test" class="w-100 mt-1" value="{{ $test ?? '' }}"/>
             </label>
 			@error('test')
 			<span class="text-danger mt-1 d-block" style="color: red;">{{ $message }}</span>
@@ -33,7 +33,7 @@
             <label for="settings[setting_1]">
 				Setting 1:
                 <input type="text" id="settings[setting_1]" name="settings[setting_1]" class="w-100 mt-1"
-                       value="{{ old('settings.setting_1') ?? $settings['setting_1'] ?? '' }}"/>
+                       value="{{ $settings['setting_1'] ?? '' }}"/>
             </label>
 			@error('settings.setting_1')
 			<span class="text-danger mt-1 d-block" style="color: red;">{{ $message }}</span>
@@ -44,7 +44,7 @@
             <label for="settings[setting_2]">
                 Setting 2:
                 <input type="text" id="settings[setting_2]" name="settings[setting_2]" class="w-100 mt-1"
-                       value="{{ old('settings.setting_2') ?? $settings['setting_2'] ?? '' }}"/>
+                       value="{{ $settings['setting_2'] ?? '' }}"/>
             </label>
         </div>
 
@@ -55,7 +55,7 @@
 					   id="settings[expiry_date]"
 					   name="settings[expiry_date]"
 					   class="w-100 mt-1 wpsp-lite-admin-date-picker"
-                       value="{{ old('settings.expiry_date') ?? $settings['expiry_date'] ?? '' }}"/>
+                       value="{{ $settings['expiry_date'] ?? '' }}"/>
             </label>
         </div>
 
@@ -70,7 +70,7 @@
 						'one' => 'One',
 						'two' => 'Two',
 					],
-					'value' => old('toggle_visible_condition') ?? null,
+					'value' => null,
 					'atts' => [
 						'data-controller_trigger' => 'change',
 						'data-controller_selector' => 'option:selected',

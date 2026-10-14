@@ -108,8 +108,8 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 		/**
 		 * Lấy các parameters từ URL để tái sử dụng trong Class này.
 		 */
-		$this->currentTab  = $this->request->get('tab');
-		$this->currentPage = $this->request->get('page');
+		$this->currentTab  = $this->request->query('tab');
+		$this->currentPage = $this->request->query('page');
 //		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.settings')) . ' - ' . Funcs::config('app.name');
 	}
 
@@ -139,10 +139,13 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 	public function matchedCurrentAccess() {
 //		$this->adminPageMetaBoxes = $this->adminPageMetaBoxes();
 
-//		Funcs::viewInject('admin-pages.wpsp_lite.settings', [
-//			'admin_page_meta_boxes' => $this->getSortedAdminPageMetaBoxes(),
-//			'screen_columns' => $this->getScreenColumns(),
-//		]);
+		try {
+			Funcs::viewInject('admin-pages.wpsp_lite.settings', [
+				'admin_page_meta_boxes' => $this->getSortedAdminPageMetaBoxes(),
+				'screen_columns' => $this->getScreenColumns(),
+			]);
+		}
+		catch (\Throwable $e) {}
 	}
 
 //	public function afterInit() {}
@@ -159,18 +162,21 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 			'side' => [
 				'submitdiv' => [
 					'title' => 'Submit',
-					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/submit.php'),
+//					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/submit.php'),
+					'view'  => Funcs::view('admin-pages.wpsp_lite.settings.submit'),
 				],
 			],
 			'normal' => [
 				'inputsdiv' => [
 					'title' => 'Settings',
-					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/inputs.php'),
+//					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/inputs.php'),
+					'view'  => Funcs::view('admin-pages.wpsp_lite.settings.inputs'),
 					'data'  => ['settings' => $settings ?? []],
 				],
 				'testhiddendiv' => [
 					'title' => 'Test hidden',
-					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/test-hidden.php'),
+//					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/test-hidden.php'),
+					'view'  => Funcs::view('admin-pages.wpsp_lite.settings.test-hidden'),
 				],
 			],
 			'advanced' => [],
