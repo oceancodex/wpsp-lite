@@ -11,7 +11,6 @@ use WPSPCORELITE\App\Http\Request;
 
 class Funcs extends \WPSPCORELITE\Funcs {
 
-	const APP_MODE   = 'lite';
 	const PREFIX_ENV = 'WPSP_LITE_';
 
 	/** @var \WPSPCORELITE\Funcs|Funcs|null  */
@@ -36,7 +35,7 @@ class Funcs extends \WPSPCORELITE\Funcs {
 				__DIR__,
 				__NAMESPACE__,
 				static::PREFIX_ENV,
-				['app_mode' => static::APP_MODE]
+				[]
 			);
 		}
 		return static::$instance;
