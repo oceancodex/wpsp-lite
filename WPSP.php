@@ -106,13 +106,13 @@ class WPSP extends \WPSPCORELITE\WPSP {
 	public static function aferSetupApplication() {
 		Updater::instance()->init();
 		WPTranslation::instance()->init();
-//		static::shareVariablesForAllViews();
+		static::shareVariablesForAllViews();
 	}
 
 	public static function aferSetupApplicationForConsole() {
 		Updater::instance()->init();
 		WPTranslation::instance()->init();
-//		static::shareVariablesForAllViews();
+		static::shareVariablesForAllViews();
 	}
 
 	/*
