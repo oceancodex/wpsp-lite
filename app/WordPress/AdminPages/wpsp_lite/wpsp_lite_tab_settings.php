@@ -162,21 +162,18 @@ class wpsp_lite_tab_settings extends BaseAdminPage {
 			'side' => [
 				'submitdiv' => [
 					'title' => 'Submit',
-//					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/submit.php'),
-					'view'  => Funcs::view('admin-pages.wpsp_lite.settings.submit'),
+					'view'  => Funcs::app()->bound('view') ? Funcs::view('admin-pages.wpsp_lite.settings.submit') : Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/submit.php'),
 				],
 			],
 			'normal' => [
 				'inputsdiv' => [
 					'title' => 'Settings',
-//					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/inputs.php'),
-					'view'  => Funcs::view('admin-pages.wpsp_lite.settings.inputs'),
+					'view'  => Funcs::app()->bound('view') ? Funcs::view('admin-pages.wpsp_lite.settings.inputs') : Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/inputs.php'),
 					'data'  => ['settings' => $settings ?? []],
 				],
 				'testhiddendiv' => [
 					'title' => 'Test hidden',
-//					'view'  => Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/test-hidden.php'),
-					'view'  => Funcs::view('admin-pages.wpsp_lite.settings.test-hidden'),
+					'view'  => Funcs::app()->bound('view') ? Funcs::view('admin-pages.wpsp_lite.settings.test-hidden') : Funcs::instance()->_getResourcesPath('/views/admin-pages/wpsp_lite/settings/test-hidden.php'),
 				],
 			],
 			'advanced' => [],
