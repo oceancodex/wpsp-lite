@@ -15,10 +15,10 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function register() {
 		// Sử dụng "hassankhan/config" để có config như Laravel.
-		$this->app->instance('config', Config::instance());
+//		$this->app->instance('config', Config::instance());
 
 		// Sử dụng "eftec/bladeone" để có Blade Engine như Laravel.
-		$this->app->singleton('view', fn() => BladeOne::instance());
+//		$this->app->singleton('view', fn() => BladeOne::instance());
 
 		// Bind test service.
 		$this->app->singleton('test_service', fn() => new TestService());
