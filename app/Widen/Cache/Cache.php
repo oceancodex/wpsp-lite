@@ -16,4 +16,5 @@ use WPSPLITE\App\Widen\Traits\InstancesTrait;
 class Cache extends \WPSPCORELITE\App\Cache\Cache {
 
 	use InstancesTrait;
+
 }
