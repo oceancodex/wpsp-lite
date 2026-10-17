@@ -48,20 +48,20 @@ return [
 
 		'transient' => [
 			'driver'            => 'transient',
-			'network'           => false,      // true = site transients (shared across a multisite network)
-			'atomic_increments' => true,       // increment()/decrement() under a short lock
-			'lock_lottery'      => [2, 100],   // chance to prune expired lock rows
-			'lock_timeout'      => 86400,      // max lifetime of a lock acquired with 0 seconds
-//			'finish_request' => true,       // flexible(): send the response before refreshing (PHP-FPM)
+			'network'           => false,      			// true = site transients (shared across a multisite network)
+			'atomic_increments' => true,       			// increment()/decrement() under a short lock
+			'lock_lottery'      => [2, 100],   			// chance to prune expired lock rows
+			'lock_timeout'      => 86400,      			// max lifetime of a lock acquired with 0 seconds
+//			'finish_request' 	=> true,       			// flexible(): send the response before refreshing (PHP-FPM)
 		],
 
 		'object' => [
-			'driver' => 'object',             // groups "wpsp_lite_cache" / "wpsp_lite_cache_locks"
+			'driver' => 'object',             			// groups "wpsp_lite_cache" / "wpsp_lite_cache_locks"
 		],
 
 		'file' => [
 			'driver' => 'file',
-// 			'path' => WP_CONTENT_DIR . '/cache',   // => wp-content/cache/wpsp_lite/data
+// 			'path' => WP_CONTENT_DIR . '/cache',   		// => wp-content/cache/wpsp_lite/data
 		],
 
 		/*
@@ -72,7 +72,7 @@ return [
 			'driver'              => 'phpfastcache',
 			'phpfastcache_driver' => 'Files',
 			'options'             => [
-//				'path' => WP_CONTENT_DIR . '/cache',   // => wp-content/cache/wpsp_lite/files
+//				'path' => WP_CONTENT_DIR . '/cache',   	// => wp-content/cache/wpsp_lite/files
 			],
 		],
 
@@ -82,7 +82,7 @@ return [
 			'options'             => [
 				'host'     => '127.0.0.1',
 				'port'     => 6379,
-				'database' => 0,                  // may be shared with any other plugin / object cache
+				'database' => 0,                  		// may be shared with any other plugin / object cache
 //				'password' => '',
 			],
 		],
