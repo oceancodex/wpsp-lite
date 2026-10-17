@@ -7,6 +7,7 @@ use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
 use WPSPLITE\App\Services\TestService;
 use WPSPLITE\App\Widen\Support\Facades\App;
 use WPSPLITE\App\Widen\Support\Facades\Artisan;
+use WPSPLITE\App\Widen\Support\Facades\Cache;
 use WPSPLITE\App\Widen\Support\Facades\File;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\App\WordPress\ListTables\Permissions;
