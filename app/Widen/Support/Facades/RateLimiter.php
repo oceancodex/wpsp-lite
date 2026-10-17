@@ -2,10 +2,7 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
-use WPSPCORELITE\App\Cache\RateLimiter as RateLimiterCoreClass;
 use WPSPCORELITE\App\Support\Facades\RateLimiter as RateLimiterCore;
-use WPSPLITE\App\Widen\Cache\RateLimiter as WidenRateLimiter;
-use WPSPLITE\App\Widen\Support\Facades\Cache as CacheFacade;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
 

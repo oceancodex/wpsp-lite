@@ -5,23 +5,23 @@
 | Cache - wpsp-lite/config/cache.php
 |--------------------------------------------------------------------------
 |
-| Same shape as Laravel 12's config/cache.php. Code does not change when
-| switching store: Cache::remember(), tags(), lock(), flexible()... work
-| the same on every store.
+| Cấu trúc giống config/cache.php của Laravel 12. Đổi store không cần sửa
+| code: Cache::remember(), tags(), lock(), flexible()... hoạt động như nhau
+| trên mọi store.
 |
-| Drivers:
-|   transient    WordPress Transients API (wp_options, or the Redis/Memcached drop-in)
-|   object       WordPress object cache (wp_cache_*), needs a persistent drop-in
-|   file         Pure PHP file cache (Laravel "file" driver)
-|   phpfastcache Needs: composer require phpfastcache/phpfastcache
+| Các driver:
+|   transient    WordPress Transients API (wp_options, hoặc drop-in Redis/Memcached)
+|   object       WordPress object cache (wp_cache_*), cần một drop-in persistent
+|   file         File cache thuần PHP (driver "file" của Laravel)
+|   phpfastcache Cần: composer require phpfastcache/phpfastcache
 |   array, null, failover
 |
-| The Application binds this config as 'cache' (CacheManager) and 'cache.store'.
-| Isolation from other plugins is automatic, based on 'prefix':
-|   - keys are "{prefix}.{key}", so no prefix can overlap another one;
-|   - folders are always "{path}/{prefix}/..." (path = wp-content/cache by default);
-|   - Redis / Memcached can be shared (same host, same database) by every plugin:
-|     flush() only removes this plugin's keys, it never runs FLUSHDB.
+| Application bind config này thành 'cache' (CacheManager) và 'cache.store'.
+| Việc tách biệt với các plugin khác là tự động, dựa trên 'prefix':
+|   - key có dạng "{prefix}.{key}", nên không prefix nào có thể trùng prefix khác;
+|   - thư mục luôn là "{path}/{prefix}/..." (path mặc định = wp-content/cache);
+|   - Redis / Memcached có thể dùng chung (cùng host, cùng database) cho mọi plugin:
+|     flush() chỉ xóa key của plugin này, không bao giờ chạy FLUSHDB.
 |
 */
 
@@ -29,11 +29,11 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
-	| Default Cache Store
+	| Store cache mặc định
 	|--------------------------------------------------------------------------
 	|
-	| A store name from 'stores' below. Only use a phpfastcache store when this
-	| plugin requires phpfastcache/phpfastcache in its own composer.json.
+	| Tên một store trong 'stores' bên dưới. Chỉ dùng store phpfastcache khi
+	| plugin này có require phpfastcache/phpfastcache trong composer.json của nó.
 	|
 	*/
 
@@ -41,7 +41,7 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
-	| Cache Stores
+	| Các store cache
 	|--------------------------------------------------------------------------
 	*/
 
@@ -49,31 +49,31 @@ return [
 
 		'transient' => [
 			'driver'            => 'transient',
-			'network'           => false,      		// true = site transients (shared across a multisite network)
-			'atomic_increments' => true,       		// increment()/decrement() under a short lock
-			'lock_lottery'      => [2, 100],   		// chance to prune expired lock rows
-			'lock_timeout'      => 86400,      		// max lifetime of a lock acquired with 0 seconds
-//			'finish_request' => true,       		// flexible(): send the response before refreshing (PHP-FPM)
+			'network'           => false,      		// true = site transients (dùng chung cho cả mạng multisite)
+			'atomic_increments' => true,       		// increment()/decrement() chạy dưới một lock ngắn
+			'lock_lottery'      => [2, 100],   		// xác suất dọn các dòng lock đã hết hạn
+			'lock_timeout'      => 86400,      		// thời gian sống tối đa của lock lấy với 0 giây
+//			'finish_request' 	=> true,       		// flexible(): gửi response trước rồi mới làm mới cache (PHP-FPM)
 		],
 
 		'object' => [
-			'driver' => 'object',             		// groups "wpsp_lite_cache" / "wpsp_lite_cache_locks"
+			'driver' => 'object',             		// group "wpsp_lite_cache" / "wpsp_lite_cache_locks"
 		],
 
 		'file' => [
 			'driver' => 'file',
-// 			'path' => WP_CONTENT_DIR . '/cache',   	// => wp-content/cache/wpsp_lite/data
+// 			'path' 	 => WP_CONTENT_DIR . '/cache',   	// => wp-content/cache/wpsp_lite/data
 		],
 
 		/*
-		| phpfastcache stores: only usable when this plugin has phpfastcache/phpfastcache.
+		| Các store phpfastcache: chỉ dùng được khi plugin này có phpfastcache/phpfastcache.
 		*/
 
 		'phpfastcache' => [
 			'driver'              => 'phpfastcache',
 			'phpfastcache_driver' => 'Files',
 			'options'             => [
-// 			'path' => WP_CONTENT_DIR . '/cache',   	// => wp-content/cache/wpsp_lite/files
+// 				'path' => WP_CONTENT_DIR . '/cache',   	// => wp-content/cache/wpsp_lite/files
 			],
 		],
 
@@ -83,7 +83,7 @@ return [
 			'options'             => [
 				'host'     => '127.0.0.1',
 				'port'     => 6379,
-				'database' => 0,                  	// may be shared with any other plugin / object cache
+				'database' => 0,                  	// có thể dùng chung với plugin / object cache khác
 // 				'password' => '',
 			],
 		],
@@ -106,14 +106,14 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
-	| Cache Key Prefix
+	| Prefix cho key cache
 	|--------------------------------------------------------------------------
 	|
-	| null = built from this plugin's folder name: plugins/wpsp-lite => "wpsp_lite_",
-	| plugins/plugin-cua-toi => "plugin_cua_toi_". Two plugins on one site can't share a
-	| folder, so leaving it null is the safest choice: a plugin created from this template
-	| never collides with another one. Set a string only to pin a fixed prefix
-	| (characters other than A-Z a-z 0-9 _ - are removed).
+	| null = tạo từ tên thư mục của plugin: plugins/wpsp-lite => "wpsp_lite_",
+	| plugins/plugin-cua-toi => "plugin_cua_toi_". Hai plugin trên cùng một site không thể
+	| trùng thư mục, nên để null là an toàn nhất: plugin tạo từ template này sẽ không bao giờ
+	| đụng độ với plugin khác. Chỉ đặt một chuỗi khi muốn cố định prefix
+	| (các ký tự ngoài A-Z a-z 0-9 _ - sẽ bị loại bỏ).
 	|
 	*/
 
@@ -121,10 +121,10 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
-	| Cache Class
+	| Class Cache
 	|--------------------------------------------------------------------------
 	|
-	| Class the Application binds as 'cache'. Must extend \WPSPCORELITE\App\Cache\Cache.
+	| Class mà Application bind thành 'cache'. Phải kế thừa \WPSPCORELITE\App\Cache\Cache.
 	|
 	*/
 
@@ -135,9 +135,9 @@ return [
 	| Rate Limiter
 	|--------------------------------------------------------------------------
 	|
-	| 'limiter': store holding the RateLimiter counters (null = 'default').
-	| Use a store shared by every request (transient, object, file, redis...),
-	| never 'array' or 'null'. 'limiter_class' must extend
+	| 'limiter': store lưu các bộ đếm của RateLimiter (null = 'default').
+	| Dùng store được chia sẻ giữa mọi request (transient, object, file, redis...),
+	| không bao giờ dùng 'array' hay 'null'. 'limiter_class' phải kế thừa
 	| \WPSPCORELITE\App\Cache\RateLimiter.
 	|
 	*/
@@ -148,12 +148,12 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
-	| Cache Events
+	| Sự kiện cache
 	|--------------------------------------------------------------------------
 	|
-	| false = off. true = WordPress hooks "{prefix}cache" e.g. "wpsp_lite_cache" (every event)
-	| and "wpsp_lite_cache/cache_hit", ".../cache_missed", ".../key_written"...
-	| A string sets a custom hook name.
+	| false = tắt. true = WordPress hook "{prefix}cache" vd. "wpsp_lite_cache" (mọi sự kiện)
+	| và "wpsp_lite_cache/cache_hit", ".../cache_missed", ".../key_written"...
+	| Một chuỗi = đặt tên hook tùy chỉnh.
 	|
 	*/
 
