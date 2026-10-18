@@ -28,7 +28,7 @@ class ApisController extends BaseController {
 	 *
 	 */
 
-	public function wpsp(\WP_REST_Request $wpRestRequest, $path, $fullPath, $requestPath) {
+	public function wpsp_lite(\WP_REST_Request $wpRestRequest, $path, $fullPath, $requestPath) {
 		// Lấy nonce từ request Rest API.
 		$action = 'wp_rest';
 		$nonce  = $wpRestRequest->get_param('_wpnonce');
