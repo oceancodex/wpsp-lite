@@ -11,7 +11,7 @@ class wpsp_lite extends BaseAdminBarMenu {
 
 	// Args.
 	public $id     = 'wpsp_lite';
-	public $title  = 'WPSP';
+	public $title  = 'WPSP LITE';
 	public $href   = '/wp-admin/admin.php?page=wpsp_lite';
 	public $parent = '';
 	public $meta   = [];
@@ -23,7 +23,7 @@ class wpsp_lite extends BaseAdminBarMenu {
 
 	public function customProperties() {
 		$this->id    = 'wpsp_lite';
-		$this->title = '<span class="ab-icon dashicons dashicons-analytics" style="padding: 6px 0;"></span><span class="ab-label">WPSP</span>';
+		$this->title = '<span class="ab-icon dashicons dashicons-analytics" style="padding: 6px 0;"></span><span class="ab-label">WPSP LITE</span>';
 	}
 
 	/*
