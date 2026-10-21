@@ -34,8 +34,7 @@ class Funcs extends \WPSPCORELITE\Funcs {
 			static::$instance = new static(
 				__DIR__,
 				__NAMESPACE__,
-				static::PREFIX_ENV,
-				[]
+				static::PREFIX_ENV
 			);
 		}
 		return static::$instance;
@@ -75,6 +74,10 @@ class Funcs extends \WPSPCORELITE\Funcs {
 
 	public static function env($var, $addPrefix = false, $default = null) {
 		return static::instance()->_env($var, $addPrefix, $default);
+	}
+
+	public static function old($key = null, $default = null) {
+		return static::instance()->_old($key, $default);
 	}
 
 	public static function auth($guard = null) {
@@ -173,28 +176,28 @@ class Funcs extends \WPSPCORELITE\Funcs {
 	 */
 	public static function actionNotice(?Request $request = null) {
 		if ($request?->query('saved') || isset($_GET['saved'])) {
-			Funcs::notice(Funcs::trans('Saved', null, true), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Saved', true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('updated') || isset($_GET['updated'])) {
-			Funcs::notice(Funcs::trans('Updated', null, true), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Updated', true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('trashed') ?? isset($_GET['trashed'])) {
-			Funcs::notice(Funcs::trans('Trashed', null, true), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Trashed', true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('untrashed') ?? isset($_GET['untrashed'])) {
-			Funcs::notice(Funcs::trans('Untrashed', null, true), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Untrashed', true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('deleted') ?? isset($_GET['deleted'])) {
-			Funcs::notice(Funcs::trans('Deleted', null, true), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Deleted', true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($request?->query('locked') ?? isset($_GET['locked'])) {
-			Funcs::notice(Funcs::trans('Locked', null, true), $_GET['notice_type'] ?? 'success');
+			Funcs::notice(Funcs::trans('Locked', true), $_GET['notice_type'] ?? 'success');
 		}
 		elseif ($error = ($request?->query('error') ?? $_GET['error'] ?? null)) {
-			Funcs::notice(Funcs::trans($error, ['error' => $_GET['error'] ?? $err ?? '']), $_GET['notice_type'] ?? 'error');
+			Funcs::notice(Funcs::trans('%s', ['%s' => $_GET['error'] ?? $err ?? '']), $_GET['notice_type'] ?? 'error');
 		}
 		elseif ($message = ($request?->query('message') ?? $_GET['message'] ?? null)) {
-			Funcs::notice(Funcs::trans('messages.notice_message', ['message' => $_GET['message'] ?? $msg ?? '']), $_GET['notice_type'] ?? 'info');
+			Funcs::notice(Funcs::trans('%s', ['%s' => $_GET['message'] ?? $msg ?? '']), $_GET['notice_type'] ?? 'info');
 		}
 	}
 
