@@ -16,10 +16,6 @@ class AppServiceProvider extends ServiceProvider {
 	 * Register any application services.
 	 */
 	public function register() {
-		RateLimiter::for('30rpm', function (Request $request) {
-			return Limit::perMinute(30);
-		});
-
 		// Sử dụng "hassankhan/config" để có config như Laravel.
 //		$this->app->instance('config', Config::instance());
 
@@ -34,7 +30,9 @@ class AppServiceProvider extends ServiceProvider {
 	 * Bootstrap any application services.
 	 */
 	public function boot() {
-		//
+		RateLimiter::for('30rpm', function (Request $request) {
+			return Limit::perMinute(30);
+		});
 	}
 
 }
