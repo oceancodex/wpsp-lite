@@ -21,12 +21,7 @@ class WPSP extends \WPSPCORELITE\WPSP {
 	 */
 	public static function instance() {
 		if (!static::$instance) {
-			$instance         = new static(
-				__DIR__,
-				__NAMESPACE__,
-				Funcs::PREFIX_ENV,
-				[]
-			);
+			$instance         = new static(__DIR__, __NAMESPACE__, Funcs::PREFIX_ENV, []);
 			$instance->funcs  = Funcs::instance();
 			static::$instance = $instance;
 		}
@@ -110,9 +105,11 @@ class WPSP extends \WPSPCORELITE\WPSP {
 	}
 
 	public static function aferSetupApplicationForConsole() {
-		Updater::instance()->init();
-		WPTranslation::instance()->init();
-		static::shareVariablesForAllViews();
+		if (defined('WPSP_LITE_ACTIVE')) {
+			Updater::instance()->init();
+			WPTranslation::instance()->init();
+			static::shareVariablesForAllViews();
+		}
 	}
 
 	/*

@@ -2,9 +2,9 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
-use WPSPCORELITE\App\Support\Facades\App as AppCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
+use WPSPCORELITE\App\Support\Facades\App as AppCore;
 
 class App extends AppCore {
 
@@ -29,6 +29,7 @@ class App extends AppCore {
 
 			static::$instance->setFacade();
 		}
+
 		return static::$instance;
 	}
 
