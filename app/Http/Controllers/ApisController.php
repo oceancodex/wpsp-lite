@@ -2,11 +2,6 @@
 
 namespace WPSPLITE\App\Http\Controllers;
 
-use Carbon\Carbon;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use WPSPLITE\App\Events\UsersRegisteredEvent;
 use WPSPLITE\App\Widen\Support\Facades\Auth;
 use WPSPLITE\App\Widen\Support\Facades\Event;
@@ -356,14 +351,14 @@ class ApisController extends BaseController {
 		header('Content-Type: text/html; charset=utf-8');
 
 		$request->validate([
-			'token' => 'required',
-			'email' => 'required|email',
+			'token'    => 'required',
+			'email'    => 'required|email',
 			'password' => 'required|min:8|confirmed',
 		]);
 
 		$status = Password::reset(
 			$request->only('email', 'password', 'password_confirmation', 'token'),
-			function (UsersModel $user, string $password) {
+			function(UsersModel $user, string $password) {
 				$user->forceFill([
 					'password' => Hash::make($password),
 				])->setRememberToken(Str::random(60));

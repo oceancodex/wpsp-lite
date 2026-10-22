@@ -2,7 +2,7 @@
 
 namespace WPSPLITE\App\Widen\View;
 
-
+use WPSPLITE\App\Widen\View\View;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 /**
@@ -32,6 +32,7 @@ class Share extends \WPSPCORELITE\App\View\Share {
 	public function share() {
 		$this->view?->share([
 			'current_wp_user' => wp_get_current_user(),
+			'current_request' => $this->request,
 		]);
 	}
 

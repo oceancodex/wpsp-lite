@@ -2,10 +2,10 @@
 /**
  * Plugin Name:         WPSP Framework - WordPress Starter Plugin - Lite
  * Description:         WPSP Framework - WordPress Starter Plugin - PHP ^8.3
- * Version:             13.1.74
+ * Version:             13.1.75
  * Requires at least:   6.4
  * Requires PHP:        8.3
- * Text Domain:         wpsp
+ * Text Domain:         wpsp-lite
  * Domain Path:         /lang
  * Author:              OceanCodex
  * Plugin URI:          https://oceancodex.com

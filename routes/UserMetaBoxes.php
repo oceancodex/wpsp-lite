@@ -15,7 +15,9 @@ class UserMetaBoxes {
 	 */
 
 	public function user_meta_boxes() {
-		Route::user_meta_box('custom_user_meta_box', [custom_user_meta_box::class, 'index']);
+//		Route::name('wpsp_lite_user_meta_boxes.')->prefix('wpsp-lite-user-meta-boxes')->group(function() {
+			Route::user_meta_box('custom_user_meta_box', [custom_user_meta_box::class, 'index']);
+//		});
 	}
 
 	/*
