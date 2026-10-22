@@ -16,10 +16,10 @@ class AdminBarMenus {
 	 */
 
 	public function admin_bar_menus() {
-		Route::name('wpsp_lite.')->group(function() {
+//		Route::name('wpsp_lite.')->prefix('wpsp-lite')->group(function() {
 			Route::admin_bar_menu('wpsp_lite', [wpsp_lite::class], ['priority' => 100]);
 			Route::admin_bar_menu('wpsp_lite_tab_dashboard', [wpsp_lite_tab_dashboard::class]);
-		});
+//		});
 	}
 
 	/*

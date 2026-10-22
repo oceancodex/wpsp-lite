@@ -2,9 +2,9 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
-use WPSPCORELITE\App\Support\Facades\Artisan as ArtisanCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
+use WPSPCORELITE\App\Support\Facades\Artisan as ArtisanCore;
 
 class Artisan extends ArtisanCore {
 
@@ -18,15 +18,18 @@ class Artisan extends ArtisanCore {
 	 */
 	public static function wpspInstance() {
 		if (!static::$instance) {
-			$instance = new static(
-				Funcs::instance()->_getMainPath(),
-				Funcs::instance()->_getRootNamespace(),
-				Funcs::instance()->_getPrefixEnv(),
+			$funcs = Funcs::instance();
+
+			static::$instance = new static(
+				$funcs->_getMainPath(),
+				$funcs->_getRootNamespace(),
+				$funcs->_getPrefixEnv(),
 				[]
 			);
-			$instance->setFacade();
-			static::$instance = $instance;
+
+			static::$instance->setFacade();
 		}
+
 		return static::$instance;
 	}
 

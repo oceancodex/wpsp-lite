@@ -67,7 +67,10 @@ class RewriteFrontPages {
 //
 //			Route::middleware(EditorCapability::class)->get('test\/(?P<slug>[^\/\?]+)(?:\?(?P<queries>.*))?', [rewrite_demo::class, 'index'], ['route_arg_1' => 'route_arg_1_value'])->name('index');
 
+//			Route::get('child\/(.*?)\/?', [rewrite_demo::class, 'index'])->name('index');
 //			Route::get('\/child\/(.*?)\/?', [rewrite_demo::class, 'index'])->name('index');
+//			Route::get('child/{slug}', [rewrite_demo::class, 'index'])->name('index');
+//			Route::get('child/{slug?}', [rewrite_demo::class, 'index'])->name('index');
 //			Route::get('\/(?P<slug1>[^\/]+)\/(?P<slug2>[^\/]+)\/?', [rewrite_demo::class, 'index'])->name('index');
 //			Route::get('/{slug1?}/{slug2?}', [rewrite_demo::class, 'index'])->name('index');
 //			Route::get('/child/{slug1?}/{slug2?}', [rewrite_demo::class, 'index'])->name('index');

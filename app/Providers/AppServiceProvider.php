@@ -16,8 +16,8 @@ class AppServiceProvider extends ServiceProvider {
 	 * Register any application services.
 	 */
 	public function register() {
-		RateLimiter::for('2rpm', function (Request $request) {
-			return Limit::perMinute(20);
+		RateLimiter::for('30rpm', function (Request $request) {
+			return Limit::perMinute(30);
 		});
 
 		// Sử dụng "hassankhan/config" để có config như Laravel.

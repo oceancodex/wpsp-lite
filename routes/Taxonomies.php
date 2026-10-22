@@ -15,7 +15,9 @@ class Taxonomies {
 	 */
 
 	public function taxonomies() {
-		Route::taxonomy('wpsp_lite_category', [wpsp_lite_category::class]);
+//		Route::name('wpsp_lite_taxonomies.')->prefix('wpsp-lite-taxonomies')->group(function() {
+			Route::taxonomy('wpsp_lite_category', [wpsp_lite_category::class]);
+//		});
 	}
 
 	/*
