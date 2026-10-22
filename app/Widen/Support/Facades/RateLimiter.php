@@ -2,9 +2,9 @@
 
 namespace WPSPLITE\App\Widen\Support\Facades;
 
-use WPSPCORELITE\App\Support\Facades\RateLimiter as RateLimiterCore;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 use WPSPLITE\Funcs;
+use WPSPCORELITE\App\Support\Facades\RateLimiter as RateLimiterCore;
 
 class RateLimiter extends RateLimiterCore {
 
@@ -18,15 +18,18 @@ class RateLimiter extends RateLimiterCore {
 	 */
 	public static function wpspInstance() {
 		if (!static::$instance) {
-			$instance = new static(
-				Funcs::instance()->_getMainPath(),
-				Funcs::instance()->_getRootNamespace(),
-				Funcs::instance()->_getPrefixEnv(),
+			$funcs = Funcs::instance();
+
+			static::$instance = new static(
+				$funcs->_getMainPath(),
+				$funcs->_getRootNamespace(),
+				$funcs->_getPrefixEnv(),
 				[]
 			);
-			$instance->setFacade();
-			static::$instance = $instance;
+
+			static::$instance->setFacade();
 		}
+
 		return static::$instance;
 	}
 

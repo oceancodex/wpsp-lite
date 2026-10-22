@@ -1,5 +1,7 @@
 <?php
 
+use WPSPLITE\App\Widen\Support\Facades\Cache;
+use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
 use WPSPLITE\Funcs;
 use WPSPLITE\WPSP;
 use WPSPCORELITE\App\Http\Request;
@@ -122,12 +124,12 @@ if (!function_exists('wpsp_lite_validation')) {
 }
 if (!function_exists('wpsp_lite_cache')) {
 	function wpsp_lite_cache() {
-//		return Cache::instance();
+		return Cache::instance();
 	}
 }
 if (!function_exists('wpsp_lite_rate_limiter')) {
 	function wpsp_lite_rate_limiter() {
-//		return RateLimiter::instance()->getRateLimiter();
+		return RateLimiter::instance();
 	}
 }
 

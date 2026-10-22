@@ -4,6 +4,7 @@ namespace WPSPLITE\App\Http\Middleware;
 
 use Closure;
 use WPSPCORELITE\App\Http\Request;
+use WP_HTTP_Response;
 use WPSPLITE\Funcs;
 
 class VerifiedUserMiddleware {
@@ -35,7 +36,7 @@ class VerifiedUserMiddleware {
 		) {
 			if (!$request->user()?->hasVerifiedEmail()) {
 				$verificationUrl = Funcs::route('RewriteFrontPages', 'verification.resend', true);
-				$response = new \WP_HTTP_Response('Tài khoản của bạn chưa xác thực! Vui lòng xác thực tài khoản <a href="' . $verificationUrl . '">tại đây</a>.', 403);
+				$response = new WP_HTTP_Response('Tài khoản của bạn chưa xác thực! Vui lòng xác thực tài khoản <a href="' . $verificationUrl . '">tại đây</a>.', 403);
 				return $response;
 			}
 		}
