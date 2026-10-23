@@ -107,6 +107,10 @@ class AdminPages {
 				Route::get('wpsp_lite&tab=users&doaction=delete&id=(?P<id>\d+)', [wpsp_lite_tab_users::class, 'delete'])->middleware(AdministratorCapability::class)->name('delete');
 			});
 			Route::get('wpsp_lite&tab=activity_log', [wpsp_lite_tab_activity_log::class, 'index'])->name('activity_log');
+//			Route::get('wpsp&tab=activity_log', [wpsp_lite_tab_activity_log::class, 'index'])->can('administrator')->name('activity_log');
+//			Route::get('wpsp&tab=activity_log', [wpsp_lite_tab_activity_log::class, 'index'])->can('view', \WP_User::class)->name('activity_log');
+//			Route::get('wpsp&tab=activity_log', [wpsp_lite_tab_activity_log::class, 'index'])->middleware('can:administrator')->name('activity_log');
+//			Route::get('wpsp&tab=activity_log', [wpsp_lite_tab_activity_log::class, 'index'])->middleware('can:view,'.\WP_User::class)->name('activity_log');
 			Route::get('wpsp_lite_tab_list_users', [wpsp_lite_list_users::class, 'index'])->name('list');
 			Route::get('wpsp_lite_child_example', [wpsp_lite_child_example::class, 'index'])->name('child_example');
 			Route::get('wpsp_lite_test_facades', [wpsp_lite_test_facades::class, 'create'], ['force_init' => true, 'force_init_slug' => 'wpsp_lite_test_facades'])->name('test_facades');
