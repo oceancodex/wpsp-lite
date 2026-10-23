@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider {
 			return Limit::perMinute(30);
 		});
 
-		// Cho DefaultPolicy gắn với class name WP_User.
+		// Cho ExamplePolicy gắn với class name WP_User.
 		Gate::policy(\WP_User::class, ExamplePolicy::class);
 	}
 
