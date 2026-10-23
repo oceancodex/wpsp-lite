@@ -7,6 +7,7 @@ use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\ServiceProvider;
 use WPSPLITE\App\Services\TestService;
 use WPSPLITE\App\Widen\Config\Config;
+use WPSPLITE\App\Widen\Support\Facades\Gate;
 use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
 use WPSPLITE\App\Widen\View\BladeOne;
 
@@ -30,6 +31,8 @@ class AppServiceProvider extends ServiceProvider {
 	 * Bootstrap any application services.
 	 */
 	public function boot() {
+		Gate::policy(\WP_Post::class, \WPSPLITE\App\Policies\ExamplePolicy::class);
+
 		RateLimiter::for('30rpm', function (Request $request) {
 			return Limit::perMinute(30);
 		});
