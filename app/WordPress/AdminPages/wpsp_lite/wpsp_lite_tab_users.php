@@ -3,6 +3,7 @@
 namespace WPSPLITE\App\WordPress\AdminPages\wpsp_lite;
 
 use Illuminate\Support\Facades\Hash;
+use WPSPCORELITE\App\Auth\Access\AuthorizesRequests;
 use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
 use WPSPLITE\App\Http\Requests\UsersUpdateRequest;
@@ -13,6 +14,10 @@ use WPSPLITE\Funcs;
 class wpsp_lite_tab_users extends BaseAdminPage {
 
 	use InstancesTrait;
+	use AuthorizesRequests {
+		resourceAbilityMap as baseResourceAbilityMap;
+		resourceMethodsWithoutModels as baseResourceMethodsWithoutModels;
+	}
 
 	/**
 	 * WordPress admin page properties.
@@ -60,6 +65,18 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 	/*
 	 *
 	 */
+
+	public function __instanceConstruct() {
+		$this->authorizeResource(UsersModel::class, 'user');
+// 		$this->middleware('can:update,user')->only('edit', 'update');
+
+		/**
+		 * Thêm policy forceDelete và restore (Cách 2)
+		 * Action → ability của Policy.
+		 */
+//		$this->middleware('can:forceDelete,' . User::class . ',user')->only('forceDestroy');
+//		$this->middleware('can:restore,' . User::class . ',user')->only('restore');
+	}
 
 	/**
 	 * Tùy biến những thuộc tính chuyên sâu\
@@ -113,6 +130,26 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 		$this->currentPage = $this->request->get('page');
 //		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.users')) . ' - ' . Funcs::config('app.name');
 	}
+
+	/**
+	 * Thêm policy forceDelete và restore (Cách 1)
+	 * Action → ability của Policy.
+	 */
+//	protected function resourceAbilityMap(): array {
+//		return array_merge($this->baseResourceAbilityMap(), [
+//			'forceDestroy' => 'forceDelete',
+//			'restore'      => 'restore',
+//			'bulkUpdate'   => 'update',
+//		]);
+//	}
+
+	/**
+	 * Thêm policy forceDelete và restore (Cách 1)
+	 * Action không gắn với 1 user cụ thể → chỉ truyền tên class.
+	 */
+//	protected function resourceMethodsWithoutModels(): array {
+//		return array_merge($this->baseResourceMethodsWithoutModels(), ['bulkUpdate']);
+//	}
 
 	/*
 	 *
@@ -204,7 +241,7 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 		}
 	}
 
-	public function show(Request $request, UsersModel|int|null $user) {
+	public function show(Request $request, \WP_User|UsersModel|int|null $user) {
 		try {
 		    if (!$request->user()->can('view', $user)) { // Sử dụng Gate/Policies
 //			if (!$request->user()?->hasRole('super_admin')) {
@@ -216,6 +253,7 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 			Funcs::notice($e->getMessage() . ' in: ' . __FILE__ . ':' . __LINE__, 'error');
 		}
 
+		$user = get_user_by('id', $user);
 
 		$action = $this->request->get('doaction');
 		if ($action == 'show') {
@@ -231,9 +269,10 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 		}
 	}
 
-	public function edit(Request $request, $id) {
+	public function edit(Request $request, UsersModel|int|null $user) {
 		try {
-			if (!$request->user()?->hasRole('super_admin')) {
+			if (!$request->user()->can('update', $user)) { // Sử dụng Gate/Policies
+//			if (!$request->user()?->hasRole('super_admin')) {
 				Funcs::notice(Funcs::trans('You do not have permission to edit this user!', null, true), 'error');
 //				wp_die('You do not have permission to edit this user!');
 			}
@@ -243,9 +282,9 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 		}
 
 		$action = $this->request->get('doaction');
-		if ($action == 'edit' && $id) {
+		if ($action == 'edit' && $user) {
 			// Select user and test ModelNotFoundException.
-			$selectedUser = UsersModel::query()->findOrFail($id);
+			$selectedUser = UsersModel::query()->findOrFail($user);
 			wpsp_lite_view_inject('admin-pages.wpsp_lite.users', function($view) use ($selectedUser) {
 				$view->with('selected_user', $selectedUser);
 			});
@@ -276,10 +315,10 @@ class wpsp_lite_tab_users extends BaseAdminPage {
 			 *
 			 * => Nếu không hợp lệ sẽ redirect()->back()->withErrors($validator)->withInput()
 			 */
-			$formRequest = UsersUpdateRequest::createFrom($request);
-			$formRequest->input_user_id = $id;
-			$formRequest->setContainer(Funcs::app());
-			$formRequest->validateResolved();
+//			$formRequest = UsersUpdateRequest::createFrom($request);
+//			$formRequest->input_user_id = $id;
+//			$formRequest->setContainer(Funcs::app());
+//			$formRequest->validateResolved();
 
 			$user = UsersModel::query()->find($id);
 
