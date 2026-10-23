@@ -2,8 +2,8 @@
 global $selected_user;
 
 if(
-    isset($requestParams['action']) && $requestParams['action'] == 'show'
-    && isset($requestParams['id']) && $requestParams['id']
+    isset($requestParams['doaction']) && $requestParams['doaction'] == 'show'
+    && isset($requestParams['user']) && $requestParams['user']
 ) :
 ?>
     <div id="poststuff">
@@ -30,7 +30,7 @@ if(
                                 <tr>
                                     <td>
                                         <?php
-                                        echo '<pre>'; print_r($selected_user->toArray()); echo '</pre>';
+                                        echo '<pre>'; print_r($selected_user?->toArray()); echo '</pre>';
                                         ?>
                                     </td>
                                 </tr>
@@ -60,7 +60,7 @@ if(
                                 <tr>
                                     <td>
                                         <?php
-                                        echo '<pre>'; print_r($selected_user->roles()->toArray()); echo '</pre>';
+                                        echo '<pre>'; print_r($selected_user?->roles); echo '</pre>';
                                         ?>
                                     </td>
                                 </tr>
@@ -88,7 +88,7 @@ if(
                                 <tr>
                                     <td>
                                         <?php
-                                        echo '<pre>'; print_r($selected_user->rolesAndPermissions()); echo '</pre>';
+                                        echo '<pre>'; print_r($selected_user?->rolesAndPermissions()); echo '</pre>';
                                         ?>
                                     </td>
                                 </tr>
@@ -104,7 +104,7 @@ if(
 
 <?php
 elseif(
-    isset($requestParams['action']) && $requestParams['action'] == 'create'
+    isset($requestParams['doaction']) && $requestParams['doaction'] == 'create'
 ) :
 ?>
     <form method="POST">

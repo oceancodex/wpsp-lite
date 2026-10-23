@@ -2,13 +2,15 @@
 
 namespace WPSPLITE\App\Policies;
 
+use WPSPCORELITE\App\Auth\Access\Response;
+
 class ExamplePolicy {
 
 	/**
 	 * Determine whether the user can view any models.
 	 */
 	public function viewAny(\WP_User $user) {
-		return true;
+		return Response::deny('Access denied. Method "viewAny()" is being return "false" in ExamplePolicy');
 	}
 
 	/**
