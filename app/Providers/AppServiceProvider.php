@@ -7,8 +7,10 @@ use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\ServiceProvider;
 use WPSPLITE\App\Services\TestService;
 use WPSPLITE\App\Widen\Config\Config;
+use WPSPLITE\App\Widen\Support\Facades\Gate;
 use WPSPLITE\App\Widen\Support\Facades\RateLimiter;
 use WPSPLITE\App\Widen\View\BladeOne;
+use WPSPLITE\App\Policies\ExamplePolicy;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -30,9 +32,13 @@ class AppServiceProvider extends ServiceProvider {
 	 * Bootstrap any application services.
 	 */
 	public function boot() {
+		// Đăng ký rate limiter với name 30rpm.
 		RateLimiter::for('30rpm', function (Request $request) {
 			return Limit::perMinute(30);
 		});
+
+		// Cho ExamplePolicy gắn với class name WP_User.
+		Gate::policy(\WP_User::class, ExamplePolicy::class);
 	}
 
 }

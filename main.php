@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         WPSP Framework - WordPress Starter Plugin - Lite
  * Description:         WPSP Framework - WordPress Starter Plugin - PHP ^8.3
- * Version:             12.1.75
+ * Version:             12.1.76
  * Requires at least:   6.1
  * Requires PHP:        8.2
  * Text Domain:         wpsp
