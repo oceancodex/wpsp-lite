@@ -2,13 +2,19 @@
 
 namespace WPSPLITE\App\WordPress\AdminPages\wpsp_lite;
 
+use WPSPCORELITE\App\Auth\Access\AuthorizesRequests;
 use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
+use WPSPLITE\App\Models\UsersModel;
 use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class wpsp_lite_child_example extends BaseAdminPage {
 
 	use InstancesTrait;
+	use AuthorizesRequests {
+		resourceAbilityMap as baseResourceAbilityMap;
+		resourceMethodsWithoutModels as baseResourceMethodsWithoutModels;
+	}
 
 	/**
 	 * WordPress admin page properties.
@@ -56,6 +62,18 @@ class wpsp_lite_child_example extends BaseAdminPage {
 	/*
 	 *
 	 */
+
+	public function __instanceConstruct() {
+		$this->authorizeResource(UsersModel::class, 'user');
+// 		$this->middleware('can:update,user')->only('edit', 'update');
+
+		/**
+		 * Thêm policy forceDelete và restore (Cách 2)
+		 * Action → ability của Policy.
+		 */
+//		$this->middleware('can:forceDelete,' . User::class . ',user')->only('forceDestroy');
+//		$this->middleware('can:restore,' . User::class . ',user')->only('restore');
+	}
 
 	/**
 	 * Tùy biến những thuộc tính chuyên sâu\
@@ -109,6 +127,26 @@ class wpsp_lite_child_example extends BaseAdminPage {
 		$this->currentPage = $this->request->get('page');
 //		$this->page_title  = ($this->currentTab ? Funcs::trans('messages.' . $this->currentTab) : Funcs::trans('messages.wpsp_lite_child_example')) . ' - ' . Funcs::config('app.name');
 	}
+
+	/**
+	 * Thêm policy forceDelete và restore (Cách 1)
+	 * Action → ability của Policy.
+	 */
+//	protected function resourceAbilityMap(): array {
+//		return array_merge($this->baseResourceAbilityMap(), [
+//			'forceDestroy' => 'forceDelete',
+//			'restore'      => 'restore',
+//			'bulkUpdate'   => 'update',
+//		]);
+//	}
+
+	/**
+	 * Thêm policy forceDelete và restore (Cách 1)
+	 * Action không gắn với 1 user cụ thể → chỉ truyền tên class.
+	 */
+//	protected function resourceMethodsWithoutModels(): array {
+//		return array_merge($this->baseResourceMethodsWithoutModels(), ['bulkUpdate']);
+//	}
 
 	/*
 	 *
