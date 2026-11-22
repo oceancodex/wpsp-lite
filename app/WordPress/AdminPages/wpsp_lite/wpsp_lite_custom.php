@@ -27,7 +27,7 @@ class wpsp_lite_custom extends BaseAdminPage {
 	 * Parent properties.
 	 */
 //	public $forceInit			   = false;
-	public $forceInitSlug          = 'custom';
+//	public $forceInitSlug          = 'wpsp_lite_custom';
 
 //	public $classes                = null;
 //	public $firstSubmenuTitle      = null;
@@ -188,7 +188,12 @@ class wpsp_lite_custom extends BaseAdminPage {
 		echo '<div class="wrap"><h1>Admin page: "wpsp_lite_custom"</h1></div>';
 	}
 
-	public function create(Request $request) {}
+	public function create(Request $request, $user) {
+		add_action('admin_footer', function() {
+			Funcs::notice('POST with force_init', 'success', true);
+		});
+//		wp_redirect(Funcs::route('AdminPages', 'wpsp.dashboard', ['saved' => true], true));
+	}
 
 	public function store(Request $request) {}
 
