@@ -114,8 +114,14 @@ class AdminPages {
 //			Route::get('wpsp&tab=activity_log', [wpsp_lite_tab_activity_log::class, 'index'])->middleware('can:view,'.\WP_User::class)->name('activity_log');
 			Route::get('wpsp_lite_tab_list_users', [wpsp_lite_list_users::class, 'index'])->name('list');
 			Route::get('wpsp_lite_child_example', [wpsp_lite_child_example::class, 'index'])->name('child_example');
-			Route::get('wpsp_test_facades', [wpsp_lite_test_facades::class], ['force_init' => true])->name('test_facades');
-//			Route::get('wpsp_test_facades', [wpsp_lite_test_facades::class, 'create'], ['force_init' => true, 'force_init_slug' => 'wpsp_test_facades_force'])->name('test_facades');
+//			Route::get('wpsp_lite_test_facades', [wpsp_lite_test_facades::class], ['force_init' => true])->name('test_facades');
+			Route::get('wpsp_lite_test_facades_force&tab=list', [wpsp_lite_test_facades::class, 'create'], [
+				'force_init'                 => true,
+				'force_init_is_submenu_page' => true,
+				'force_init_parent_slug'     => '',
+				'force_init_capability'      => 'administrator',
+				'force_init_slug'            => 'wpsp_lite_test_facades_force',
+			])->name('test_facades');
 			Route::get('edit.php?post_type=wpsp_lite_content', [wpsp_lite_child_post_type_wpsp_lite_content::class, null])->name('list_wpsp_lite_content');
 			Route::get('edit-tags.php?taxonomy=wpsp_lite_category', [wpsp_lite_child_taxonomy_wpsp_lite_category::class, null])->name('list_wpsp_lite_category');
 		});
