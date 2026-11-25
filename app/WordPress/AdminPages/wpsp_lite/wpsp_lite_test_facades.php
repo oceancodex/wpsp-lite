@@ -2,9 +2,10 @@
 
 namespace WPSPLITE\App\WordPress\AdminPages\wpsp_lite;
 
+use WPSPLITE\App\Widen\Traits\InstancesTrait;
+use WPSPLITE\Funcs;
 use WPSPCORELITE\App\Http\Request;
 use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
-use WPSPLITE\App\Widen\Traits\InstancesTrait;
 
 class wpsp_lite_test_facades extends BaseAdminPage {
 
@@ -25,7 +26,16 @@ class wpsp_lite_test_facades extends BaseAdminPage {
 	 * Parent properties.
 	 */
 //	public $forceInit			   = false;
+//	public $forceInitPriority      = 10;
+//	public $forceInitIsSubmenuPage = false;
+//	public $forceInitParentSlug    = '';
+//	public $forceInitPageTitle     = '';
+//	public $forceInitMenuTitle     = '';
+//	public $forceInitCapability	   = null;
 //	public $forceInitSlug          = null;
+//	public $forceInitCallback      = null;
+//	public $forceInitIconUrl       = null;
+//	public $forceInitPosition	   = null;
 
 //	public $classes                = null;
 //	public $firstSubmenuTitle      = null;
@@ -188,7 +198,10 @@ class wpsp_lite_test_facades extends BaseAdminPage {
 	}
 
 	public function create(Request $request) {
-		echo '<div class="wrap"><h1>Admin page: "wpsp_lite_test_facades"</h1></div>';
+		add_action('admin_footer', function() {
+			Funcs::notice('GET with force_init', 'success', true);
+		});
+//		echo '<div class="wrap"><h1>Admin page: "wpsp_test_facades"</h1></div>';
 	}
 
 	public function store(Request $request) {}
