@@ -2,8 +2,6 @@
 
 namespace WPSPLITE\App\WordPress\AdminPages\wpsp_lite;
 
-use WPSPCORELITE\App\Http\Request;
-use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
 use WPSPLITE\App\Services\TestService;
 use WPSPLITE\App\Widen\Support\Facades\App;
 use WPSPLITE\App\Widen\Support\Facades\Artisan;
@@ -15,6 +13,8 @@ use WPSPLITE\App\WordPress\ListTables\Roles;
 use WPSPLITE\App\WordPress\ListTables\Settings;
 use WPSPLITE\App\WordPress\ListTables\Users;
 use WPSPLITE\Funcs;
+use WPSPCORELITE\App\Http\Request;
+use WPSPCORELITE\App\WordPress\AdminPages\BaseAdminPage;
 
 class wpsp_lite extends BaseAdminPage {
 
@@ -93,6 +93,7 @@ class wpsp_lite extends BaseAdminPage {
 		 */
 		$this->urlsMatchHighlightMenu = [
 //			'admin.php?page=wpsp_lite&tab=dashboard',
+			'/admin.php\?page=wpsp_lite_test_facades_force/iu',
 			'edit-tags.php?taxonomy=wpsp_lite_category',
 			'term.php?taxonomy=wpsp_lite_category'
 		];
