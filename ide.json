@@ -39,6 +39,11 @@
 					"parameters": [1]
 				},
 				{
+					"classFqn": ["\\WPSPLITE\\App\\Widen\\Support\\Facades\\View"],
+					"methodNames": ["composer"],
+					"parameters": [1]
+				},
+				{
 					"classFqn": ["\\WPSPCORELITE\\Funcs"],
 					"methodNames": ["_view"],
 					"parameters": [1]
