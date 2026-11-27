@@ -20,18 +20,28 @@ class wpsp_lite_tab_tools extends BaseAdminPage {
 //	public $menu_slug              = 'wpsp_lite&tab=tools';
 	public $icon_url               = 'dashicons-admin-generic';
 //	public $position               = 2;
-	public $parent_slug            = 'wpsp_lite';
+//	public $parent_slug            = 'wpsp_lite';
+//	public $priority               = 10;
 
 	/**
 	 * Parent properties.
 	 */
-	public $forceInit			   = true;
-	public $forceInitSlug          = 'admin.php?page=wpsp_lite&tab=tools';
+	public $forceInit              = true;
+	public $forceInitPriority      = 10;
+	public $forceInitIsSubmenuPage = true;
+	public $forceInitParentSlug    = 'wpsp_lite';
+	public $forceInitPageTitle     = 'Tab: Tools';
+	public $forceInitMenuTitle     = 'Tab: Tools';
+	public $forceInitCapability    = 'manage_options';
+	public $forceInitSlug          = 'wpsp_lite&tab=tools';
+	public $forceInitCallback      = null;
+	public $forceInitIconUrl       = null;
+	public $forceInitPosition      = null;
 
 //	public $classes                = null;
+	public $isSubmenuPage          = true;
 //	public $firstSubmenuTitle      = null;
 //	public $firstSubmenuClasses    = null;
-	public $isSubmenuPage          = true;
 //	public $removeFirstSubmenu     = true;
 
 	public $showScreenOptions      = true;
